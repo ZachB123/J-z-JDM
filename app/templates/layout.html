@@ -17,7 +17,25 @@
 
 </head>
 <body>
-    
+    <nav>
+        <ul>
+            <!-- Homepage -->
+            <a href="{{ url_for('index') }}">Home</a>
+            <!-- Page with seach feature for cars and Social Media thing for the cars -->
+            <a href="{{ url_for('listings') }}">Listings</a>
+            <!-- Don't add this for a navbar this is the page for any specific car -->
+            <a href="{{ url_for('car') }}">Specific Car</a>
+            <!-- Loan calculator -->
+            <a href="{{ url_for('loan') }}">Loan Calculator</a>
+            <!-- maybe better name than management.html? -->
+            <a href="{{ url_for('management') }}">Sales reps and Owners</a>
+            <!-- account information I wouldn't put this direct link here maybe a login/sighup sorta thing instead? -->
+            <a href="{{ url_for('account') }}">Account</a>
+            <!-- Don't put this is just for us to monitor database and other things we might find useful -->
+            <a href="{{ url_for('control') }}">Control Center</a>
+        </ul>
+        <hr>
+    </nav>
     {% block body %} {% endblock %}
 </body>
 </html>
