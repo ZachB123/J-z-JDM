@@ -9,8 +9,15 @@
     {% else %} 
         <title>Default Title</title>
     {% endif %}
+    <link rel="stylesheet" href="../static/css/variables.css">
+    <link rel="stylesheet" href="../static/css/styles.css">
+    {% block css %} {% endblock %}
+    <link rel="stylesheet" href="../static/js/script.js" defer>
+    {% block js %} {% endblock %}
+
 </head>
 <body>
+    
     {% block body %} {% endblock %}
 </body>
 </html>
