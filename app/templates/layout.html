@@ -14,11 +14,11 @@
     {% block css %} {% endblock %}
     <link rel="stylesheet" href="../static/js/script.js" defer>
     {% block js %} {% endblock %}
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-    <nav>
-        <ul>
+    <nav class="navbar" id="topnav">
+        <ul class="navlinks">
             <!-- Homepage -->
             <a href="{{ url_for('index') }}">Home</a>
             <!-- Page with seach feature for cars and Social Media thing for the cars -->
@@ -33,6 +33,8 @@
             <a href="{{ url_for('account') }}">Account</a>
             <!-- Don't put this is just for us to monitor database and other things we might find useful -->
             <a href="{{ url_for('control') }}">Control Center</a>
+            <!-- Used to link the hamburger button to javascript -->
+            <a href="javascript:void(0);" class="icon" onclick="hamburgerClick()"></a>
         </ul>
         <hr>
     </nav>
