@@ -9,12 +9,13 @@
     {% else %} 
         <title>Default Title</title>
     {% endif %}
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
     <link rel="stylesheet" href="../static/css/variables.css">
     <link rel="stylesheet" href="../static/css/styles.css">
     {% block css %} {% endblock %}
     <link rel="stylesheet" href="../static/js/script.js" defer>
     {% block js %} {% endblock %}
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
     <nav class="navbar" id="topnav">
@@ -22,22 +23,27 @@
             <!-- Homepage -->
             <a href="{{ url_for('index') }}">Home</a>
             <!-- Page with seach feature for cars and Social Media thing for the cars -->
-            <a href="{{ url_for('listings') }}">Listings</a>
+            <a href="{{ url_for('listings') }}">Cars</a>
             <!-- Don't add this for a navbar this is the page for any specific car -->
-            <a href="{{ url_for('car') }}">Specific Car</a>
+            <!-- <a href="{{ url_for('car') }}">Specific Car</a> -->
             <!-- Loan calculator -->
             <a href="{{ url_for('loan') }}">Loan Calculator</a>
             <!-- maybe better name than management.html? -->
-            <a href="{{ url_for('management') }}">Sales reps and Owners</a>
+            <a href="{{ url_for('management') }}">Company</a>
             <!-- account information I wouldn't put this direct link here maybe a login/sighup sorta thing instead? -->
-            <a href="{{ url_for('account') }}">Account</a>
+            <a href="{{ url_for('account') }}" class="accountButton">
+                <div class="loginBackground">
+                    <span>Sign up/Log in</span>
+                </div>
+            </a>
             <!-- Don't put this is just for us to monitor database and other things we might find useful -->
-            <a href="{{ url_for('control') }}">Control Center</a>
+            <!-- <a href="{{ url_for('control') }}">Control Center</a> -->
             <!-- Used to link the hamburger button to javascript -->
-            <a href="javascript:void(0);" class="icon" onclick="hamburgerClick()"></a>
+            <i class="material-icons mobile" id="poop">menu</i>
+
         </ul>
-        <hr>
     </nav>
+    <i></i>
     {% block body %} {% endblock %}
 </body>
 </html>
