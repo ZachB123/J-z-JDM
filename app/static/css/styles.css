@@ -1,25 +1,40 @@
-h1 {
-    color: var(--red);
+/* Sets up boiler plate for css file */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
 }
 
+
 .navbar {
-    background-color: black;
+    background-color: var(--grey);
     overflow: hidden;
+}
+
+.navbar ul {
+    padding-left: 50%;
 }
 
 .navbar a {
     float: left;
     display: block;
-    color: #f2f2f2;
+    color: white;
+    padding: 20px 15px;
     text-align: center;
-    padding: 14px 16px;
     text-decoration: none;
     font-size: 17px;
 }
 
-.navbar a:hover {
+.navbar a:hover:not(.accountButton) {
     background-color: #ddd;
     color: black;
+}
+
+/* specific design for the log in/sign up button */
+.loginBackground {
+    background-color: var(--purple);
+    border-radius: 50%;
+    width: 140px;
 }
 
 .navbar a.active {
@@ -27,8 +42,10 @@ h1 {
     color: white;
 }
 
-.topnav .icon {
+.topnav #poop {
     display: none;
+    font-size: 480px;
+    color: white;
 }
 
 @media screen and (max-width: 600px) {
