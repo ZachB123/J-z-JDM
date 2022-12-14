@@ -1,7 +1,7 @@
 {% extends "layout.html" %} 
 
 {% block js %}
-<link rel="stylesheet" href="../static/js/script.js">
+    <script src="../static/js/index.js" defer></script>
 {% endblock %}
 
 {% block css %} 
@@ -10,7 +10,17 @@
 
 
 {% block body %} 
-<div class="carousel">Carousel goes here</div>
+<div class="carousel">
+    <div class="material-icons" id="carouselLeft">chevron_left</div>
+    <div class="carousel-content-container">
+        <img src="/static/images/bestjdmcar.jpg" alt="" class="carousel-img" id="carouselImg">
+        <div class="carousel-info">
+            <p id="carouselInfo">info</p>
+            <a href="#" id="carouselLink">BUTTON CLICK ME</a>
+        </div>
+    </div>
+    <div class="material-icons" id="carouselRight">chevron_right</div>
+</div>
 
 <br>
 <!-- Container for the company values -->
