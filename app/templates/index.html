@@ -1,11 +1,31 @@
 {% extends "layout.html" %} 
 
+{% block js %}
+<link rel="stylesheet" href="../static/js/script.js">
+{% endblock %}
+
 {% block css %} 
 <link rel="stylesheet" href="../static/css/index.css">
-
 {% endblock %}
 
 
 {% block body %} 
-    <h1>Homepage</h1>
+<div class="carousel">Carousel goes here</div>
+
+<br>
+<!-- Container for the company values -->
+<section class="company-values-container">
+    <div class="company-value" id="customerSupport">
+        <h2>Superb Customer Service</h2>
+        <!-- need images for all the values -->
+    </div>
+    <div class="company-value" id="qualityAssurance">
+        <h2>Quality Assurance</h2>
+    </div>
+    <div class="company-value" id="competitivePrices">
+        <h2>Competitive Prices</h2>
+    </div>
+</section>
+    
+
 {% endblock %}
