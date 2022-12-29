@@ -5,69 +5,211 @@
     box-sizing: border-box;
 }
 
-
-.navbar {
-    background-color: var(--grey);
-    overflow: hidden;
+nav {
+    background: var(--purple);
+    padding: 0 15px;
 }
-
-.navbar ul {
-    padding-left: 50%;
-}
-
-.navbar a {
-    float: right;
-    display: block;
-    color: white;
-    padding: 20px 15px;
-    text-align: center;
+a {
+    color: var(--yellow);
     text-decoration: none;
-    font-size: 17px;
+    font-family: 'Kanit';
+}
+.list-container,
+.submenu {   
+    list-style-type: none;
+}
+.logo, #logoContainer{
+    padding-left: 7.5px;
+    padding-right: 10px;
+}
+.item {
+    padding: 10px;
+}
+.item.button {
+    padding: 9px 5px;
+}
+.item:not(.button) a:hover,
+.item a:hover::after {
+    color: white;
+}
+
+/* Mobile menu */
+.list-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+.list-container li a {
+    display: block;
+    padding: 15px 5px;
+}
+#logoContainer {
+    padding-top: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-bottom: 0;
+}
+.list-container li.subitem a {
+    padding: 15px;
+}
+.hamburger-button {
+    order: 1;
+    font-size: 20px;
+}
+.item.button {
+    order: 2;
+}
+.item {
+    order: 3;
+    width: 100%;
+    text-align: center;
+    display: none;
+}
+.active .item {
+    display: block;
+}
+.button.sign-up { /* divider between buttons and menu links */
+    border-bottom: 1px #444 solid;
+}
+
+/* Submenu up from mobile screens */
+.submenu {
+    display: none;
+}
+.submenu-active .submenu {
+   display: block;
+}
+.with-submenu i {
+    font-size: 12px;
+}
+.with-submenu > a::after {
+    font-family: 'Font Awesome 5 Free';
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 900; 
+    content: "\f078";
+    color: white;
+    padding-left: 5px;
+}
+.subitem a {
+    padding: 10px 15px;
+}
+.submenu-active {
+    background-color: rgb(228, 228, 228);
+    border-radius: 3px;
+}
+
+/* Tablet menu */
+@media all and (min-width: 700px) {
+    .list-container {
+        justify-content: center;
+    }
+    .logo {
+        flex: 1;
+    }
+    .item.button {
+        width: auto;
+        order: 1;
+        display: block;
+    }
+    .hamburger-button {
+        flex: 1;
+        text-align: right;
+        order: 2;
+    }
+    /* Button up from tablet screen */
+    .list-container li.button a {
+        padding: 10px 15px;
+        margin: 5px 0;
+    }
+    .button a {
+        background: var(--teal);
+        border: 1px rgb(21, 22, 26) solid;
+    }
+    .button.sign-up {
+        border: 0;
+    }
+    .button.sign-up a {
+        background: transparent;
+        border: 1px var(--teal) solid;  
+    }
+    .button a:hover {
+        text-decoration: none;
+    }
+    .button:not(.sign-up) a:hover {
+        background: royalblue;
+        border-color: darkblue;
+    }
+}
+
+/* Desktop menu */
+@media all and (min-width: 960px) {
+    .list-container {
+        align-items: flex-start;     
+        flex-wrap: nowrap;
+        background: none;
+    }
+    .logo {
+        order: 0;
+        padding-left: 7.5px;
+        padding-right: 10px;
+    }
+    .item {
+        order: 1;
+        position: relative;
+        display: block; 
+        width: auto;
+    }
+    .button {
+        order: 2;
+    }
+    .submenu-active .submenu {
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 68px;
+        background: #111;
+    }
+    .hamburger-button {
+        display: none;
+    }
+    .submenu-active {
+        border-radius: 0;
+    }
+}
+
+/* Footer */
+
+.footer-container {
+    background-color: var(--purple);
+    height: auto;
+    width: 100%;
+    text-align: center;
+    align-items: center;
     font-family: 'Kanit';
 }
 
-.navbar a:hover:not(.accountButton) {
-    background-color: #ddd;
+#footerLogo {
+    padding: 5px;
+}
+
+.footer-text {
+    font-size: x-large;
     color: black;
+    font-weight: bold;
+    padding-bottom: 10px;
+}
+#slogan, #location {
+    padding: 10px;
 }
 
-/* specific design for the log in/sign up button */
-.loginBackground {
-    background-color: var(--purple);
-    border-radius: 50%;
-    width: 140px;
+#footerMenu {
+    font-size: 40px;
 }
 
-.navbar a.active {
-    background-color: #04AA6D;
-    color: white;
+.fmenu-item {
+    padding-top: -10px;
+    padding-bottom: -10px;
+    /* set to flex box then make it two rows and three columns */
 }
-
-.topnav #poop {
-    display: none;
-    font-size: 480px;
-    color: white;
-}
-
-@media screen and (max-width: 600px) {
-    .navbar a:not(:first-child) {display: none;}
-    .navbar a.icon {
-      float: right;
-      display: block;
-    }
-}
-
-@media screen and (max-width: 600px) {
-    .navbar.responsive {position: relative;}
-    .navbar.responsive a.icon {
-      position: absolute;
-      right: 0;
-      top: 0;
-    }
-    .navbar.responsive a {
-      float: none;
-      display: block;
-      text-align: left;
-    }
-  }
-

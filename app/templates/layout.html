@@ -9,8 +9,8 @@
     {% else %} 
         <title>Default Title</title>
     {% endif %}
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit">
     <link rel="stylesheet" href="../static/css/variables.css">
     <link rel="stylesheet" href="../static/css/styles.css">
@@ -19,32 +19,115 @@
     {% block js %} {% endblock %}
 </head>
 <body>
-    <nav class="navbar" id="topnav">
-        <ul class="navlinks">
-            <!-- Homepage -->
-            <a href="{{ url_for('index') }}">Home</a>
-            <!-- Page with seach feature for cars and Social Media thing for the cars -->
-            <a href="{{ url_for('listings') }}">Cars</a>
-            <!-- Don't add this for a navbar this is the page for any specific car -->
-            <!-- <a href="{{ url_for('car') }}">Specific Car</a> -->
-            <!-- Loan calculator -->
-            <a href="{{ url_for('loan') }}">Loan Calculator</a>
-            <!-- maybe better name than management.html? -->
-            <a href="{{ url_for('management') }}">Company</a>
-            <!-- account information I wouldn't put this direct link here maybe a login/sighup sorta thing instead? -->
-            <a href="{{ url_for('account') }}" class="accountButton">
-                <div class="loginBackground">
-                    <span>Sign up/Log in</span>
-                </div>
-            </a>
-            <!-- Don't put this is just for us to monitor database and other things we might find useful -->
-            <!-- <a href="{{ url_for('control') }}">Control Center</a> -->
-            <!-- Used to link the hamburger button to javascript -->
-            <i class="material-icons mobile" id="poop">menu</i>
+    <nav class="nav-bar-container">
+        <ul class="list-container">
+            <li class="logo"><a href="#" id="logoContainer"><img src="../static/images/logoPlaceholder.png" alt="Jz JDM" style="height: auto; max-width: 100px;"></a></li>
+            <li class="item"><a href="{{ url_for('index') }}">Home</a></li>
+            <li class="item"><a href="{{ url_for('listings') }}">Cars</a></li>
+            <li class="item"><a href="{{ url_for('loan') }}">Loan Calculator</a></li>
+            <li class="item with-submenu">
+                <a tabindex="0">Company</a>
+                <ul class="submenu">
+                    <li class="subitem"><a href="{{ url_for('management') }}">About Us</a></li>
+                    <li class="subitem"><a href="#">Sales Representatives</a></li>
+                    <li class="subitem"><a href="#">Owners</a></li>
+                </ul>
+            </li>
+            <li class="item"><a href="#">Contact Us</a></li>
+            <li class="item button log-in"><a href="{{ url_for('account') }}">Log In</a></li>
+            <li class="item button sign-up"><a href="{{ url_for('account') }}">Sign Up</a></li>
+            <li class="hamburger-button"><a href="#"><i class="fas fa-bars"></i></a></li>
 
         </ul>
     </nav>
     <i></i>
+    <br>
+    <!-- Footer for each page is here -->
+    <div class="footer-container">
+        <div id="footerLogo">
+            <img src="../static/images/logoPlaceholder.png" alt="Logo" style="height: auto; width: 200px;">
+        </div>
+        <div id="footerSections">
+            <div class="footer-section">
+                <div class="footer-text">
+                    <ul id="slogan">
+                        Importing quality cars since 2007!
+                    </ul>
+                    <ul id="location">
+                        1945 42nd St NE, Cedar Rapids, IA
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-section">
+                <ul id="footerMenu">
+                    <li class="fmenu-item">
+                        <a href="{{ url_for('index') }}">Home</a>
+                    </li>
+                    <li class="fmenu-item">
+                        <a href="{{ url_for('listings') }}">Car Listings</a>
+                    </li>
+                    <li class="fmenu-item">
+                        <a href="{{ url_for('loan') }}">Loan Calculator</a>
+                    </li>
+                    <li class="fmenu-item">
+                        <a href="{{ url_for('management') }}">Company</a>
+                    </li>
+                    <li class="fmenu-item">
+                        <a href="#">Contact Us</a>
+                    </li>
+                    <li class="fmenu-item">
+                        <a href="{{ url_for('account') }}">Login / Sign Up</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="footer-section additional-info">
+                <span id="additionalInfoHeader">
+                    Get Connected with Us!
+                </span>
+                <div id="newsletter">
+                    <form action="" id="newsletterForm" method="get">
+                        <div class="newsletterField">
+                            <label for="Email">Email</label>
+                            <input type="text" name="Email" id="emailInput" required>
+                        </div>
+                        <div class="newsletterSubmit">
+                            <input type="submit" value="Sign Up">
+                        </div>
+                    </form>
+                    
+
+                </div>
+                <ul id="socialMediaLinks">
+                    <li class="socialMedia">
+                        <a href="#"><img src="../static/images/instagramLogo.png" alt="Instagram" style="height: auto; width: 100px;"></a>
+                    </li>
+                    <li class="socialMedia">
+                        <a href="#"><img src="../static/images/twitterLogo.png" alt="Twitter" style="height: auto; width: 100px;"></a>
+                    </li>
+                    <li class="socialMedia">
+                        <a href="#"><img src="../static/images/facebookLogo.png" alt="Facebook" style="height: auto; width: 100px;"></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div id="footer-bottom">
+            <ul id="legalLinks">
+                <li class="footer-bottom-links">
+                    <!-- privacy policy -->
+                </li>
+                <li class="footer-bottom-links">
+                    <!-- accessibility statement -->
+                </li>
+                <li class="footer-bottom-links">
+                    <!-- Customer Service Guarantee -->
+                </li>
+            </ul>
+            <div id="copyright">
+
+            </div>
+        </div>
+    </div>
+
     {% block body %} {% endblock %}
 </body>
 </html>
