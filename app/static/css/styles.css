@@ -182,7 +182,7 @@ a {
 /* Footer */
 
 .footer-container {
-    background-color: var(--purple);
+    background-color: rgba(88, 44, 142, .9);
     height: auto;
     width: 100%;
     text-align: center;
@@ -198,7 +198,6 @@ a {
     font-size: x-large;
     color: black;
     font-weight: bold;
-    padding-bottom: 10px;
 }
 #slogan, #location {
     padding: 10px;
@@ -206,10 +205,56 @@ a {
 
 #footerMenu {
     font-size: 40px;
+    display: flex;
+    list-style: none;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+
 }
 
 .fmenu-item {
-    padding-top: -10px;
-    padding-bottom: -10px;
+    margin-top: -5px;
     /* set to flex box then make it two rows and three columns */
+}
+
+.fmenu-item:hover {
+    background-color: black;
+    padding: 7px;
+    border-radius: 10px;
+}
+
+.additional-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#additionalInfoHeader {
+    color: var(--yellow);
+    font-size: large;
+    padding-bottom: 4px;
+}
+
+#socialMediaLinks {
+    display: flex;
+    list-style: none;
+    justify-content: center;
+    margin-left: 8px;
+}
+
+#legalLinks {
+    display: flex;
+    list-style: none;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 5px;
+}
+
+.bottom-link-divider {
+    color: black;
+}
+
+.footer-bottom-links {
+    margin-left: 4px;
 }

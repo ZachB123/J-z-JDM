@@ -41,8 +41,10 @@
         </ul>
     </nav>
     <i></i>
-    <br>
-    <!-- Footer for each page is here -->
+    
+
+    {% block body %} {% endblock %}
+    <!-- Footer for each page is here underneath the block body so that this is put at the bottom of each page-->
     <div class="footer-container">
         <div id="footerLogo">
             <img src="../static/images/logoPlaceholder.png" alt="Logo" style="height: auto; width: 200px;">
@@ -81,31 +83,29 @@
                 </ul>
             </div>
             <div class="footer-section additional-info">
-                <span id="additionalInfoHeader">
-                    Get Connected with Us!
-                </span>
                 <div id="newsletter">
+                    <span id="additionalInfoHeader">
+                        Get Connected with Us!
+                    </span>
                     <form action="" id="newsletterForm" method="get">
                         <div class="newsletterField">
                             <label for="Email">Email</label>
                             <input type="text" name="Email" id="emailInput" required>
                         </div>
                         <div class="newsletterSubmit">
-                            <input type="submit" value="Sign Up">
+                            <input type="button" value="Sign Up">
                         </div>
                     </form>
-                    
-
                 </div>
                 <ul id="socialMediaLinks">
                     <li class="socialMedia">
-                        <a href="#"><img src="../static/images/instagramLogo.png" alt="Instagram" style="height: auto; width: 100px;"></a>
+                        <a href="#"><img src="../static/images/instagramLogo.png" alt="Instagram" style="height: auto; width: 60px;"></a>
                     </li>
                     <li class="socialMedia">
-                        <a href="#"><img src="../static/images/twitterLogo.png" alt="Twitter" style="height: auto; width: 100px;"></a>
+                        <a href="#"><img src="../static/images/twitterLogo.png" alt="Twitter" style="height: auto; width: 70px;"></a>
                     </li>
                     <li class="socialMedia">
-                        <a href="#"><img src="../static/images/facebookLogo.png" alt="Facebook" style="height: auto; width: 100px;"></a>
+                        <a href="#"><img src="../static/images/facebookLogo.png" alt="Facebook" style="height: auto; width: 60px;"></a>
                     </li>
                 </ul>
             </div>
@@ -113,21 +113,23 @@
         <div id="footer-bottom">
             <ul id="legalLinks">
                 <li class="footer-bottom-links">
-                    <!-- privacy policy -->
+                    <a href="#">Privacy Policy</a>
                 </li>
                 <li class="footer-bottom-links">
-                    <!-- accessibility statement -->
+                    <span class="bottom-link-divider">|</span>
                 </li>
                 <li class="footer-bottom-links">
-                    <!-- Customer Service Guarantee -->
+                    <a href="#">Accessibility Statement</a>
+                </li>
+                <li class="footer-bottom-links">
+                    <span class="bottom-link-divider">|</span>
+                </li>
+                <li class="footer-bottom-links">
+                    <a href="#">Copyright©</a>
                 </li>
             </ul>
-            <div id="copyright">
-
-            </div>
         </div>
+        <br>
     </div>
-
-    {% block body %} {% endblock %}
 </body>
 </html>
