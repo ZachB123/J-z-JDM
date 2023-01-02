@@ -1,5 +1,90 @@
 {% extends "layout.html" %} 
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+{% block js %}
+    <script src="../static/js/index.js" defer></script>
+{% endblock %}
+
+{% block css %} 
+<link rel="stylesheet" href="../static/css/listingStyle.css">
+{% endblock %}
 
 {% block body %} 
-    <h1>Listings</h1>
+    <div id="topSearchArea">
+        <div id="searchBarContainer">
+            <div id="topMessage">
+                <Span>Find your Perfect Car Today!</Span>
+            </div>
+            <div id="carSearchBar">
+                <span class="material-symbols-outlined" id="searchIcon">search</span>
+                <span id="searchBarMessage">Search Make, Model, or Keyword</span>
+                <div id="clearSearchIcon">
+                    <span class="material-symbols-outlined" id="clearSearchButton">close</span>
+                </div>
+                <div class="carSearchButton">
+
+                </div>
+            </div>
+            <div id="carTypeButtonContainer">
+                <li id="carTypeButtons">
+                    <ul class="carTypeButton">
+                        <a href="#">
+                            <img src="#" alt="$" class="brandLogo">
+                            <span class="brandName">
+                                Honda
+                            </span>
+                        </a>
+                    </ul>
+                    <ul class="carTypeButton">
+                        <a href="#">
+                            <img src="#" alt="$" class="brandLogo">
+                            <span class="brandName">
+                                Nissan
+                            </span>
+                        </a>
+                    </ul>
+                    <ul class="carTypeButton">
+                        <a href="#">
+                            <img src="#" alt="$" class="brandLogo">
+                            <span class="brandName">
+                                Toyota
+                            </span>
+                        </a>
+                    </ul>
+                    <ul class="carTypeButton">
+                        <a href="#">
+                            <img src="#" alt="$" class="brandLogo">
+                            <span class="brandName">
+                                Subaru
+                            </span>
+                        </a>
+                    </ul>
+                    <ul class="carTypeButton">
+                        <a href="#">
+                            <img src="#" alt="$" class="brandLogo">
+                            <span class="brandName">
+                                Daihatsu
+                            </span>
+                        </a>
+                    </ul>
+                    <ul class="carTypeButton">
+                        <a href="#">
+                            <img src="#" alt="$" class="brandLogo">
+                            <span class="brandName">
+                                Suzuki
+                            </span>
+                        </a>
+                    </ul>
+                    <ul class="carTypeButton">
+                        <a href="#">
+                            <img src="#" alt="$" class="brandLogo">
+                            <span class="brandName">
+                                Mitsubishi
+                            </span>
+                        </a>
+                    </ul>
+                </li>
+            </div>
+        </div>
+        <br>
+    </div>
 {% endblock %}

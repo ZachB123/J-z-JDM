@@ -1,0 +1,56 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+#topSearchArea {
+    background-image: url(../images/JDMbanner.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: auto;
+}
+
+#searchBarContainer {
+    text-align: center;
+    font-family: 'Kanit';
+}
+
+#topMessage {
+    color: var(--yellow);
+    font-size: 30px;
+    font-weight: bold;
+}
+
+#carSearchBar {
+    background-color: white;
+    margin-bottom: 5px;
+    width: 300px;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#clearSearchIcon {
+    display: inline;
+}
+
+#carTypeButtons {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+    row-gap: 6px;
+}
+
+.carTypeButton {
+    flex: 0 1 30%;
+}
+.carTypeButton a {
+    color: black;
+    background-color: white;
+    border-radius: 20px;
+    padding: 1px;
+}

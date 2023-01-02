@@ -9,13 +9,14 @@
     {% else %} 
         <title>Default Title</title>
     {% endif %}
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit">
     <link rel="stylesheet" href="../static/css/variables.css">
     <link rel="stylesheet" href="../static/css/styles.css">
     {% block css %} {% endblock %}
     <script src="../static/js/script.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     {% block js %} {% endblock %}
 </head>
 <body>
@@ -87,15 +88,18 @@
                     <span id="additionalInfoHeader">
                         Get Connected with Us!
                     </span>
-                    <form action="" id="newsletterForm" method="get">
-                        <div class="newsletterField">
-                            <label for="Email">Email</label>
-                            <input type="text" name="Email" id="emailInput" required>
+                    <div class="setup-container">
+                        <div class="subscribe-email-container">
+                            <form id="singularForm">
+                                <button class="shown" type="button" id="subs">Subscribe</button>
+                                <div id="emailInput">
+                                    <input type="text" placeholder="E-mail" id="email">
+                                    <button type="button" class="addbut1" disabled="disabled">Add Me</button>
+                                </div>
+                                <div id="success">Congrats!</div>
+                            </form>
                         </div>
-                        <div class="newsletterSubmit">
-                            <input type="button" value="Sign Up">
-                        </div>
-                    </form>
+                    </div>
                 </div>
                 <ul id="socialMediaLinks">
                     <li class="socialMedia">
