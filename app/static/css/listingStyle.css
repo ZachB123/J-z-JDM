@@ -4,6 +4,14 @@
     box-sizing: border-box;
 }
 
+body {
+    background: url(../images/backgroung-jz.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
 #topSearchArea {
     background-image: url(../images/JDMbanner.jpg);
     background-repeat: no-repeat;
@@ -37,20 +45,23 @@
 }
 
 #carTypeButtons {
-    display: flex;
-    flex-wrap: wrap;
+    display: inline-grid;
+    grid-template-columns: [first] 1fr [second] 1fr [third] 1fr;
+    grid-template-rows: repeat(3, 1fr[lineRow]);
     align-items: center;
     justify-content: center;
     margin-bottom: 10px;
     row-gap: 6px;
 }
 
-.carTypeButton {
-    flex: 0 1 30%;
-}
 .carTypeButton a {
     color: black;
     background-color: white;
+    width: 105px;
+    height: auto;
     border-radius: 20px;
     padding: 1px;
+}
+#mitsuSelector {
+    grid-column: second / third;
 }
