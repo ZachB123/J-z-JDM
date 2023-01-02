@@ -68,14 +68,16 @@ document.addEventListener("click", closeSubmenu, false);
 
 
 // Adds fucntionality to the newsletter subscribe button
-var validateEmail = function(elementValue) {
-  var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+
+// Jqueury to check if the email is valid
+let validateEmail = function(elementValue) {
+  let emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
   return emailPattern.test(elementValue);
 }
 $('#email').keyup(function() {
 
-  var value = $(this).val();
-  var valid = validateEmail(value);
+  let value = $(this).val();
+  let valid = validateEmail(value);
 
   if (!valid) {
       $(this).css('color', 'red');
@@ -97,11 +99,40 @@ newsletter.successMessage = document.querySelector('.subscribe-email-container >
 
 newsletter.submitDelay = 1000;
 
+let sWidth = screen.width;
+let buttonWidth = 0;
+
+window.addEventListener("resize", function() {
+  sWidth = screen.width;
+  if (sWidth < 490) {
+    buttonWidth = '20rem';
+  }else if (sWidth < 580) {
+    buttonWidth = '25rem';
+  }else if (sWidth < 700) {
+    buttonWidth = '30rem';
+  } else if (sWidth < 960) {
+    buttonWidth = '32rem';
+  } else {
+    buttonWidth = '35rem';
+  }
+})
+if (sWidth < 490) {
+  buttonWidth = '20rem';
+}else if (sWidth < 580) {
+  buttonWidth = '25rem';
+}else if (sWidth < 700) {
+  buttonWidth = '30rem';
+} else if (sWidth < 960) {
+  buttonWidth = '32rem';
+} else {
+  buttonWidth = '35rem';
+}
+
 newsletter.clickHandler = (e) => {
   switch (e.target) {
       case newsletter.subs:
           console.log('case subs');
-          newsletter.main.style.width = '37rem'
+          newsletter.main.style.width = buttonWidth;
           e.target.classList.remove('shown');
           newsletter.input.classList.add('shown');
           newsletter.submitButton.classList.add('shown');

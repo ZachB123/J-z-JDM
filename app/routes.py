@@ -29,3 +29,11 @@ def loan():
 @app.route("/control")
 def control():
     return render_template("control.html")
+
+@app.route("/Accessibility")
+def accessibility():
+    return render_template("accessibility.html")
+
+@app.route("/Privacy-Policy")
+def privacyPolicy():
+    return render_template("privacyPolicy.html")
