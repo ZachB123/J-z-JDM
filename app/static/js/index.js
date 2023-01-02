@@ -2,8 +2,8 @@
 
 carousel = [
     {
-        img_src: "/static/images/bestcar.jpg",
-        text: "this is a very good car you should buy it",
+        img_src: "/static/images/bestjdmcar.jpg",
+        text: "this is a very good car you shouldjhjhf buy it",
         buttonLink: "#"
     },
     {
@@ -13,7 +13,7 @@ carousel = [
     },
     {
         img_src: "/static/images/honda.jpg",
-        text: "this is a very good car you should buy it",
+        text: "this is a veryfghdfgh good car you should buy it",
         buttonLink: "#"
     },
     {
@@ -39,14 +39,25 @@ function setCarousel(carData) {
 }
 
 setCarousel(carousel[0])
+carouselIndex = 0
 
 carouselLeft = dq("#carouselLeft")
 carouselRight = dq("#carouselRight")
 
 carouselLeft.addEventListener("click", () => {
-    alert("left click")
+    if (carouselIndex === 0) {
+        carouselIndex = carousel.length - 1
+    } else {
+        carouselIndex = carouselIndex - 1
+    }
+    setCarousel(carousel[carouselIndex])
 })
 
 carouselRight.addEventListener("click", () => {
-    alert("right click")
+    if (carouselIndex === carousel.length -1) {
+        carouselIndex = 0
+    } else {
+        carouselIndex = carouselIndex + 1
+    }
+    setCarousel(carousel[carouselIndex])
 })
