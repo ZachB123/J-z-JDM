@@ -26,7 +26,12 @@ body {
 }
 
 #topMessage {
-    color: var(--yellow);
+    color: var(--teal);
+    background-color: var(--grey);
+    width: fit-content;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
     font-size: 30px;
     font-weight: bold;
 }
@@ -51,16 +56,22 @@ body {
     align-items: center;
     justify-content: center;
     margin-bottom: 10px;
-    row-gap: 6px;
+    margin-top: 5px;
+    row-gap: 10px;
+    column-gap: 5px;
+}
+
+ul.carTypeButton {
+    background-color: var(--grey);
+    border-radius: 20px;
+    
 }
 
 .carTypeButton a {
-    color: black;
-    background-color: white;
-    width: 105px;
-    height: auto;
-    border-radius: 20px;
-    padding: 1px;
+    color: var(--teal);
+    padding: 3px;
+    padding-left: 5px;
+    padding-right: 5px;
 }
 #mitsuSelector {
     grid-column: second / third;

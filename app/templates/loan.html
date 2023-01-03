@@ -1,5 +1,31 @@
 {% extends "layout.html" %} 
 
+{% block js %}
+    <script src="../static/js/loan.js" defer></script>
+{% endblock %}
+
+{% block css %} 
+<link rel="stylesheet" href="../static/css/loan.css">
+{% endblock %}
+
+
 {% block body %} 
-    <h1>Loan</h1>
+    <div id="loanContainer">
+        <div class="loan-info-container" id="loanInput">
+            <div id="topInformation">
+                <span id="infoHeader">
+                    Car Loan Calculator
+                </span>
+                <span id="infoPara">
+                    Use our Loan Calculator tool to estimate your monthly car loan payments.
+                </span>
+            </div>
+            <div id="calculatorInput">
+                
+            </div>
+        </div>
+        <div class="loan-info-container" id="loadOutput">
+
+        </div>
+    </div>
 {% endblock %}
