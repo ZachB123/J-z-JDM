@@ -1,37 +1,32 @@
 // When the user clicks on the button toggle between hiding and showing the dropdown
-function creditDropdownFunction() {
-    document.getElementById("creditDropdown").classList.toggle("show");
-}
-
-// close the dropdown menu if the user clicks out of it
-window.onclick = function(event) {
-    if (!event.target.matches('.drop-btn-credit')) {
-        let dropdownsCredit = document.getElementsByClassName("credit-dropdown-content");
-        let i;
-        for (i = 0; i < dropdownsCredit.length; i++) {
-            let openDropdownCredit = dropdownsCredit[i];
-            if (openDropdownCredit.classList.contains('show')) {
-                openDropdownCredit.classList.remove('show');
-            }
-        }
+dq(".credit-score-dropdown").addEventListener("click", (event) => {
+    dq("#creditDropdown").classList.toggle("show");
+    if (dq("#creditArrow").textContent === "arrow_drop_up") {
+        dq("#creditArrow").textContent = "arrow_drop_down"
+    } else {
+        dq("#creditArrow").textContent = "arrow_drop_up"
     }
-}
+    event.stopPropagation()
+})
+
+window.addEventListener("click", (event) => {
+    dq("#termDropdown").classList.remove("show-term");
+    dq("#creditDropdown").classList.remove("show");
+    dq("#creditArrow").textContent = "arrow_drop_down"
+    dq("#termArrow").textContent = "arrow_drop_down"
+})
 
 // When the user clicks on the button toggle between hiding and showing the dropdown
-function termDropdownFunction() {
-    document.getElementById("termDropdown").classList.toggle("show-term");
-}
+dq(".loan-term-dropdown").addEventListener("click", (event) => {
+    dq("#termDropdown").classList.toggle("show-term");
+    if (dq("#termArrow").textContent === "arrow_drop_up") {
+        dq("#termArrow").textContent = "arrow_drop_down"
+    } else {
+        dq("#termArrow").textContent = "arrow_drop_up"
+    }
+    event.stopPropagation()
+})
+
+
 
 // close the dropdown menu if the user clicks out of it
-window.onclick = function(event) {
-    if (!event.target.matches('.drop-btn-term')) {
-        let dropdowns = document.getElementsByClassName("term-dropdown-content");
-        let i;
-        for (i = 0; i < dropdowns.length; i++) {
-            let openDropdown = dropdowns[i];
-            if (openDropdown.classList.contains('show-term')) {
-                openDropdown.classList.remove('show-term');
-            }
-        }
-    }
-}
