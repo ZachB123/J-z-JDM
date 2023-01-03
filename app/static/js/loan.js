@@ -35,3 +35,24 @@ window.onclick = function(event) {
         }
     }
 }
+
+
+// creates functionality for the loan calculator
+// let loanAmount = document.querySelector('#priceInput').value;
+
+// document.querySelector('priceInput').addEventListener("change", function() {
+//     loanAmount = ('priceInput');
+//     alert('Hello World');
+// })
+
+function creditDropdownValue () {
+    
+}
+
+let loanAmount = document.querySelector("#priceInput").value;
+let loanAmountSlider = document.querySelector("#priceSlider").value;
+let downPayment = document.querySelector("#downPaymentSelector").value;
+let tradeIn = document.querySelector("#tradeInSelector").value;
+
+
+    
