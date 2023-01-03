@@ -10,22 +10,114 @@
 
 
 {% block body %} 
-    <div id="loanContainer">
-        <div class="loan-info-container" id="loanInput">
-            <div id="topInformation">
-                <span id="infoHeader">
+    <div class="loan-container">
+        <div class="loan-info-container loan-input">
+            <div class="top-information">
+                <span class="info-header">
                     Car Loan Calculator
                 </span>
-                <span id="infoPara">
+                <span class="info-para">
                     Use our Loan Calculator tool to estimate your monthly car loan payments.
                 </span>
             </div>
-            <div id="calculatorInput">
-                
+            <div class="calculator-input">
+                <div class="vehicle-price">
+                    <span class="box-label">
+                        Vehicle Price
+                    </span>
+                    <div class="typed-input-price">
+                        <input type="number" placeholder="$20,000" class="input-price" id="priceInput">
+                    </div>
+                    <div class="range-slider">
+                        <input type="range" min="0" max="100000" value="$20,000" class="slider-price" id="priceSlider">
+                    </div>
+                </div>
+                <div class="down-payment">
+                    <span class="label-down-payment">Down Payment</span>
+                    <div class="typed-down-payment">
+                        <input type="number" placeholder="$2,000" class="down-payment-input" id="downPaymentSelector">
+                    </div>
+                </div>
+                <div class="trade-in-value">
+                    <span class="label-trade-in">Trade-In Value</span>
+                    <div class="typed-in-value">
+                        <input type="number" placeholder="$0" class="trade-in-input" id="tradeInSelector">
+                    </div>
+                </div>
+                <div class="credit-score">
+                    <!-- using a button with a function it makes a reactive dropdown to select a users credit score -->
+                    <span class="credit-score-label">Credit Score</span>
+                    <div class="credit-score-dropdown">
+                        <!-- used a span inside the button function to make the default text a variable -->
+                        <button onclick="myFunction()" class="drop-btn-credit"><span class="credit-score-text" id="creditScoreValue">Good(660-719)</span> <span class="material-symbols-outlined up-down-arrows" id="upDownArrowsSelector">arrow_drop_down</span></button>
+                        <div id="creditDropdown" class="credit-dropdown-content">
+                            <input type="button" value="Excellent (720-850)" class="credit-input-buttons" id="excellentCredit">
+                            <input type="button" value="Good(660-719)" class="credit-input-buttons" id="goodCredit">
+                            <input type="button" value="Average(600-659)" class="credit-input-buttons" id="averageCredit">
+                            <input type="button" value="Below Average(300-599)" class="credit-input-buttons" id="poorCredit">
+                        </div>
+                    </div>
+                </div>
+                <div class="loan-term">
+                    <!-- This dropdown is set up the exact same way as the previous dropdown -->
+                    <span class="loan-term-label">Loan Term</span>
+                    <div class="loan-term-dropdown">
+                        <button onclick="myFunction()" class="drop-btn-term"><span class="loan-term-text" id="loanTermValue">72 Months</span> <span class="material-symbols-outlined up-down-arrows" id="upDownArrowsSelector">arrow_drop_down</span></button>
+                        <div id="termDropdown" class="term-dropdown-content">
+                            <input type="button" value="72 Months" class="term-input-buttons" id="months72">
+                            <input type="button" value="60 Months" class="term-input-buttons" id="months60">
+                            <input type="button" value="48 Months" class="term-input-buttons" id="months48">
+                            <input type="button" value="36 Months" class="term-input-buttons" id="months36">
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="loan-info-container" id="loadOutput">
-
+            <div class="monthly-pay-container">
+                <span class="monthly-payment-label">Payment Per Month</span>
+                <span class="price-per-month" id="monthPriceSelector">
+                    $442
+                    <span class="price-per-month price-decoration">/mo</span>
+                </span>
+            </div>
+            <div class="additional-loan-info-container">
+                <div class="vehicle-budget">
+                    <span class="info-label">Vehicle Budget</span><span class="info-amount" id="budgetAmountSelector">$20,000</span>
+                </div>
+                <div class="down-payment-info">
+                    <span class="info-label">Down Payment</span><span class="info-amount" id="downPaymentInfoSelector">-$2,000</span>
+                </div>
+                <div class="trade-value-info">
+                    <span class="info-label">Trade-In Value</span><span class="info-amount" id="tradeValueSelector">$0</span>
+                </div>
+                <div class="estimate-apr">
+                    <span class="info-label">Est. APR by Credit Score</span><span class="info-amount" id="estimateAprSelector">9.09%</span>
+                </div>
+                <div class="tax-registration">
+                    <span class="info-label">Est. Tax and Registration</span><span class="info-amount" id="taxRegistrationSelector">$1,300</span>
+                </div>
+                <div class="divider-image">
+                    <img src="#" alt="------------">
+                </div>
+                <div class="total-amount">
+                    <span class="info-label">Total Amount</span><span class="info-amount" id="totalAmountSelector">$19,300</span>
+                </div>
+                <div class="monthly-pay-container-bottom">
+                    <span class="monthly-payment-label-bottom">Payment Per Month</span>
+                    <span class="price-per-month-bottom" id="monthPriceSelector">
+                        $442
+                        <span class="price-per-month-bottom price-decoration-bottom">/mo</span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="ready-to-buy">
+            <span class="ready-to-buy-label">Are you ready to buy a car?</span>
+            <span class="ready-to-buy-para">Get in touch with one of our qualified salesmen today to set up an appointment.</span>
+            <div class="contact-salesmen-container">
+                <a href="{{ url_for('management') }}">Connect with a Salesman!</a>
+            </div>
         </div>
     </div>
 {% endblock %}
