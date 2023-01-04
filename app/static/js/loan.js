@@ -1,48 +1,44 @@
-// When the user clicks on the button toggle between hiding and showing the dropdown
-dq(".credit-score-dropdown").addEventListener("click", (event) => {
-    dq("#creditDropdown").classList.toggle("show");
-    if (dq("#creditArrow").textContent === "arrow_drop_up") {
-        dq("#creditArrow").textContent = "arrow_drop_down"
-    } else {
-        dq("#creditArrow").textContent = "arrow_drop_up"
-    }
-    event.stopPropagation()
-})
+let loanAmount = 20000;
+let sliderValue = 20000;
+let downPayment = 2000;
+let tradeIn = 0;
+let creditScore = .045;
+let loanTerm = 72;
+let cost;
 
-window.addEventListener("click", (event) => {
-    dq("#termDropdown").classList.remove("show-term");
-    dq("#creditDropdown").classList.remove("show");
-    dq("#creditArrow").textContent = "arrow_drop_down"
-    dq("#termArrow").textContent = "arrow_drop_down"
-})
+document.querySelector("#priceSlider").addEventListener("change", loanSliderMatch);
+document.querySelector("#priceInput").addEventListener("change", loanInputMatch);
+document.querySelector("#downPaymentSelector").addEventListener("change", downPaymentMatch);
+document.querySelector("#tradeInSelector").addEventListener("change", tradeInMatch);
+document.querySelector("#creditScoreSelector").addEventListener("change", creditScoreMatch);
+document.querySelector("#termDropdownSelector").addEventListener("change", loanTermMatch);
 
-// When the user clicks on the button toggle between hiding and showing the dropdown
-dq(".loan-term-dropdown").addEventListener("click", (event) => {
-    dq("#termDropdown").classList.toggle("show-term");
-    if (dq("#termArrow").textContent === "arrow_drop_up") {
-        dq("#termArrow").textContent = "arrow_drop_down"
-    } else {
-        dq("#termArrow").textContent = "arrow_drop_up"
-    }
-    event.stopPropagation()
-})
-
-
-
-let excellent = document.querySelector("#excellentCredit").value = 4;
-
-
-
-function creditDropdownValue () {
-    let creditValue = 3;
-
-
+function loanSliderMatch() {
+    sliderValue = document.querySelector("#priceSlider").value;
+    loanAmount = sliderValue;
+    loanAmount.value = '$'+'sliderValue';
+    console.log("hello"); 
+}
+function loanInputMatch() {
+    loanAmount = document.querySelector("#priceInput").value;
+    sliderValue = loanAmount;
+}
+function downPaymentMatch() {
+    downPayment = document.querySelector("#downPaymentSelector").value;
+}
+function tradeInMatch() {
+    tradeIn = document.querySelector("#tradeInSelector").value;
+}
+function creditScoreMatch() {
+    creditScore = document.querySelector("#creditScoreSelector").value;
+}
+function loanTermMatch() {
+    loanTerm = document.querySelector("#termDropdownSelector").value;
 }
 
-let loanAmount = document.querySelector("#priceInput").value;
-let loanAmountSlider = document.querySelector("#priceSlider").value;
-let downPayment = document.querySelector("#downPaymentSelector").value;
-let tradeIn = document.querySelector("#tradeInSelector").value;
+document.querySelector("calculator-input").addEventListener("change", loanCalculator)
 
-
-    
+function loanCalculator() {
+    let cost = (((loanAmount - (downPayment + tradeIn))/loanTerm)*(1+creditScore));
+    document.querySelector("#monthPriceSelector").innerHTML = cost;
+}

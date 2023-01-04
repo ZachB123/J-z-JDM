@@ -12,7 +12,7 @@
 {% block body %} 
     <div class="loan-container">
         <div class="loan-info-container loan-input">
-            <div class="top-information">
+            <div class="top-information loan-box-spacing">
                 <span class="info-header">
                     Car Loan Calculator
                 </span>
@@ -21,67 +21,64 @@
                 </span>
             </div>
             <div class="calculator-input">
-                <div class="vehicle-price">
+                <div class="vehicle-price loan-box-spacing">
                     <span class="box-label">
                         Vehicle Price
                     </span>
-                    <div class="typed-input-price">
-                        <input type="number" placeholder="$20,000" class="input-price" id="priceInput">
+                    <div class="typed-input-price input-boxes">
+                        <input type="text" value="$20,000" class="input-price" id="priceInput">
                     </div>
                     <div class="range-slider">
                         <input type="range" min="0" max="100000" value="$20,000" class="slider-price" id="priceSlider">
                     </div>
                 </div>
-                <div class="down-payment">
+                <div class="down-payment loan-box-spacing">
                     <span class="label-down-payment">Down Payment</span>
-                    <div class="typed-down-payment">
+                    <div class="typed-down-payment input-boxes">
                         <input type="number" placeholder="$2,000" class="down-payment-input" id="downPaymentSelector">
                     </div>
                 </div>
-                <div class="trade-in-value">
+                <div class="trade-in-value loan-box-spacing">
                     <span class="label-trade-in">Trade-In Value</span>
-                    <div class="typed-in-value">
+                    <div class="typed-in-value input-boxes">
                         <input type="number" placeholder="$0" class="trade-in-input" id="tradeInSelector">
                     </div>
                 </div>
-                <div class="credit-score">
+                <div class="credit-score loan-box-spacing">
                     <!-- using a button with a function it makes a reactive dropdown to select a users credit score -->
                     <span class="credit-score-label">Credit Score</span>
-                    <div class="credit-score-dropdown">
-                        <!-- used a span inside the button function to make the default text a variable -->
-                        <button class="drop-btn-credit"><span class="credit-score-text" id="creditScoreValue">Good(660-719)</span> <span class="material-symbols-outlined up-down-arrows" id="creditArrow">arrow_drop_down</span></button>
-                        <div id="creditDropdown" class="credit-dropdown-content">
-                            <input type="button" value="Excellent(720-850)" class="credit-input-buttons" id="excellentCredit">
-                            <input type="button" value="Good(660-719)" class="credit-input-buttons" id="goodCredit">
-                            <input type="button" value="Average(600-659)" class="credit-input-buttons" id="averageCredit">
-                            <input type="button" value="Below Average(300-599)" class="credit-input-buttons" id="poorCredit">
-                        </div>
+                    <div class="credit-score-dropdown input-boxes">
+                        <label for="creditScores" class="dropdownLabels"></label>
+                        <select name="creditScores" id="creditScoreSelector">
+                            <option value=".045" class="dropdown-input-buttons" id="excellentCredit">Excellent(720-850)</option>
+                            <option value=".075" class="credit-input-buttons" id="goodCredit">Good(660-719)</option>
+                            <option value=".129" class="credit-input-buttons" id="averageCredit">Average(600-659)</option>
+                            <option value=".174" class="credit-input-buttons" id="belowCredit">Below Average(300-599)</option>
+                        </select>
                     </div>
                 </div>
-                <div class="loan-term">
+                <div class="loan-term loan-box-spacing">
                     <!-- This dropdown is set up the exact same way as the previous dropdown -->
                     <span class="loan-term-label">Loan Term</span>
-                    <div class="loan-term-dropdown">
-                        <button class="drop-btn-term"><span class="loan-term-text" id="loanTermValue">72 Months</span> <span class="material-symbols-outlined up-down-arrows" id="termArrow">arrow_drop_down</span></button>
-                        <div id="termDropdown" class="term-dropdown-content">
-                            <input type="button" value="72 Months" class="term-input-buttons" id="months72">
-                            <input type="button" value="60 Months" class="term-input-buttons" id="months60">
-                            <input type="button" value="48 Months" class="term-input-buttons" id="months48">
-                            <input type="button" value="36 Months" class="term-input-buttons" id="months36">
-                        </div>
-                    </div>
+                    <label for="loanTerms" class="dropdownLabels input-boxes"></label>
+                    <select name="loanTerms" id="termDropdownSelector">
+                        <option value="72" class="dropdown-input-buttons" id="months72">72 Months</option>
+                        <option value="60" class="dropdown-input-buttons" id="months60">60 Months</option>
+                        <option value="48" class="dropdown-input-buttons" id="months48">48 Months</option>
+                        <option value="36" class="dropdown-input-buttons" id="months36">36 Months</option>
+                    </select>
                 </div>
             </div>
         </div>
         <div class="loan-info-container" id="loadOutput">
-            <div class="monthly-pay-container">
+            <div class="monthly-pay-container info-box-spacing">
                 <span class="monthly-payment-label">Payment Per Month</span>
                 <span class="price-per-month" id="monthPriceSelector">
                     $442
                     <span class="price-per-month price-decoration">/mo</span>
                 </span>
             </div>
-            <div class="additional-loan-info-container">
+            <div class="additional-loan-info-container info-box-spacing">
                 <div class="vehicle-budget">
                     <span class="info-label">Vehicle Budget</span><span class="info-amount" id="budgetAmountSelector">$20,000</span>
                 </div>
@@ -112,7 +109,7 @@
                 </div>
             </div>
         </div>
-        <div class="ready-to-buy">
+        <div class="ready-to-buy loan-info-container">
             <span class="ready-to-buy-label">Are you ready to buy a car?</span>
             <span class="ready-to-buy-para">Get in touch with one of our qualified salesmen today to set up an appointment.</span>
             <div class="contact-salesmen-container">
