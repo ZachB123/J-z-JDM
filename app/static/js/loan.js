@@ -29,11 +29,14 @@ dq(".loan-term-dropdown").addEventListener("click", (event) => {
 
 
 
-// close the dropdown menu if the user clicks out of it
+let excellent = document.querySelector("#excellentCredit").value = 4;
+
 
 
 function creditDropdownValue () {
-    
+    let creditValue = 3;
+
+
 }
 
 let loanAmount = document.querySelector("#priceInput").value;
