@@ -15,8 +15,8 @@ document.querySelector("#termDropdownSelector").addEventListener("change", loanT
 
 function loanSliderMatch() {
     sliderValue = document.querySelector("#priceSlider").value;
-    loanAmount = sliderValue;
-    loanAmount.value = '$'+'sliderValue';
+    loanAmount = Number(sliderValue);
+    document.querySelector("#priceInput").value = '$'+sliderValue;
     console.log("hello"); 
 }
 function loanInputMatch() {
