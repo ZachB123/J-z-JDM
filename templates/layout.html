@@ -35,8 +35,12 @@
                 </ul>
             </li>
             <li class="item"><a href="#">Contact Us</a></li>
-            <li class="item button log-in"><a href="{{ url_for('account') }}">Log In</a></li>
-            <li class="item button sign-up"><a href="{{ url_for('account') }}">Sign Up</a></li>
+            {% if current_user.is_anonymous %}
+                <li class="item button log-in"><a href="{{ url_for('login') }}">Log In</a></li>
+            {% else %} 
+                <li class="item button log-in"><a href="{{ url_for('logout') }}">Log Out</a></li>
+            {% endif %}
+            <li class="item button sign-up"><a href="{{ url_for('register') }}">Sign Up</a></li>
             <li class="hamburger-button"><a href="#"><i class="fas fa-bars"></i></a></li>
 
         </ul>

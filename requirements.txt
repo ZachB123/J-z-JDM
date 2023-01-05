@@ -6,4 +6,5 @@ flask-migrate
 pymysql
 werkzeug
 flask-login
+ipython
 

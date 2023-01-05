@@ -1,9 +1,10 @@
 import pymysql
+from config import Config
 
 class DatabaseDriver():
 
     def db_op(self, sql, values):
-        connection = pymysql.connect(host="containers-us-west-160.railway.app", user="root", password="yloA9qnKqIfDgTSWipf7", port=7036, db="railway")
+        connection = pymysql.connect(host=Config.DATABASE_HOST, user=Config.DATABASE_USER, password=Config.DATABASE_PASSWORD, port=int(Config.DATABASE_PORT), db=Config.DATABASE)
         output = None
         with connection:
             with connection.cursor() as cursor:
@@ -31,6 +32,13 @@ class DatabaseDriver():
 
     def get_user_by_id(self, values):
         return self.db_op("""SELECT * FROM users WHERE id=%s; """, values)
+
+    def get_user_by_username(self, values):
+        return self.db_op("""
+            SELECT * FROM users
+            WHERE username=%s;
+        """, values)
+        
 
     def drop_user_table(self):
         self.db_op("""
