@@ -8,25 +8,45 @@
     font-family: 'Kanit';
     margin: 10px auto;
     height: auto;
-    width: 95%;
+    width: 90%;
     text-align: center;
+    padding: 5px;
 }
 
 .loan-input {
-    display: grid;
-
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .loan-box-spacing {
     margin: 8px 8px 8px 8px;
 }
 
-
-.input-boxes {
-    display: inline;
+.info-header {
+    font-size: larger;
 }
 
-.info-box-spacing .info-label{
-    margin: 8px 8px 8px 8px;
+.info-para {
+    display: block;
 }
 
+.box-label {
+    font-size: 16px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.typed-inputs {
+    width: 140px;
+    height: auto;
+    padding: 10px 7px;
+    border-color: var(--purple);
+    border-radius: 10px;
+    font-family: 'Kanit';
+}
+
+.vehicle.price {
+    display: flex;
+}

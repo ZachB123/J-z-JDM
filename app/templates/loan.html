@@ -26,27 +26,27 @@
                         Vehicle Price
                     </span>
                     <div class="typed-input-price input-boxes">
-                        <input type="text" value="20000" class="input-price" id="priceInput">
+                        <input type="text" value="20000" class="input-price typed-inputs" id="priceInput">
                     </div>
                     <div class="range-slider">
                         <input type="range" min="0" max="100000" value="20000" class="slider-price" id="priceSlider">
                     </div>
                 </div>
                 <div class="down-payment loan-box-spacing">
-                    <span class="label-down-payment">Down Payment</span>
+                    <span class="box-label">Down Payment</span>
                     <div class="typed-down-payment input-boxes">
-                        <input type="text" value="2000" class="down-payment-input" id="downPaymentSelector">
+                        <input type="text" value="2000" class="down-payment-input typed-inputs" id="downPaymentSelector">
                     </div>
                 </div>
                 <div class="trade-in-value loan-box-spacing">
-                    <span class="label-trade-in">Trade-In Value</span>
+                    <span class="box-label">Trade-In Value</span>
                     <div class="typed-in-value input-boxes">
-                        <input type="text" value="0" class="trade-in-input" id="tradeInSelector">
+                        <input type="text" value="0" class="trade-in-input typed-inputs" id="tradeInSelector">
                     </div>
                 </div>
                 <div class="credit-score loan-box-spacing">
                     <!-- using a button with a function it makes a reactive dropdown to select a users credit score -->
-                    <span class="credit-score-label">Credit Score</span>
+                    <span class="box-label">Credit Score</span>
                     <div class="credit-score-dropdown input-boxes">
                         <label for="creditScores" class="dropdownLabels"></label>
                         <select name="creditScores" id="creditScoreSelector">
@@ -59,14 +59,16 @@
                 </div>
                 <div class="loan-term loan-box-spacing">
                     <!-- This dropdown is set up the exact same way as the previous dropdown -->
-                    <span class="loan-term-label">Loan Term</span>
-                    <label for="loanTerms" class="dropdownLabels input-boxes"></label>
-                    <select name="loanTerms" id="termDropdownSelector">
-                        <option value="72" class="dropdown-input-buttons" id="months72">72 Months</option>
-                        <option value="60" class="dropdown-input-buttons" id="months60">60 Months</option>
-                        <option value="48" class="dropdown-input-buttons" id="months48">48 Months</option>
-                        <option value="36" class="dropdown-input-buttons" id="months36">36 Months</option>
-                    </select>
+                    <span class="box-label">Loan Term</span>
+                    <div class="input-boxes">
+                        <label for="loanTerms" class="dropdownLabels"></label>
+                        <select name="loanTerms" id="termDropdownSelector">
+                            <option value="72" class="dropdown-input-buttons" id="months72">72 Months</option>
+                            <option value="60" class="dropdown-input-buttons" id="months60">60 Months</option>
+                            <option value="48" class="dropdown-input-buttons" id="months48">48 Months</option>
+                            <option value="36" class="dropdown-input-buttons" id="months36">36 Months</option>
+                        </select>
+                    </div>
                 </div>
             </div>
         </div>
