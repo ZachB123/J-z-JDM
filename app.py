@@ -1,5 +1,11 @@
-from flask import render_template, flash, redirect, url_for
-from app import app
+import os
+from config import Config
+from flask import Flask, render_template
+from dotenv import load_dotenv
+load_dotenv()
+
+app = Flask(__name__)
+app.config.from_object(Config)
 
 @app.route("/")
 @app.route("/index")
@@ -37,3 +43,8 @@ def accessibility():
 @app.route("/Privacy-Policy")
 def privacyPolicy():
     return render_template("privacyPolicy.html")
+
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
+
