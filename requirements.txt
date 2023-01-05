@@ -7,4 +7,4 @@ pymysql
 werkzeug
 flask-login
 ipython
-
+email-validator
