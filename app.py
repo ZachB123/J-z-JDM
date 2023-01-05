@@ -3,9 +3,12 @@ from config import Config
 from flask import Flask, render_template
 from dotenv import load_dotenv
 load_dotenv()
+from flask_login import LoginManager
 
 app = Flask(__name__)
 app.config.from_object(Config)
+
+login = LoginManager(app)
 
 @app.route("/")
 @app.route("/index")

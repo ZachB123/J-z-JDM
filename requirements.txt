@@ -4,4 +4,6 @@ python-dotenv
 flask-sqlalchemy
 flask-migrate
 pymysql
+werkzeug
+flask-login
 
