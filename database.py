@@ -10,7 +10,7 @@ class DatabaseDriver():
                 cursor.execute(sql, values)
                 output = cursor.fetchall()
             connection.commit()
-        return output
+        return list(output)
 
     def delete_all_from_test(self):
         self.db_op("""DELETE FROM test;""", ())
@@ -19,7 +19,7 @@ class DatabaseDriver():
         self.db_op("""INSERT INTO test (data, name) VALUES (%s,%s);""", values)
 
     def get_all_posts(self):
-        return list(self.db_op("""SELECT * FROM test;""", ()))
+        return self.db_op("""SELECT * FROM test;""", ())
 
     # order is username email date_joined super_user
     # user object is passed in
@@ -29,18 +29,8 @@ class DatabaseDriver():
             VALUES (%s, %s, %s, %s, %s);
         """, (user.username, user.email, user.date_joined, user.password_hash, user.super_user))
 
-    def create_user_table(self):
-        self.db_op("""
-            CREATE TABLE IF NOT EXISTS users (
-                id int NOT NULL,
-                username VARCHAR(255) NOT NULL,
-                email VARCHAR(255),
-                timestamp_date_joined Decimal NOT NULL,
-                password_hash TEXT NOT NULL,
-                super_user int NOT NULL,
-                PRIMARY KEY (id)
-            );
-        """, ())
+    def get_user_by_id(self, values):
+        return self.db_op("""SELECT * FROM users WHERE id=%s; """, values)
 
     def drop_user_table(self):
         self.db_op("""
@@ -49,5 +39,3 @@ class DatabaseDriver():
 
 
 db = DatabaseDriver()
-# db.create_user_table()
-# db.drop_user_table()

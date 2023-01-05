@@ -40,4 +40,3 @@ app.db
 jdm.log*
 
 .env
-.flaskenv
