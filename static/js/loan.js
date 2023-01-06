@@ -1,3 +1,4 @@
+// the following blocks of code makes it so that the user is not able to type anything other than numbers into the input fields
 let digitPeriodRegExp = new RegExp('\\d|\\.');
 let input1 = document.querySelector('#priceInput');
 
@@ -99,6 +100,8 @@ input3.addEventListener('input', function(event) {
     input3.selectionEnd = input3.selectionStart;
 }, false);
 
+// the code below creates the functionality for the loan calculator
+// define the variables with preset amounts
 let loanAmount = 20000;
 let sliderValue = 20000;
 let downPayment = 2000;
@@ -107,6 +110,9 @@ let creditScore = .045;
 let loanTerm = 72;
 let cost = (((Number(loanAmount) - (Number(downPayment) + Number(tradeIn)))/Number(loanTerm))*(1+(Number(creditScore)/12)));
 
+loanCalculator();
+
+// adds event listeners to each input field so that when the value changes the variable is updated
 document.querySelector("#priceSlider").addEventListener("change", () => {loanSliderMatch(); loanCalculator(); });
 document.querySelector("#priceInput").addEventListener("change", () => {loanInputMatch(); loanCalculator();});
 document.querySelector("#downPaymentSelector").addEventListener("change", () => {downPaymentMatch(); loanCalculator();});
@@ -114,6 +120,7 @@ document.querySelector("#tradeInSelector").addEventListener("change", () => {tra
 document.querySelector("#creditScoreSelector").addEventListener("change", () => {creditScoreMatch(); loanCalculator();});
 document.querySelector("#termDropdownSelector").addEventListener("change", () => {loanTermMatch(); loanCalculator();});
 
+// each of these functions run when their input field triggers the event listener then they update the values
 function loanSliderMatch() {
     sliderValue = document.querySelector("#priceSlider").value;
     loanAmount = Number(sliderValue);

@@ -12,7 +12,7 @@
 {% block body %} 
     <div class="loan-container">
         <div class="loan-info-container loan-input">
-            <div class="top-information loan-box-spacing">
+            <div class="top-information">
                 <span class="info-header">
                     Car Loan Calculator
                 </span>
@@ -21,7 +21,7 @@
                 </span>
             </div>
             <div class="calculator-input">
-                <div class="vehicle-price loan-box-spacing">
+                <div class="loan-box-spacing" id="vehicle-price">
                     <span class="box-label">
                         Vehicle Price
                     </span>
@@ -49,12 +49,15 @@
                     <span class="box-label">Credit Score</span>
                     <div class="credit-score-dropdown input-boxes">
                         <label for="creditScores" class="dropdownLabels"></label>
-                        <select name="creditScores" id="creditScoreSelector">
-                            <option value=".045" class="dropdown-input-buttons" id="excellentCredit">Excellent(720-850)</option>
-                            <option value=".075" class="credit-input-buttons" id="goodCredit">Good(660-719)</option>
-                            <option value=".129" class="credit-input-buttons" id="averageCredit">Average(600-659)</option>
-                            <option value=".174" class="credit-input-buttons" id="belowCredit">Below Average(300-599)</option>
-                        </select>
+                        <div class="dropdowns">
+                            <select name="creditScores" id="creditScoreSelector">
+                                <option value=".045" class="dropdown-input-buttons" id="excellentCredit">Excellent(720-850)</option>
+                                <option value=".075" class="credit-input-buttons" id="goodCredit">Good(660-719)</option>
+                                <option value=".129" class="credit-input-buttons" id="averageCredit">Average(600-659)</option>
+                                <option value=".174" class="credit-input-buttons" id="belowCredit">Below Average(300-599)</option>
+                                <span class="focus"></span>
+                            </select>
+                        </div>
                     </div>
                 </div>
                 <div class="loan-term loan-box-spacing">
@@ -62,12 +65,15 @@
                     <span class="box-label">Loan Term</span>
                     <div class="input-boxes">
                         <label for="loanTerms" class="dropdownLabels"></label>
-                        <select name="loanTerms" id="termDropdownSelector">
-                            <option value="72" class="dropdown-input-buttons" id="months72">72 Months</option>
-                            <option value="60" class="dropdown-input-buttons" id="months60">60 Months</option>
-                            <option value="48" class="dropdown-input-buttons" id="months48">48 Months</option>
-                            <option value="36" class="dropdown-input-buttons" id="months36">36 Months</option>
-                        </select>
+                        <div class="dropdowns">
+                            <select name="loanTerms" id="termDropdownSelector">
+                                <option value="72" class="dropdown-input-buttons" id="months72">72 Months</option>
+                                <option value="60" class="dropdown-input-buttons" id="months60">60 Months</option>
+                                <option value="48" class="dropdown-input-buttons" id="months48">48 Months</option>
+                                <option value="36" class="dropdown-input-buttons" id="months36">36 Months</option>
+                                <span class="focus"></span>
+                            </select>
+                        </div>
                     </div>
                 </div>
             </div>
