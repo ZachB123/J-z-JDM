@@ -3,7 +3,7 @@ from config import Config
 
 class DatabaseDriver():
 
-    def db_op(self, sql, values):
+    def db_op(self, sql, values=()):
         connection = pymysql.connect(host=Config.DATABASE_HOST, user=Config.DATABASE_USER, password=Config.DATABASE_PASSWORD, port=int(Config.DATABASE_PORT), db=Config.DATABASE)
         output = None
         with connection:
@@ -20,7 +20,7 @@ class DatabaseDriver():
         self.db_op("""INSERT INTO test (data, name) VALUES (%s,%s);""", values)
 
     def get_all_posts(self):
-        return self.db_op("""SELECT * FROM test;""", ())
+        return self.db_op("""SELECT * FROM test;""")
 
     # order is username email date_joined super_user
     # user object is passed in
@@ -50,6 +50,11 @@ class DatabaseDriver():
             INSERT INTO car_test (description)
             VALUES (%s);
         """, (car.description,))
+
+    def get_all_cars(self):
+        return self.db_op("""
+            SELECT * FROM cars;
+        """)
 
     # def create_cars_table(self):
     #     self.db_op("""

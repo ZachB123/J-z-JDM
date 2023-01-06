@@ -61,7 +61,7 @@ class User(UserMixin):
 
 
 class Car():
-    def __init__(self, description, oem, model, year, mileage, color, price, drivetrain, engine_cylinder, engine_size, four_wheel_steering, abs, tcs, doors, seats, horsepower, torque, misc, sales_rep_id=-1, id=-1):
+    def __init__(self, description, oem, model, year, mileage, color, price, drivetrain, engine_cylinder, engine_size, four_wheel_steering, abs, tcs, doors, seats, horsepower, torque, misc, sales_rep_id=-1, id=-1, date_added=-1):
         self.description = description #text
         self.oem = oem #text
         self.model = model #text
@@ -81,12 +81,24 @@ class Car():
         self.torque = torque #number
         self.misc = misc #text
         self.sales_rep_id = sales_rep_id #text
-        self.date_added = datetime.utcnow().timestamp() #float
+        if date_added == -1:
+            self.date_added = datetime.utcnow().timestamp() #float
+        else:
+            self.date_added = date_added
         self.id = id
 
     @staticmethod
     def add_car(car):
         db.create_car(car)
+
+    @staticmethod
+    def get_all_cars():
+        q = db.get_all_cars()
+        return [Car.car_from_tuple(c) for c in q]
+
+    @staticmethod
+    def car_from_tuple(c):
+        return Car(c[2], c[3], c[4], c[5], c[6], c[7], c[8], c[9], c[10], c[11], c[12], c[13], c[14], c[15], c[16], c[17], c[18], c[19], c[1], c[0], c[20])
 
     def __str__(self) -> str:
         return f"<Id: {self.id}, Descripton: {self.description}, O.E.M: {self.oem}, Model: {self.model}, : {self.model}, Year: {self.year}, Mileage: {self.mileage}, Color: {self.color}, Price: {self.price}, Drivetrain: {self.drivetrain}, Engine Cylinder: {self.engine_cylinder}, Engine Size: {self.engine_size}, Four Wheel Steering: {self.four_wheel_steering}, ABS: {self.abs}, TCS: {self.tcs}, Doors: {self.doors}, Seats: {self.seats}, Horsepower: {self.horsepower}, Torque: {self.torque}, Misc: {self.misc}, Sales Rep Id: {self.sales_rep_id}, Date Created: {datetime.fromtimestamp(self.date_added)}>"

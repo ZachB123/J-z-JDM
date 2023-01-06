@@ -93,7 +93,8 @@ def control():
         Car.add_car(car)
         flash("Car added")
         return redirect(url_for("control"))
-    return render_template("control.html", form=form)
+    cars = Car.get_all_cars()
+    return render_template("control.html", form=form, cars=cars)
 
 @app.route("/Accessibility")
 def accessibility():

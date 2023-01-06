@@ -134,4 +134,8 @@
         </p>
         <p>{{ form.submit() }}</p>
     </form>
+
+    {% for car in cars %} 
+        {% include "_carPreview.html" %}
+    {% endfor %}
 {% endblock %}
