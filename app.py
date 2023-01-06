@@ -1,19 +1,73 @@
 import os
 from config import Config
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect, url_for, flash, request
 from dotenv import load_dotenv
 load_dotenv()
-from flask_login import LoginManager
+from forms import LoginForm, RegistrationForm, CarCreationForm
+from flask_login import LoginManager, current_user, login_user, logout_user, login_required
+from models import User, Car
+from werkzeug.urls import url_parse
 
 app = Flask(__name__)
 app.config.from_object(Config)
 
-# login = LoginManager(app)
+login = LoginManager(app)
+login.login_view = "login"
+# login.init_app(app)
+
+@login.user_loader
+def load_user(id):
+    return User.get_by_id(int(id))
 
 @app.route("/")
 @app.route("/index")
 def index():
     return render_template("index.html")
+
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    if current_user.is_authenticated:
+        return redirect(url_for("index"))
+    form = LoginForm()
+    if form.validate_on_submit():
+        user = User.get_by_username(form.username.data)
+        if user is None or not user.check_password(form.password.data):
+            flash("Invalid username or password")
+            return redirect(url_for("login"))
+        login_user(user, remember=form.remember_me.data)
+        next_page = request.args.get("next")
+        if not next_page or url_parse(next_page).netloc != "":
+            next_page = url_for("index")
+        return redirect(next_page)
+    return render_template("login.html", form=form)
+
+@app.route("/logout")
+def logout():
+    logout_user()
+    # TODO make it so you return to the page you were on
+    return redirect(url_for("index"))
+
+@app.route("/register", methods=["GET", "POST"])
+def register():
+    if current_user.is_authenticated:
+        return redirect(url_for("index"))
+    form = RegistrationForm()
+    if form.validate_on_submit():
+        User.add_user(User(form.username.data, form.email.data, form.password.data))
+        flash("Cogratulations, you are now a registered user!")
+        return redirect(url_for("login"))
+    return render_template("register.html", form=form)
+
+
+@app.route("/profile")
+@login_required
+def profile():
+    user = User.get_by_id(int(current_user.get_id()))
+    return render_template("profile.html", user=user)
+
+@app.route("/company")
+def company():
+    return render_template("company.html")
 
 @app.route("/listings")
 def listings():
@@ -23,21 +77,24 @@ def listings():
 def car():
     return render_template("car.html")
 
-@app.route("/account")
-def account():
-    return render_template("account.html")
-
-@app.route("/management")
-def management():
-    return render_template("management.html")
-
 @app.route("/loan")
 def loan():
     return render_template("loan.html")
 
-@app.route("/control")
+@app.route("/control", methods=["GET", "POST"])
+@login_required
 def control():
-    return render_template("control.html")
+    if User.get_by_id(int(current_user.get_id())).super_user == 0:
+        flash("You do not have the required privileges to view this page")
+        return redirect(url_for("index"))
+    form = CarCreationForm()
+    if form.validate_on_submit():
+        car = Car(form.description.data, form.oem.data, form.model.data, form.year.data, form.mileage.data, form.color.data, form.price.data, form.drivetrain.data, form.engine_cylinder.data, form.engine_size.data, int(form.four_wheel_steering.data), int(form.abs.data), int(form.tcs.data), form.doors.data, form.seats.data, form.horsepower.data, form.torque.data, form.misc.data)
+        Car.add_car(car)
+        flash("Car added")
+        return redirect(url_for("control"))
+    cars = Car.get_all_cars()
+    return render_template("control.html", form=form, cars=cars)
 
 @app.route("/Accessibility")
 def accessibility():
