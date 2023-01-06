@@ -3,11 +3,10 @@ from config import Config
 from flask import Flask, render_template, redirect, url_for, flash, request
 from dotenv import load_dotenv
 load_dotenv()
-from forms import LoginForm, RegistrationForm
+from forms import LoginForm, RegistrationForm, CarCreationForm
 from flask_login import LoginManager, current_user, login_user, logout_user, login_required
-from models import User
+from models import User, Car
 from werkzeug.urls import url_parse
-from database import db
 
 app = Flask(__name__)
 app.config.from_object(Config)
@@ -54,7 +53,7 @@ def register():
         return redirect(url_for("index"))
     form = RegistrationForm()
     if form.validate_on_submit():
-        db.create_user(User(form.username.data, form.email.data, form.password.data))
+        User.add_user(User(form.username.data, form.email.data, form.password.data))
         flash("Cogratulations, you are now a registered user!")
         return redirect(url_for("login"))
     return render_template("register.html", form=form)
@@ -82,13 +81,19 @@ def car():
 def loan():
     return render_template("loan.html")
 
-@app.route("/control")
+@app.route("/control", methods=["GET", "POST"])
 @login_required
 def control():
     if User.get_by_id(int(current_user.get_id())).super_user == 0:
         flash("You do not have the required privileges to view this page")
         return redirect(url_for("index"))
-    return render_template("control.html")
+    form = CarCreationForm()
+    if form.validate_on_submit():
+        car = Car(form.description.data, form.oem.data, form.model.data, form.year.data, form.mileage.data, form.color.data, form.price.data, form.drivetrain.data, form.engine_cylinder.data, form.engine_size.data, int(form.four_wheel_steering.data), int(form.abs.data), int(form.tcs.data), form.doors.data, form.seats.data, form.horsepower.data, form.torque.data, form.misc.data)
+        Car.add_car(car)
+        flash("Car added")
+        return redirect(url_for("control"))
+    return render_template("control.html", form=form)
 
 @app.route("/Accessibility")
 def accessibility():

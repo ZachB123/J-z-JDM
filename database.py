@@ -38,12 +38,35 @@ class DatabaseDriver():
             SELECT * FROM users
             WHERE username=%s;
         """, values)
-        
-
-    def drop_user_table(self):
+    
+    def create_car(self, car):
         self.db_op("""
-            DROP TABLE user;
-        """, ())
+            INSERT INTO cars (sales_rep_id, description, oem, model, year, mileage, color, price, drivetrain, engine_cylinder, engine_size, four_wheel_steering, abs, tcs, doors, seats, horsepower, torque, misc, date_added)
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);
+        """, (car.sales_rep_id, car.description, car.oem, car.model, car.year, car.mileage, car.color, car.price, car.drivetrain, car.engine_cylinder, car.engine_size, car.four_wheel_steering, car.abs, car.tcs, car.doors, car.seats, car.horsepower, car.torque, car.misc, car.date_added))
 
+    def create_car_test(self, car):
+        self.db_op("""
+            INSERT INTO car_test (description)
+            VALUES (%s);
+        """, (car.description,))
 
+    # def create_cars_table(self):
+    #     self.db_op("""
+        
+    #     """, ())
+
+    # def create_sales_reps_table(self):
+    #     self.db_op("""
+    #         CREATE TABLE sales_reps(
+    #             id int NOT NULL,
+    #             user_id int NOT NULL,
+    #             about TEXT,
+    #             PRIMARY KEY (id),
+    #             FOREIGN KEY (user_id) REFERENCES users(id)
+    #         );
+    #     """, ())
+
+# FOREIGN KEY (user_id) REFERENCES users(id)
 db = DatabaseDriver()
+# db.create_sales_reps_table()

@@ -55,3 +55,41 @@ class User(UserMixin):
     def users_from_list(list):
         return [User.user_from_tuple(u) for u in list]
 
+    @staticmethod
+    def add_user(user):
+        db.create_user(user)
+
+
+class Car():
+    def __init__(self, description, oem, model, year, mileage, color, price, drivetrain, engine_cylinder, engine_size, four_wheel_steering, abs, tcs, doors, seats, horsepower, torque, misc, sales_rep_id=-1, id=-1):
+        self.description = description #text
+        self.oem = oem #text
+        self.model = model #text
+        self.year = year #number
+        self.mileage = mileage #number
+        self.color = color #text
+        self.price = price #number
+        self.drivetrain = drivetrain #text
+        self.engine_cylinder = engine_cylinder #text
+        self.engine_size = engine_size #number
+        self.four_wheel_steering = four_wheel_steering #bool/num
+        self.abs = abs #bool/num
+        self.tcs = tcs #bool/num
+        self.doors = doors #number
+        self.seats = seats #number
+        self.horsepower = horsepower #number
+        self.torque = torque #number
+        self.misc = misc #text
+        self.sales_rep_id = sales_rep_id #text
+        self.date_added = datetime.utcnow().timestamp() #float
+        self.id = id
+
+    @staticmethod
+    def add_car(car):
+        db.create_car(car)
+
+    def __str__(self) -> str:
+        return f"<Id: {self.id}, Descripton: {self.description}, O.E.M: {self.oem}, Model: {self.model}, : {self.model}, Year: {self.year}, Mileage: {self.mileage}, Color: {self.color}, Price: {self.price}, Drivetrain: {self.drivetrain}, Engine Cylinder: {self.engine_cylinder}, Engine Size: {self.engine_size}, Four Wheel Steering: {self.four_wheel_steering}, ABS: {self.abs}, TCS: {self.tcs}, Doors: {self.doors}, Seats: {self.seats}, Horsepower: {self.horsepower}, Torque: {self.torque}, Misc: {self.misc}, Sales Rep Id: {self.sales_rep_id}, Date Created: {datetime.fromtimestamp(self.date_added)}>"
+
+    def __repr__(self) -> str:
+        return self.__str__()

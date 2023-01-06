@@ -2,4 +2,136 @@
 
 {% block body %} 
     <h1>Control</h1>
+
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+        <h2>Note: I did not make any fields required so do not accidentally hit submit</h2>
+        <p>
+            {{ form.description.label }}<br>
+            {{ form.description() }}<br>
+            {% for error in form.description.errors %}
+                <span>[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.oem.label }}<br>
+            {{ form.oem() }}<br>
+            {% for error in form.oem.errors %}
+                <span>[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.model.label }}<br>
+            {{ form.model() }}<br>
+            {% for error in form.model.errors %}
+                <span>[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.year.label }}<br>
+            {{ form.year() }}<br>
+            {% for error in form.year.errors %}
+                <span>[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.mileage.label }}<br>
+            {{ form.mileage() }}<br>
+            {% for error in form.mileage.errors %}
+                <span>[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.color.label }}<br>
+            {{ form.color() }}<br>
+            {% for error in form.color.errors %}
+                <span>[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.price.label }}<br>
+            {{ form.price() }}<br>
+            {% for error in form.price.errors %}
+                <span>[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.drivetrain.label }}<br>
+            {{ form.drivetrain() }}<br>
+            {% for error in form.drivetrain.errors %}
+                <span>[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.engine_cylinder.label }}<br>
+            {{ form.engine_cylinder() }}<br>
+            {% for error in form.engine_cylinder.errors %}
+                <span>[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.engine_size.label }}<br>
+            {{ form.engine_size() }}<br>
+            {% for error in form.engine_size.errors %}
+                <span>[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.four_wheel_steering.label }}<br>
+            {{ form.four_wheel_steering() }}<br>
+            {% for error in form.four_wheel_steering.errors %}
+                <span>[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.abs.label }}<br>
+            {{ form.abs() }}<br>
+            {% for error in form.abs.errors %}
+                <span>[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.tcs.label }}<br>
+            {{ form.tcs() }}<br>
+            {% for error in form.tcs.errors %}
+                <span>[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.doors.label }}<br>
+            {{ form.doors() }}<br>
+            {% for error in form.doors.errors %}
+                <span>[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.seats.label }}<br>
+            {{ form.seats() }}<br>
+            {% for error in form.seats.errors %}
+                <span>[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.horsepower.label }}<br>
+            {{ form.horsepower() }}<br>
+            {% for error in form.horsepower.errors %}
+                <span>[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.torque.label }}<br>
+            {{ form.torque() }}<br>
+            {% for error in form.torque.errors %}
+                <span>[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.misc.label }}<br>
+            {{ form.misc() }}<br>
+            {% for error in form.misc.errors %}
+                <span>[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
 {% endblock %}
