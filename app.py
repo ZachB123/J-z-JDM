@@ -63,8 +63,12 @@ def register():
 @app.route("/profile")
 @login_required
 def profile():
-    return render_template("profile.html")
+    user = User.get_by_id(int(current_user.get_id()))
+    return render_template("profile.html", user=user)
 
+@app.route("/company")
+def company():
+    return render_template("company.html")
 
 @app.route("/listings")
 def listings():
@@ -74,16 +78,16 @@ def listings():
 def car():
     return render_template("car.html")
 
-@app.route("/management")
-def management():
-    return render_template("management.html")
-
 @app.route("/loan")
 def loan():
     return render_template("loan.html")
 
 @app.route("/control")
+@login_required
 def control():
+    if User.get_by_id(int(current_user.get_id())).super_user == 0:
+        flash("You do not have the required privileges to view this page")
+        return redirect(url_for("index"))
     return render_template("control.html")
 
 @app.route("/Accessibility")
