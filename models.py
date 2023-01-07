@@ -87,6 +87,10 @@ class Car():
             self.date_added = date_added
         self.id = id
 
+    #returns a list of Image objects for the image for the images
+    def get_images(self):
+        return Image.images_from_list(db.get_images_from_car_id(self.id))
+
     @staticmethod
     def add_car(car):
         db.create_car(car)
@@ -95,6 +99,13 @@ class Car():
     def get_all_cars():
         q = db.get_all_cars()
         return [Car.car_from_tuple(c) for c in q]
+    
+    @staticmethod
+    def get_car_by_id(id):
+        c = db.get_car_by_id(id)
+        if len(c) > 0:
+            return Car.car_from_tuple(db.get_car_by_id(id)[0])
+        return None
 
     @staticmethod
     def car_from_tuple(c):
@@ -104,4 +115,31 @@ class Car():
         return f"<Id: {self.id}, Descripton: {self.description}, O.E.M: {self.oem}, Model: {self.model}, : {self.model}, Year: {self.year}, Mileage: {self.mileage}, Color: {self.color}, Price: {self.price}, Drivetrain: {self.drivetrain}, Engine Cylinder: {self.engine_cylinder}, Engine Size: {self.engine_size}, Four Wheel Steering: {self.four_wheel_steering}, ABS: {self.abs}, TCS: {self.tcs}, Doors: {self.doors}, Seats: {self.seats}, Horsepower: {self.horsepower}, Torque: {self.torque}, Misc: {self.misc}, Sales Rep Id: {self.sales_rep_id}, Date Created: {datetime.fromtimestamp(self.date_added)}>"
 
     def __repr__(self) -> str:
+        return self.__str__()
+
+class Image():
+    def __init__(self, link, car_id, cover_img=0, id=-1):
+        self.link = link
+        self.car_id = car_id
+        self.cover_img = cover_img
+        self.id = id
+
+    @staticmethod
+    def add_image(image):
+        db.create_image((image.link, image.car_id, image.cover_img))
+
+    @staticmethod
+    def image_from_tuple(i):
+        return Image(i[1], i[2], i[3], i[0])
+
+    @staticmethod
+    def images_from_list(l):
+        if len(l) > 0:
+            return [Image.image_from_tuple(c) for c in l]
+        return None
+
+    def __str__(self):
+        return f"<Id: {self.id}, Link: {self.link}, Car Id: {self.car_id}, Cover Image: {self.cover_img}>"
+
+    def __repr__(self):
         return self.__str__()

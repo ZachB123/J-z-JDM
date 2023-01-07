@@ -5,6 +5,10 @@
     box-sizing: border-box;
 }
 
+body {
+    background-color: rgb(100, 100, 100);
+}
+
 nav {
     background: var(--purple);
     padding: 0 15px;

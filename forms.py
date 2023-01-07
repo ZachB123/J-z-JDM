@@ -43,4 +43,19 @@ class CarCreationForm(FlaskForm):
     misc = TextAreaField("Misc")
     submit = SubmitField("Add Car. Please double check all the form entries. Zach does not want to manually fix stuff")
 
+class AddImages(FlaskForm):
+    image1 = StringField("Image1", validators=[DataRequired()])
+    cover_image = BooleanField("Is image1 the cover image?")
+    image2 = StringField("Image2")
+    image3 = StringField("Image3")
+    image4 = StringField("Image4")
+    image5 = StringField("Image5")
+    image6 = StringField("Image6")
+    image7 = StringField("Image7")
+    image8 = StringField("Image8")
+    image9 = StringField("Image9")
+    image10 = StringField("Image10")
+    submit = SubmitField("Add images")
+
+
 

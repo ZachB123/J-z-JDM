@@ -137,5 +137,6 @@
 
     {% for car in cars %} 
         {% include "_carPreview.html" %}
+        <a href="{{ url_for('add_image_to_car', car_id=car.id) }}">ADD IMAGES TO THIS CAR</a>
     {% endfor %}
 {% endblock %}

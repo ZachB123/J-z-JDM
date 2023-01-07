@@ -3,9 +3,9 @@ from config import Config
 from flask import Flask, render_template, redirect, url_for, flash, request
 from dotenv import load_dotenv
 load_dotenv()
-from forms import LoginForm, RegistrationForm, CarCreationForm
+from forms import LoginForm, RegistrationForm, CarCreationForm, AddImages
 from flask_login import LoginManager, current_user, login_user, logout_user, login_required
-from models import User, Car
+from models import User, Car, Image
 from werkzeug.urls import url_parse
 
 app = Flask(__name__)
@@ -54,7 +54,7 @@ def register():
     form = RegistrationForm()
     if form.validate_on_submit():
         User.add_user(User(form.username.data, form.email.data, form.password.data))
-        flash("Cogratulations, you are now a registered user!")
+        flash("Congratulations, you are now a registered user!")
         return redirect(url_for("login"))
     return render_template("register.html", form=form)
 
@@ -95,6 +95,41 @@ def control():
         return redirect(url_for("control"))
     cars = Car.get_all_cars()
     return render_template("control.html", form=form, cars=cars)
+
+@login_required
+@app.route("/control/<int:car_id>", methods=["GET", "POST"])
+def add_image_to_car(car_id):
+    if User.get_by_id(int(current_user.get_id())).super_user == 0:
+        flash("You do not have the required privileges to view this page")
+        return redirect(url_for("index"))
+    form = AddImages()
+    if form.validate_on_submit():
+        if form.image1.data:
+            Image.add_image(Image(form.image1.data, car_id, int(form.cover_image.data)))
+        if form.image2.data:
+            Image.add_image(Image(form.image2.data, car_id))
+        if form.image3.data:
+            Image.add_image(Image(form.image3.data, car_id))
+        if form.image4.data:
+            Image.add_image(Image(form.image4.data, car_id))
+        if form.image5.data:
+            Image.add_image(Image(form.image5.data, car_id))
+        if form.image6.data:
+            Image.add_image(Image(form.image6.data, car_id))
+        if form.image7.data:
+            Image.add_image(Image(form.image7.data, car_id))
+        if form.image8.data:
+            Image.add_image(Image(form.image8.data, car_id))
+        if form.image9.data:
+            Image.add_image(Image(form.image9.data, car_id))
+        if form.image10.data:
+            Image.add_image(Image(form.image10.data, car_id))
+        flash("Images successfully added")
+        return redirect(url_for("add_image_to_car", car_id=car_id))
+    car = Car.get_car_by_id(car_id)
+    images = car.get_images() or []
+    return render_template("addImage.html", car=car, form=form, images=images)
+
 
 @app.route("/Accessibility")
 def accessibility():

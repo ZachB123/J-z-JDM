@@ -56,6 +56,23 @@ class DatabaseDriver():
             SELECT * FROM cars;
         """)
 
+    def get_car_by_id(self, values):
+        return self.db_op("""
+            SELECT * FROM cars WHERE id=%s;
+        """, values)
+
+    def create_image(self, values):
+        self.db_op("""
+            INSERT INTO images (link, car_id, cover_img)
+            VALUES (%s, %s, %s);
+        """, values)
+
+    def get_images_from_car_id(self, values):
+        return self.db_op("""
+            SELECT * FROM images
+            WHERE car_id=%s;
+        """, values)
+
     # def create_cars_table(self):
     #     self.db_op("""
         
