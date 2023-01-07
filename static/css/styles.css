@@ -89,14 +89,14 @@ a {
     line-height: 16px;
     font-weight: 900; 
     content: "\f078";
-    color: white;
+    color: whitesmoke;
     padding-left: 5px;
 }
 .subitem a {
     padding: 10px 15px;
 }
 .submenu-active {
-    background-color: rgb(228, 228, 228);
+    background-color: #694991;
     border-radius: 3px;
 }
 
