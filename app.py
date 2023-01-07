@@ -1,6 +1,6 @@
 import os
 from config import Config
-from flask import Flask, render_template, redirect, url_for, flash, request
+from flask import Flask, render_template, redirect, url_for, flash, request, abort
 from dotenv import load_dotenv
 load_dotenv()
 from forms import LoginForm, RegistrationForm, CarCreationForm, AddImages
@@ -71,11 +71,15 @@ def company():
 
 @app.route("/listings")
 def listings():
-    return render_template("listings.html")
+    cars = Car.get_all_cars()
+    return render_template("listings.html", cars=cars)
 
-@app.route("/car")
-def car():
-    return render_template("car.html")
+@app.route("/car/<int:id>")
+def car(id):
+    car = Car.get_car_by_id(id)
+    if not car:
+        abort(404)
+    return render_template("car.html", car=car)
 
 @app.route("/loan")
 def loan():

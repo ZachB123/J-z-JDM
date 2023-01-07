@@ -10,4 +10,3 @@ class Config(object):
     DATABASE_PASSWORD = os.environ.get("DATABASE_PASSWORD")
     DATABASE_PORT = os.environ.get("DATABASE_PORT")
     DATABASE = os.environ.get("DATABASE")
-    SECRET_KEY = os.environ.get("SECRET_KEY")

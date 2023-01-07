@@ -73,22 +73,5 @@ class DatabaseDriver():
             WHERE car_id=%s;
         """, values)
 
-    # def create_cars_table(self):
-    #     self.db_op("""
-        
-    #     """, ())
 
-    # def create_sales_reps_table(self):
-    #     self.db_op("""
-    #         CREATE TABLE sales_reps(
-    #             id int NOT NULL,
-    #             user_id int NOT NULL,
-    #             about TEXT,
-    #             PRIMARY KEY (id),
-    #             FOREIGN KEY (user_id) REFERENCES users(id)
-    #         );
-    #     """, ())
-
-# FOREIGN KEY (user_id) REFERENCES users(id)
 db = DatabaseDriver()
-# db.create_sales_reps_table()
