@@ -71,8 +71,15 @@ def company():
 
 @app.route("/listings")
 def listings():
-    cars = Car.get_all_cars()
-    return render_template("listings.html", cars=cars)
+    page = int(request.args.get("page", 1))
+    prev_url = None
+    next_url = None
+    if page > 1:
+        prev_url = url_for("listings", page=(page-1))
+    cars = Car.paginate_cars(page)
+    if len(cars) >= Config.CARS_PER_PAGE:
+        next_url = url_for("listings", page=(page+1))
+    return render_template("listings.html", cars=cars, prev_url=prev_url, next_url=next_url)
 
 @app.route("/car/<int:id>")
 def car(id):
@@ -142,6 +149,14 @@ def accessibility():
 @app.route("/Privacy-Policy")
 def privacyPolicy():
     return render_template("privacyPolicy.html")
+
+@app.errorhandler(404)
+def not_found(error):
+    return render_template("404.html"), 404
+
+@app.errorhandler(500)
+def internal_error(error):
+    return render_template("500.html"), 500
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
