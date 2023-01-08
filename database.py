@@ -73,5 +73,12 @@ class DatabaseDriver():
             WHERE car_id=%s;
         """, values)
 
+    def paginate_cars(self, values):
+        return self.db_op("""
+            SELECT * FROM cars
+            LIMIT %s
+            OFFSET %s;
+        """, values)
+
 
 db = DatabaseDriver()

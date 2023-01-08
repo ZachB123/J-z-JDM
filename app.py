@@ -71,8 +71,15 @@ def company():
 
 @app.route("/listings")
 def listings():
-    cars = Car.get_all_cars()
-    return render_template("listings.html", cars=cars)
+    page = int(request.args.get("page", 1))
+    prev_url = None
+    next_url = None
+    if page > 1:
+        prev_url = url_for("listings", page=(page-1))
+    cars = Car.paginate_cars(page)
+    if len(cars) >= Config.CARS_PER_PAGE:
+        next_url = url_for("listings", page=(page+1))
+    return render_template("listings.html", cars=cars, prev_url=prev_url, next_url=next_url)
 
 @app.route("/car/<int:id>")
 def car(id):

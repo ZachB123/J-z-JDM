@@ -2,6 +2,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
 from database import db
 from flask_login import UserMixin
+from config import Config
 
 class User(UserMixin):
     def __init__(self, username, email, password, super_user=0, time=None, hash=False, id=-1):
@@ -120,6 +121,11 @@ class Car():
     @staticmethod
     def car_from_tuple(c):
         return Car(c[2], c[3], c[4], c[5], c[6], c[7], c[8], c[9], c[10], c[11], c[12], c[13], c[14], c[15], c[16], c[17], c[18], c[19], c[1], c[0], c[20])
+
+    @staticmethod
+    def paginate_cars(page):
+        #includes start
+        return [Car.car_from_tuple(c) for c in db.paginate_cars((Config.CARS_PER_PAGE, (page-1)*Config.CARS_PER_PAGE))]
 
     def __str__(self) -> str:
         return f"<Id: {self.id}, Descripton: {self.description}, O.E.M: {self.oem}, Model: {self.model}, : {self.model}, Year: {self.year}, Mileage: {self.mileage}, Color: {self.color}, Price: {self.price}, Drivetrain: {self.drivetrain}, Engine Cylinder: {self.engine_cylinder}, Engine Size: {self.engine_size}, Four Wheel Steering: {self.four_wheel_steering}, ABS: {self.abs}, TCS: {self.tcs}, Doors: {self.doors}, Seats: {self.seats}, Horsepower: {self.horsepower}, Torque: {self.torque}, Misc: {self.misc}, Sales Rep Id: {self.sales_rep_id}, Date Created: {datetime.fromtimestamp(self.date_added)}>"
