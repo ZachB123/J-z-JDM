@@ -44,6 +44,7 @@ select::-ms-expand {
     justify-content: space-between;
     flex: 1 1 auto;
     overflow: auto;
+    width: 100%;
 }
 
 .info-header {
@@ -69,8 +70,11 @@ select::-ms-expand {
     font-family: 'Kanit';
 }
 
-.range-slider .slider-price{
-    display: block;
+.slider-price {
+    justify-content: space-around;
+    text-align: center;
+    align-items: center;
+    width: 100%;
 }
 
 .dropdowns {
@@ -80,7 +84,7 @@ select::-ms-expand {
   border: 1px solid #777;
   border-radius: 0.25em;
   padding: 0.25em 0.5em;
-  font-size: 1.25rem;
+  font-size: 16px;
   cursor: pointer;
   line-height: 1.1;
   background-color: #fff;
