@@ -7,6 +7,36 @@ body {
 }
 
 /* design for the carousel goes here */
+.carousel {
+    margin-top: 20px;
+    height: 50%;
+    width: 75%;
+    text-align: center;
+
+}
+
+#carouselLeft {
+    position: absolute;
+    top: auto;
+    bottom: auto;
+    left: 0;
+}
+
+#carouselRight {
+    position: absolute;
+    top: auto;
+    bottom: auto;
+    right: 0;
+}
+
+.carousel-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+
+
 
 /* Styling the company values SVG element */
 .company-values-container {
@@ -14,6 +44,7 @@ body {
     justify-content: center;
     text-align: center;
     align-items: center;
+    position: relative;
 }
 
 .company-value {

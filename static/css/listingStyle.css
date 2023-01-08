@@ -34,19 +34,39 @@ body {
     margin-right: auto;
     font-size: 30px;
     font-weight: bold;
+    padding: 5px;
+    border-radius: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
+
+
 
 #carSearchBar {
     background-color: white;
     margin-bottom: 5px;
-    width: 300px;
+    width: 60%;
     height: auto;
     margin-left: auto;
     margin-right: auto;
+    position: relative;
 }
 
-#clearSearchIcon {
-    display: inline;
+.carSearchInput {
+    width: 95%;
+    height: auto;
+}
+
+#searchIcon {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#clearSearchButton {
+    position: absolute;
+    top: 0;
+    right: 0;
 }
 
 #carTypeButtons {
