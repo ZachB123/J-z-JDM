@@ -1,5 +1,12 @@
+<link rel="stylesheet" href="/static/css/carPreview.css">
 
-<div>
-    <h2>{{ car.oem }}, {{ car.model }}, ID: {{ car.id }}</h2>
+<div class="car-preview-container">
+    <h2>{{ car.oem }}, {{ car.model }}</h2>
+    {% if car.get_cover_image() %}
+        <img src="{{ car.get_cover_image().link }}" alt="ERROR: {{ car.get_cover_image() }}">
+    {% else %} 
+        <p>ERROR: No Images</p>
+    {% endif %}
     <p> {{ car.description }} </p>
+    <a href="{{ url_for('car', id=car.id) }}">View This Car</a>
 </div>

@@ -91,6 +91,16 @@ class Car():
     def get_images(self):
         return Image.images_from_list(db.get_images_from_car_id(self.id))
 
+    #returns the first cover image if none returns the first result from images list
+    def get_cover_image(self):
+        images = Image.images_from_list(db.get_images_from_car_id(self.id))
+        if not images:
+            return None
+        for image in images:
+            if image.cover_img == 1:
+                return image
+        return images[0]
+
     @staticmethod
     def add_car(car):
         db.create_car(car)

@@ -40,3 +40,6 @@ app.db
 jdm.log*
 
 .env
+Dockerfile
+.dockerignore
+docker-compose.yml
