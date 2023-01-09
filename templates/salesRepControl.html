@@ -1,5 +1,30 @@
 {% extends "layout.html" %} 
 
 {% block body %} 
-    {{ user }}
+    <a href="{{ url_for('control') }}">Go Back</a>
+    <h2>If user is already sales rep submitting the form will update the fields</h2>
+    <div class="">{{ user }}</div>
+    {% if sales_rep %} 
+        <div class="">{{ sales_rep }}</div>
+    {% endif %}
+
+    <form action="" method="post">
+        {{ form.hidden_tag() }} 
+        <h1>Update Form</h1>
+        <p>
+            {{ form.about.label }}<br>
+            {{ form.about() }}<br>
+            {% for error in form.about.errors %}
+                <span>[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.image_link.label }}<br>
+            {{ form.image_link() }}<br>
+            {% for error in form.image_link.errors %}
+                <span>[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
 {% endblock %}

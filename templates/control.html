@@ -146,7 +146,7 @@
     {% for user in users %} 
     <div class="">
         {{ user }} <br>
-        <a href="{{ url_for('configure_sales_rep', user_id=user.id) }}">Configure Sales Rep</a> <br>
+        <a href="{{ url_for('configure_sales_rep', user_id=user.id) }}">Configure as Sales Rep</a> <br>
     </div>
     {% endfor %}
 {% endblock %}

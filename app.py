@@ -3,9 +3,9 @@ from config import Config
 from flask import Flask, render_template, redirect, url_for, flash, request, abort
 from dotenv import load_dotenv
 load_dotenv()
-from forms import LoginForm, RegistrationForm, CarCreationForm, AddImages
+from forms import LoginForm, RegistrationForm, CarCreationForm, AddImages, ConfigureSalesRep
 from flask_login import LoginManager, current_user, login_user, logout_user, login_required
-from models import User, Car, Image
+from models import User, Car, Image, SalesRep
 from werkzeug.urls import url_parse
 
 app = Flask(__name__)
@@ -114,8 +114,20 @@ def configure_sales_rep(user_id):
     if User.get_by_id(int(current_user.get_id())).super_user == 0:
         flash("You do not have the required privileges to view this page")
         return redirect(url_for("index"))
+    form = ConfigureSalesRep()
     user = User.get_by_id(user_id)
-    return render_template("salesRepControl.html", user=user)
+    sales_rep = SalesRep.get_sales_rep_by_user_id(user_id)
+    if form.validate_on_submit():
+        if not sales_rep:
+            SalesRep.add_sales_rep(SalesRep(user, form.about.data, form.image_link.data))
+        else:
+            if form.about.data:
+                SalesRep.update_sales_rep_about(sales_rep, form.about.data)
+            if form.image_link.data:
+                SalesRep.update_sales_rep_image_link(sales_rep, form.image_link.data)
+        flash("Sales Rep updated")
+        return redirect(url_for('configure_sales_rep', user_id=user_id))
+    return render_template("salesRepControl.html", form=form, user=user, sales_rep=sales_rep)
 
 @app.route("/control/cars/<int:car_id>", methods=["GET", "POST"])
 @login_required

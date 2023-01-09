@@ -67,6 +67,41 @@ class User(UserMixin):
     def add_user(user):
         db.create_user(user)
 
+class SalesRep():
+    def __init__(self, user, about=None, image_link=None, id=-1):
+        self.user = user
+        self.about = about
+        self.image_link = image_link
+        self.id = id
+
+    @staticmethod
+    def add_sales_rep(sales_rep):
+        db.create_sales_rep((sales_rep.user.id, sales_rep.about, sales_rep.image_link))
+
+    @staticmethod
+    def get_sales_rep_by_user_id(user_id):
+        s = db.get_sales_rep_by_user_id((user_id))
+        if len(s) > 0:
+            return SalesRep.sales_rep_from_tuple(s[0])
+        return None
+
+    @staticmethod
+    def update_sales_rep_about(sales_rep, about):
+        db.update_sales_rep_about((about, sales_rep.user.id))
+
+    @staticmethod
+    def update_sales_rep_image_link(sales_rep, image_link):
+        db.update_sales_rep_image_link((image_link, sales_rep.user.id))
+
+    @staticmethod
+    def sales_rep_from_tuple(t):
+        return SalesRep(User.get_by_id(t[1]), t[2], t[3], t[0])
+
+    def __str__(self):
+        return f"<Id: {self.user.id}, Username: {self.user.username}, About: {self.about}, Link: {self.image_link}>"
+
+    def __repr__(self):
+        return self.__str__()
 
 class Car():
     def __init__(self, description, oem, model, year, mileage, color, price, drivetrain, engine_cylinder, engine_size, four_wheel_steering, abs, tcs, doors, seats, horsepower, torque, misc, sales_rep_id=-1, id=-1, date_added=-1):
@@ -166,3 +201,4 @@ class Image():
 
     def __repr__(self):
         return self.__str__()
+

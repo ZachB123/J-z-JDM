@@ -85,5 +85,32 @@ class DatabaseDriver():
             OFFSET %s;
         """, values)
 
+    def create_sales_rep(self, values):
+        self.db_op("""
+            INSERT INTO sales_reps (user_id, about, image_link)
+            VALUES (%s, %s, %s)
+        """, values)
+
+    def update_sales_rep_about(self, values):
+        self.db_op("""
+            UPDATE sales_reps
+            SET about=%s 
+            WHERE user_id=%s
+        """, values)
+
+    def update_sales_rep_image_link(self, values):
+        self.db_op("""
+            UPDATE sales_reps
+            SET image_link=%s 
+            WHERE user_id=%s
+        """, values)
+
+    def get_sales_rep_by_user_id(self, values):
+        return self.db_op("""
+            SELECT * FROM sales_reps 
+            WHERE user_id=%s 
+            LIMIT 1
+        """, values)
+
 
 db = DatabaseDriver()

@@ -57,5 +57,10 @@ class AddImages(FlaskForm):
     image10 = StringField("Image10")
     submit = SubmitField("Add images")
 
+class ConfigureSalesRep(FlaskForm):
+    about = StringField("about")
+    image_link = StringField("image_link")
+    submit = SubmitField("submit")
+
 
 
