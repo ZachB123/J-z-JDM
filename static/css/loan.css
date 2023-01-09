@@ -20,8 +20,12 @@ select::-ms-expand {
    text-align: center;
 }
 
+.calculator-input {
+    width: 95%;
+}
+
 .loan-info-container {
-    background-color: var(--teal);
+    background-color: var(--purple);
     border-radius: 10px;
     font-family: 'Kanit';
     margin: 10px auto;
@@ -29,6 +33,8 @@ select::-ms-expand {
     width: 90%;
     text-align: center;
     padding: 5px;
+    color: white;
+    border: 2px solid #613992;
 }
 
 .loan-input {
@@ -68,13 +74,17 @@ select::-ms-expand {
     border-color: var(--purple);
     border-radius: 10px;
     font-family: 'Kanit';
+    min-width: 0;
+}
+
+.range-slider {
+    margin-top: 0;
 }
 
 .slider-price {
-    justify-content: space-around;
-    text-align: center;
-    align-items: center;
-    width: 100%;
+    width: 90%;
+    margin-right: auto;
+    margin-left: auto;
 }
 
 .dropdowns {
@@ -84,7 +94,7 @@ select::-ms-expand {
   border: 1px solid #777;
   border-radius: 0.25em;
   padding: 0.25em 0.5em;
-  font-size: 16px;
+  font-size: 14px;
   cursor: pointer;
   line-height: 1.1;
   background-color: #fff;
@@ -117,4 +127,72 @@ select:focus + .focus {
     bottom: -1px;
     border: 2px solid var(--select-focus);
     border-radius: inherit;
+}
+
+/* styling for the second information box goes here */
+.additional-loan-info-container {
+    font-family: 'Kanit';
+    font-size: 14px;
+    
+}
+
+.monthly-pay-container {
+    background-color: var(--yellow);
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin: 6px;
+    border-radius: 10px;
+    color: black;
+}
+
+.monthly-payment-label {
+    display: block;
+    font-size: 20px;
+    
+}
+
+.price-per-month {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.divider-image {
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+.all-info {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-bottom: 4px;
+}
+
+/* styling for the bottom call to action */
+.ready-to-buy {
+    font-family: 'Kanit';
+    font-size: 18px;
+}
+.ready-to-buy-label {
+    font-size: 20px;
+    font-weight: bold;
+    display: block;
+}
+
+.ready-to-buy-para {
+    text-align: left;
+}
+
+.contact-salesmen-container a {
+    color: black;
+}
+
+.contact-salesmen-container {
+    background-color: var(--yellow);
+    max-width: fit-content;
+    padding: 5px;
+    border-radius: 12px;
+    margin: 10px auto;
+
 }
