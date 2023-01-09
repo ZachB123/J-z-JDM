@@ -1,0 +1,10 @@
+{% extends "layout.html" %} 
+
+{% block body %} 
+<h1>Sales Representatives</h1>
+
+{% for sales_rep in sales_reps %} 
+    {% include "_saleRepresentative.html" %}
+{% endfor %}
+
+{% endblock %}

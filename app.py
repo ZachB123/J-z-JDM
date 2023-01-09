@@ -163,6 +163,10 @@ def add_image_to_car(car_id):
     images = car.get_images() or []
     return render_template("addImage.html", car=car, form=form, images=images)
 
+@app.route("/sales")
+def sales_representatives():
+    sales_reps = SalesRep.get_all_sales_reps() or []
+    return render_template("salesRepresentatives.html", sales_reps=sales_reps)
 
 @app.route("/Accessibility")
 def accessibility():

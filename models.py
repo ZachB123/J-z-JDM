@@ -97,6 +97,13 @@ class SalesRep():
     def sales_rep_from_tuple(t):
         return SalesRep(User.get_by_id(t[1]), t[2], t[3], t[0])
 
+    @staticmethod
+    def get_all_sales_reps():
+        s = db.get_all_sales_reps()
+        if len(s) > 0:
+            return [SalesRep.sales_rep_from_tuple(t) for t in s]
+        return None
+
     def __str__(self):
         return f"<Id: {self.user.id}, Username: {self.user.username}, About: {self.about}, Link: {self.image_link}>"
 
