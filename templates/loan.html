@@ -1,11 +1,11 @@
 {% extends "layout.html" %} 
 
 {% block js %}
-    <script src="../static/js/loan.js" defer></script>
+    <script src="{{ url_for('static', filename='js/loan.js') }}" defer></script>
 {% endblock %}
 
 {% block css %} 
-<link rel="stylesheet" href="../static/css/loan.css">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/loan.css') }}">
 {% endblock %}
 
 

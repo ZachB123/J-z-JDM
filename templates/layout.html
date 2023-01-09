@@ -11,18 +11,19 @@
     {% endif %}
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit">
-    <link rel="stylesheet" href="../static/css/variables.css">
-    <link rel="stylesheet" href="../static/css/styles.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/variables.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
     {% block css %} {% endblock %}
-    <script src="../static/js/script.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" defer></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
     {% block js %} {% endblock %}
 </head>
 <body>
     <nav class="nav-bar-container">
         <ul class="list-container">
-            <li class="logo"><a href="#" id="logoContainer"><img src="../static/images/logoPlaceholder.png" alt="Jz JDM" style="height: auto; max-width: 150px;"></a></li>
+            <li class="logo"><a href="#" id="logoContainer"><img src="{{ url_for('static', filename='images/logoPlaceholder.png') }}" alt="Jz JDM" style="height: auto; max-width: 150px;"></a></li>
             <li class="item"><a href="{{ url_for('index') }}">Home</a></li>
             <li class="item"><a href="{{ url_for('listings') }}">Cars</a></li>
             <li class="item"><a href="{{ url_for('loan') }}">Loan Calculator</a></li>
@@ -62,7 +63,7 @@
     <!-- Footer for each page is here underneath the block body so that this is put at the bottom of each page-->
     <div class="footer-container">
         <div id="footerLogo">
-            <img src="../static/images/logoPlaceholder.png" alt="Logo" style="height: auto; width: 200px;">
+            <img src="{{ url_for('static', filename='images/logoPlaceholder.png') }}" alt="Logo" style="height: auto; width: 200px;">
         </div>
         <div id="footerSections">
             <div class="footer-section">
@@ -114,13 +115,13 @@
                 </div>
                 <ul id="socialMediaLinks">
                     <li class="socialMedia">
-                        <a href="#"><img src="../static/images/instagramLogo.png" alt="Instagram" style="height: auto; width: 60px;"></a>
+                        <a href="#"><img src="{{ url_for('static', filename='images/instagramLogo.png') }}" alt="Instagram" style="height: auto; width: 60px;"></a>
                     </li>
                     <li class="socialMedia">
-                        <a href="#"><img src="../static/images/twitterLogo.png" alt="Twitter" style="height: auto; width: 70px;"></a>
+                        <a href="#"><img src="{{ url_for('static', filename='images/twitterLogo.png') }}" alt="Twitter" style="height: auto; width: 70px;"></a>
                     </li>
                     <li class="socialMedia">
-                        <a href="#"><img src="../static/images/facebookLogo.png" alt="Facebook" style="height: auto; width: 60px;"></a>
+                        <a href="#"><img src="{{ url_for('static', filename='images/facebookLogo.png') }}" alt="Facebook" style="height: auto; width: 60px;"></a>
                     </li>
                 </ul>
             </div>
