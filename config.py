@@ -10,4 +10,4 @@ class Config(object):
     DATABASE_PASSWORD = os.environ.get("DATABASE_PASSWORD")
     DATABASE_PORT = os.environ.get("DATABASE_PORT")
     DATABASE = os.environ.get("DATABASE")
-    CARS_PER_PAGE = 2
+    CARS_PER_PAGE = 10

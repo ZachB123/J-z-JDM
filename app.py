@@ -3,9 +3,9 @@ from config import Config
 from flask import Flask, render_template, redirect, url_for, flash, request, abort
 from dotenv import load_dotenv
 load_dotenv()
-from forms import LoginForm, RegistrationForm, CarCreationForm, AddImages, ConfigureSalesRep
+from forms import LoginForm, RegistrationForm, CarCreationForm, AddImages, ConfigureSalesRep, Contact
 from flask_login import LoginManager, current_user, login_user, logout_user, login_required
-from models import User, Car, Image, SalesRep
+from models import User, Car, Image, SalesRep, Message
 from werkzeug.urls import url_parse
 
 app = Flask(__name__)
@@ -167,6 +167,14 @@ def add_image_to_car(car_id):
 def sales_representatives():
     sales_reps = SalesRep.get_all_sales_reps() or []
     return render_template("salesRepresentatives.html", sales_reps=sales_reps)
+
+@app.route("/contact", methods=["GET", "POST"])
+def contact():
+    form = Contact()
+    if form.validate_on_submit():
+        Message.add_message(Message(form.message.data, form.name.data))
+        flash("Message Successfully Sent")
+    return render_template("contactUs.html", form=form)
 
 @app.route("/Accessibility")
 def accessibility():

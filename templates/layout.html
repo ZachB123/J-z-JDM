@@ -35,7 +35,7 @@
                     <li class="subitem"><a href="#">Owners</a></li>
                 </ul>
             </li>
-            <li class="item"><a href="#">Contact Us</a></li>
+            <li class="item"><a href="{{ url_for('contact') }}">Contact Us</a></li>
             {% if current_user.is_anonymous %}
                 <li class="item button log-in"><a href="{{ url_for('login') }}">Log In</a></li>
                 <li class="item button sign-up"><a href="{{ url_for('register') }}">Sign Up</a></li>

@@ -209,3 +209,12 @@ class Image():
     def __repr__(self):
         return self.__str__()
 
+class Message():
+    def __init__(self, message, name=None):
+        self.name = name
+        self.message = message 
+
+    @staticmethod
+    def add_message(message):
+        db.create_message((message.name, message.message))
+
