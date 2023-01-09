@@ -30,6 +30,11 @@ class DatabaseDriver():
             VALUES (%s, %s, %s, %s, %s);
         """, (user.username, user.email, user.date_joined, user.password_hash, user.super_user))
 
+    def get_all_users(self):
+        return self.db_op("""
+            SELECT * FROM users;
+        """)
+
     def get_user_by_id(self, values):
         return self.db_op("""SELECT * FROM users WHERE id=%s; """, values)
 

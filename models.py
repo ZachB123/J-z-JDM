@@ -41,6 +41,13 @@ class User(UserMixin):
             return User.user_from_tuple(u)
         return None
 
+    @staticmethod
+    def get_all_users():
+        u = db.get_all_users()
+        if len(u) > 0:
+            return [User.user_from_tuple(l) for l in u]
+        return None
+
     def __str__(self) -> str:
         return f"<Id: {self.id}, Username: {self.username}, Email: {self.email}, Date Joined: {datetime.fromtimestamp(self.date_joined)}, Super User: {self.super_user}>"
 

@@ -105,10 +105,20 @@ def control():
         flash("Car added")
         return redirect(url_for("control"))
     cars = Car.get_all_cars()
-    return render_template("control.html", form=form, cars=cars)
+    users = User.get_all_users()
+    return render_template("control.html", form=form, cars=cars, users=users)
 
+@app.route("/control/users/<int:user_id>", methods=["GET", "POST"])
 @login_required
-@app.route("/control/<int:car_id>", methods=["GET", "POST"])
+def configure_sales_rep(user_id):
+    if User.get_by_id(int(current_user.get_id())).super_user == 0:
+        flash("You do not have the required privileges to view this page")
+        return redirect(url_for("index"))
+    user = User.get_by_id(user_id)
+    return render_template("salesRepControl.html", user=user)
+
+@app.route("/control/cars/<int:car_id>", methods=["GET", "POST"])
+@login_required
 def add_image_to_car(car_id):
     if User.get_by_id(int(current_user.get_id())).super_user == 0:
         flash("You do not have the required privileges to view this page")
