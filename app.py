@@ -8,6 +8,8 @@ from flask_login import LoginManager, current_user, login_user, logout_user, log
 from models import User, Car, Image, SalesRep, Message
 from werkzeug.urls import url_parse
 from flask_caching import Cache
+import threading
+import time
 
 app = Flask(__name__)
 app.config.from_object(Config)
@@ -22,8 +24,9 @@ cache.set("USER_CACHE", User.get_all_users())
 
 @login.user_loader
 def load_user(id):
-    USER_CACHE = cache.get("USER_CACHE")
-    return [u for u in USER_CACHE if int(u.id) == int(id)][0]
+    return User.get_by_id(id)
+    # USER_CACHE = cache.get("USER_CACHE")
+    # return [u for u in USER_CACHE if int(u.id) == int(id)][0]
 
 @app.route("/")
 @app.route("/index")
@@ -202,6 +205,15 @@ def accessibility():
 def privacyPolicy():
     return render_template("privacyPolicy.html")
 
+@app.before_first_request
+def on_load():
+    def refresh_caches():
+        while True:
+            cache.set("USER_CACHE", User.get_all_users())
+            cache.set("CAR_CACHE", Car.get_all_cars())
+            time.sleep(20)
+    thread = threading.Thread(target=refresh_caches)
+    thread.start()
 
 @app.errorhandler(404)
 def not_found(error):
