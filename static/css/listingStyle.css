@@ -94,11 +94,12 @@ body {
 }
 
 .carTypeButton {
-    
+    background: whitesmoke;
+    border-radius: 10px;
 }
 
 .carTypeButton a {
-    color: var(--teal);
+    color: black;
     padding: 3px;
     padding-left: 5px;
     padding-right: 5px;

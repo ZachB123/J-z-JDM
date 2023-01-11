@@ -22,8 +22,7 @@ cache.set("USER_CACHE", User.get_all_users())
 
 @login.user_loader
 def load_user(id):
-    USER_CACHE = cache.get("USER_CACHE")
-    return [u for u in USER_CACHE if int(u.id) == int(id)][0]
+    return User.get_by_id(id)
 
 @app.route("/")
 @app.route("/index")

@@ -154,5 +154,4 @@ function loanCalculator() {
     document.querySelector("#tradeValueSelector").textContent = '$'+String(Math.trunc(tradeIn));
     document.querySelector("#estimateAprSelector").textContent = String(Math.trunc(creditScore*100))+'%';
     document.querySelector("#totalAmountSelector").textContent = '$'+String(Math.trunc(Number(cost)*Number(loanTerm)));
-    document.querySelector("#monthPriceSelectorBottom").textContent = '$'+String(Math.trunc(cost));
 }
