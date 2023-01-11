@@ -216,7 +216,7 @@ select:focus + .focus {
 
 @media screen and (min-width:750px) {
     body {
-        background: url(../images/standinbackground.jpg) no-repeat center center fixed;
+        background: url(../images/background-jz.png) no-repeat center center fixed;
     }
 
     .loan-container {
