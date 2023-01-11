@@ -2,4 +2,5 @@
     <h2>{{ sales_rep.user.username }}</h2>
     <img src="{{ sales_rep.image_link }}" alt="ERROR: {{ sales_rep.image_link }}">
     <p>{{ sales_rep.about }}</p>
+    <a href="{{ url_for('individual_sales_representative', sales_rep_id=sales_rep.user.id ) }}">View</a>
 </div>
