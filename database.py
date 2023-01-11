@@ -123,5 +123,11 @@ class DatabaseDriver():
             VALUES (%s, %s);
         """, values)
 
+    def get_cars_by_sales_rep_id(self, values):
+        return self.db_op("""
+            SELECT * FROM cars
+            WHERE sales_rep_id=%s;
+        """, values)
+
 
 db = DatabaseDriver()
