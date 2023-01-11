@@ -189,6 +189,11 @@ def sales_representatives():
     sales_reps = SalesRep.get_all_sales_reps() or []
     return render_template("salesRepresentatives.html", sales_reps=sales_reps)
 
+@app.route("/sales/<int:sales_rep_id>")
+def individual_sales_representative(sales_rep_id):
+    sales_rep = SalesRep.get_sales_rep_by_user_id(int(sales_rep_id))
+    return render_template("individualSalesRepresentative.html", sales_rep=sales_rep)
+
 @app.route("/contact", methods=["GET", "POST"])
 def contact():
     form = Contact()
