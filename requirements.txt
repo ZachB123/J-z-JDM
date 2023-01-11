@@ -8,3 +8,5 @@ werkzeug
 flask-login
 ipython
 email-validator
+flask-caching
+boto3

@@ -7,17 +7,23 @@ from forms import LoginForm, RegistrationForm, CarCreationForm, AddImages, Confi
 from flask_login import LoginManager, current_user, login_user, logout_user, login_required
 from models import User, Car, Image, SalesRep, Message
 from werkzeug.urls import url_parse
+from flask_caching import Cache
 
 app = Flask(__name__)
 app.config.from_object(Config)
 
 login = LoginManager(app)
 login.login_view = "login"
-# login.init_app(app)
+cache = Cache(app)
+
+cache.set("CAR_CACHE", Car.get_all_cars())
+cache.set("USER_CACHE", User.get_all_users())
+
 
 @login.user_loader
 def load_user(id):
-    return User.get_by_id(int(id))
+    USER_CACHE = cache.get("USER_CACHE")
+    return [u for u in USER_CACHE if int(u.id) == int(id)][0]
 
 @app.route("/")
 @app.route("/index")
@@ -30,7 +36,8 @@ def login():
         return redirect(url_for("index"))
     form = LoginForm()
     if form.validate_on_submit():
-        user = User.get_by_username(form.username.data)
+        USER_CACHE = cache.get("USER_CACHE")
+        user = [u for u in USER_CACHE if u.username == form.username.data][0]
         if user is None or not user.check_password(form.password.data):
             flash("Invalid username or password")
             return redirect(url_for("login"))
@@ -54,15 +61,16 @@ def register():
     form = RegistrationForm()
     if form.validate_on_submit():
         User.add_user(User(form.username.data, form.email.data, form.password.data))
+        cache.set("USER_CACHE", User.get_all_users())
         flash("Congratulations, you are now a registered user!")
         return redirect(url_for("login"))
     return render_template("register.html", form=form)
 
-
 @app.route("/profile")
 @login_required
 def profile():
-    user = User.get_by_id(int(current_user.get_id()))
+    USER_CACHE = cache.get("USER_CACHE")
+    user = [u for u in USER_CACHE if int(u.id) == int(current_user.get_id())][0]
     return render_template("profile.html", user=user)
 
 @app.route("/company")
@@ -76,16 +84,21 @@ def listings():
     next_url = None
     if page > 1:
         prev_url = url_for("listings", page=(page-1))
-    cars = Car.paginate_cars(page)
+    CAR_CACHE = cache.get("CAR_CACHE")
+    offset = (page - 1) * Config.CARS_PER_PAGE
+    amount = Config.CARS_PER_PAGE
+    cars = CAR_CACHE[offset:offset+amount] 
     if len(cars) >= Config.CARS_PER_PAGE:
         next_url = url_for("listings", page=(page+1))
     return render_template("listings.html", cars=cars, prev_url=prev_url, next_url=next_url)
 
 @app.route("/car/<int:id>")
 def car(id):
-    car = Car.get_car_by_id(id)
+    CAR_CACHE = cache.get("CAR_CACHE")
+    car = [i for i in CAR_CACHE if int(i.id) == id]
     if not car:
         abort(404)
+    car = car[0]
     return render_template("car.html", car=car)
 
 @app.route("/loan")
@@ -95,27 +108,30 @@ def loan():
 @app.route("/control", methods=["GET", "POST"])
 @login_required
 def control():
-    if User.get_by_id(int(current_user.get_id())).super_user == 0:
+    USER_CACHE = cache.get("USER_CACHE")
+    if [u for u in USER_CACHE if int(u.id) == int(current_user.get_id())][0].super_user == 0:
         flash("You do not have the required privileges to view this page")
         return redirect(url_for("index"))
     form = CarCreationForm()
     if form.validate_on_submit():
         car = Car(form.description.data, form.oem.data, form.model.data, form.year.data, form.mileage.data, form.color.data, form.price.data, form.drivetrain.data, form.engine_cylinder.data, form.engine_size.data, int(form.four_wheel_steering.data), int(form.abs.data), int(form.tcs.data), form.doors.data, form.seats.data, form.horsepower.data, form.torque.data, form.misc.data)
         Car.add_car(car)
+        cache.set("CAR_CACHE", Car.get_all_cars())
         flash("Car added")
         return redirect(url_for("control"))
-    cars = Car.get_all_cars()
-    users = User.get_all_users()
+    cars = cache.get("CAR_CACHE")
+    users = USER_CACHE
     return render_template("control.html", form=form, cars=cars, users=users)
 
 @app.route("/control/users/<int:user_id>", methods=["GET", "POST"])
 @login_required
 def configure_sales_rep(user_id):
-    if User.get_by_id(int(current_user.get_id())).super_user == 0:
+    USER_CACHE = cache.get("USER_CACHE")
+    if [u for u in USER_CACHE if int(u.id) == int(current_user.get_id())][0].super_user == 0:
         flash("You do not have the required privileges to view this page")
         return redirect(url_for("index"))
     form = ConfigureSalesRep()
-    user = User.get_by_id(user_id)
+    user = [u for u in USER_CACHE if int(u.id) == int(user_id)][0]
     sales_rep = SalesRep.get_sales_rep_by_user_id(user_id)
     if form.validate_on_submit():
         if not sales_rep:
@@ -132,7 +148,8 @@ def configure_sales_rep(user_id):
 @app.route("/control/cars/<int:car_id>", methods=["GET", "POST"])
 @login_required
 def add_image_to_car(car_id):
-    if User.get_by_id(int(current_user.get_id())).super_user == 0:
+    USER_CACHE = cache.get("USER_CACHE")
+    if [u for u in USER_CACHE if int(u.id) == int(current_user.get_id())][0].super_user == 0:
         flash("You do not have the required privileges to view this page")
         return redirect(url_for("index"))
     form = AddImages()
@@ -159,7 +176,8 @@ def add_image_to_car(car_id):
             Image.add_image(Image(form.image10.data, car_id))
         flash("Images successfully added")
         return redirect(url_for("add_image_to_car", car_id=car_id))
-    car = Car.get_car_by_id(car_id)
+    CAR_CACHE = cache.get("CAR_CACHE")
+    car = [i for i in CAR_CACHE if int(i.id) == int(car_id)][0]
     images = car.get_images() or []
     return render_template("addImage.html", car=car, form=form, images=images)
 
@@ -183,6 +201,7 @@ def accessibility():
 @app.route("/Privacy-Policy")
 def privacyPolicy():
     return render_template("privacyPolicy.html")
+
 
 @app.errorhandler(404)
 def not_found(error):

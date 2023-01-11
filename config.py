@@ -11,3 +11,5 @@ class Config(object):
     DATABASE_PORT = os.environ.get("DATABASE_PORT")
     DATABASE = os.environ.get("DATABASE")
     CARS_PER_PAGE = 10
+    CACHE_TYPE = "FileSystemCache"
+    CACHE_DIR = "/cache"
