@@ -146,7 +146,21 @@ def configure_sales_rep(user_id):
                 SalesRep.update_sales_rep_image_link(sales_rep, form.image_link.data)
         flash("Sales Rep updated")
         return redirect(url_for('configure_sales_rep', user_id=user_id))
-    return render_template("salesRepControl.html", form=form, user=user, sales_rep=sales_rep)
+    cars = Car.get_cars_by_sales_rep_id(int(user.id))
+    return render_template("salesRepControl.html", form=form, user=user, sales_rep=sales_rep, cars=cars)
+
+@app.route("/control/uses/<int:sales_rep_id>/assign")
+@login_required
+def assign_cars(sales_rep_id):
+    USER_CACHE = cache.get("USER_CACHE")
+    if [u for u in USER_CACHE if int(u.id) == int(current_user.get_id())][0].super_user == 0:
+        flash("You do not have the required privileges to view this page")
+        return redirect(url_for("index"))
+
+@app.route("/test", methods=["POST"])
+def test():
+    print("it worked")
+
 
 @app.route("/control/cars/<int:car_id>", methods=["GET", "POST"])
 @login_required
@@ -192,7 +206,8 @@ def sales_representatives():
 @app.route("/sales/<int:sales_rep_id>")
 def individual_sales_representative(sales_rep_id):
     sales_rep = SalesRep.get_sales_rep_by_user_id(int(sales_rep_id))
-    return render_template("individualSalesRepresentative.html", sales_rep=sales_rep)
+    cars = Car.get_cars_by_sales_rep_id(sales_rep_id) or []
+    return render_template("individualSalesRepresentative.html", sales_rep=sales_rep, cars=cars)
 
 @app.route("/contact", methods=["GET", "POST"])
 def contact():

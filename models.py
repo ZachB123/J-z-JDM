@@ -176,6 +176,11 @@ class Car():
         #includes start
         return [Car.car_from_tuple(c) for c in db.paginate_cars((Config.CARS_PER_PAGE, (page-1)*Config.CARS_PER_PAGE))]
 
+    @staticmethod
+    def get_cars_by_sales_rep_id(sales_rep_id):
+        return [Car.car_from_tuple(c) for c in db.get_cars_by_sales_rep_id((sales_rep_id))]
+        
+
     def __str__(self) -> str:
         return f"<Id: {self.id}, Descripton: {self.description}, O.E.M: {self.oem}, Model: {self.model}, : {self.model}, Year: {self.year}, Mileage: {self.mileage}, Color: {self.color}, Price: {self.price}, Drivetrain: {self.drivetrain}, Engine Cylinder: {self.engine_cylinder}, Engine Size: {self.engine_size}, Four Wheel Steering: {self.four_wheel_steering}, ABS: {self.abs}, TCS: {self.tcs}, Doors: {self.doors}, Seats: {self.seats}, Horsepower: {self.horsepower}, Torque: {self.torque}, Misc: {self.misc}, Sales Rep Id: {self.sales_rep_id}, Date Created: {datetime.fromtimestamp(self.date_added)}>"
 

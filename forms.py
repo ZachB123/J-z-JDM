@@ -67,5 +67,8 @@ class Contact(FlaskForm):
     message = TextAreaField("Message", validators=[DataRequired()])
     submit = SubmitField("Submit")
 
+class EmptyForm(FlaskForm):
+    submit = SubmitField("")
+
 
 
