@@ -62,5 +62,10 @@ class ConfigureSalesRep(FlaskForm):
     image_link = StringField("image_link")
     submit = SubmitField("submit")
 
+class Contact(FlaskForm):
+    name = StringField("Name")
+    message = TextAreaField("Message", validators=[DataRequired()])
+    submit = SubmitField("Submit")
+
 
 

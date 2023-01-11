@@ -117,5 +117,11 @@ class DatabaseDriver():
             SELECT * FROM sales_reps;
         """)
 
+    def create_message(self, values):
+        self.db_op("""
+            INSERT INTO messages (name, message)
+            VALUES (%s, %s);
+        """, values)
+
 
 db = DatabaseDriver()
