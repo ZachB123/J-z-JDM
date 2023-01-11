@@ -1,33 +1,57 @@
-{% extends "layout.html" %} 
+{% block js %}
+    <script src="{{ url_for('static', filename='js/signInUpscript.js') }}" defer></script>
+{% endblock %}
+
+{% block css %} 
+<link rel="stylesheet" href="{{ url_for('static', filename='css/signInUp.css') }}">
+{% endblock %}
 
 {% block body %} 
+    <div class="sign-UI-container">
+        <div class="form-area">
+            <div class="logo">
+                <a href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='images/logoPlaceholder.png') }}" alt="Logo" style="height: auto; width: 100px;"></a>
+            </div>
+            <div class="form-input-container">
+                <span class="form-input-header">Login To Account</span>
+                <form action="" method="post" novalidate>
+                    {{ form.hidden_tag() }}
+                    <div class="form-input">
+                        <p>
+                            {{ form.username.label }}
+                            {{ form.username() }}
+                            {% for error in form.username.errors %}
+                                <span>[{{ error }}]</span>
+                            {% endfor %}
+                        </p>
+                    </div>
+                    <div class="form-input">
+                        <p>
+                            {{ form.password.label }}
+                            {{ form.password() }}
+                            {% for error in form.password.errors %}
+                                <span>[{{ error }}]</span>
+                            {% endfor %}
+                        </p>
+                    </div>
+                    <div class="remember-me-checkbox">
+                        <p>
+                            {{ form.remember_me() }} {{ form.remember_me.label }}
+                        </p>
+                    </div>
+                    <div class="form-submit">
+                        <p>
+                            {{ form.submit() }}
+                        </p>
+                    </div>
+                </form>
+                <div class="form-redirect"></div>
+                    <a href="{{ url_for('register') }}">Don't have an account? Create one here.</a>
+                </div>
+            </div>
+        </div>
+        <div class="decoration-area">
 
-<h1>Sign In</h1>
-
-<form action="" method="post" novalidate>
-    {{ form.hidden_tag() }}
-    <p>
-        {{ form.username.label }}
-        {{ form.username() }}
-        {% for error in form.username.errors %}
-            <span>[{{ error }}]</span>
-        {% endfor %}
-    </p>
-    <p>
-        {{ form.password.label }}
-        {{ form.password() }}
-        {% for error in form.password.errors %}
-            <span>[{{ error }}]</span>
-        {% endfor %}
-    </p>
-    <p>
-        {{ form.remember_me() }} {{ form.remember_me.label }}
-    </p>
-    <p>
-        {{ form.submit() }}
-    </p>
-</form>
-
-<a href="{{ url_for('register') }}">Don't have an account? Create one here.</a>
-
+        </div>
+    </div>
 {% endblock %}
