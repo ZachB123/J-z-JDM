@@ -81,9 +81,19 @@ body {
     column-gap: 5px;
 }
 
-ul.carTypeButton {
-    background-color: whitesmoke;
-    border-radius: 20px;
+.car-button-container {
+    align-items: center;
+    text-align: center;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.brandLogo {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.carTypeButton {
     
 }
 
