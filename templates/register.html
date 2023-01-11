@@ -7,62 +7,61 @@
 {% endblock %}
 
 {% block body %}
-    <div class="sign-IU-container">
-        <div class="form-area">
-            <div class="logo">
-                <a href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='images/logoPlaceholder.png') }}" alt="Logo" style="height: auto; width: 100px;"></a>
-            </div>
-            <div class="form-input-container">
-                <span class="form-input-header">Create an Account</span>
-                <form action="" method="post">
-                    {{ form.hidden_tag() }}
-                    <div class="form-input">
-                        <p>
-                            {{ form.username.label }}<br>
-                            {{ form.username() }}<br>
-                            {% for error in form.username.errors %}
-                                <span>[{{ error }}]</span>
-                            {% endfor %}
-                        </p>
+    <div class="testContainer">
+        <div class="sign-UI-container">
+            <div class="form-area">
+                <div class="logo">
+                    <a href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='images/logoPlaceholder.png') }}" alt="Logo" style="height: auto; width: 100px;"></a>
+                </div>
+                <div class="form-input-container">
+                    <span class="form-input-header">Create an Account</span>
+                    <form action="" method="post">
+                        {{ form.hidden_tag() }}
+                        <div class="form-input">
+                            <p>
+                                {{ form.username.label }}<br>
+                                {{ form.username() }}<br>
+                                {% for error in form.username.errors %}
+                                    <span>[{{ error }}]</span>
+                                {% endfor %}
+                            </p>
+                        </div>
+                        <div class="form-input">
+                            <p>
+                                {{ form.email.label }}<br>
+                                {{ form.email() }}<br>
+                                {% for error in form.email.errors %}
+                                    <span>[{{ error }}]</span>
+                                {% endfor %}
+                            </p>
+                        </div>
+                        <div class="form-input">
+                            <p>
+                                {{ form.password.label }}<br>
+                                {{ form.password() }}<br>
+                                {% for error in form.password.errors %}
+                                    <span>[{{ error }}]</span>
+                                {% endfor %}
+                            </p>
+                        </div>
+                        <div class="form-input">
+                            <p>
+                                {{ form.password2.label }}<br>
+                                {{ form.password2() }}<br>
+                                {% for error in form.password2.errors %}
+                                    <span>[{{ error }}]</span>
+                                {% endfor %}
+                            </p>
+                        </div>
+                        <div class="form-submit">
+                            <p>{{ form.submit() }}</p>
+                        </div>
+                    </form>
+                    <div class="form-redirect">
+                        <a href="{{ url_for('login') }}">Already have an account? Sign in here.</a>
                     </div>
-                    <div class="form-input">
-                        <p>
-                            {{ form.email.label }}<br>
-                            {{ form.email() }}<br>
-                            {% for error in form.email.errors %}
-                                <span>[{{ error }}]</span>
-                            {% endfor %}
-                        </p>
-                    </div>
-                    <div class="form-input">
-                        <p>
-                            {{ form.password.label }}<br>
-                            {{ form.password() }}<br>
-                            {% for error in form.password.errors %}
-                                <span>[{{ error }}]</span>
-                            {% endfor %}
-                        </p>
-                    </div>
-                    <div class="form-input">
-                        <p>
-                            {{ form.password2.label }}<br>
-                            {{ form.password2() }}<br>
-                            {% for error in form.password2.errors %}
-                                <span>[{{ error }}]</span>
-                            {% endfor %}
-                        </p>
-                    </div>
-                    <div class="form-submit">
-                        <p>{{ form.submit() }}</p>
-                    </div>
-                </form>
-                <div class="form-redirect">
-                    <a href="{{ url_for('login') }}">Already have an account? Sign in here.</a>
                 </div>
             </div>
-        </div>
-        <div class="decoration-area">
-
         </div>
     </div>
 {% endblock %}
