@@ -12,23 +12,46 @@ body {
     background-size: cover;
 }
 
-
 .sign-UI-container {
     display: block;
     text-align: center;
-    min-width: 300px !important;
     height: auto;
+    width: 90%;
     position: absolute;
     top: 50%;
     left: 50%;
     translate: -50% -50%;
-    
 }
 
 .form-area {
     background: whitesmoke;
     border-radius: 12px;
-    width: fit-content;
+    width: 100%;
     height: auto;
     padding: 15px;
+    font-family: 'Kanit';
+}
+
+.logo {
+    text-align: left;
+    margin-bottom: 30px;
+}
+
+.form-input-header {
+    font-size: 2rem;
+    font-weight: 200;
+}
+
+.form-input div {
+    margin-bottom: 5px;
+}
+
+.form-input-area input {
+    width: 80%;
+    height: auto;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    padding: 3px 6px;
+    background: inherit;
 }

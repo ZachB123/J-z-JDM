@@ -1,3 +1,5 @@
+{% extends "blank.html" %}
+
 {% block js %}
     <script src="{{ url_for('static', filename='js/signInUpscript.js') }}" defer></script>
 {% endblock %}
@@ -18,20 +20,32 @@
                     {{ form.hidden_tag() }}
                     <div class="form-input">
                         <p>
-                            {{ form.username.label }}
-                            {{ form.username() }}
-                            {% for error in form.username.errors %}
-                                <span>[{{ error }}]</span>
-                            {% endfor %}
+                            <div class="form-input-label">
+                                {{ form.username.label }}
+                            </div>
+                            <div class="form-input-area">
+                                {{ form.username() }}
+                            </div>
+                            <div class="form-input-error">
+                                {% for error in form.username.errors %}
+                                    <span>[{{ error }}]</span>
+                                {% endfor %}
+                            </div>    
                         </p>
                     </div>
                     <div class="form-input">
                         <p>
-                            {{ form.password.label }}
-                            {{ form.password() }}
-                            {% for error in form.password.errors %}
-                                <span>[{{ error }}]</span>
-                            {% endfor %}
+                            <div class="form-input-label">
+                                {{ form.password.label }}
+                            </div>
+                            <div class="form-input-area">
+                                {{ form.password() }}
+                            </div>
+                            <div class="form-input-error">
+                                {% for error in form.password.errors %}
+                                    <span>[{{ error }}]</span>
+                                {% endfor %}
+                            </div>
                         </p>
                     </div>
                     <div class="remember-me-checkbox">
