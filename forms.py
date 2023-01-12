@@ -4,17 +4,22 @@ from wtforms.validators import DataRequired, Email, EqualTo, ValidationError
 from models import User
 
 class LoginForm(FlaskForm):
-    username = StringField('Username', validators=[DataRequired()])
-    password = PasswordField('Password', validators=[DataRequired()])
+    username = StringField('Username', validators=[DataRequired()], render_kw={"placeholder": "username"})
+    password = PasswordField('Password', validators=[DataRequired()], render_kw={"placeholder": "password"})
     remember_me = BooleanField('Remember Me')
     submit = SubmitField('Sign In')
 
+    def validate_password(self, password):
+        user = User.get_by_username(self.username.data)
+        if not user.check_password(self.password.data):
+            raise ValidationError("Incorrect Password")
+
 class RegistrationForm(FlaskForm):
-    username = StringField('Username', validators=[DataRequired()])
-    email = StringField('Email (optional)')
-    password = PasswordField('Password', validators=[DataRequired()])
+    username = StringField('Username', validators=[DataRequired()], render_kw={"placeholder": "username"})
+    email = StringField('Email (optional)', render_kw={"placeholder": "email (optional)"})
+    password = PasswordField('Password', validators=[DataRequired()], render_kw={"placeholder": "password"})
     password2 = PasswordField(
-        'Repeat Password', validators=[DataRequired(), EqualTo('password')])
+        'Repeat Password', validators=[DataRequired(), EqualTo('password')], render_kw={"placeholder": "repeate password"})
     submit = SubmitField('Register')
 
     def validate_username(self, username):

@@ -10,6 +10,7 @@ from werkzeug.urls import url_parse
 from flask_caching import Cache
 import threading
 import time
+import json
 
 app = Flask(__name__)
 app.config.from_object(Config)
@@ -157,11 +158,6 @@ def assign_cars(sales_rep_id):
         flash("You do not have the required privileges to view this page")
         return redirect(url_for("index"))
 
-@app.route("/test", methods=["POST"])
-def test():
-    print("it worked")
-
-
 @app.route("/control/cars/<int:car_id>", methods=["GET", "POST"])
 @login_required
 def add_image_to_car(car_id):
@@ -242,6 +238,19 @@ def not_found(error):
 @app.errorhandler(500)
 def internal_error(error):
     return render_template("500.html"), 500
+
+# API
+
+def success_response(data, code=200):
+    return json.dumps({"success": True, "data": data}), code
+
+def failure_response(message, code=404):
+    return json.dumps({"success": False, "error": message}), code
+
+@app.route("/test", methods=["POST"])
+def test():
+    print("it worked")
+    return success_response({"message": "hello"})
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
