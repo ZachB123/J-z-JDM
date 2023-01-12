@@ -12,21 +12,17 @@ body {
     background-size: cover;
 }
 
-.testContainer {
-    height: 100%;
-    width: 100%;
-}
 
 .sign-UI-container {
     display: block;
     text-align: center;
+    min-width: 300px !important;
+    height: auto;
     position: absolute;
     top: 50%;
     left: 50%;
     translate: -50% -50%;
-    min-width: 300px !important;
-    width: 400px;
-    height: auto;
+    
 }
 
 .form-area {
