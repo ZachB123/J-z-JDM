@@ -1,5 +1,9 @@
 {% extends "layout.html" %} 
 
+{% block js %} 
+    <script src="{{ url_for('static', filename='js/asyncRequests.js') }}" defer></script>
+{% endblock %}
+
 {% block body %} 
     <a href="{{ url_for('control') }}">Go Back</a>
     <h2>If user is already sales rep submitting the form will update the fields</h2>
@@ -27,8 +31,8 @@
         </p>
         <p>{{ form.submit() }}</p>
     </form>
+    <button onclick="test()">Click Me</button>
     <h1>Curent cars this person is selling</h1>
-    <!-- <a href="/test"><input type="button" value="call_flask_function"></a> -->
     {% for car in cars %} 
         {% include "_carPreview.html" %} 
     {% endfor %}
