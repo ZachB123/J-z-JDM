@@ -31,9 +31,11 @@
         </p>
         <p>{{ form.submit() }}</p>
     </form>
-    <button onclick="test()">Click Me</button>
-    <h1>Curent cars this person is selling</h1>
-    {% for car in cars %} 
-        {% include "_carPreview.html" %} 
-    {% endfor %}
+    {% if sales_rep %}
+    <button onclick="assign_car_to_sales_rep(1, 2)">Click Me</button>
+        <h1>Curent cars this person is selling</h1>
+        {% for car in cars %} 
+            {% include "_carPreview.html" %} 
+        {% endfor %}
+    {% endif %}
 {% endblock %}

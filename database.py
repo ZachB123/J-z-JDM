@@ -129,5 +129,18 @@ class DatabaseDriver():
             WHERE sales_rep_id=%s;
         """, values)
 
+    def get_sales_reps_by_user_id(self, values):
+        return self.db_op("""
+            SELECT * FROM sales_reps 
+            WHERE user_id=%s;
+        """, values)
+
+    def assign_sales_rep(self, values):
+        self.db_op("""
+            UPDATE cars 
+            SET sales_rep_id=%s
+            WHERE id=%s
+        """, values)
+
 
 db = DatabaseDriver()

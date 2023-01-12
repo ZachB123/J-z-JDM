@@ -247,10 +247,24 @@ def success_response(data, code=200):
 def failure_response(message, code=404):
     return json.dumps({"success": False, "error": message}), code
 
-@app.route("/test", methods=["POST"])
+@app.route("/api/test", methods=["POST"])
 def test():
-    print("it worked")
+    body = json.loads(request.data)
+    value = body.get("value")
+    print(f"it worked {value}")
     return success_response({"message": "hello"})
+
+@app.route("/api/assign", methods=["POST"])
+def assign_car_to_sales_rep():
+    body = json.loads(request.data)
+    car_id = int(body.get("carId"))
+    user_id = int(body.get("userId"))
+    if not SalesRep.is_user_id_a_sales_rep(user_id):
+        return failure_response(f"id {user_id} is not a sales rep", 400)
+    Car.assign_sales_rep(car_id, user_id)
+    cache.set("CAR_CACHE", Car.get_all_cars())
+    return success_response({}, 201)
+
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))

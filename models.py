@@ -104,6 +104,10 @@ class SalesRep():
             return [SalesRep.sales_rep_from_tuple(t) for t in s]
         return None
 
+    @staticmethod
+    def is_user_id_a_sales_rep(user_id):
+        return bool(db.get_sales_rep_by_user_id((user_id)))
+
     def __str__(self):
         return f"<Id: {self.user.id}, Username: {self.user.username}, About: {self.about}, Link: {self.image_link}>"
 
@@ -179,7 +183,11 @@ class Car():
     @staticmethod
     def get_cars_by_sales_rep_id(sales_rep_id):
         return [Car.car_from_tuple(c) for c in db.get_cars_by_sales_rep_id((sales_rep_id))]
-        
+    
+    @staticmethod
+    def assign_sales_rep(car_id, user_id):
+        db.assign_sales_rep((user_id, car_id))
+
     def __str__(self) -> str:
         return f"<Id: {self.id}, Descripton: {self.description}, O.E.M: {self.oem}, Model: {self.model}, : {self.model}, Year: {self.year}, Mileage: {self.mileage}, Color: {self.color}, Price: {self.price}, Drivetrain: {self.drivetrain}, Engine Cylinder: {self.engine_cylinder}, Engine Size: {self.engine_size}, Four Wheel Steering: {self.four_wheel_steering}, ABS: {self.abs}, TCS: {self.tcs}, Doors: {self.doors}, Seats: {self.seats}, Horsepower: {self.horsepower}, Torque: {self.torque}, Misc: {self.misc}, Sales Rep Id: {self.sales_rep_id}, Date Created: {datetime.fromtimestamp(self.date_added)}>"
 
