@@ -1,0 +1,19 @@
+{% extends "layout.html" %} 
+
+{% block js %} 
+    <script src="{{ url_for('static', filename='js/asyncRequests.js') }}" defer></script>
+{% endblock %}
+
+{% block body %} 
+
+<a href="{{ url_for('configure_sales_rep', user_id=sales_rep.user.id) }}">Go Back</a>
+{{sales_rep}}
+<h1>Assign Cars</h1>
+
+{% for car in cars %} 
+    {% include "_carPreview.html" %} 
+    {% set user_id = sales_rep.user.id %} 
+    {% set car_id = car.id %}
+    <button onclick="assign_car_to_sales_rep({{user_id}}, {{car_id}})">Assign</button>
+{% endfor %}
+{% endblock %}

@@ -1,8 +1,6 @@
 {% extends "layout.html" %} 
 
-{% block js %} 
-    <script src="{{ url_for('static', filename='js/asyncRequests.js') }}" defer></script>
-{% endblock %}
+
 
 {% block body %} 
     <a href="{{ url_for('control') }}">Go Back</a>
@@ -32,8 +30,8 @@
         <p>{{ form.submit() }}</p>
     </form>
     {% if sales_rep %}
-    <button onclick="assign_car_to_sales_rep(1, 2)">Click Me</button>
-        <h1>Curent cars this person is selling</h1>
+    <a href="{{ url_for('assign_cars', sales_rep_id=sales_rep.user.id) }}">Assign cars</a>
+    <h1>Curent cars this person is selling</h1>
         {% for car in cars %} 
             {% include "_carPreview.html" %} 
         {% endfor %}

@@ -150,13 +150,18 @@ def configure_sales_rep(user_id):
     cars = Car.get_cars_by_sales_rep_id(int(user.id))
     return render_template("salesRepControl.html", form=form, user=user, sales_rep=sales_rep, cars=cars)
 
-@app.route("/control/uses/<int:sales_rep_id>/assign")
+@app.route("/control/users/<int:sales_rep_id>/assign")
 @login_required
 def assign_cars(sales_rep_id):
     USER_CACHE = cache.get("USER_CACHE")
     if [u for u in USER_CACHE if int(u.id) == int(current_user.get_id())][0].super_user == 0:
         flash("You do not have the required privileges to view this page")
         return redirect(url_for("index"))
+    cars = cache.get("CAR_CACHE")
+    cars = [c for c in cars if int(c.sales_rep_id) == -1]
+    sales_rep = SalesRep.get_sales_rep_by_user_id(sales_rep_id)
+    cache.set("CAR_CACHE", Car.get_all_cars())
+    return render_template("assignCars.html", sales_rep=sales_rep, cars=cars)
 
 @app.route("/control/cars/<int:car_id>", methods=["GET", "POST"])
 @login_required
