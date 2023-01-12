@@ -34,7 +34,7 @@ body {
 
 .logo {
     text-align: left;
-    margin-bottom: 30px;
+    margin-bottom: 15px;
 }
 
 .form-input-header {
@@ -43,7 +43,7 @@ body {
 }
 
 .form-input div {
-    margin-bottom: 5px;
+    margin-bottom: 10px;
 }
 
 .form-input-area input {
@@ -54,4 +54,14 @@ body {
     border-left: none;
     padding: 3px 6px;
     background: inherit;
+}
+
+.form-input input:focus {
+    background-image: linear-gradient(to right, rgba(90, 86, 86, 0), rgba(90, 86, 86, 1));
+    outline: none;
+}
+
+.form-input input:-internal-autofill-selected {
+    background-image: linear-gradient(to right, rgba(90, 86, 86, 0), rgba(90, 86, 86, 1)) !important;
+    background-color: none !important;
 }
