@@ -12,9 +12,13 @@ body {
     background-size: cover;
 }
 
-
+.testContainer {
+    height: 100%;
+    width: 100%;
+}
 
 .sign-UI-container {
+    display: block;
     text-align: center;
     position: absolute;
     top: 50%;

@@ -1,12 +1,10 @@
-{% block js %}
-    <script src="{{ url_for('static', filename='js/signInUpscript.js') }}" defer></script>
-{% endblock %}
+<head>
+<script src="{{ url_for('static', filename='js/signInUpscript.js') }}" defer></script>
 
-{% block css %} 
 <link rel="stylesheet" href="{{ url_for('static', filename='css/signInUp.css') }}">
-{% endblock %}
+</head>
 
-{% block body %}
+<body>
     <div class="testContainer">
         <div class="sign-UI-container">
             <div class="form-area">
@@ -64,4 +62,4 @@
             </div>
         </div>
     </div>
-{% endblock %}
+</body>
