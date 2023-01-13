@@ -18,9 +18,14 @@ class RegistrationForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()], render_kw={"placeholder": "Username"})
     email = StringField('Email (optional)', render_kw={"placeholder": "Email (optional)"})
     password = PasswordField('Password', validators=[DataRequired()], render_kw={"placeholder": "Password"})
-    password2 = PasswordField(
-        'Repeat Password', validators=[DataRequired(), EqualTo('password')], render_kw={"placeholder": "Repeat Password"})
+    password2 = PasswordField('Repeat Password', validators=[DataRequired()], render_kw={"placeholder": "Repeat Password"})
     submit = SubmitField('Register')
+
+    def validate_password2(self, password2):
+        print(password2.data)
+        print(self.password.data)
+        if not password2.data == self.password.data:
+            raise ValidationError("Passwords Do Not Match")
 
     def validate_username(self, username):
         user = User.get_by_username(username.data)

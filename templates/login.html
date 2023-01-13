@@ -16,6 +16,15 @@
             </div>
             <div class="form-input-container">
                 <span class="form-input-header">Login To Account</span>
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        <ul>
+                            {% for message in messages %}
+                                <li>{{ message }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                {% endwith %}
                 <form action="" method="post" novalidate>
                     {{ form.hidden_tag() }}
                     <div class="form-input">

@@ -24,3 +24,21 @@ async function assign_car_to_sales_rep(salesRepId, carId) {
         })
     })
 }
+
+async function test2() {
+    await fetch("/test2", {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8'
+        },
+    })
+}
+
+async function demoFlash() {
+    await fetch("/api/flash", {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8'
+        },
+    })
+}

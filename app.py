@@ -270,6 +270,16 @@ def assign_car_to_sales_rep():
     cache.set("CAR_CACHE", Car.get_all_cars())
     return success_response({}, 201)
 
+@app.route('/test2', methods=["POST"])
+def test2():
+    print("hello")
+    return success_response({})
+
+@app.route("/api/flash", methods=["POST"])
+def demo_flash():
+    flash("This is a flashed message for styling")
+    return success_response({})
+
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
