@@ -67,6 +67,12 @@ class User(UserMixin):
     def add_user(user):
         db.create_user(user)
 
+    @staticmethod
+    def favorite_car(user_id, car_id):
+        if car_id == -1:
+            return
+        db.add_favorite((user_id, car_id))
+
 class SalesRep():
     def __init__(self, user, about=None, image_link=None, id=-1):
         self.user = user
@@ -229,4 +235,3 @@ class Message():
     @staticmethod
     def add_message(message):
         db.create_message((message.name, message.message))
-

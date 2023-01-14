@@ -254,6 +254,11 @@ def failure_response(message, code=404):
 
 @app.route("/api/test", methods=["POST"])
 def test():
+    if current_user.is_anonymous:
+        return failure_response("User is not logged in", 403)
+    user = User.get_by_id(int(current_user.get_id()))
+    if user is None or user.super_user == 0:
+        return failure_response("You do not have the required privileges", 403)
     body = json.loads(request.data)
     value = body.get("value")
     print(f"it worked {value}")
@@ -261,6 +266,11 @@ def test():
 
 @app.route("/api/assign", methods=["POST"])
 def assign_car_to_sales_rep():
+    if current_user.is_anonymous:
+        return failure_response("User is not logged in", 401)
+    user = User.get_by_id(int(current_user.get_id()))
+    if user is None or user.super_user == 0:
+        return failure_response("You do not have the required privileges", 403)
     body = json.loads(request.data)
     car_id = int(body.get("carId"))
     user_id = int(body.get("userId"))
@@ -270,16 +280,26 @@ def assign_car_to_sales_rep():
     cache.set("CAR_CACHE", Car.get_all_cars())
     return success_response({}, 201)
 
-@app.route('/test2', methods=["POST"])
-def test2():
-    print("hello")
-    return success_response({})
-
 @app.route("/api/flash", methods=["POST"])
 def demo_flash():
+    if current_user.is_anonymous:
+        return failure_response("User is not logged in", 401)
+    user = User.get_by_id(int(current_user.get_id()))
+    if user is None or user.super_user == 0:
+        return failure_response("You do not have the required privileges", 403)
     flash("This is a flashed message for styling")
     return success_response({})
 
+@app.route("/api/favorite", methods=["POST"])
+def favorite_car():
+    if current_user.is_anonymous:
+        return failure_response("User is not logged in", 401)
+    body = json.loads(request.data)
+    user_id = int(current_user.get_id())
+    car_id = int(body.get("car_id", -1))
+    User.favorite_car(user_id, car_id)
+    return success_response({})
+    
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))

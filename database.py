@@ -4,8 +4,8 @@ from config import Config
 class DatabaseDriver():
 
     def db_op(self, sql, values=()):
-        connection = pymysql.connect(host=Config.DATABASE_HOST, user=Config.DATABASE_USER, password=Config.DATABASE_PASSWORD, port=int(Config.DATABASE_PORT), db=Config.DATABASE)
         output = None
+        connection = pymysql.connect(host=Config.DATABASE_HOST, user=Config.DATABASE_USER, password=Config.DATABASE_PASSWORD, port=int(Config.DATABASE_PORT), db=Config.DATABASE)
         with connection:
             with connection.cursor() as cursor:
                 cursor.execute(sql, values)
@@ -140,6 +140,12 @@ class DatabaseDriver():
             UPDATE cars 
             SET sales_rep_id=%s
             WHERE id=%s
+        """, values)
+
+    def add_favorite(self, values):
+        self.db_op("""
+            INSERT INTO favorites (user_id, car_id)
+            VALUES (%s, %s);
         """, values)
 
 
