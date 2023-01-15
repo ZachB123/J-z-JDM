@@ -224,9 +224,11 @@ def message_sales_rep(sales_rep_id):
     if form.validate_on_submit():
         DirectMessage.send_direct_message(int(current_user.get_id()), int(user.id), form.content.data)
         return redirect(url_for("message_sales_rep", sales_rep_id=sales_rep_id))
-    sent_messages = DirectMessage.get_messages(current_user.get_id(), sales_rep_id)
-    received_messages = DirectMessage.get_messages(sales_rep_id, current_user.get_id())
-    return render_template("message.html", form=form, user=user, sent_messages=sent_messages, received_messages=received_messages)
+    messages = DirectMessage.get_messages(current_user.get_id(), sales_rep_id) + DirectMessage.get_messages(sales_rep_id, current_user.get_id())
+    messages.sort(key=lambda x: x.timestamp)
+    
+    print(type(current_user.get_id()))
+    return render_template("message.html", form=form, user=user, messages=messages)
 
 @app.route("/contact", methods=["GET", "POST"])
 def contact():

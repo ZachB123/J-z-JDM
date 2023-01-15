@@ -6,15 +6,16 @@
 
 <h1>Messaging, {{ user.username }}</h1>
 
-<h2>sent messages</h2>
-{% for message in sent_messages %} 
-    <div class="">{{ message.message }}</div>
-{% endfor %} 
-
-<h2>received messages</h2>
-{% for message in received_messages %} 
-    <div class="">{{ message.message }}</div>
-{% endfor %}
+<h2>Messages aqua colors u sent</h2>
+<div class="messages">
+    {% for message in messages %} 
+        {% if message.sender_id == current_user.get_id() %} 
+            <div class="right">{{ message.message }}</div>
+        {% else %} 
+            <div class="left" style="color:aquamarine">{{ message.message }}</div>
+        {% endif %}
+    {% endfor %}
+</div>
 
 <form action="" method="post">
     {{ form.hidden_tag() }} 
@@ -33,6 +34,5 @@
             <p>{{ form.submit() }}</p>
         </div>
     </div>
-
 </form>
 {% endblock %}

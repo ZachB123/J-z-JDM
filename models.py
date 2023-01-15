@@ -17,13 +17,16 @@ class User(UserMixin):
         else:
             self.date_joined = datetime.utcnow().timestamp() #datetime object
         self.super_user = super_user
-        self.id = id
+        self.id = int(id)
 
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
 
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
+
+    def get_id(self):
+        return int(self.id)
 
     @staticmethod
     def get_by_id(id):
@@ -256,12 +259,12 @@ class Message():
 
 class DirectMessage():
     def __init__(self, sender_id, recipient_id, message, timestamp=datetime.utcnow().timestamp(), is_read=0, id=-1):
-        self.sender_id = sender_id
-        self.recipient_id = recipient_id
+        self.sender_id = int(sender_id)
+        self.recipient_id = int(recipient_id)
         self.message = message
-        self.timestamp = timestamp
-        self.is_read = is_read
-        self.id = id
+        self.timestamp = int(timestamp)
+        self.is_read = int(is_read)
+        self.id = int(id)
 
     @staticmethod
     def direct_message_from_tuple(t):
