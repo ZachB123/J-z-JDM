@@ -75,7 +75,8 @@ def register():
 def profile():
     USER_CACHE = cache.get("USER_CACHE")
     user = [u for u in USER_CACHE if int(u.id) == int(current_user.get_id())][0]
-    return render_template("profile.html", user=user)
+    cars = Car.get_favorited_cars_by_user_id(user.id)
+    return render_template("profile.html", user=user, cars=cars)
 
 @app.route("/company")
 def company():

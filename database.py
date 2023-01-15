@@ -160,5 +160,16 @@ class DatabaseDriver():
             WHERE user_id=%s AND car_id=%s;
         """, values)
 
+    def get_all_favorited(self, values):
+        query = self.db_op("""
+            SELECT * FROM cars
+            JOIN favorites
+            ON cars.id=favorites.car_id
+            WHERE user_id=%s;
+        """, values)
+        if not len(query) > 0:
+            return []
+        return [v[0:21] for v in query]
+
 
 db = DatabaseDriver()

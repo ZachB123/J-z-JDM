@@ -8,4 +8,12 @@
     <a href="{{url_for('control')}}">CONTROL</a>
 {% endif %}
 
+<h2>Favorites</h2>
+
+<a href="{{ url_for('listings') }}">Discover more cars</a>
+
+{% for car in cars %} 
+    {% include "_carPreview.html" %} 
+{% endfor %}
+
 {% endblock %}

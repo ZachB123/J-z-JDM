@@ -2,11 +2,15 @@
 
 <div class="car-preview-container">
     <h2>{{ car.oem }}, {{ car.model }}</h2>
+
+    <!-- image -->
     {% if car.get_cover_image() %}
         <img src="{{ car.get_cover_image().link }}" alt="ERROR: {{ car.get_cover_image() }}">
     {% else %} 
         <p>ERROR: No Images</p>
     {% endif %}
+
+    <!-- favorite -->
     {% if current_user.is_anonymous %} 
         {% if sales_rep %} 
             <a href="{{ url_for('login', next=url_for(request.endpoint, sales_rep_id=sales_rep.user.id)) }}"><button>login that redirects to sales page</button></a>
@@ -14,13 +18,18 @@
             <a href="{{ url_for('login', next=url_for(request.endpoint)) }}">other page</a>
         {% endif %}
     {% else %}
-        havbe both but user js to decide which one is displayed what is default display for button
         {% if car.is_favorited_by_user(current_user.get_id()) %} 
             <button onclick="previewUnfavoriteCar(this)" carid={{car.id}} id="carUnfavorite{{car.id}}">Unfavorite</button>
         {% else %} 
             <button onclick="previewFavoriteCar(this)" carid={{car.id}} id="carFavorite{{car.id}}">Favorite</button>
         {% endif %}
     {% endif %}
+
+    <!-- sales -->
+    {% if car.sales_rep_id != -1 %} 
+        <a href="{{ url_for('individual_sales_representative', sales_rep_id=car.sales_rep_id) }}">YO THERS A SALES DOOD VIEW HIM</a>
+    {% endif %}
+
     <p> {{ car.description }} </p>
     <a href="{{ url_for('car', id=car.id) }}">View This Car</a>
 </div>
