@@ -3,9 +3,9 @@ from config import Config
 from flask import Flask, render_template, redirect, url_for, flash, request, abort
 from dotenv import load_dotenv
 load_dotenv()
-from forms import LoginForm, RegistrationForm, CarCreationForm, AddImages, ConfigureSalesRep, Contact
+from forms import LoginForm, RegistrationForm, CarCreationForm, AddImages, ConfigureSalesRep, Contact, DirectMessageForm
 from flask_login import LoginManager, current_user, login_user, logout_user, login_required
-from models import User, Car, Image, SalesRep, Message
+from models import User, Car, Image, SalesRep, Message, DirectMessage
 from werkzeug.urls import url_parse
 from flask_caching import Cache
 import threading
@@ -211,12 +211,26 @@ def individual_sales_representative(sales_rep_id):
     cars = Car.get_cars_by_sales_rep_id(sales_rep_id) or []
     return render_template("individualSalesRepresentative.html", sales_rep=sales_rep, cars=cars)
 
+@app.route("/sales/message/<int:sales_rep_id>", methods=["GET", "POST"])
+@login_required
+def message_sales_rep(sales_rep_id):
+    # try an auto refrech method thing
+    user = User.get_by_id(sales_rep_id)
+    form = DirectMessageForm()
+    if form.validate_on_submit():
+        DirectMessage.send_direct_message(int(current_user.get_id()), int(user.id), form.content.data)
+        return redirect(url_for("message_sales_rep", sales_rep_id=sales_rep_id))
+    sent_messages = DirectMessage.get_messages(current_user.get_id(), sales_rep_id)
+    received_messages = DirectMessage.get_messages(sales_rep_id, current_user.get_id())
+    return render_template("message.html", form=form, user=user, sent_messages=sent_messages, received_messages=received_messages)
+
 @app.route("/contact", methods=["GET", "POST"])
 def contact():
     form = Contact()
     if form.validate_on_submit():
         Message.add_message(Message(form.message.data, form.name.data))
         flash("Message Successfully Sent")
+        return redirect(url_for("contact"))
     return render_template("contactUs.html", form=form)
 
 @app.route("/accessibility")

@@ -171,5 +171,17 @@ class DatabaseDriver():
             return []
         return [v[0:21] for v in query]
 
+    def send_direct_message(self, values):
+        self.db_op("""
+            INSERT INTO direct_messages (sender_id, recipient_id, content, time_sent)
+            VALUES (%s, %s, %s, %s);
+        """, values)
+
+    def get_messages(self, values):
+        return self.db_op("""
+            SELECT * FROM direct_messages
+            WHERE sender_id=%s AND recipient_id=%s;
+        """, values)
+
 
 db = DatabaseDriver()

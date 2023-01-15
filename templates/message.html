@@ -1,0 +1,38 @@
+{% extends "layout.html" %} 
+
+{% block body %} 
+
+<a href=""></a>
+
+<h1>Messaging, {{ user.username }}</h1>
+
+<h2>sent messages</h2>
+{% for message in sent_messages %} 
+    <div class="">{{ message.message }}</div>
+{% endfor %} 
+
+<h2>received messages</h2>
+{% for message in received_messages %} 
+    <div class="">{{ message.message }}</div>
+{% endfor %}
+
+<form action="" method="post">
+    {{ form.hidden_tag() }} 
+    <div class="form-input">
+        <p>
+            <div class="form-input-area">
+                {{ form.content() }}<br>
+            </div>
+            <div class="form-input-error">
+                {% for error in form.content.errors %}
+                    <span>[{{ error }}]</span>
+                {% endfor %}
+            </div>
+        </p>
+        <div class="form-submit">
+            <p>{{ form.submit() }}</p>
+        </div>
+    </div>
+
+</form>
+{% endblock %}

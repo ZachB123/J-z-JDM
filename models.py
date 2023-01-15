@@ -253,3 +253,30 @@ class Message():
     @staticmethod
     def add_message(message):
         db.create_message((message.name, message.message))
+
+class DirectMessage():
+    def __init__(self, sender_id, recipient_id, message, timestamp=datetime.utcnow().timestamp(), is_read=0, id=-1):
+        self.sender_id = sender_id
+        self.recipient_id = recipient_id
+        self.message = message
+        self.timestamp = timestamp
+        self.is_read = is_read
+        self.id = id
+
+    @staticmethod
+    def direct_message_from_tuple(t):
+        return DirectMessage(t[1], t[2], t[3], t[4], t[5], t[0])
+
+    @staticmethod
+    def get_messages(sender_id, recipient_id):
+        return [DirectMessage.direct_message_from_tuple(m) for m in db.get_messages((int(sender_id), int(recipient_id)))]
+
+    @staticmethod 
+    def send_direct_message(sender_id, recipient_id, content):
+        db.send_direct_message((sender_id, recipient_id, content, datetime.utcnow().timestamp()))
+
+    def __str__(self):
+        return f"<Id: {self.id}, Sender: {self.sender_id}, Recipient: {self.recipient_id}, Message: {self.message}, Time: {self.timestamp}, Read? {self.is_read}>"
+
+    def __repr__(self):
+        return self.__str__()

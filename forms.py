@@ -79,6 +79,10 @@ class Contact(FlaskForm):
     message = TextAreaField("Message", validators=[DataRequired()])
     submit = SubmitField("Submit")
 
+class DirectMessageForm(FlaskForm):
+    content = TextAreaField("Message", validators=[DataRequired()], render_kw={"placeholder": "Message"})
+    submit = SubmitField("Send")
+
 class EmptyForm(FlaskForm):
     submit = SubmitField("")
 
