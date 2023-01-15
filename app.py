@@ -7,7 +7,8 @@ from forms import LoginForm, RegistrationForm, CarCreationForm, AddImages, Confi
 from flask_login import LoginManager, current_user, login_user, logout_user, login_required
 from models import User, Car, Image, SalesRep, Message, DirectMessage
 from werkzeug.urls import url_parse
-from flask_caching import Cache
+# from flask_caching import Cache
+from diskcache import Cache
 import threading
 import time
 import json
@@ -17,10 +18,13 @@ app.config.from_object(Config)
 
 login = LoginManager(app)
 login.login_view = "login"
-cache = Cache(app)
+# cache = Cache(app)
+cache = Cache(".cache", statistic=True)
 
-cache.set("CAR_CACHE", Car.get_all_cars())
-cache.set("USER_CACHE", User.get_all_users())
+# cache.set("CAR_CACHE", Car.get_all_cars())
+# cache.set("USER_CACHE", User.get_all_users())
+cache.add("CAR_CACHE", Car.get_all_cars())
+cache.add("USER_CACHE", User.get_all_users())
 
 
 @login.user_loader
@@ -65,7 +69,7 @@ def register():
     form = RegistrationForm()
     if form.validate_on_submit():
         User.add_user(User(form.username.data, form.email.data, form.password.data))
-        cache.set("USER_CACHE", User.get_all_users())
+        cache.add("USER_CACHE", User.get_all_users())
         flash("Congratulations, you are now a registered user!")
         return redirect(url_for("login"))
     return render_template("register.html", form=form)
@@ -121,7 +125,7 @@ def control():
     if form.validate_on_submit():
         car = Car(form.description.data, form.oem.data, form.model.data, form.year.data, form.mileage.data, form.color.data, form.price.data, form.drivetrain.data, form.engine_cylinder.data, form.engine_size.data, int(form.four_wheel_steering.data), int(form.abs.data), int(form.tcs.data), form.doors.data, form.seats.data, form.horsepower.data, form.torque.data, form.misc.data)
         Car.add_car(car)
-        cache.set("CAR_CACHE", Car.get_all_cars())
+        cache.add("CAR_CACHE", Car.get_all_cars())
         flash("Car added")
         return redirect(url_for("control"))
     cars = cache.get("CAR_CACHE")
@@ -161,7 +165,7 @@ def assign_cars(sales_rep_id):
     cars = cache.get("CAR_CACHE")
     cars = [c for c in cars if int(c.sales_rep_id) == -1]
     sales_rep = SalesRep.get_sales_rep_by_user_id(sales_rep_id)
-    cache.set("CAR_CACHE", Car.get_all_cars())
+    cache.add("CAR_CACHE", Car.get_all_cars())
     return render_template("assignCars.html", sales_rep=sales_rep, cars=cars)
 
 @app.route("/control/cars/<int:car_id>", methods=["GET", "POST"])
@@ -245,8 +249,8 @@ def privacyPolicy():
 def on_load():
     def refresh_caches():
         while True:
-            cache.set("USER_CACHE", User.get_all_users())
-            cache.set("CAR_CACHE", Car.get_all_cars())
+            cache.add("USER_CACHE", User.get_all_users())
+            cache.add("CAR_CACHE", Car.get_all_cars())
             time.sleep(20)
     thread = threading.Thread(target=refresh_caches)
     thread.start()
@@ -292,7 +296,7 @@ def assign_car_to_sales_rep():
     if not SalesRep.is_user_id_a_sales_rep(user_id):
         return failure_response(f"id {user_id} is not a sales rep", 400)
     Car.assign_sales_rep(car_id, user_id)
-    cache.set("CAR_CACHE", Car.get_all_cars())
+    cache.add("CAR_CACHE", Car.get_all_cars())
     return success_response({}, 201)
 
 @app.route("/api/flash", methods=["POST"])
