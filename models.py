@@ -17,13 +17,16 @@ class User(UserMixin):
         else:
             self.date_joined = datetime.utcnow().timestamp() #datetime object
         self.super_user = super_user
-        self.id = id
+        self.id = int(id)
 
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
 
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
+
+    def get_id(self):
+        return int(self.id)
 
     @staticmethod
     def get_by_id(id):
@@ -66,6 +69,18 @@ class User(UserMixin):
     @staticmethod
     def add_user(user):
         db.create_user(user)
+
+    @staticmethod
+    def favorite_car(user_id, car_id):
+        if car_id == -1:
+            return
+        db.add_favorite((user_id, car_id))
+
+    @staticmethod
+    def remove_favorite(user_id, car_id):
+        if car_id == -1:
+            return
+        db.remove_favorite((user_id, car_id))
 
 class SalesRep():
     def __init__(self, user, about=None, image_link=None, id=-1):
@@ -155,6 +170,11 @@ class Car():
                 return image
         return images[0]
 
+    def is_favorited_by_user(self, user_id):
+        if len(db.is_car_favorited((user_id, self.id))) > 0:
+            return True
+        return False
+
     @staticmethod
     def add_car(car):
         db.create_car(car)
@@ -187,6 +207,13 @@ class Car():
     @staticmethod
     def assign_sales_rep(car_id, user_id):
         db.assign_sales_rep((user_id, car_id))
+
+    @staticmethod 
+    def get_favorited_cars_by_user_id(user_id):
+        query = db.get_all_favorited((user_id))
+        if not len(query) > 0:
+            return []
+        return [Car.car_from_tuple(c) for c in query]
 
     def __str__(self) -> str:
         return f"<Id: {self.id}, Descripton: {self.description}, O.E.M: {self.oem}, Model: {self.model}, : {self.model}, Year: {self.year}, Mileage: {self.mileage}, Color: {self.color}, Price: {self.price}, Drivetrain: {self.drivetrain}, Engine Cylinder: {self.engine_cylinder}, Engine Size: {self.engine_size}, Four Wheel Steering: {self.four_wheel_steering}, ABS: {self.abs}, TCS: {self.tcs}, Doors: {self.doors}, Seats: {self.seats}, Horsepower: {self.horsepower}, Torque: {self.torque}, Misc: {self.misc}, Sales Rep Id: {self.sales_rep_id}, Date Created: {datetime.fromtimestamp(self.date_added)}>"
@@ -230,3 +257,29 @@ class Message():
     def add_message(message):
         db.create_message((message.name, message.message))
 
+class DirectMessage():
+    def __init__(self, sender_id, recipient_id, message, timestamp=datetime.utcnow().timestamp(), is_read=0, id=-1):
+        self.sender_id = int(sender_id)
+        self.recipient_id = int(recipient_id)
+        self.message = message
+        self.timestamp = int(timestamp)
+        self.is_read = int(is_read)
+        self.id = int(id)
+
+    @staticmethod
+    def direct_message_from_tuple(t):
+        return DirectMessage(t[1], t[2], t[3], t[4], t[5], t[0])
+
+    @staticmethod
+    def get_messages(sender_id, recipient_id):
+        return [DirectMessage.direct_message_from_tuple(m) for m in db.get_messages((int(sender_id), int(recipient_id)))]
+
+    @staticmethod 
+    def send_direct_message(sender_id, recipient_id, content):
+        db.send_direct_message((sender_id, recipient_id, content, datetime.utcnow().timestamp()))
+
+    def __str__(self):
+        return f"<Id: {self.id}, Sender: {self.sender_id}, Recipient: {self.recipient_id}, Message: {self.message}, Time: {self.timestamp}, Read? {self.is_read}>"
+
+    def __repr__(self):
+        return self.__str__()

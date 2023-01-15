@@ -4,8 +4,8 @@ from config import Config
 class DatabaseDriver():
 
     def db_op(self, sql, values=()):
-        connection = pymysql.connect(host=Config.DATABASE_HOST, user=Config.DATABASE_USER, password=Config.DATABASE_PASSWORD, port=int(Config.DATABASE_PORT), db=Config.DATABASE)
         output = None
+        connection = pymysql.connect(host=Config.DATABASE_HOST, user=Config.DATABASE_USER, password=Config.DATABASE_PASSWORD, port=int(Config.DATABASE_PORT), db=Config.DATABASE)
         with connection:
             with connection.cursor() as cursor:
                 cursor.execute(sql, values)
@@ -139,7 +139,48 @@ class DatabaseDriver():
         self.db_op("""
             UPDATE cars 
             SET sales_rep_id=%s
-            WHERE id=%s
+            WHERE id=%s;
+        """, values)
+
+    def add_favorite(self, values):
+        self.db_op("""
+            INSERT INTO favorites (user_id, car_id)
+            VALUES (%s, %s);
+        """, values)
+
+    def remove_favorite(self, values):
+        self.db_op("""
+            DELETE FROM favorites 
+            WHERE user_id=%s AND car_id=%s;
+        """, values)
+
+    def is_car_favorited(self, values):
+        return self.db_op("""
+            SELECT * FROM favorites 
+            WHERE user_id=%s AND car_id=%s;
+        """, values)
+
+    def get_all_favorited(self, values):
+        query = self.db_op("""
+            SELECT * FROM cars
+            JOIN favorites
+            ON cars.id=favorites.car_id
+            WHERE user_id=%s;
+        """, values)
+        if not len(query) > 0:
+            return []
+        return [v[0:21] for v in query]
+
+    def send_direct_message(self, values):
+        self.db_op("""
+            INSERT INTO direct_messages (sender_id, recipient_id, content, time_sent)
+            VALUES (%s, %s, %s, %s);
+        """, values)
+
+    def get_messages(self, values):
+        return self.db_op("""
+            SELECT * FROM direct_messages
+            WHERE sender_id=%s AND recipient_id=%s;
         """, values)
 
 

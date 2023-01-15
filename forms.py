@@ -11,6 +11,8 @@ class LoginForm(FlaskForm):
 
     def validate_password(self, password):
         user = User.get_by_username(self.username.data)
+        if user is None:
+            raise ValidationError("Username does not exist")
         if not user.check_password(self.password.data):
             raise ValidationError("Incorrect Password")
 
@@ -76,6 +78,10 @@ class Contact(FlaskForm):
     name = StringField("Name")
     message = TextAreaField("Message", validators=[DataRequired()])
     submit = SubmitField("Submit")
+
+class DirectMessageForm(FlaskForm):
+    content = TextAreaField("Message", validators=[DataRequired()], render_kw={"placeholder": "Message"})
+    submit = SubmitField("Send")
 
 class EmptyForm(FlaskForm):
     submit = SubmitField("")

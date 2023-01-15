@@ -12,7 +12,6 @@ async function test(value) {
 }
 
 async function assign_car_to_sales_rep(salesRepId, carId) {
-    // TODO create get request to check if current user is super user and authenticated
     await fetch("/api/assign", {
         method: "POST",
         headers: {
@@ -40,5 +39,29 @@ async function demoFlash() {
         headers: {
             'Content-Type': 'application/json;charset=utf-8'
         },
+    })
+}
+
+async function favoriteCar(carId) {
+    await fetch("/api/favorite", {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8'
+        },
+        body: JSON.stringify({
+            "car_id": carId,
+        })
+    })
+}
+
+async function unfavoriteCar(carId) {
+    await fetch("/api/unfavorite", {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8'
+        },
+        body: JSON.stringify({
+            "car_id": carId,
+        })
     })
 }

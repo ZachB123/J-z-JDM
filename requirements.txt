@@ -10,3 +10,4 @@ ipython
 email-validator
 flask-caching
 boto3
+diskcache
