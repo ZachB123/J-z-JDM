@@ -218,7 +218,7 @@ def contact():
         flash("Message Successfully Sent")
     return render_template("contactUs.html", form=form)
 
-@app.route("/Accessibility")
+@app.route("/accessibility")
 def accessibility():
     return render_template("accessibility.html")
 
@@ -298,6 +298,16 @@ def favorite_car():
     user_id = int(current_user.get_id())
     car_id = int(body.get("car_id", -1))
     User.favorite_car(user_id, car_id)
+    return success_response({})
+
+@app.route("/api/unfavorite", methods=["POST"])
+def unfavorite_car():
+    if current_user.is_anonymous:
+        return failure_response("User is not logged in", 401)
+    body = json.loads(request.data)
+    user_id = int(current_user.get_id())
+    car_id = int(body.get("car_id", -1))
+    User.remove_favorite(user_id, car_id)
     return success_response({})
     
 

@@ -53,3 +53,15 @@ async function favoriteCar(carId) {
         })
     })
 }
+
+async function unfavoriteCar(carId) {
+    await fetch("/api/unfavorite", {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8'
+        },
+        body: JSON.stringify({
+            "car_id": carId,
+        })
+    })
+}

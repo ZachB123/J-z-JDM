@@ -73,6 +73,12 @@ class User(UserMixin):
             return
         db.add_favorite((user_id, car_id))
 
+    @staticmethod
+    def remove_favorite(user_id, car_id):
+        if car_id == -1:
+            return
+        db.remove_favorite((user_id, car_id))
+
 class SalesRep():
     def __init__(self, user, about=None, image_link=None, id=-1):
         self.user = user
@@ -160,6 +166,11 @@ class Car():
             if image.cover_img == 1:
                 return image
         return images[0]
+
+    def is_favorited_by_user(self, user_id):
+        if len(db.is_car_favorited((user_id, self.id))) > 0:
+            return True
+        return False
 
     @staticmethod
     def add_car(car):

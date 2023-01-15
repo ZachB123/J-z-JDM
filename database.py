@@ -139,13 +139,25 @@ class DatabaseDriver():
         self.db_op("""
             UPDATE cars 
             SET sales_rep_id=%s
-            WHERE id=%s
+            WHERE id=%s;
         """, values)
 
     def add_favorite(self, values):
         self.db_op("""
             INSERT INTO favorites (user_id, car_id)
             VALUES (%s, %s);
+        """, values)
+
+    def remove_favorite(self, values):
+        self.db_op("""
+            DELETE FROM favorites 
+            WHERE user_id=%s AND car_id=%s;
+        """, values)
+
+    def is_car_favorited(self, values):
+        return self.db_op("""
+            SELECT * FROM favorites 
+            WHERE user_id=%s AND car_id=%s;
         """, values)
 
 
