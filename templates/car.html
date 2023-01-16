@@ -2,4 +2,7 @@
 
 {% block body %} 
     <h1> {{ car }}</h1>
+    <!-- loan --> 
+    <p>price {{ car.price }}</p>
+    <a href="{{ url_for('loan', price=car.price) }}">Get a loan estimate for this car</a>
 {% endblock %}

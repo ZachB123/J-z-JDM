@@ -116,7 +116,8 @@ def car(id):
 
 @app.route("/loan")
 def loan():
-    return render_template("loan.html")
+    price = request.args.get("price", None)
+    return render_template("loan.html", price=price)
 
 @app.route("/control", methods=["GET", "POST"])
 @login_required
