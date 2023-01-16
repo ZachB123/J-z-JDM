@@ -1,9 +1,22 @@
 {% extends "layout.html" %} 
-
+{% block css %} 
+<link rel="stylesheet" href="{{ url_for('static', filename='css/404_500Pages.css') }}">
+{% endblock %}
 
 {% block body %}
-<div class="">
-    <h1>Uh Oh, something went wrong on our end. Sorry about that.</h1>
-    <a href="{{ url_for('index') }}">Back to homepage</a>
+<div class="page-error-container">
+    <div class="error-area">
+        <div class="image-error">
+            <img src="{{ url_for('static', filename='images/500ErrorStandIn.png') }}" alt="500 Error">
+        </div>
+        <div class="error-info-container">
+            <div class="error-message">
+                <span>Uh Oh, we put a recall out for this page, sorry for the inconvenience!</span>
+            </div>
+            <div class="return-home-link">
+                <a href="{{ url_for('index') }}">Back to homepage</a>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}
