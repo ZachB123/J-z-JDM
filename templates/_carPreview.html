@@ -3,9 +3,10 @@
 <div class="car-preview-container">
     <h2>{{ car.oem }}, {{ car.model }}</h2>
 
-    <!-- image -->
-    {% if car.get_cover_image() %}
-        <img src="{{ car.get_cover_image().link }}" alt="ERROR: {{ car.get_cover_image() }}">
+    <!-- image THIS IS THE PROBLEM-->
+    {% set cover = car.get_cover_image() %}
+    {% if cover %}
+        <img src="{{ cover.link }}" alt="ERROR: {{ cover }}">
     {% else %} 
         <p>ERROR: No Images</p>
     {% endif %}
