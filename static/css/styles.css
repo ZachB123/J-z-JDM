@@ -12,6 +12,7 @@ body {
 nav {
     background: var(--purple);
     padding: 0 15px;
+    z-index: 1;
 }
 a {
     color: var(--yellow);
@@ -193,6 +194,7 @@ a {
     text-align: center;
     align-items: center;
     font-family: 'Kanit';
+    z-index: 1;
 }
 
 #footerLogo {

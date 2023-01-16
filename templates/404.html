@@ -1,9 +1,23 @@
 {% extends "layout.html" %} 
 
+{% block css %} 
+<link rel="stylesheet" href="{{ url_for('static', filename='css/404_500Pages.css') }}">
+{% endblock %}
 
 {% block body %}
-<div class="">
-    <h1>Uh Oh, the page you are looking for does not exist</h1>
-    <a href="{{ url_for('index') }}">Back to homepage</a>
+<div class="page-error-container">
+    <div class="error-area">
+        <div class="image-error">
+            <img src="{{ url_for('static', filename='images/404firstdraft.png') }}" alt="404 Error">
+        </div>
+        <div class="error-info-container">
+            <div class="error-message">
+                <span>Uh Oh, looks like you took a wrong turn!</span>
+            </div>
+            <div class="return-home-link">
+                <a href="{{ url_for('index') }}">Back to homepage</a>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}
