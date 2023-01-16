@@ -238,18 +238,28 @@ class Car():
         torque = str(self.torque).split()
         misc = str(self.misc).split()
         description = [x.lower() for x in self.description.split()]
-        combined = oem + model + year + mileage + color + drivetrain + four_wheel_steering + abs + tcs + doors + seats + horsepower + torque + misc + description
-        return combined
+        combined = oem + model + year + mileage + color + drivetrain + four_wheel_steering + abs + tcs + doors + seats + horsepower + torque + misc
+        return combined, description
 
     def get_word_score(self, word):
+        MACTCH_MULTIPLIER = 6
+        DESCRIPTION_MULTIPLIER = 0.5
+        keywords, description = self.list_for_search()
         sum = 0
-        for value in self.list_for_search():
+        for value in keywords:
             distance = jellyfish.jaro_distance(str(word).lower(), str(value).lower())
             if distance > 0.7:
                 if distance > 0.95:
-                    sum += distance * 6
+                    sum += distance * MACTCH_MULTIPLIER
                 else:
                     sum += distance
+        for value in description:
+            distance = jellyfish.jaro_distance(str(word).lower(), str(value).lower())
+            if distance > 0.7:
+                if distance > 0.95:
+                    sum += (distance * 6) * 0.5
+                else:
+                    sum += distance * DESCRIPTION_MULTIPLIER
         return sum
 
     def get_query_score(self, query):

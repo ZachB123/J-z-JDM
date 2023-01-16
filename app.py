@@ -7,10 +7,6 @@ from forms import LoginForm, RegistrationForm, CarCreationForm, AddImages, Confi
 from flask_login import LoginManager, current_user, login_user, logout_user, login_required
 from models import User, Car, Image, SalesRep, Message, DirectMessage
 from werkzeug.urls import url_parse
-# from flask_caching import Cache
-from diskcache import Cache
-import threading
-import time
 import json
 
 app = Flask(__name__)
@@ -79,26 +75,20 @@ def company():
 @app.route("/listings", methods=["GET", "POST"])
 def listings():
     form = Search()
-    print("form")
     if form.validate_on_submit():
         return redirect(url_for("listings", q=form.search_field.data))
     page = int(request.args.get("page", 1))
-    print("page")
     q = request.args.get("q", None)
     prev_url = None
     next_url = None
     if page > 1:
         prev_url = url_for("listings", page=(page-1))
-    print("before cars")
     cars = Car.search_cars(q) #cache.get("CAR_CACHE")
-    print("after cars")
     offset = (page - 1) * Config.CARS_PER_PAGE
     amount = Config.CARS_PER_PAGE
     cars = cars[offset:offset+amount] 
-    print("offset")
     if len(cars) >= Config.CARS_PER_PAGE:
         next_url = url_for("listings", page=(page+1), q=q)
-    print("about to render")
     return render_template("listings.html", form=form, cars=cars, prev_url=prev_url, next_url=next_url, q=q)
 
 @app.route("/car/<int:id>")
