@@ -183,27 +183,11 @@ class DatabaseDriver():
             WHERE sender_id=%s AND recipient_id=%s;
         """, values)
 
-    def test_all(self, values):
-        self.db_op("""
-            SELECT * FROM cars
-        """)
-        self.db_op("""
-            SELECT * FROM direct_messages
-        """)
-        self.db_op("""
-            SELECT * FROM favorites
-        """)
-        self.db_op("""
-            SELECT * FROM images
-        """)
-        self.db_op("""
-            SELECT * FROM messages
-        """)
-        self.db_op("""
-            SELECT * FROM sales_reps
-        """)
-        self.db_op("""
-            SELECT * FROM users
+    def get_all_cars_with_images(self):
+        return self.db_op("""
+            SELECT * FROM cars  
+            JOIN images 
+            ON cars.id=images.car_id;
         """)
         
 
