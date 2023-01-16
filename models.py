@@ -268,6 +268,10 @@ class Car():
             sum += self.get_word_score(word)
         return sum
 
+    def query_from_car(self):
+        keywords, description = self.list_for_search()
+        return " ".join(keywords) + " ".join(description)
+
     @staticmethod
     def search_cars(query=None):
         cars = Car.get_all_cars()

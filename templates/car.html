@@ -21,4 +21,10 @@
 
 
     <a href="{{ url_for('loan', price=car.price) }}">Get a loan estimate for this car</a>
+
+    <h1>Similar</h1>
+
+    {% for car in similar %} 
+        {% include "_carPreview.html" %} 
+    {% endfor %}
 {% endblock %}
