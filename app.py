@@ -83,7 +83,7 @@ def listings():
     next_url = None
     if page > 1:
         prev_url = url_for("listings", page=(page-1))
-    cars = Car.search_cars(q) #cache.get("CAR_CACHE")
+    cars = Car.search_cars(q) 
     offset = (page - 1) * Config.CARS_PER_PAGE
     amount = Config.CARS_PER_PAGE
     cars = cars[offset:offset+amount] 
@@ -93,11 +93,12 @@ def listings():
 
 @app.route("/car/<int:id>")
 def car(id):
-    car = [i for i in Car.get_all_cars() if int(i.id) == id]
+    car = Car.get_car_by_id(int(id))
     if not car:
         abort(404)
-    car = car[0]
-    return render_template("car.html", car=car)
+    NUMBER_OF_SIMILAR_CARS = 4
+    similar = Car.search_cars(car.query_from_car())[1:NUMBER_OF_SIMILAR_CARS+1]
+    return render_template("car.html", car=car, similar=similar)
 
 @app.route("/loan")
 def loan():
