@@ -89,17 +89,18 @@ def company():
 @app.route("/listings")
 def listings():
     page = int(request.args.get("page", 1))
+    q = request.args.get("q", None)
     prev_url = None
     next_url = None
     if page > 1:
         prev_url = url_for("listings", page=(page-1))
-    CAR_CACHE = cache.get("CAR_CACHE")
+    CAR_CACHE = Car.search_cars(q) #cache.get("CAR_CACHE")
     offset = (page - 1) * Config.CARS_PER_PAGE
     amount = Config.CARS_PER_PAGE
     cars = CAR_CACHE[offset:offset+amount] 
     if len(cars) >= Config.CARS_PER_PAGE:
-        next_url = url_for("listings", page=(page+1))
-    return render_template("listings.html", cars=cars, prev_url=prev_url, next_url=next_url)
+        next_url = url_for("listings", page=(page+1), q=q)
+    return render_template("listings.html", cars=cars, prev_url=prev_url, next_url=next_url, q=q)
 
 @app.route("/car/<int:id>")
 def car(id):
@@ -225,7 +226,7 @@ def message_sales_rep(sales_rep_id):
         DirectMessage.send_direct_message(int(current_user.get_id()), int(user.id), form.content.data)
         return redirect(url_for("message_sales_rep", sales_rep_id=sales_rep_id))
     messages = DirectMessage.get_messages(current_user.get_id(), sales_rep_id) + DirectMessage.get_messages(sales_rep_id, current_user.get_id())
-    messages.sort(key=lambda x: x.timestamp)
+    messages.sort(key=(lambda x: x.timestamp))
     
     print(type(current_user.get_id()))
     return render_template("message.html", form=form, user=user, messages=messages)
