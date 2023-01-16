@@ -12,6 +12,10 @@ body {
     background-size: cover;
 }
 
+.contact-us-container {
+    position: relative;
+}
+
 .sign-UI-container {
     display: block;
     text-align: center;

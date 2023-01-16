@@ -1,25 +1,59 @@
 {% extends "layout.html" %} 
 
+{% block css %} 
+<link rel="stylesheet" href="{{ url_for('static', filename='css/signInUp.css') }}">
+{% endblock %}
+
 {% block body %} 
-<form action="" method="post">
-    <h1>Send Us a Message</h1>
-    {{ form.hidden_tag() }}
-    <p>
-        {{ form.name.label }}<br>
-        {{ form.name() }}<br>
-        {% for error in form.name.errors %}
-            <span>[{{ error }}]</span>
-        {% endfor %}
-    </p>
-    <p>
-        {{ form.message.label }}<br>
-        {{ form.message() }}<br>
-        {% for error in form.message.errors %}
-            <span>[{{ error }}]</span>
-        {% endfor %}
-    </p>
-    <p>
-        {{ form.submit() }}
-    </p>
-</form>
+<!-- using the same classes for this form as used for the log in and sign up forms -->
+<div class="contact-us-container"></div>
+<div class="sign-UI-container">
+    <div class="form-area">
+        <div class="logo">
+            <a href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='images/logoPlaceholder.png') }}" alt="Logo" style="height: auto; width: 100px;"></a>
+        </div>
+        <div class="form-input-container">
+            <span class="form-input-header">Get in Touch with Us!</span>
+            <form action="" method="post">
+                {{ form.hidden_tag() }}
+                <div class="form-input">
+                    <p>
+                        <div class="form-input-label">
+                            {{ form.name.label }}<br>
+                        </div>
+                        <div class="form-input-area">
+                            {{ form.name() }}<br>
+                        </div>
+                        <div class="form-input-error">
+                            {% for error in form.name.errors %}
+                                <span>[{{ error }}]</span>
+                            {% endfor %}
+                        </div>
+                    </p>
+                </div>
+                <div class="form-input">
+                    <p>
+                        <div class="form-input-label">
+                            {{ form.message.label }}<br>
+                        </div>
+                        <div class="form-input-area">
+                            {{ form.message() }}<br>
+                        </div>
+                        <div class="form-input-error">
+                            {% for error in form.message.errors %}
+                                <span>[{{ error }}]</span>
+                            {% endfor %}
+                        </div>
+                    </p>
+                </div>
+                <div class="form-submit">
+                    <p>
+                        {{ form.submit() }}
+                    </p>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="contact-us-container"></div>
 {% endblock %}
