@@ -183,5 +183,13 @@ class DatabaseDriver():
             WHERE sender_id=%s AND recipient_id=%s;
         """, values)
 
+    def get_all_cars_with_images(self):
+        return self.db_op("""
+            SELECT * FROM cars  
+            JOIN images 
+            ON cars.id=images.car_id;
+        """)
+        
+
 
 db = DatabaseDriver()

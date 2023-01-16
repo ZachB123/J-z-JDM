@@ -2,4 +2,23 @@
 
 {% block body %} 
     <h1> {{ car }}</h1>
+    <!-- loan --> 
+    <span>{{ car.description }}</span>
+    <span>{{ car.oem }}</span>
+    <span>{{ car.model }}</span>
+    <span>{{ car.year }}</span>
+    <span>{{ car.mileage }}</span>
+    <span>{{ car.color }}</span>
+    <span>{{ car.drivetrain }}</span>
+    <span>{{ car.four_wheel_steering }}</span>
+    <span>{{ car.abs }}</span>
+    <span>{{ car.tcs }}</span>
+    <span>{{ car.doors }}</span>
+    <span>{{ car.seats }}</span>
+    <span>{{ car.horsepower }}</span>
+    <span>{{ car.torque }}</span>
+    <span>{{ car.misc }}</span>
+
+
+    <a href="{{ url_for('loan', price=car.price) }}">Get a loan estimate for this car</a>
 {% endblock %}

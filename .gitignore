@@ -1,5 +1,8 @@
 *.py[cod]
 
+*.cache
+.cache
+
 # C extensions
 *.so
 

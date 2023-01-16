@@ -16,20 +16,33 @@
             </div>
             <div class="carSearchContainer">
                 <div id="carSearchBar">
-                    <span class="material-symbols-outlined search-icons" id="searchIcon">search</span>
+                    <form action="" method="post">
+                        {{ form.hidden_tag() }}
+                        <p>
+                            {{ form.search_field.label }}<br>
+                            {{ form.search_field() }}<br>
+                            {% for error in form.search_field.errors %}
+                                <span>[{{ error }}]</span>
+                            {% endfor %}
+                        </p>
+                        <p>
+                            {{ form.submit() }}
+                        </p>
+                    </form>
+                    <!-- <span class="material-symbols-outlined search-icons" id="searchIcon">search</span>
                     <input type="text" class="carSearchInput" id="carSearchInputSelector" placeholder="Search Cars...">
                     <div id="clearSearchIcon">
                         <span class="material-symbols-outlined search-icons" id="clearSearchButton">close</span>
                     </div>
                     <div class="carSearchButton">
 
-                    </div>
+                    </div> -->
                 </div>
             </div>
             <div id="carTypeButtonContainer">
                 <li id="carTypeButtons">
                     <ul class="carTypeButton">
-                        <a href="#" class="car-button-container">
+                        <a href="{{ url_for('listings', q='honda') }}" class="car-button-container">
                             <img src="{{ url_for('static', filename='images/hondaemblembackgroundfix1-01.png') }}" alt="$" class="brandLogo" style="height: auto; width: 20px;">
                             <span class="brandName">
                                 Honda
@@ -37,7 +50,7 @@
                         </a>
                     </ul>
                     <ul class="carTypeButton">
-                        <a href="#" class="car-button-container">
+                        <a href="{{ url_for('listings', q='mazda') }}" class="car-button-container">
                             <img src="{{ url_for('static', filename='images/mazdaemblem.png') }}" alt="$" class="brandLogo" style="height: auto; width: 20px;">
                             <span class="brandName">
                                 Mazda
@@ -45,7 +58,7 @@
                         </a>
                     </ul>
                     <ul class="carTypeButton">
-                        <a href="#" class="car-button-container">
+                        <a href="{{ url_for('listings', q='honda') }}" class="car-button-container">
                             <img src="{{ url_for('static', filename='images/nissanLogo.svg') }}" alt="$" class="brandLogo" style="height: auto; width: 20px;">
                             <span class="brandName">
                                 Nissan
@@ -53,7 +66,7 @@
                         </a>
                     </ul>
                     <ul class="carTypeButton">
-                        <a href="#" class="car-button-container">
+                        <a href="{{ url_for('listings', q='toyota') }}" class="car-button-container">
                             <img src="{{ url_for('static', filename='images/toyotaemblem-01.png') }}" alt="$" class="brandLogo" style="height: auto; width: 20px;">
                             <span class="brandName">
                                 Toyota
@@ -61,7 +74,7 @@
                         </a>
                     </ul>
                     <ul class="carTypeButton">
-                        <a href="#" class="car-button-container">
+                        <a href="{{ url_for('listings', q='subaru') }}" class="car-button-container">
                             <img src="{{ url_for('static', filename='images/subaruemblemtransp.fix-01.png') }}" alt="$" class="brandLogo" style="height: auto; width: 20px;">
                             <span class="brandName">
                                 Subaru
@@ -69,7 +82,7 @@
                         </a>
                     </ul>
                     <ul class="carTypeButton">
-                        <a href="#" class="car-button-container">
+                        <a href="{{ url_for('listings', q='daihatsu') }}" class="car-button-container">
                             <img src="{{ url_for('static', filename='images/daihatsuemblem-01.png') }}" alt="$" class="brandLogo" style="height: auto; width: 20px;">
                             <span class="brandName">
                                 Daihatsu
@@ -77,7 +90,7 @@
                         </a>
                     </ul>
                     <ul class="carTypeButton">
-                        <a href="#" class="car-button-container">
+                        <a href="{{ url_for('listings', q='suzuki') }}" class="car-button-container">
                             <img src="{{ url_for('static', filename='images/suzukiemblem-01.png') }}" alt="$" class="brandLogo" style="height: auto; width: 20px;">
                             <span class="brandName">
                                 Suzuki
@@ -85,7 +98,7 @@
                         </a>
                     </ul>
                     <ul class="carTypeButton" id="mitsuSelector">
-                        <a href="#" class="car-button-container">
+                        <a href="{{ url_for('listings', q='mitsubishi') }}" class="car-button-container">
                             <img src="{{ url_for('static', filename='images/mitsubishiemblem-01.png') }}" alt="$" class="brandLogo" style="height: auto; width: 20px;">
                             <span class="brandName">
                                 Mitsubishi

@@ -3,9 +3,10 @@
 <div class="car-preview-container">
     <h2>{{ car.oem }}, {{ car.model }}</h2>
 
-    <!-- image -->
-    {% if car.get_cover_image() %}
-        <img src="{{ car.get_cover_image().link }}" alt="ERROR: {{ car.get_cover_image() }}">
+    <!-- image THIS IS THE PROBLEM-->
+    {% set cover = car.get_cover_image() %}
+    {% if cover %}
+        <img src="{{ cover.link }}" alt="ERROR: {{ cover }}">
     {% else %} 
         <p>ERROR: No Images</p>
     {% endif %}
@@ -29,6 +30,7 @@
     {% if car.sales_rep_id != -1 %} 
         <a href="{{ url_for('individual_sales_representative', sales_rep_id=car.sales_rep_id) }}">YO THERS A SALES DOOD VIEW HIM</a>
     {% endif %}
+
 
     <p> {{ car.description }} </p>
     <a href="{{ url_for('car', id=car.id) }}">View This Car</a>

@@ -3,6 +3,7 @@ from datetime import datetime
 from database import db
 from flask_login import UserMixin
 from config import Config
+import jellyfish
 
 class User(UserMixin):
     def __init__(self, username, email, password, super_user=0, time=None, hash=False, id=-1):
@@ -221,6 +222,52 @@ class Car():
     def __repr__(self) -> str:
         return self.__str__()
 
+    def list_for_search(self):
+        oem = str(self.oem).split()
+        model = str(self.model).split()
+        year = str(self.year).split()
+        mileage = str(self.mileage).split()
+        color = str(self.color).split()
+        drivetrain = str(self.drivetrain).split()
+        four_wheel_steering = "four wheel steering".split() if bool(self.four_wheel_steering) else []
+        abs = "abs anti lock anti-lock braking system".split() if bool(self.abs) else []
+        tcs = "tcs traction control system".split() if bool(self.tcs) else []
+        doors = str(self.doors).split()
+        seats = str(self.seats).split()
+        horsepower = str(self.horsepower).split()
+        torque = str(self.torque).split()
+        misc = str(self.misc).split()
+        description = [x.lower() for x in self.description.split()]
+        combined = oem + model + year + mileage + color + drivetrain + four_wheel_steering + abs + tcs + doors + seats + horsepower + torque + misc + description
+        return combined
+
+    def get_word_score(self, word):
+        sum = 0
+        for value in self.list_for_search():
+            distance = jellyfish.jaro_distance(str(word).lower(), str(value).lower())
+            if distance > 0.7:
+                if distance > 0.95:
+                    sum += distance * 6
+                else:
+                    sum += distance
+        return sum
+
+    def get_query_score(self, query):
+        sum = 0
+        for word in query.split():
+            sum += self.get_word_score(word)
+        return sum
+
+    @staticmethod
+    def search_cars(query=None):
+        cars = Car.get_all_cars()
+        if not query:
+            cars.sort(key=(lambda x: x.date_added), reverse=True)
+            return cars
+        cars.sort(key=lambda x: x.get_query_score(str(query)), reverse=True)
+        return cars
+
+        
 class Image():
     def __init__(self, link, car_id, cover_img=0, id=-1):
         self.link = link

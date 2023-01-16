@@ -83,6 +83,10 @@ class DirectMessageForm(FlaskForm):
     content = TextAreaField("Message", validators=[DataRequired()], render_kw={"placeholder": "Message"})
     submit = SubmitField("Send")
 
+class Search(FlaskForm):
+    search_field = StringField("Search", validators=[DataRequired()], render_kw={"placeholeder": "search"})
+    submit = SubmitField("Search")
+
 class EmptyForm(FlaskForm):
     submit = SubmitField("")
 

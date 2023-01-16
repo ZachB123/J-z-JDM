@@ -20,17 +20,21 @@
                     Use our Loan Calculator tool to estimate your monthly car loan payments.
                 </span>
             </div>
+            {% if not price %} 
+                {% set price=20000 %} 
+            {% endif %}
+
             <div class="calculator-input">
                 <div class="loan-box-spacing loan-price" id="vehicle-price">
                     <span class="box-label loan-label">
                         Vehicle Price
                     </span>
                     <div class="typed-input-price input-boxes">
-                        <input type="text" value="20000" class="input-price typed-inputs" id="priceInput">
+                        <input type="text" value="{{ price }}" class="input-price typed-inputs" id="priceInput">
                     </div>
                 </div>
                 <div class="range-slider loan-box-spacing">
-                    <input type="range" min="0" max="100000" value="20000" class="slider-price" id="priceSlider">
+                    <input type="range" min="0" max="100000" value="{{ price }}" class="slider-price" id="priceSlider">
                 </div>
                 <div class="down-payment loan-box-spacing">
                     <span class="box-label">Down Payment</span>
