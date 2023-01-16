@@ -1,0 +1,14 @@
+{% extends "layout.html" %} 
+
+{% block body %} 
+<a href="{{ url_for('profile') }}">Go Back</a>
+<h1>Messages</h1>
+
+{% for sender in senders %} 
+    <div>
+        {{ sender.username }} 
+        <a href="{{ url_for('message_sales_rep', sales_rep_id=sender.id) }}">View Messages</a>
+    </div>
+{% endfor %} 
+
+{% endblock %}
