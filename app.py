@@ -3,7 +3,7 @@ from config import Config
 from flask import Flask, render_template, redirect, url_for, flash, request, abort
 from dotenv import load_dotenv
 load_dotenv()
-from forms import LoginForm, RegistrationForm, CarCreationForm, AddImages, ConfigureSalesRep, Contact, DirectMessageForm
+from forms import LoginForm, RegistrationForm, CarCreationForm, AddImages, ConfigureSalesRep, Contact, DirectMessageForm, Search
 from flask_login import LoginManager, current_user, login_user, logout_user, login_required
 from models import User, Car, Image, SalesRep, Message, DirectMessage
 from werkzeug.urls import url_parse
@@ -86,8 +86,11 @@ def profile():
 def company():
     return render_template("company.html")
 
-@app.route("/listings")
+@app.route("/listings", methods=["GET", "POST"])
 def listings():
+    form = Search()
+    if form.validate_on_submit():
+        return redirect(url_for("listings", q=form.search_field.data))
     page = int(request.args.get("page", 1))
     q = request.args.get("q", None)
     prev_url = None
@@ -100,7 +103,7 @@ def listings():
     cars = CAR_CACHE[offset:offset+amount] 
     if len(cars) >= Config.CARS_PER_PAGE:
         next_url = url_for("listings", page=(page+1), q=q)
-    return render_template("listings.html", cars=cars, prev_url=prev_url, next_url=next_url, q=q)
+    return render_template("listings.html", form=form, cars=cars, prev_url=prev_url, next_url=next_url, q=q)
 
 @app.route("/car/<int:id>")
 def car(id):

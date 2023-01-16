@@ -16,14 +16,27 @@
             </div>
             <div class="carSearchContainer">
                 <div id="carSearchBar">
-                    <span class="material-symbols-outlined search-icons" id="searchIcon">search</span>
+                    <form action="" method="post">
+                        {{ form.hidden_tag() }}
+                        <p>
+                            {{ form.search_field.label }}<br>
+                            {{ form.search_field() }}<br>
+                            {% for error in form.search_field.errors %}
+                                <span>[{{ error }}]</span>
+                            {% endfor %}
+                        </p>
+                        <p>
+                            {{ form.submit() }}
+                        </p>
+                    </form>
+                    <!-- <span class="material-symbols-outlined search-icons" id="searchIcon">search</span>
                     <input type="text" class="carSearchInput" id="carSearchInputSelector" placeholder="Search Cars...">
                     <div id="clearSearchIcon">
                         <span class="material-symbols-outlined search-icons" id="clearSearchButton">close</span>
                     </div>
                     <div class="carSearchButton">
 
-                    </div>
+                    </div> -->
                 </div>
             </div>
             <div id="carTypeButtonContainer">

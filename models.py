@@ -247,7 +247,7 @@ class Car():
             distance = jellyfish.jaro_distance(str(word).lower(), str(value).lower())
             if distance > 0.7:
                 if distance > 0.95:
-                    sum += distance * 5
+                    sum += distance * 6
                 else:
                     sum += distance
         return sum
@@ -268,7 +268,6 @@ class Car():
         return cars
 
         
-
 class Image():
     def __init__(self, link, car_id, cover_img=0, id=-1):
         self.link = link
