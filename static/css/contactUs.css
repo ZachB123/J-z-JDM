@@ -1,0 +1,27 @@
+.contact-us-container {
+    display: flex;
+    width: 60%;
+    margin: 100px auto;
+    text-align: left;
+    justify-items: center;
+    align-items: center;
+    font-family: 'Kanit';
+    border: black;
+    border-width: 10px;
+}
+
+.form-input-header {
+    font-weight: 500;
+}
+
+#contactUsInput {
+    width: 40%;
+}
+
+#formInputContact textarea {
+    overflow: auto;
+    width: 90%;
+    height: auto;
+    min-height: 100px;
+    padding: 5px;
+}

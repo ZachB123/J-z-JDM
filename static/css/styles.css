@@ -35,6 +35,7 @@ a {
 .item:not(.button) a:hover,
 .item a:hover::after {
     color: white;
+    cursor: pointer;
 }
 
 /* Mobile menu */
