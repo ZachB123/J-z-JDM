@@ -236,6 +236,10 @@ def contact():
         return redirect(url_for("contact"))
     return render_template("contactUs.html", form=form)
 
+@app.route("/owners")
+def owners():
+    return render_template("owners.html")
+
 @app.route("/accessibility")
 def accessibility():
     return render_template("accessibility.html")
@@ -243,16 +247,6 @@ def accessibility():
 @app.route("/Privacy-Policy")
 def privacyPolicy():
     return render_template("privacyPolicy.html")
-
-@app.before_first_request
-def on_load():
-    def refresh_caches():
-        while True:
-            # cache.add("USER_CACHE", User.get_all_users())
-            # cache.add("CAR_CACHE", Car.get_all_cars())
-            time.sleep(20)
-    thread = threading.Thread(target=refresh_caches)
-    thread.start()
 
 @app.errorhandler(404)
 def not_found(error):
@@ -263,7 +257,6 @@ def internal_error(error):
     return render_template("500.html"), 500
 
 # API
-
 def success_response(data, code=200):
     return json.dumps({"success": True, "data": data}), code
 
