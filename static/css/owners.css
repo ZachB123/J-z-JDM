@@ -1,0 +1,86 @@
+body {
+    background: url(../images/background-jz.png) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+
+img {
+    width: 300px;
+    height: auto;
+}
+
+.owner-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+    flex-direction: column;
+    font-family: 'Kanit';
+}
+
+.owner-heading {
+    font-size: 40px;
+    font-weight: 800;
+    margin: 15px auto 0 auto;
+    padding: 5px;
+    border-radius: 5px;
+    width: fit-content;
+    height: auto;
+    text-align: center;
+}
+
+.background-selector {
+    background-color: rgb(210,189,168);
+    border-color: black;
+    border-width: 1px;
+    border-style: solid;
+    margin: 15px auto;
+    padding: 5px;
+    border-radius: 5px;
+    width: 90%;
+    height: auto;
+    text-align: center;
+}
+
+.position {
+    margin-bottom: 5px;
+    font-weight: 500;
+    font-size: 30px;
+}
+
+.position p {
+    font-weight: 100;
+    font-size: 14px;
+    margin-top: -10px;
+}
+
+.info-spacer {
+    margin: 5px auto;
+}
+
+.info-spacer span {
+    font-size: 20px;
+    font-weight: 400;
+    text-decoration: underline;
+}
+
+@media screen and (min-width: 367px) {
+    .background-selector {
+        width: 330px;
+        height: auto;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .owners {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        width: 100%;
+        height: auto;
+    }
+}

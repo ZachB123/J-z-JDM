@@ -5,5 +5,64 @@
 {% endblock %}
 
 {% block body %} 
-    
+    <div class="owner-container">
+        <div class="owner-heading">
+            <span>Owners</span>
+        </div>
+        <div class="owners">
+            <div class="solo background-selector">
+                <div class="position">
+                    <span>Zach Buchholz</span>
+                    <p>Backend Developer</p>
+                </div>
+                <div class="portraits">
+                    <img src="{{ url_for('static', filename='images/zachPortrait.jpg') }}" alt="Portrait">
+                </div>
+                <div class="person-info">
+                    <p>Hello there! My name is Zach and I developed all of the behind the scenes features for this website.  I had a blast learning how to develop a backend and work with databases for the first time. In my free time I love to play piano, run and go skiing. I hope our website has helped you find the car of your dreams!</p>
+                </div>
+            </div>
+            <div class="solo background-selector">
+                <div class="position">
+                    <span>John Woodward</span>
+                    <p>Frontend Developer</p>
+                </div>
+                <div class="portraits">
+                    <img src="{{ url_for('static', filename='images/johnPortrait.jpg') }}" alt="Portrait">
+                </div>
+                <div class="person-info">
+                    <p>I AM ZACH AND THIS IS ALL ABOUT ME</p>
+                </div>
+            </div>
+            <div class="solo background-selector">
+                <div class="position">
+                    <span>James Dickens</span>
+                    <p>Graphic Designer</p>
+                </div>
+                <div class="portraits">
+                    <img src="{{ url_for('static', filename='images/DSC_0077.jpg') }}" alt="Portrait">
+                </div>
+                <div class="person-info">
+                    <p>I AM ZACH AND THIS IS ALL ABOUT ME</p>
+                </div>
+            </div>
+        </div>
+        <div class="background-selector">
+            <div class="theme-container info-spacer">
+                <div class="theme-header">
+                    <span>Theme</span>
+                    <p>Used JDM import Cars</p>
+                </div>
+            </div>
+            <div class="location-container info-spacer">
+                <div class="location-header">
+                    <span>Where are we from?</span>
+                    <p>Iowa City West High School BPA Chapter, Iowa City, Iowa</p>
+                </div>
+            </div>
+            <div class="year-header info-spacer">
+                <span>2022-2023</span>
+            </div>
+        </div>
+    </div>
 {% endblock %} 
