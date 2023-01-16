@@ -339,6 +339,13 @@ class DirectMessage():
     def send_direct_message(sender_id, recipient_id, content):
         db.send_direct_message((sender_id, recipient_id, content, datetime.utcnow().timestamp()))
 
+    @staticmethod
+    def get_sender_ids_of_user(user_id):
+        query = db.direct_message_senders((user_id))
+        if len(query) > 0:
+            return [v[0] for v in query] 
+        return []
+
     def __str__(self):
         return f"<Id: {self.id}, Sender: {self.sender_id}, Recipient: {self.recipient_id}, Message: {self.message}, Time: {self.timestamp}, Read? {self.is_read}>"
 

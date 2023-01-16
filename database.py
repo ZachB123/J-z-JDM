@@ -189,6 +189,13 @@ class DatabaseDriver():
             JOIN images 
             ON cars.id=images.car_id;
         """)
+
+    def direct_message_senders(self, values):
+        return self.db_op("""
+            SELECT sender_id FROM direct_messages 
+            WHERE recipient_id=%s
+            GROUP BY sender_id;
+        """, values)
         
 
 

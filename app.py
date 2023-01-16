@@ -42,7 +42,7 @@ def login():
         if not next_page or url_parse(next_page).netloc != "":
             next_page = url_for("index")
         return redirect(next_page)
-    return render_template("login.html", form=form)
+    return render_template("login.html", form=form, title="Login")
 
 @app.route("/logout")
 def logout():
@@ -59,18 +59,26 @@ def register():
         User.add_user(User(form.username.data, form.email.data, form.password.data))
         flash("Congratulations, you are now a registered user!")
         return redirect(url_for("login"))
-    return render_template("register.html", form=form)
+    return render_template("register.html", form=form, title="Register")
 
 @app.route("/profile")
 @login_required
 def profile():
     user = [u for u in User.get_all_users() if int(u.id) == int(current_user.get_id())][0]
     cars = Car.get_favorited_cars_by_user_id(user.id)
-    return render_template("profile.html", user=user, cars=cars)
+    return render_template("profile.html", user=user, cars=cars, title="Profile")
+
+@app.route("/profile/messages")
+@login_required 
+def messages():
+    sender_ids = DirectMessage.get_sender_ids_of_user(int(current_user.get_id()))
+    users = User.get_all_users()
+    senders = [u for u in users if u.id in sender_ids]
+    return render_template("messages.html", senders=senders)
 
 @app.route("/company")
 def company():
-    return render_template("company.html")
+    return render_template("company.html", title="Company")
 
 @app.route("/listings", methods=["GET", "POST"])
 def listings():
@@ -89,7 +97,7 @@ def listings():
     cars = cars[offset:offset+amount] 
     if len(cars) >= Config.CARS_PER_PAGE:
         next_url = url_for("listings", page=(page+1), q=q)
-    return render_template("listings.html", form=form, cars=cars, prev_url=prev_url, next_url=next_url, q=q)
+    return render_template("listings.html", form=form, cars=cars, prev_url=prev_url, next_url=next_url, q=q, title="View Cars")
 
 @app.route("/car/<int:id>")
 def car(id):
@@ -98,7 +106,7 @@ def car(id):
         abort(404)
     NUMBER_OF_SIMILAR_CARS = 4
     similar = Car.search_cars(car.query_from_car())[1:NUMBER_OF_SIMILAR_CARS+1]
-    return render_template("car.html", car=car, similar=similar)
+    return render_template("car.html", car=car, similar=similar, title=f"{car.oem.title()}, {car.model.title()}")
 
 @app.route("/loan")
 def loan():
