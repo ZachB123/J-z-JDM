@@ -74,7 +74,7 @@ def messages():
     sender_ids = DirectMessage.get_sender_ids_of_user(int(current_user.get_id()))
     users = User.get_all_users()
     senders = [u for u in users if u.id in sender_ids]
-    return render_template("messages.html", senders=senders)
+    return render_template("profileMessages.html", senders=senders)
 
 @app.route("/company")
 def company():
@@ -222,9 +222,7 @@ def message_sales_rep(sales_rep_id):
         return redirect(url_for("message_sales_rep", sales_rep_id=sales_rep_id))
     messages = DirectMessage.get_messages(current_user.get_id(), sales_rep_id) + DirectMessage.get_messages(sales_rep_id, current_user.get_id())
     messages.sort(key=(lambda x: x.timestamp))
-    
-    print(type(current_user.get_id()))
-    return render_template("message.html", form=form, user=user, messages=messages)
+    return render_template("messages.html", form=form, user=user, messages=messages)
 
 @app.route("/contact", methods=["GET", "POST"])
 def contact():

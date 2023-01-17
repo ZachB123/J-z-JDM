@@ -1,14 +1,38 @@
 {% extends "layout.html" %} 
 
 {% block body %} 
-<a href="{{ url_for('profile') }}">Go Back</a>
-<h1>Messages</h1>
 
-{% for sender in senders %} 
-    <div>
-        {{ sender.username }} 
-        <a href="{{ url_for('message_sales_rep', sales_rep_id=sender.id) }}">View Messages</a>
+<a href=""></a>
+
+<h1>Messaging, {{ user.username }}</h1>
+
+<h2>Messages aqua colors they sent</h2>
+<div class="messages">
+    {% for message in messages %} 
+        {% if message.sender_id == current_user.get_id() %} 
+            <div class="right">{{ message.message }}</div>
+        {% else %} 
+            <div class="left" style="color:aquamarine">{{ message.message }}</div>
+        {% endif %}
+    {% endfor %}
+</div>
+
+<form action="" method="post">
+    {{ form.hidden_tag() }} 
+    <div class="form-input">
+        <p>
+            <div class="form-input-area">
+                {{ form.content() }}<br>
+            </div>
+            <div class="form-input-error">
+                {% for error in form.content.errors %}
+                    <span>[{{ error }}]</span>
+                {% endfor %}
+            </div>
+        </p>
+        <div class="form-submit">
+            <p>{{ form.submit() }}</p>
+        </div>
     </div>
-{% endfor %} 
-
+</form>
 {% endblock %}
