@@ -5,9 +5,10 @@
 
 {% extends "layout.html" %} 
 
-{% block body %} 
-<h1>Sales Representatives</h1>
-
+{% block body %}
+<div class="sales-rep-header">
+    <h1>Sales Representatives</h1>
+</div>
 {% for sales_rep in sales_reps %} 
     {% include "_saleRepresentative.html" %}
 {% endfor %}
