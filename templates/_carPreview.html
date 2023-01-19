@@ -1,37 +1,40 @@
 
 
 <div class="car-preview-container">
-    <h2>{{ car.oem }}, {{ car.model }}</h2>
+    <div class="car-preview-top-banner">
+        <h2 class="car-preview-title">{{car.year}} {{ car.oem }}, {{ car.model }}</h2>
+        <!-- favorite -->
+        {% if current_user.is_anonymous %} 
+            {% if sales_rep %}
+                <button class="favorite-button" onclick="location.href = `{{ url_for('login', next=url_for(request.endpoint, sales_rep_id=sales_rep.user.id)) }}`"><i class="material-icons favorite">bookmark_add</i></button> 
+            {% else %}
+                <button class="favorite-button" onclick="location.href = `{{ url_for('login', next=url_for(request.endpoint)) }}`"><i class="material-icons favorite">bookmark_add</i></button>
+            {% endif %}
+        {% else %}
+            {% if car.is_favorited_by_user(current_user.get_id()) %} 
+                <button class="favorite-button" onclick="previewUnfavoriteCar(this)" carid={{car.id}} id="carUnfavorite{{car.id}}"><i class="material-icons unfavorite">bookmark_remove</i></button>
+            {% else %} 
+                <button class="favorite-button" onclick="previewFavoriteCar(this)" carid={{car.id}} id="carFavorite{{car.id}}"><i class="material-icons favorite">bookmark_add</i></button>
+            {% endif %}
+        {% endif %}
+    </div>
 
     <!-- image THIS IS THE PROBLEM-->
     {% set cover = car.get_cover_image() %}
     {% if cover %}
-        <img src="{{ cover.link }}" alt="ERROR: {{ cover }}">
+        <img class="car-preview-cover-img" src="{{ cover.link }}" alt="ERROR: {{ cover }}">
     {% else %} 
         <p>ERROR: No Images</p>
     {% endif %}
 
-    <!-- favorite -->
-    {% if current_user.is_anonymous %} 
-        {% if sales_rep %} 
-            <a href="{{ url_for('login', next=url_for(request.endpoint, sales_rep_id=sales_rep.user.id)) }}"><button>login that redirects to sales page</button></a>
-        {% else %}
-            <a href="{{ url_for('login', next=url_for(request.endpoint)) }}">other page</a>
-        {% endif %}
-    {% else %}
-        {% if car.is_favorited_by_user(current_user.get_id()) %} 
-            <button onclick="previewUnfavoriteCar(this)" carid={{car.id}} id="carUnfavorite{{car.id}}">Unfavorite</button>
-        {% else %} 
-            <button onclick="previewFavoriteCar(this)" carid={{car.id}} id="carFavorite{{car.id}}">Favorite</button>
-        {% endif %}
-    {% endif %}
 
     <!-- sales -->
-    {% if car.sales_rep_id != -1 %} 
+    <!-- {% if car.sales_rep_id != -1 %} 
         <a href="{{ url_for('individual_sales_representative', sales_rep_id=car.sales_rep_id) }}">YO THERS A SALES DOOD VIEW HIM</a>
-    {% endif %}
-
-
-    <p> {{ car.description }} </p>
-    <a href="{{ url_for('car', id=car.id) }}">View This Car</a>
+    {% endif %} -->
+    <div class="car-preview-bottom-banner">
+        <span class="currency">{{ car.price }}</span>
+        <a href="{{ url_for('car', id=car.id) }}">View This Car</a>
+    </div>
+    
 </div>

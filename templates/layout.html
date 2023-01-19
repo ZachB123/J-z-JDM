@@ -12,6 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/variables.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
@@ -47,8 +48,7 @@
                 <li class="item button log-in"><a href="{{ url_for('logout') }}">Log Out</a></li>
                 <li class="item button log-in"><a href="{{ url_for('profile') }}">Profile</a></li>
             {% endif %}            
-            <li class="hamburger-button"><a href="#"><i class="fas fa-bars"></i></a></li>
-
+            <li class="hamburger-button"><a href="#"><i class="material-icons">menu</i></a></li>
         </ul>
     </nav>
     {% with messages = get_flashed_messages() %}

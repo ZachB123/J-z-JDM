@@ -58,6 +58,11 @@ class User(UserMixin):
     def __repr__(self) -> str:
         return self.__str__()
 
+    def change_password(self, password):
+        self.set_password(password)
+        db.change_password((self.password_hash, self.id))
+        
+
     @staticmethod
     def user_from_tuple(u):
         #format expected is (id, username, email, date_joined, hash, super_user)

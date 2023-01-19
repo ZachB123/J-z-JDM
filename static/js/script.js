@@ -17,12 +17,12 @@ function toggleMenu() {
         menu.classList.remove("active");
          
         // adds the menu (hamburger) icon
-        toggle.querySelector("a").innerHTML = "<i class=’fas fa-bars’></i>";
+        toggle.querySelector("i").textContent = `menu`;
     } else {
         menu.classList.add("active");
          
         // adds the close (x) icon
-        toggle.querySelector("a").innerHTML = "<i class=’fas fa-times’></i>";
+        toggle.querySelector("i").textContent = `close`;
     }
 }
  
@@ -162,3 +162,14 @@ newsletter.submitForm = () => {
 
 newsletter.input.addEventListener('keypress', (e) => newsletter.handleInputKeypress(e));
 document.addEventListener('click', (e) => newsletter.clickHandler(e));
+
+const formatter = new Intl.NumberFormat('en-US', {
+  style: 'currency',
+  currency: 'USD',
+})
+
+moneyElements = dqa(".currency")
+
+for (elem of moneyElements) {
+  elem.textContent = formatter.format(elem.textContent)
+}
