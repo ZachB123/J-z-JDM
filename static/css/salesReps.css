@@ -1,6 +1,50 @@
-img { 
-    width: 200px;
+/* css for the sales rep page */
+body {
+    background-color: whitesmoke;
+}
+.sales-rep-top {
+    text-align: center;
+    font-family: 'Kanit';
+    width: 80%;
+    margin: 0 auto;
+    margin-bottom: 15px;
+}
+
+.sales-rep-header {
+    width: fit-content;
     height: auto;
+    margin: 0 auto;
+}
+
+.background-selector {
+    background-color: var(--purple);
+    padding-top: 25px;
+    padding-bottom: 100px;
+}
+
+.sales-rep-profile-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    flex: 1 1 auto;
+    width: 80%;
+    height: auto;
+    margin: 0 auto;
+    justify-content: center;
+    justify-items: center;
+}
+
+/* Css for the profile views of the sales rep */
+img { 
+    width: 225px;
+    height: auto;
+}
+
+@media screen and (min-height:1000px) {
+    img {
+        width: 300px;
+        height: auto;
+    }
 }
 
 .sales-rep-container {

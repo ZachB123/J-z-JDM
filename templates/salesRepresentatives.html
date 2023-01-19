@@ -6,11 +6,22 @@
 {% extends "layout.html" %} 
 
 {% block body %}
-<div class="sales-rep-header">
-    <h1>Sales Representatives</h1>
+<div class="sales-rep-top">
+    <div class="sales-rep-header">
+        <h1>Sales Representatives</h1>
+        <hr>
+    </div>
+    
+    <div class="sales-rep-para">
+        <p>Get to know our esteemed sales representatives here at Jz JDM, click on their profiles to learn more about them!</p>
+    </div>
 </div>
-{% for sales_rep in sales_reps %} 
-    {% include "_saleRepresentative.html" %}
-{% endfor %}
+<div class="background-selector">
+    <div class="sales-rep-profile-container">
+        {% for sales_rep in sales_reps %} 
+            {% include "_saleRepresentative.html" %}
+        {% endfor %}
+    </div>
+</div>
 
 {% endblock %}
