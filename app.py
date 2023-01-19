@@ -3,7 +3,7 @@ from config import Config
 from flask import Flask, render_template, redirect, url_for, flash, request, abort
 from dotenv import load_dotenv
 load_dotenv()
-from forms import LoginForm, RegistrationForm, CarCreationForm, AddImages, ConfigureSalesRep, Contact, DirectMessageForm, Search
+from forms import LoginForm, RegistrationForm, CarCreationForm, AddImages, ConfigureSalesRep, Contact, DirectMessageForm, Search, ResetPassword
 from flask_login import LoginManager, current_user, login_user, logout_user, login_required
 from models import User, Car, Image, SalesRep, Message, DirectMessage
 from werkzeug.urls import url_parse
@@ -61,15 +61,20 @@ def register():
         return redirect(url_for("login"))
     return render_template("register.html", form=form, title="Register")
 
-@app.route("/profile")
+@app.route("/profile", methods=["GET", "POST"])
 @login_required
 def profile():
     user = [u for u in User.get_all_users() if int(u.id) == int(current_user.get_id())][0]
+    form = ResetPassword()
+    if form.validate_on_submit():
+        user.change_password(form.password.data)
+        flash("Password Successfully Changed")
+        return redirect(url_for("profile"))
     cars = Car.get_favorited_cars_by_user_id(user.id)
     sender_ids = DirectMessage.get_sender_ids_of_user(int(current_user.get_id()))
     users = User.get_all_users()
     senders = [u for u in users if u.id in sender_ids]
-    return render_template("profile.html", user=user, cars=cars, senders=senders, title="Profile")
+    return render_template("profile.html", user=user, cars=cars, senders=senders, form=form, title="Profile")
 
 @app.route("/company")
 def company():
