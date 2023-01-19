@@ -26,11 +26,15 @@ class User(UserMixin):
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
 
+    def change_password(self, password):
+        self.set_password(password)
+        db.change_password((self.password_hash, self.id))
+
     def get_id(self):
         return int(self.id)
 
     @staticmethod
-    def get_by_id(id):
+    def get_user_by_id(id):
         u = db.get_user_by_id((id,))
         if len(u) > 0:
             u = u[0]
@@ -38,7 +42,7 @@ class User(UserMixin):
         return None
 
     @staticmethod
-    def get_by_username(username):
+    def get_user_by_username(username):
         u = db.get_user_by_username((username,))
         if len(u) > 0:
             u = u[0]
@@ -51,17 +55,6 @@ class User(UserMixin):
         if len(u) > 0:
             return [User.user_from_tuple(l) for l in u]
         return None
-
-    def __str__(self) -> str:
-        return f"<Id: {self.id}, Username: {self.username}, Email: {self.email}, Date Joined: {datetime.fromtimestamp(self.date_joined)}, Super User: {self.super_user}>"
-
-    def __repr__(self) -> str:
-        return self.__str__()
-
-    def change_password(self, password):
-        self.set_password(password)
-        db.change_password((self.password_hash, self.id))
-        
 
     @staticmethod
     def user_from_tuple(u):
@@ -87,6 +80,12 @@ class User(UserMixin):
         if car_id == -1:
             return
         db.remove_favorite((user_id, car_id))
+
+    def __str__(self) -> str:
+        return f"<Id: {self.id}, Username: {self.username}, Email: {self.email}, Date Joined: {datetime.fromtimestamp(self.date_joined)}, Super User: {self.super_user}>"
+
+    def __repr__(self) -> str:
+        return self.__str__()
 
 class SalesRep():
     def __init__(self, user, about=None, image_link=None, id=-1):
@@ -228,6 +227,10 @@ class Car():
         return self.__str__()
 
     def list_for_search(self):
+        """
+        This method compiles all of the properties of the car into 2 lists of strings
+        the combined one is for all the properties and then the description is also there
+        """
         oem = str(self.oem).split()
         model = str(self.model).split()
         year = str(self.year).split()
@@ -247,6 +250,10 @@ class Car():
         return combined, description
 
     def get_word_score(self, word):
+        """
+        Returns a number that corresponds to how well the word matches the car object
+        A nearly exact match is given a huge boost and words in the description are penalized
+        """
         MACTCH_MULTIPLIER = 6
         DESCRIPTION_MULTIPLIER = 0.5
         keywords, description = self.list_for_search()
@@ -268,23 +275,37 @@ class Car():
         return sum
 
     def get_query_score(self, query):
+        """
+        adds the word scores for each word in the query to get the total similarity of a query to a car
+        """
         sum = 0
         for word in query.split():
             sum += self.get_word_score(word)
         return sum
 
     def query_from_car(self):
+        """Turns the entire car into a string made to go into the search query to find similar cars"""
         keywords, description = self.list_for_search()
         return " ".join(keywords) + " ".join(description)
 
     @staticmethod
     def search_cars(query=None):
+        """
+        Orders the car by how much they match the search query
+        Always returns all the cars
+        """
         cars = Car.get_all_cars()
         if not query:
             cars.sort(key=(lambda x: x.date_added), reverse=True)
             return cars
         cars.sort(key=lambda x: x.get_query_score(str(query)), reverse=True)
         return cars
+
+    def __str__(self) -> str:
+        return f"<Id: {self.id}, Descripton: {self.description}, O.E.M: {self.oem}, Model: {self.model}, : {self.model}, Year: {self.year}, Mileage: {self.mileage}, Color: {self.color}, Price: {self.price}, Drivetrain: {self.drivetrain}, Engine Cylinder: {self.engine_cylinder}, Engine Size: {self.engine_size}, Four Wheel Steering: {self.four_wheel_steering}, ABS: {self.abs}, TCS: {self.tcs}, Doors: {self.doors}, Seats: {self.seats}, Horsepower: {self.horsepower}, Torque: {self.torque}, Misc: {self.misc}, Sales Rep Id: {self.sales_rep_id}, Date Created: {datetime.fromtimestamp(self.date_added)}>"
+
+    def __repr__(self) -> str:
+        return self.__str__()
 
         
 class Image():
