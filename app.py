@@ -66,15 +66,10 @@ def register():
 def profile():
     user = [u for u in User.get_all_users() if int(u.id) == int(current_user.get_id())][0]
     cars = Car.get_favorited_cars_by_user_id(user.id)
-    return render_template("profile.html", user=user, cars=cars, title="Profile")
-
-@app.route("/profile/messages")
-@login_required 
-def messages():
     sender_ids = DirectMessage.get_sender_ids_of_user(int(current_user.get_id()))
     users = User.get_all_users()
     senders = [u for u in users if u.id in sender_ids]
-    return render_template("profileMessages.html", senders=senders, title="View Messages")
+    return render_template("profile.html", user=user, cars=cars, senders=senders, title="Profile")
 
 @app.route("/company")
 def company():
