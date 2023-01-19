@@ -79,6 +79,10 @@ a {
     border-bottom: 1px #444 solid;
 }
 
+.hamburger-button i {
+    font-size: 40px;
+}
+
 /* Submenu up from mobile screens */
 .submenu {
     display: none;

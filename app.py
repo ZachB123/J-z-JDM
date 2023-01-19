@@ -25,7 +25,7 @@ def load_user(id):
 @app.route("/")
 @app.route("/index")
 def index():
-    return render_template("index.html")
+    return render_template("index.html", title="Home")
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -66,15 +66,10 @@ def register():
 def profile():
     user = [u for u in User.get_all_users() if int(u.id) == int(current_user.get_id())][0]
     cars = Car.get_favorited_cars_by_user_id(user.id)
-    return render_template("profile.html", user=user, cars=cars, title="Profile")
-
-@app.route("/profile/messages")
-@login_required 
-def messages():
     sender_ids = DirectMessage.get_sender_ids_of_user(int(current_user.get_id()))
     users = User.get_all_users()
     senders = [u for u in users if u.id in sender_ids]
-    return render_template("profileMessages.html", senders=senders)
+    return render_template("profile.html", user=user, cars=cars, senders=senders, title="Profile")
 
 @app.route("/company")
 def company():
@@ -111,7 +106,7 @@ def car(id):
 @app.route("/loan")
 def loan():
     price = request.args.get("price", None)
-    return render_template("loan.html", price=price)
+    return render_template("loan.html", price=price, title="Loan Calculator")
 
 @app.route("/control", methods=["GET", "POST"])
 @login_required
@@ -127,7 +122,7 @@ def control():
         flash("Car added")
         return redirect(url_for("control"))
     cars = Car.get_all_cars()
-    return render_template("control.html", form=form, cars=cars, users=users)
+    return render_template("control.html", form=form, cars=cars, users=users, title="Control Center")
 
 @app.route("/control/users/<int:user_id>", methods=["GET", "POST"])
 @login_required
@@ -137,7 +132,7 @@ def configure_sales_rep(user_id):
         flash("You do not have the required privileges to view this page")
         return redirect(url_for("index"))
     form = ConfigureSalesRep()
-    user = [u for u in user if int(u.id) == int(user_id)][0]
+    user = [u for u in users if int(u.id) == int(user_id)][0]
     sales_rep = SalesRep.get_sales_rep_by_user_id(user_id)
     if form.validate_on_submit():
         if not sales_rep:
@@ -203,13 +198,13 @@ def add_image_to_car(car_id):
 @app.route("/sales")
 def sales_representatives():
     sales_reps = SalesRep.get_all_sales_reps() or []
-    return render_template("salesRepresentatives.html", sales_reps=sales_reps)
+    return render_template("salesRepresentatives.html", sales_reps=sales_reps, title="Sale Representatives")
 
 @app.route("/sales/<int:sales_rep_id>")
 def individual_sales_representative(sales_rep_id):
     sales_rep = SalesRep.get_sales_rep_by_user_id(int(sales_rep_id))
     cars = Car.get_cars_by_sales_rep_id(sales_rep_id) or []
-    return render_template("individualSalesRepresentative.html", sales_rep=sales_rep, cars=cars)
+    return render_template("individualSalesRepresentative.html", sales_rep=sales_rep, cars=cars, title=sales_rep.user.username)
 
 @app.route("/sales/message/<int:sales_rep_id>", methods=["GET", "POST"])
 @login_required
@@ -222,7 +217,7 @@ def message_sales_rep(sales_rep_id):
         return redirect(url_for("message_sales_rep", sales_rep_id=sales_rep_id))
     messages = DirectMessage.get_messages(current_user.get_id(), sales_rep_id) + DirectMessage.get_messages(sales_rep_id, current_user.get_id())
     messages.sort(key=(lambda x: x.timestamp))
-    return render_template("messages.html", form=form, user=user, messages=messages)
+    return render_template("messages.html", form=form, user=user, messages=messages, title=f"Messaging: {user.username}")
 
 @app.route("/contact", methods=["GET", "POST"])
 def contact():
@@ -231,27 +226,27 @@ def contact():
         Message.add_message(Message(form.message.data, form.name.data))
         flash("Message Successfully Sent")
         return redirect(url_for("contact"))
-    return render_template("contactUs.html", form=form)
+    return render_template("contactUs.html", form=form, title="Contact Us")
 
 @app.route("/owners")
 def owners():
-    return render_template("owners.html")
+    return render_template("owners.html", title="Owners")
 
 @app.route("/accessibility")
 def accessibility():
-    return render_template("accessibility.html")
+    return render_template("accessibility.html", title="Accessibility")
 
 @app.route("/Privacy-Policy")
 def privacyPolicy():
-    return render_template("privacyPolicy.html")
+    return render_template("privacyPolicy.html", title="Privacy Policy")
 
 @app.errorhandler(404)
 def not_found(error):
-    return render_template("404.html"), 404
+    return render_template("404.html", title="PAGE NOT FOUND"), 404
 
 @app.errorhandler(500)
 def internal_error(error):
-    return render_template("500.html"), 500
+    return render_template("500.html", title="INTERNAL SERVER ERROR"), 500
 
 # API
 def success_response(data, code=200):

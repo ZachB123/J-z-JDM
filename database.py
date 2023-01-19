@@ -196,6 +196,13 @@ class DatabaseDriver():
             WHERE recipient_id=%s
             GROUP BY sender_id;
         """, values)
+
+    def change_password(self, values):
+        self.db_op("""
+            UPDATE users 
+            SET password_hash=%s 
+            WHERE id=%s
+        """, values)
         
 
 

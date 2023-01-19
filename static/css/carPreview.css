@@ -1,3 +1,41 @@
 .car-preview-container {
-    background-color: blue;
+    background-color: var(--teal);
+    margin: 20px 12px;
+    border: solid #000;
+    position: relative;
+}
+
+.car-preview-top-banner {
+    position: absolute;
+    width: 100%;
+    background-color: rgba(247, 255, 134, 0.7);
+    display: flex;
+    justify-content: space-between;
+}
+
+.favorite-button {
+    background: none;
+    border: none;
+}
+
+.favorite {
+    color: green;
+}
+
+.unfavorite {
+    color: blue;
+}
+
+.car-preview-title {
+    display: inline-block;
+}
+
+.car-preview-cover-img {
+    width: 100%
+}
+
+.car-preview-bottom-banner {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
 }
