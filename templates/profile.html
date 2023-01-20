@@ -8,7 +8,6 @@
     <a href="{{url_for('control')}}">CONTROL</a>
 {% endif %}
 
-<!-- <a href="{{ url_for('messages') }}">View Messages</a> -->
 
 <h1>Messages</h1>
 {% for sender in senders %} 
@@ -17,6 +16,38 @@
         <a href="{{ url_for('message_sales_rep', sales_rep_id=sender.id) }}">View Messages</a>
     </div>
 {% endfor %} 
+
+<h1>Reset Password</h1>
+<form action="" method="post">
+    {{ form.hidden_tag() }}
+    <div class="form-input">
+        <p>
+            <div class="form-input-area">
+                {{ form.password() }}<br>
+            </div>
+            <div class="input-area-error">
+                {% for error in form.password.errors %}
+                    <span>[{{ error }}]</span>
+                {% endfor %}
+            </div>
+        </p>
+    </div>
+    <div class="form-input">
+        <p>
+            <div class="form-input-area">
+                {{ form.password2() }}<br>
+            </div>
+            <div class="input-area-error">
+                {% for error in form.password2.errors %}
+                    <span>[{{ error }}]</span>
+                {% endfor %}
+            </div>
+        </p>
+    </div>
+    <div class="form-submit">
+        <p>{{ form.submit() }}</p>
+    </div>
+</form>
 
 <h2>Favorites</h2>
 

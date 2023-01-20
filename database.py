@@ -3,6 +3,7 @@ from config import Config
 
 class DatabaseDriver():
 
+    # Generic method for querying the database
     def db_op(self, sql, values=()):
         output = None
         connection = pymysql.connect(host=Config.DATABASE_HOST, user=Config.DATABASE_USER, password=Config.DATABASE_PASSWORD, port=int(Config.DATABASE_PORT), db=Config.DATABASE)
@@ -13,17 +14,7 @@ class DatabaseDriver():
             connection.commit()
         return list(output)
 
-    def delete_all_from_test(self):
-        self.db_op("""DELETE FROM test;""", ())
-
-    def add_post(self, values):
-        self.db_op("""INSERT INTO test (data, name) VALUES (%s,%s);""", values)
-
-    def get_all_posts(self):
-        return self.db_op("""SELECT * FROM test;""")
-
-    # order is username email date_joined super_user
-    # user object is passed in
+    # user is created from the user object passed to it
     def create_user(self, user):
         self.db_op("""
             INSERT INTO users (username, email, timestamp_date_joined, password_hash, super_user)
@@ -46,15 +37,14 @@ class DatabaseDriver():
     
     def create_car(self, car):
         self.db_op("""
-            INSERT INTO cars (sales_rep_id, description, oem, model, year, mileage, color, price, drivetrain, engine_cylinder, engine_size, four_wheel_steering, abs, tcs, doors, seats, horsepower, torque, misc, date_added)
+            INSERT INTO cars (sales_rep_id, description, oem, model, year, mileage, color, 
+                              price, drivetrain, engine_cylinder, engine_size, four_wheel_steering, 
+                              abs, tcs, doors, seats, horsepower, torque, misc, date_added)
             VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);
-        """, (car.sales_rep_id, car.description, car.oem, car.model, car.year, car.mileage, car.color, car.price, car.drivetrain, car.engine_cylinder, car.engine_size, car.four_wheel_steering, car.abs, car.tcs, car.doors, car.seats, car.horsepower, car.torque, car.misc, car.date_added))
-
-    def create_car_test(self, car):
-        self.db_op("""
-            INSERT INTO car_test (description)
-            VALUES (%s);
-        """, (car.description,))
+        """, (car.sales_rep_id, car.description, car.oem, car.model, car.year, car.mileage, 
+              car.color, car.price, car.drivetrain, car.engine_cylinder, car.engine_size, 
+              car.four_wheel_steering, car.abs, car.tcs, car.doors, car.seats, car.horsepower, 
+              car.torque, car.misc, car.date_added))
 
     def get_all_cars(self):
         return self.db_op("""
@@ -204,6 +194,5 @@ class DatabaseDriver():
             WHERE id=%s
         """, values)
         
-
-
+        
 db = DatabaseDriver()

@@ -3,7 +3,7 @@ from config import Config
 from flask import Flask, render_template, redirect, url_for, flash, request, abort
 from dotenv import load_dotenv
 load_dotenv()
-from forms import LoginForm, RegistrationForm, CarCreationForm, AddImages, ConfigureSalesRep, Contact, DirectMessageForm, Search
+from forms import LoginForm, RegistrationForm, CarCreationForm, AddImages, ConfigureSalesRep, Contact, DirectMessageForm, Search, ResetPassword
 from flask_login import LoginManager, current_user, login_user, logout_user, login_required
 from models import User, Car, Image, SalesRep, Message, DirectMessage
 from werkzeug.urls import url_parse
@@ -18,9 +18,7 @@ login.login_view = "login"
 
 @login.user_loader
 def load_user(id):
-    return User.get_by_id(id)
-    # USER_CACHE = cache.get("USER_CACHE")
-    # return [u for u in USER_CACHE if int(u.id) == int(id)][0]
+    return User.get_user_by_id(id)
 
 @app.route("/")
 @app.route("/index")
@@ -33,7 +31,7 @@ def login():
         return redirect(url_for("index"))
     form = LoginForm()
     if form.validate_on_submit():
-        user = [u for u in User.get_all_users() if u.username == form.username.data][0]
+        user = User.get_user_by_username(form.username.data)
         if user is None or not user.check_password(form.password.data):
             flash("Invalid username or password")
             return redirect(url_for("login"))
@@ -61,15 +59,20 @@ def register():
         return redirect(url_for("login"))
     return render_template("register.html", form=form, title="Register")
 
-@app.route("/profile")
+@app.route("/profile", methods=["GET", "POST"])
 @login_required
 def profile():
-    user = [u for u in User.get_all_users() if int(u.id) == int(current_user.get_id())][0]
+    user = User.get_user_by_id(current_user.get_id())
+    form = ResetPassword()
+    if form.validate_on_submit():
+        user.change_password(form.password.data)
+        flash("Password Successfully Changed")
+        return redirect(url_for("profile"))
     cars = Car.get_favorited_cars_by_user_id(user.id)
     sender_ids = DirectMessage.get_sender_ids_of_user(int(current_user.get_id()))
     users = User.get_all_users()
     senders = [u for u in users if u.id in sender_ids]
-    return render_template("profile.html", user=user, cars=cars, senders=senders, title="Profile")
+    return render_template("profile.html", user=user, cars=cars, senders=senders, form=form, title="Profile")
 
 @app.route("/company")
 def company():
@@ -80,16 +83,16 @@ def listings():
     form = Search()
     if form.validate_on_submit():
         return redirect(url_for("listings", q=form.search_field.data))
-    page = int(request.args.get("page", 1))
     q = request.args.get("q", None)
+    cars = Car.search_cars(q) 
+    page = int(request.args.get("page", 1))
+    offset = (page - 1) * Config.CARS_PER_PAGE
+    amount = Config.CARS_PER_PAGE
+    cars = cars[offset:offset+amount] 
     prev_url = None
     next_url = None
     if page > 1:
         prev_url = url_for("listings", page=(page-1))
-    cars = Car.search_cars(q) 
-    offset = (page - 1) * Config.CARS_PER_PAGE
-    amount = Config.CARS_PER_PAGE
-    cars = cars[offset:offset+amount] 
     if len(cars) >= Config.CARS_PER_PAGE:
         next_url = url_for("listings", page=(page+1), q=q)
     return render_template("listings.html", form=form, cars=cars, prev_url=prev_url, next_url=next_url, q=q, title="View Cars")
@@ -127,12 +130,11 @@ def control():
 @app.route("/control/users/<int:user_id>", methods=["GET", "POST"])
 @login_required
 def configure_sales_rep(user_id):
-    users = User.get_all_users()
-    if [u for u in users if int(u.id) == int(current_user.get_id())][0].super_user == 0:
+    if User.get_user_by_id(current_user.get_id()).super_user == 0:
         flash("You do not have the required privileges to view this page")
         return redirect(url_for("index"))
     form = ConfigureSalesRep()
-    user = [u for u in users if int(u.id) == int(user_id)][0]
+    user = User.get_user_by_id(user_id)
     sales_rep = SalesRep.get_sales_rep_by_user_id(user_id)
     if form.validate_on_submit():
         if not sales_rep:
@@ -150,8 +152,7 @@ def configure_sales_rep(user_id):
 @app.route("/control/users/<int:sales_rep_id>/assign")
 @login_required
 def assign_cars(sales_rep_id):
-    users = User.get_all_users()
-    if [u for u in users if int(u.id) == int(current_user.get_id())][0].super_user == 0:
+    if User.get_user_by_id(current_user.get_id()).super_user == 0:
         flash("You do not have the required privileges to view this page")
         return redirect(url_for("index"))
     cars = Car.get_all_cars()
@@ -162,8 +163,7 @@ def assign_cars(sales_rep_id):
 @app.route("/control/cars/<int:car_id>", methods=["GET", "POST"])
 @login_required
 def add_image_to_car(car_id):
-    users = User.get_all_users()
-    if [u for u in users if int(u.id) == int(current_user.get_id())][0].super_user == 0:
+    if User.get_user_by_id(current_user.get_id()).super_user == 0:
         flash("You do not have the required privileges to view this page")
         return redirect(url_for("index"))
     form = AddImages()
@@ -190,8 +190,7 @@ def add_image_to_car(car_id):
             Image.add_image(Image(form.image10.data, car_id))
         flash("Images successfully added")
         return redirect(url_for("add_image_to_car", car_id=car_id))
-    cars = Car.get_all_cars()
-    car = [i for i in cars if int(i.id) == int(car_id)][0]
+    car = Car.get_car_by_id(car_id)
     images = car.get_images() or []
     return render_template("addImage.html", car=car, form=form, images=images)
 
@@ -209,7 +208,7 @@ def individual_sales_representative(sales_rep_id):
 @app.route("/sales/message/<int:sales_rep_id>", methods=["GET", "POST"])
 @login_required
 def message_sales_rep(sales_rep_id):
-    # try an auto refrech method thing
+    # try an auto refresh method thing
     user = User.get_by_id(sales_rep_id)
     form = DirectMessageForm()
     if form.validate_on_submit():

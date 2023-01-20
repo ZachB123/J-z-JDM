@@ -34,6 +34,17 @@ class RegistrationForm(FlaskForm):
         if user is not None:
             raise ValidationError('Please use a different username.')
 
+class ResetPassword(FlaskForm):
+    password = PasswordField('Password', validators=[DataRequired()], render_kw={"placeholder": "Password"})
+    password2 = PasswordField('Repeat Password', validators=[DataRequired()], render_kw={"placeholder": "Repeat Password"})
+    submit = SubmitField("submit")
+
+    def validate_password2(self, password2):
+        print(password2.data)
+        print(self.password.data)
+        if not password2.data == self.password.data:
+            raise ValidationError("Passwords Do Not Match")
+
 class CarCreationForm(FlaskForm):
     description = TextAreaField("Description")
     oem = StringField("O.E.M")
