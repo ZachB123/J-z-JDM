@@ -3,17 +3,28 @@ img {
     height: auto;
     background-size: cover;
 }
+body {
+    background-color: white;
+}
 
 .solo-sales-rep-profile-container {
     text-align: center;
+    font-family: 'Kanit';
 }
 
 .profile-photo-container {
     position: relative;
     width: fit-content;
-    height: auto;
+    height: fit-content;
     margin: 0 auto;
 }
+
+/* .sales-rep-pic {
+    background-image: url('../images/DSC_0077.jpg');
+    width: 300px;
+    height: 400px;
+    background-size: cover;
+} */
 
 .sales-rep-name-container {
     position: absolute;
@@ -39,5 +50,27 @@ img {
 .sales-rep-message {
     width: 100%;
     background-color: wheat;
-    padding: 2px;
+    padding: 12px 2px 4px 2px;
+    margin-top: -12px;
+    border-radius: 10px;
+}
+
+.sales-rep-contact-button {
+    background-color: var(--purple);
+    width: fit-content;
+    padding: 15px;
+    border-radius: 5px;
+    margin: 10px auto;
+    font-size: 25px;
+    border-style: solid;
+    border-color: black;
+    border-width: 1px;
+}
+
+.sales-rep-contact-button:hover {
+    background-color: #7453a0;
+}
+
+@media screen and (min-width: 700px) {
+    
 }

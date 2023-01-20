@@ -1,8 +1,13 @@
 
 :root {
     /* Breakpoints 512px 768px 992px 1200px */
-    --grey: #1f1e26;
+    /* --grey: #1f1e26;
     --purple: #582c8e;
     --teal: #00DCDC;
-    --yellow: #f7ff86;
+    --yellow: #f7ff86; */
+    --grey: #1f1e26;
+    --purple: #f5c2ee;
+    --teal: #cb0606;
+    --yellow: #0c1e2c;
+    --secondaryPrime: #fdf2e2;
  }
