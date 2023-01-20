@@ -1,7 +1,17 @@
 {% extends "layout.html" %} 
 
+{% block css %} 
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/car.css') }}">
+{% endblock %} 
+
 {% block body %} 
-    <h1> {{ car }}</h1>
+    <div class="car">
+        <h1>{{ car.year }} {{ car.oem }}, {{ car.model }}</h1>
+        <div class="current-car-image">
+            <img src="{{ cover_image.link }}" alt="ERROR: {{cover_image}}">
+        </div>
+        <p>&emsp; {{car.description}}</p>
+    </div>
     <!-- loan --> 
     <span>{{ car.description }}</span>
     <span>{{ car.oem }}</span>
@@ -22,7 +32,7 @@
 
     <a href="{{ url_for('loan', price=car.price) }}">Get a loan estimate for this car</a>
 
-    <h1>Similar</h1>
+    <h1 class="test">Similar</h1>
 
     {% for car in similar %} 
         {% include "_carPreview.html" %} 

@@ -10,7 +10,7 @@ class LoginForm(FlaskForm):
     submit = SubmitField('Sign In')
 
     def validate_password(self, password):
-        user = User.get_by_username(self.username.data)
+        user = User.get_user_by_username(self.username.data)
         if user is None:
             raise ValidationError("Username does not exist")
         if not user.check_password(self.password.data):
@@ -30,7 +30,7 @@ class RegistrationForm(FlaskForm):
             raise ValidationError("Passwords Do Not Match")
 
     def validate_username(self, username):
-        user = User.get_by_username(username.data)
+        user = User.get_user_by_username(username.data)
         if user is not None:
             raise ValidationError('Please use a different username.')
 

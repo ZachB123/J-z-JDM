@@ -102,9 +102,15 @@ def car(id):
     car = Car.get_car_by_id(int(id))
     if not car:
         abort(404)
+    images = car.get_images()
+    cover_image = images[0]
+    for image in images:
+        if image.cover_img == 1:
+            cover_image = image
+            break
     NUMBER_OF_SIMILAR_CARS = 4
     similar = Car.search_cars(car.query_from_car())[1:NUMBER_OF_SIMILAR_CARS+1]
-    return render_template("car.html", car=car, similar=similar, title=f"{car.oem.title()}, {car.model.title()}")
+    return render_template("car.html", car=car, similar=similar, images=images, cover_image=cover_image, title=f"{car.oem.title()}, {car.model.title()}")
 
 @app.route("/loan")
 def loan():
@@ -209,7 +215,7 @@ def individual_sales_representative(sales_rep_id):
 @login_required
 def message_sales_rep(sales_rep_id):
     # try an auto refresh method thing
-    user = User.get_by_id(sales_rep_id)
+    user = User.get_user_by_id(sales_rep_id)
     form = DirectMessageForm()
     if form.validate_on_submit():
         DirectMessage.send_direct_message(int(current_user.get_id()), int(user.id), form.content.data)
@@ -270,7 +276,7 @@ def test():
 def assign_car_to_sales_rep():
     if current_user.is_anonymous:
         return failure_response("User is not logged in", 401)
-    user = User.get_by_id(int(current_user.get_id()))
+    user = User.get_user_by_id(int(current_user.get_id()))
     if user is None or user.super_user == 0:
         return failure_response("You do not have the required privileges", 403)
     body = json.loads(request.data)
@@ -285,7 +291,7 @@ def assign_car_to_sales_rep():
 def demo_flash():
     if current_user.is_anonymous:
         return failure_response("User is not logged in", 401)
-    user = User.get_by_id(int(current_user.get_id()))
+    user = User.get_user_by_id(int(current_user.get_id()))
     if user is None or user.super_user == 0:
         return failure_response("You do not have the required privileges", 403)
     flash("This is a flashed message for styling")

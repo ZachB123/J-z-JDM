@@ -115,7 +115,7 @@ class SalesRep():
 
     @staticmethod
     def sales_rep_from_tuple(t):
-        return SalesRep(User.get_by_id(t[1]), t[2], t[3], t[0])
+        return SalesRep(User.get_user_by_id(t[1]), t[2], t[3], t[0])
 
     @staticmethod
     def get_all_sales_reps():
