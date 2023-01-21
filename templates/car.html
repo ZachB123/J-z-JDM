@@ -4,37 +4,105 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/car.css') }}">
 {% endblock %} 
 
+{% block js %} 
+    <script src="{{ url_for('static', filename='js/carScript.js') }}" defer></script>
+{% endblock %}
+
 {% block body %} 
+    <a href="{{ url_for('listings') }}">Go Back</a>
     <div class="car">
         <h1>{{ car.year }} {{ car.oem }}, {{ car.model }}</h1>
         <div class="current-car-image">
-            <img src="{{ cover_image.link }}" alt="ERROR: {{cover_image}}">
+            <img class="current-image" src="{{ cover_image.link }}" alt="ERROR: {{cover_image}}">
+        </div>
+        <div class="more-images-carousel">
+            <h3>More Images</h3>
+            <div class="more-images-container">
+                {% for image in images %}
+                    <img class="more-images" src="{{ image.link }}" alt="ERROR: {{ image }}">
+                {% endfor %}
+            </div>
         </div>
         <p>&emsp; {{car.description}}</p>
     </div>
-    <!-- loan --> 
-    <span>{{ car.description }}</span>
-    <span>{{ car.oem }}</span>
-    <span>{{ car.model }}</span>
-    <span>{{ car.year }}</span>
-    <span>{{ car.mileage }}</span>
-    <span>{{ car.color }}</span>
-    <span>{{ car.drivetrain }}</span>
-    <span>{{ car.four_wheel_steering }}</span>
-    <span>{{ car.abs }}</span>
-    <span>{{ car.tcs }}</span>
-    <span>{{ car.doors }}</span>
-    <span>{{ car.seats }}</span>
-    <span>{{ car.horsepower }}</span>
-    <span>{{ car.torque }}</span>
-    <span>{{ car.misc }}</span>
+    <div class="additional-information">
+        <h1>Specification</h1>
+        <div class="information-container">
+            <div class="info-container">
+                <h3>Manufacturer</h3>
+                <h2>{{ car.oem }}</h2>
+            </div>
+            <div class="info-container">
+                <h3>Model</h3>
+                <h2>{{ car.model }}</h2>
+            </div>
+            <div class="info-container">
+                <h3>Year</h3>
+                <h2>{{ car.year }}</h2>
+            </div>
+            <div class="info-container">
+                <h3>Mileage</h3>
+                <h2>{{ car.mileage }}</h2>
+            </div>
+            <div class="info-container">
+                <h3>Color</h3>
+                <h2>{{ car.color }}</h2>
+            </div>
+            <div class="info-container">
+                <h3>Drivetrain</h3>
+                <h2>{{ car.drivetrain }}</h2>
+            </div>
+            {% if car.abs == 1 %}
+                <div class="info-container">
+                    <h3>ABS</h3>
+                    <h2><i class="material-icons">check</i></h2>
+                </div>
+            {% endif %}
+            {% if car.tcs == 1 %}
+                <div class="info-container">
+                    <h3>TCS</h3>
+                    <h2><i class="material-icons">check</i></h2>
+                </div>
+            {% endif %}
+            {% if car.four_wheel_steering == 1 %}
+                <div class="info-container">
+                    <h2><i class="material-icons">check</i></h2>
+                </div>
+            {% endif %}
+            <div class="info-container">
+                <h3># Doors</h3>
+                <h2>{{ car.doors }}</h2>
+            </div>
+            <div class="info-container">
+                <h3># Seats</h3>
+                <h2>{{ car.seats }}</h2>
+            </div>
+            <div class="info-container">
+                <h3>Horsepower</h3>
+                <h2>{{ car.horsepower }}</h2>
+            </div>
+            <div class="info-container">
+                <h3>Torque</h3>
+                <h2>{{ car.torque }}</h2>
+            </div>
+            {% if car.misc %} 
+                <div class="info-container">
+                    <h3>Miscellaneous</h3>
+                    <h2>{{ car.misc }}</h2>
+                </div>
+            {% endif %}
+        </div>
+    </div>
 
 
     <a href="{{ url_for('loan', price=car.price) }}">Get a loan estimate for this car</a>
-
-    <h1 class="test">Similar</h1>
-
-    {% for car in similar %} 
-        {% include "_carPreview.html" %} 
-    {% endfor %}
+    {% if car.sales_rep_id != -1 %} 
+        <a href="{{ url_for('individual_sales_representative', sales_rep_id=car.sales_rep_id) }}">View Sales Representative for this Car</a>
+    {% endif %}
+    <div class="similar_cars">
+        <h1>Similar Cars</h1>
+        {% for car in similar %} 
+            {% include "_carPreview.html" %} 
+        {% endfor %}
+    </div>
 {% endblock %}

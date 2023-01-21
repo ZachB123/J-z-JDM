@@ -11,3 +11,31 @@
     -ms-border-radius: 8px;
     -o-border-radius: 8px;
 }
+
+.more-images {
+    width: 30%;
+    cursor: pointer;
+}
+
+.information-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.info-container {
+    background-color: pink;
+    /* adjust this width if the boxes get all stacked up */
+    width: 44vw; 
+    padding: 4px;
+    margin: 8px;
+}
+
+.similar_cars {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.similar_cars > * {
+    height: fit-content;
+}

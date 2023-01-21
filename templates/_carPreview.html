@@ -27,11 +27,7 @@
         <p>ERROR: No Images</p>
     {% endif %}
 
-
-    <!-- sales -->
-    <!-- {% if car.sales_rep_id != -1 %} 
-        <a href="{{ url_for('individual_sales_representative', sales_rep_id=car.sales_rep_id) }}">YO THERS A SALES DOOD VIEW HIM</a>
-    {% endif %} -->
+    
     <div class="car-preview-bottom-banner">
         <span class="currency">{{ car.price }}</span>
         <a href="{{ url_for('car', id=car.id) }}">View This Car</a>
