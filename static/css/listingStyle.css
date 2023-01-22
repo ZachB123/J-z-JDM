@@ -40,16 +40,18 @@ body {
     margin-bottom: 5px;
 }
 
-
-
 #carSearchBar {
-    background-color: white;
+    background-color: transparent;
     margin-bottom: 5px;
     width: 60%;
     height: auto;
     margin-left: auto;
     margin-right: auto;
     position: relative;
+}
+
+#carSearchBar p {
+    display: inline-block;
 }
 
 .carSearchInput {
@@ -61,6 +63,22 @@ body {
     position: absolute;
     top: 0;
     left: 0;
+}
+
+#searchForm {
+    display: flex;
+    justify-content: center;
+}
+
+#searchForm input[type="text"] {
+    width: 120%;
+    height: 110%;
+}
+
+.search-button {
+    cursor: pointer;
+    position: relative;
+    top: 5px;
 }
 
 #clearSearchButton {
@@ -103,4 +121,21 @@ body {
     padding: 3px;
     padding-left: 5px;
     padding-right: 5px;
+}
+
+@media screen and (min-width: 512px) {
+    .car-listings-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+    }    
+    .car-listings-container > * {
+        width: 43%;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    .car-listings-container > * {
+        width: 30%;
+    }
 }
