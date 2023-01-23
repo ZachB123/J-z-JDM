@@ -72,5 +72,8 @@ body {
 }
 
 @media screen and (min-width: 700px) {
-    
+    .sales-rep-message {
+        position: relative;
+        display: inline;
+    }
 }

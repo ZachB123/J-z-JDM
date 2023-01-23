@@ -1,18 +1,27 @@
 {% extends "layout.html" %} 
 
+{% block css %} 
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/messages.css') }}">
+{% endblock %}
+
 {% block body %} 
 
-<a href=""></a>
+<a href="{{ url_for('individual_sales_representative', sales_rep_id=user.id) }}">Go Back</a>
 
 <h1>Messaging, {{ user.username }}</h1>
 
 <h2>Messages aqua colors they sent</h2>
-<div class="messages">
+
+<div class="message-container">
     {% for message in messages %} 
-        {% if message.sender_id == current_user.get_id() %} 
-            <div class="right">{{ message.message }}</div>
+    {% if message.sender_id == current_user.get_id() %} 
+            <div class="message-orange">
+                <p class="message-content">{{ message.message }}</p>
+            </div>
         {% else %} 
-            <div class="left" style="color:aquamarine">{{ message.message }}</div>
+            <div class="message-blue">
+                <p class="message-content">{{ message.message }}</p>
+            </div>
         {% endif %}
     {% endfor %}
 </div>
