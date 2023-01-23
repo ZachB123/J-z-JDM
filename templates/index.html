@@ -10,7 +10,7 @@
 
 
 {% block body %} 
-<div class="carousel">
+<!-- <div class="carousel">
     <div class="carousel-content-container">
         <img src="/static/images/bestjdmcar.jpg" alt="Car" class="carousel-img" id="carouselImg">
         <div class="carousel-info">
@@ -20,8 +20,20 @@
     </div>
     <span class="material-symbols-outlined" id="carouselLeft">chevron_left</span>
     <span class="material-symbols-outlined" id="carouselRight">chevron_right</span>
-</div>
+</div> -->
 
+<div class="carousel">
+    <h1>View our Newest Cars</h1>
+    <div class="carousel-content">
+        <i id="carouselLeft" class="material-icons">chevron_left</i>
+        <div class="carousel-cars">
+            {% for car in carousel_cars %} 
+                {% include "_carPreview.html" %}
+            {% endfor %}
+        </div>
+        <i id="carouselRight" class="material-icons">chevron_right</i>
+    </div>
+</div>
 
 
 <br>
