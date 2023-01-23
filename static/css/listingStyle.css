@@ -5,7 +5,7 @@
 }
 
 body {
-    background: url(../images/backgroung-jz.jpg) no-repeat center center fixed;
+    background: url(../images/mobilebackground-01.png) no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -13,9 +13,9 @@ body {
 }
 
 #topSearchArea {
-    background-image: url(../images/JDMbanner.jpg);
+    /* background-color: white;
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: cover; */
     width: 100%;
     height: auto;
 }
@@ -23,9 +23,10 @@ body {
 #searchBarContainer {
     text-align: center;
     font-family: 'Kanit';
+    margin: 0 5px;
 }
 
-#topMessage {
+/* #topMessage {
     color: var(--teal);
     background-color: var(--grey);
     width: fit-content;
@@ -38,13 +39,16 @@ body {
     border-radius: 5px;
     margin-top: 5px;
     margin-bottom: 5px;
+} */
+.carSearchContainer {
+    width: 100%;
 }
-
 #carSearchBar {
     background-color: transparent;
     margin-bottom: 5px;
-    width: 60%;
+    width: 100%;
     height: auto;
+    margin-top: 15px;
     margin-left: auto;
     margin-right: auto;
     position: relative;
@@ -63,6 +67,18 @@ body {
     position: absolute;
     top: 0;
     left: 0;
+}
+
+#search_field {
+    background-color: var(--purple);
+    width: 300px;
+    height: 400px;
+    padding-left: 3px;
+    border: var(--yellow) solid 1px;
+}
+
+#search_field:focus-visible {
+    outline: none;
 }
 
 #searchForm {
@@ -90,7 +106,7 @@ body {
 #carTypeButtons {
     display: inline-grid;
     grid-template-columns: [first] 1fr [second] 1fr [third] 1fr [fourth] 1fr;
-    grid-template-rows: repeat(3, 1fr[lineRow]);
+    grid-template-rows: repeat(2, 1fr[lineRow]);
     align-items: center;
     justify-content: center;
     margin-bottom: 10px;
