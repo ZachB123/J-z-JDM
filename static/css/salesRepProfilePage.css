@@ -47,11 +47,11 @@ body {
     margin: 0 auto;
 }
 
-.sales-rep-message {
+.sales-rep-message p {
     width: 100%;
     background-color: wheat;
-    padding: 12px 2px 4px 2px;
-    margin-top: -12px;
+    /* padding: 12px 2px 4px 2px; */
+    /* margin-top: -12px; */
     border-radius: 10px;
 }
 

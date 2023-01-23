@@ -19,13 +19,16 @@
                 </div>
             </div>
             <div class="sales-rep-message">
-                {{ sales_rep.about }}
+                <p>
+                    {{ sales_rep.about }}
+                </p>
                 <div class="sales-rep-contact-button">
                     <a href="{{ url_for('message_sales_rep', sales_rep_id=sales_rep.user.id) }}">Message</a>
                 </div>
             </div>
         </div>
     </div>
+    <h1>Cars {{sales_rep.user.username}} is Selling</h1>
     {% for car in cars %} 
         {% include "_carPreview.html" %} 
     {% endfor %}

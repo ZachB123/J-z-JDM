@@ -3,17 +3,19 @@
 {% endblock %}
 
 
-<div class="sales-rep-container">
+<div class="sales-rep-container" onclick="location.href = `{{ url_for('individual_sales_representative', sales_rep_id=sales_rep.user.id) }}`" style="cursor:pointer;">
     <!-- Every element has the href link so that when the hover effects occur each element acts as a link -->
     <div class="sales-rep-username rep-info">
-        <a href="{{ url_for('individual_sales_representative', sales_rep_id=sales_rep.user.id ) }}"><h2>{{ sales_rep.user.username }}</h2></a>
+        <h2>{{ sales_rep.user.username }}</h2>
     </div>
     <div class="sales-rep-page-button">
-        <a href="{{ url_for('individual_sales_representative', sales_rep_id=sales_rep.user.id ) }}"><img src="{{ sales_rep.image_link }}" alt="ERROR: {{ sales_rep.image_link }}"></a>
+        <img src="{{ sales_rep.image_link }}" alt="ERROR: {{ sales_rep.image_link }}">
     </div>
     <!-- Used an empty div here to apply a grey overlay on the sales rep image when hovered -->
-    <div class="pop-up-overlay"><a href="{{ url_for('individual_sales_representative', sales_rep_id=sales_rep.user.id ) }}"></a></div>
+    <div class="pop-up-overlay"></div>
     <div class="popup-on-hover">
         <a href="{{ url_for('individual_sales_representative', sales_rep_id=sales_rep.user.id ) }}"><span>Contact {{ sales_rep.user.username }}</span></a>
     </div>
+
+    
 </div>
