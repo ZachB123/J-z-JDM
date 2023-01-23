@@ -23,7 +23,9 @@ def load_user(id):
 @app.route("/")
 @app.route("/index")
 def index():
-    return render_template("index.html", title="Home")
+    CAROUSEL_CARS = 6
+    carousel_cars = Car.search_cars()[0:CAROUSEL_CARS]
+    return render_template("index.html", carousel_cars=carousel_cars, title="Home")
 
 @app.route("/login", methods=["GET", "POST"])
 def login():

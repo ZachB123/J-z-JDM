@@ -15,18 +15,23 @@ body {
 
 }
 
+#carouselLeft, #carouselRight {
+    font-size: 100px;
+    cursor: pointer;
+}
+
 #carouselLeft {
-    position: absolute;
+    /* position: absolute;
     top: auto;
     bottom: auto;
-    left: 0;
+    left: 0; */
 }
 
 #carouselRight {
-    position: absolute;
+    /* position: absolute;
     top: auto;
     bottom: auto;
-    right: 0;
+    right: 0; */
 }
 
 .carousel-info {
@@ -34,8 +39,6 @@ body {
     bottom: 0;
     left: 0;
 }
-
-
 
 
 /* Styling the company values SVG element */
