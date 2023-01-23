@@ -61,3 +61,26 @@ carouselRight.addEventListener("click", () => {
     }
     setCarousel(carousel[carouselIndex])
 })
+
+function isOpen() {
+    date = new Date()
+    day = date.getDay()
+    hours = date.getHours()
+    if ( day >= 1 && (hours >= 9 && hours <= 18)) {
+        if (day === 6 && hours === 18) {
+            return false
+        }
+        return true
+    } 
+    return false
+}
+
+openStatus = dq(".open-status")
+
+if (isOpen()) {
+    openStatus.textContent = "We are currently open"
+} else {
+    openStatus.textContent = "We are currently closed"
+}
+
+dqa(".hours > div")[new Date().getDay()].classList.add("current-day")
