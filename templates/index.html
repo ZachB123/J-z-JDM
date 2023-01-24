@@ -6,6 +6,7 @@
 
 {% block css %} 
     <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/search.css') }}">
 {% endblock %}
 
 
@@ -21,7 +22,7 @@
     <span class="material-symbols-outlined" id="carouselLeft">chevron_left</span>
     <span class="material-symbols-outlined" id="carouselRight">chevron_right</span>
 </div> -->
-
+{% include "_search.html" %}
 <div class="carousel">
     <h1>View our Newest Cars</h1>
     <div class="carousel-content">

@@ -21,11 +21,14 @@ def load_user(id):
     return User.get_user_by_id(id)
 
 @app.route("/")
-@app.route("/index")
+@app.route("/index", methods=["GET", "POST"])
 def index():
+    form = Search()
+    if form.validate_on_submit:
+        return redirect(url_for("listings", q=form.search_field.data))
     CAROUSEL_CARS = 6
     carousel_cars = Car.search_cars()[0:CAROUSEL_CARS]
-    return render_template("index.html", carousel_cars=carousel_cars, title="Home")
+    return render_template("index.html", carousel_cars=carousel_cars, form=form, title="Home")
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
