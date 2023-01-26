@@ -12,3 +12,4 @@ flask-caching
 boto3
 diskcache
 jellyfish
+flask-talisman
