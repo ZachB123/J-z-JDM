@@ -8,6 +8,8 @@ from flask_login import LoginManager, current_user, login_user, logout_user, log
 from models import User, Car, Image, SalesRep, Message, DirectMessage
 from werkzeug.urls import url_parse
 import json
+import flask
+from functools import wraps
 
 app = Flask(__name__)
 app.config.from_object(Config)
@@ -20,11 +22,25 @@ login.login_view = "login"
 def load_user(id):
     return User.get_user_by_id(id)
 
-@app.route("/")
+
+# def secure(func):
+#     @wraps(func)
+#     def wrapper(*args, **kwargs):
+#         if not str(flask.request.url).find("http://jzjdm") == -1:
+#             # return redirect(str(flask.request.url).replace("http", "https"))
+#             return redirect("https://jzjdm.co/")
+#         # if not str(flask.request.url).find("http://127.0.0.1:5000/listings") == -1:
+#         #     print(flask.request.url)
+#         #     return redirect(str(flask.request.url).replace("listings", "loan"))
+#         return func(*args, **kwargs)
+#     return wrapper
+
+
+@app.route("/", methods=["GET", "POST"])
 @app.route("/index", methods=["GET", "POST"])
 def index():
     form = Search()
-    if form.validate_on_submit:
+    if form.validate_on_submit():
         return redirect(url_for("listings", q=form.search_field.data))
     CAROUSEL_CARS = 6
     carousel_cars = Car.search_cars()[0:CAROUSEL_CARS]
@@ -85,6 +101,8 @@ def company():
 
 @app.route("/listings", methods=["GET", "POST"])
 def listings():
+    if not flask.request.url.find("http://jzjdm.co") == -1:
+        return redirect(flask.request.url.replace("http", "https"))
     form = Search()
     if form.validate_on_submit():
         return redirect(url_for("listings", q=form.search_field.data))
@@ -319,6 +337,7 @@ def unfavorite_car():
     User.remove_favorite(user_id, car_id)
     return success_response({})
     
+
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
