@@ -9,9 +9,10 @@
 {% endblock %}
 
 {% block body %} 
-    <a href="{{ url_for('listings') }}">Go Back</a>
     <div class="car">
-        <h1>{{ car.year }} {{ car.oem }}, {{ car.model }}</h1>
+        <div class="car-name">
+            <h1>{{ car.year }} {{ car.oem }}, {{ car.model }}</h1>
+        </div>
         <div class="current-car-image">
             <img class="current-image" src="{{ cover_image.link }}" alt="ERROR: {{cover_image}}">
         </div>
@@ -23,7 +24,6 @@
                 {% endfor %}
             </div>
         </div>
-        <p>&emsp; {{car.description}}</p>
     </div>
     <div class="additional-information">
         <h1>Specification</h1>
@@ -92,6 +92,7 @@
                 </div>
             {% endif %}
         </div>
+        <p>&emsp; {{car.description}}</p>
     </div>
 
 
