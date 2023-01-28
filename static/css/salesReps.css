@@ -1,6 +1,6 @@
 /* css for the sales rep page */
 body {
-    background-color: whitesmoke;
+    background-color: var(--white);
 }
 .sales-rep-top {
     text-align: center;
@@ -17,7 +17,7 @@ body {
 }
 
 .background-selector {
-    background-color: var(--purple);
+    background-color: var(--filler);
     padding-top: 25px;
     padding-bottom: 100px;
 }
@@ -77,7 +77,7 @@ img {
 }
 
 .popup-on-hover a {
-    color: black;
+    color: var(--black);
     font-size: 20px;
     font-weight: 700;
 }
@@ -96,7 +96,7 @@ img {
     opacity: 1;
     z-index: 2;
     cursor: pointer;
-    border-color: black;
+    border-color: var(--black);
     border-style: solid;
     border-width: 1px;
 }
@@ -110,4 +110,8 @@ img {
 .sales-rep-page-button {
     position: relative;
     z-index: 1;
+}
+
+.sales-rep-username h2 {
+    color: var(--white);
 }

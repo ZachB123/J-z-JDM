@@ -1,5 +1,5 @@
 body {
-    background-color: var(--secondaryPrime);
+    background-color: var(--filler);
 }
 
 .car {
@@ -40,7 +40,7 @@ body {
 }
 
 .info-container {
-    background-color: pink;
+    background-color: var(--primary);
     /* adjust this width if the boxes get all stacked up */
     width: 44vw; 
     padding: 4px;

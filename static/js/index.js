@@ -133,3 +133,9 @@ pagination.addEventListener('click', function(e) {
         slideTo(index);
     }
 }, false);
+
+// let svg = dqa("path")
+
+// for (let s of svg) {
+//     s.fill = "blue"
+// }

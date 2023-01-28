@@ -1,6 +1,6 @@
 .page-error-container {
     text-align: center;
-    background-color: rgb(210,189,168);
+    background-color: var(--filler);
     font-family: 'Kanit';
     padding-top: 150px;
     padding-bottom: 150px;
@@ -24,8 +24,8 @@
 }
 
 .return-home-link a {
-    background-color: var(--purple);
-    color: var(--yellow);
+    background-color: var(--highlights);
+    color: var(--white);
     padding: 5px;
     border-radius: 5px;
     border-color: black;
@@ -34,7 +34,7 @@
 }
 
 .return-home-link a:hover {
-    background-color: rgb(101, 65, 145);
+    background-color: var(--highlights-hover);
 }
 
 .image-error img {

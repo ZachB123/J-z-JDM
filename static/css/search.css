@@ -50,8 +50,7 @@
 
 
 #search_field {
-    background-color: var(--purple);
-    background-color: var(--secondaryPrime);
+    background-color: var(--primary);
     padding-left: 3px;
     border: var(--yellow) solid 1px;
 }
@@ -106,7 +105,7 @@
 }
 
 .carTypeButton {
-    background: var(--purple);
+    background: var(--primary);
     border-radius: 10px;
 }
 
@@ -164,10 +163,10 @@
 .search-btn:hover {
     transform: scale(1.2);
     cursor: pointer;
-    color: black;
+    color: var(--black);
 }
   
 .search-btn:focus {
     outline:none;
-    color:black;
+    color:var(--black);
 }
