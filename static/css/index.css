@@ -239,7 +239,8 @@ svg {
 
 .date-container {
     text-align: center;
-    background-color: aquamarine;
+    background-color: var(--primary);
+    color: var(--black);
     border-radius: 20px;
     -webkit-border-radius: 20px;
     -moz-border-radius: 20px;
@@ -250,7 +251,8 @@ svg {
 }
 
 .current-day {
-    background-color: pink;
+    background-color: var(--highlights);
+    color: var(--white);
 }
 
 @media screen and (min-width: 412px) {

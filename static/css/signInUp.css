@@ -79,7 +79,7 @@ body {
 .form-submit input{
     font-size: 16px;
     font-family: 'Kanit';
-    background-color: var(--purple);
+    background-color: var(--primary);
     color: var(--yellow);
     padding: 3px;
     border-radius: 4px;
@@ -89,7 +89,7 @@ body {
 }
 
 .form-submit input:hover {
-    background-color: rgb(101, 65, 145);
+    background-color: var(--highlights);
 }
 
 @media screen and (min-width:370px){

@@ -29,7 +29,7 @@ body {
 }
 
 .loan-info-container {
-    background-color: var(--primary);
+    background-color: var(--filler);
     border-radius: 10px;
     font-family: 'Kanit';
     margin: 10px auto;
@@ -235,4 +235,8 @@ select:focus + .focus {
     .ready-to-buy {
         grid-column: 2 / 3;
     }
+}
+
+.monthly-pay-container span, .contact-salesmen-container a {
+    color: var(--white)
 }
