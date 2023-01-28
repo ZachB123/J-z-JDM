@@ -24,7 +24,7 @@
 }
 
 .unfavorite {
-    color: blue;
+    color: red;
 }
 
 .car-preview-title {
@@ -38,5 +38,10 @@
 .car-preview-bottom-banner {
     display: flex;
     justify-content: space-between;
-    align-items: baseline;
+    align-items: start;
+    margin-top: -7px;
+}
+
+.car-preview-bottom-banner > * {
+    margin: 0 8px;
 }
