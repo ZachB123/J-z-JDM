@@ -4,7 +4,7 @@ body {
 
 .profile-container {
     text-align: center;
-    background-color: var(--secondaryPrime);
+    background-color: var(--filler);
     margin: 7px;
     border-radius: 3px;
     font-family: 'Kanit';
@@ -36,7 +36,7 @@ body {
 }
 
 .reset-password-container {
-    background-color: #ffe2b7;
+    background-color: var(--primary);
     padding-bottom: 10px;
     margin: 10px 0;
 }
@@ -48,7 +48,8 @@ body {
 }
 
 .discover-more-button {
-    background-color: var(--purple);
+    background-color: var(--highlights);
+    color: black;
     width: fit-content;
     height: auto;
     margin: 0 auto;
