@@ -4,7 +4,7 @@ img {
     background-size: cover;
 }
 body {
-    background-color: white;
+    background: url(../images/mobilebackground-01.png) no-repeat center center fixed;
 }
 
 .solo-sales-rep-profile-container {
@@ -44,15 +44,17 @@ body {
 .profile-container {
     width: 300px;
     height: auto;
-    margin: 0 auto;
+    margin: 5px auto;
 }
 
-.sales-rep-message p {
+.sales-rep-message {
     width: 100%;
     background-color: wheat;
     /* padding: 12px 2px 4px 2px; */
     /* margin-top: -12px; */
     border-radius: 10px;
+    padding: 10px 0 5px 0;
+    margin-top: -5px;
 }
 
 .sales-rep-contact-button {
@@ -71,9 +73,72 @@ body {
     background-color: #7453a0;
 }
 
+.selling-car-header {
+    margin: 0 auto;
+    margin-top: 8px;
+    background: wheat;
+    width: fit-content;
+    padding: 5px;
+    border: black solid 1px;
+    border-radius: 5px;
+}
 @media screen and (min-width: 700px) {
+    body {
+        background: url(../images/backgroundtablet-01.jpg) no-repeat center center fixed;
+    }
+    .solo-sales-rep-profile-container {
+        margin-top: 6px;
+    }
+    .profile-container {
+        display: flex;
+        flex-direction: row;
+        width: 80%;
+        margin: 0 auto;
+    }
     .sales-rep-message {
-        position: relative;
-        display: inline;
+        padding: 0;
+        height: auto;
+        margin-top: 0;
+        padding-left: 10px;
+        padding-right: 2px;
+        margin-left: -7px;
+    }
+    .sales-about {
+        padding: 3px;
+        margin-top: 40px;
+    }
+    .sales-rep-contact-button {
+        margin-top: 70px;
+        
+    }
+    .car-container-salesman {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+    }
+    .car-preview-container {
+        width: 30%;
+        height: auto;
+    }
+}
+
+@media screen and (min-width: 960px){
+    body {
+        background: url(../images/desktopbackground.jpg) no-repeat center center fixed;
+    }
+    .profile-container {
+        width: 70%;
+    }
+    .sales-about {
+        font-size: 17px;
+    }
+}
+
+@media screen and (min-width: 1400px){
+    .profile-container {
+        width: 50%;
+    }
+    .sales-about {
+        font-size: 20px;
     }
 }

@@ -6,7 +6,6 @@
 
 {% block body %} 
     <div class="solo-sales-rep-profile-container">
-        <a href="{{ url_for('sales_representatives') }}">Go Back</a>
         <div class="profile-container">
             <div class="profile-photo-container">
                 <div class="sales-rep-pic" style="background-image: url('{{ sales_rep.image_link }}'); width: 300px; height: 400px; background-size: cover;">
@@ -19,17 +18,21 @@
                 </div>
             </div>
             <div class="sales-rep-message">
-                <p>
+                <div class="sales-about">
                     {{ sales_rep.about }}
-                </p>
+                </div>
                 <div class="sales-rep-contact-button">
                     <a href="{{ url_for('message_sales_rep', sales_rep_id=sales_rep.user.id) }}">Message</a>
                 </div>
             </div>
         </div>
     </div>
-    <h1>Cars {{sales_rep.user.username}} is Selling</h1>
-    {% for car in cars %} 
-        {% include "_carPreview.html" %} 
-    {% endfor %}
+    <h1 class="selling-car-header">Cars {{sales_rep.user.username}} is Selling</h1>
+    <div class="car-container-salesman">
+        {% for car in cars %} 
+            
+            {% include "_carPreview.html" %} 
+
+        {% endfor %}
+    </div>
 {% endblock %}
