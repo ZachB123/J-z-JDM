@@ -15,11 +15,11 @@ section {
 }
 
 .col1 {
-    background-color: var(--secondaryPrime);
+    background-color: var(--filler);
 }
 
 .col2 {
-    background-color: var(--secondaryPrime);
+    background-color: var(--filler);
 }
 
 .content-section {
@@ -49,7 +49,7 @@ section {
     -o-border-radius: 100% 50%;
     width: 55%;
     height: 100%;
-    background-color: crimson;
+    background-color: var(--red);
     /* background-color: transparent; */
     transform: translate(85%, 60%);
     -webkit-transform: translate(85%, 60%);
@@ -70,7 +70,7 @@ section {
     -o-border-radius: 100% 50%;
     width: 55%;
     height: 100%;
-    background-color: coral;
+    background-color: var(--red);
     transform: translate(-4%, 40%);
     -webkit-transform: translate(-4%, 40%);
     -moz-transform: translate(-4%, 40%);
@@ -157,13 +157,13 @@ svg {
     padding: 1%;
     font-size: large;
     font-weight: bold;
-    background-color: var(--teal);
+    /* background-color: var(--teal); */
     border-radius: 25px;
     box-shadow: 5px 5px 2px 2px #7038B5;
 }
 
 .company-value h2 {
-    color: var(--yellow);
+    /* color: var(--yellow); */
     font-family: 'Kanit';
 }
 
@@ -187,14 +187,14 @@ svg {
 }
 
 .link-container {
-    background-color: orange;
+    background-color: var(--primary);
     margin: 10px;
 }
 
 .temp {
     width: 100px;
     height: 100px;
-    background-color: green;
+    background-color: var(--highlights);
     margin: auto;
 }
 
@@ -313,7 +313,7 @@ svg {
     line-height: 500px;
     font-size: 1.5em;
     text-align: center;
-    color: #fff;
+    color: var(--white);
 }
 
 
@@ -350,7 +350,7 @@ svg {
     top: 0px;
     left: 0px;
     padding: 0 4px;
-    background-color: green;
+    background-color: var(--primary);
     border-radius: 0 0 10px 0;
     -webkit-border-radius: 0 0 10px 0;
     -moz-border-radius: 0 0 10px 0;
@@ -379,7 +379,7 @@ svg {
 .carousel-next {
     position: absolute;
     top: 50%;
-    background-color: #222;
+    background-color: var(--black);
     opacity: 0.7;
     border-radius: 50%;
     color: #fff;
@@ -439,7 +439,7 @@ svg {
     display: inline-block;
     width: 12px;
     height: 12px;
-    background-color: #000;
+    background-color: var(--black);
     cursor: pointer;
     margin: 0 7px;
     border-radius: 50%;
@@ -458,6 +458,6 @@ svg {
     opacity: 1;
     -webkit-transform: scale(1.3);
     transform: scale(1.3);
-    background-color: #fff;
+    background-color: var(--white);
     cursor: default;
 }

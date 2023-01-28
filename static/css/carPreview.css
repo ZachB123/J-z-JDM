@@ -1,5 +1,5 @@
 .car-preview-container {
-    background-color: var(--secondaryPrime);
+    background-color: var(--filler);
     margin: 20px 12px;
     border: solid #000;
     position: relative;
@@ -8,7 +8,7 @@
 .car-preview-top-banner {
     position: absolute;
     width: 100%;
-    background-color: rgba(245, 194, 238, .7);
+    background-color: var(--primary);
     display: flex;
     justify-content: space-between;
 }
@@ -20,11 +20,11 @@
 }
 
 .favorite {
-    color: green;
+    color: var(--green);
 }
 
 .unfavorite {
-    color: red;
+    color: var(--red);
 }
 
 .car-preview-title {

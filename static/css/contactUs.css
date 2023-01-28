@@ -6,7 +6,7 @@
     justify-items: center;
     align-items: center;
     font-family: 'Kanit';
-    border: black;
+    border: var(--black);
     border-width: 10px;
     z-index: 0;
 }

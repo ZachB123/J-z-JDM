@@ -6,13 +6,13 @@ body {
 }
 
 .message-header {
-    background-color: var(--secondaryPrime);
+    background-color: var(--primary);
 }
 
 .dot {
     height: 15px;
     width: 15px;
-    background-color: rgb(56, 139, 17);
+    background-color: var(--green);
     border-radius: 50%;
     display: inline-block;
     margin: auto 0;
@@ -150,10 +150,6 @@ body {
     position: absolute;
     right: 2%;
     top: 20%;
-}
-
-.form-submit input {
-    
 }
 
 

@@ -10,9 +10,11 @@
     --teal: #cb0606;
     --yellow: #0c1e2c;
     --secondaryPrime: #fdf2e2;
-    --primary: #f5c2ee;
+
+    --primary: pink;
     --filler: wheat;
-    --highlights: #582c8e;
+    --highlights: purple;
+    --highlights-hover: rgb(204, 53, 204);
     --black: black;
     --white: white;
     --red: red;
