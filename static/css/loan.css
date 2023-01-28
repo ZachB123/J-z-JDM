@@ -17,7 +17,7 @@ select::-ms-expand {
 }
 
 body {
-    background-color: var(--yellow);
+    background: url(../images/mobilebackground-01.png) no-repeat center center fixed !important;
 }
 
 .loan-container {
@@ -189,11 +189,11 @@ select:focus + .focus {
 }
 
 .contact-salesmen-container a {
-    color: black;
+    color: var(--grey);
 }
 
 .contact-salesmen-container {
-    background-color: var(--yellow);
+    background-color: var(--purple);
     max-width: fit-content;
     padding: 5px;
     border-radius: 12px;
@@ -205,7 +205,7 @@ select:focus + .focus {
 
 @media screen and (min-width:390px) {
     body {
-        background-color: var(--yellow);
+        background: url(../images/mobilebackground-01.png) no-repeat center center fixed;
     }
 
     .loan-info-container {

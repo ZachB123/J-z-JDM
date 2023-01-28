@@ -51,6 +51,9 @@
 
 #search_field {
     background-color: var(--purple);
+    background-color: var(--secondaryPrime);
+    width: 300px;
+    height: 400px;
     padding-left: 3px;
     border: var(--yellow) solid 1px;
 }
@@ -105,7 +108,7 @@
 }
 
 .carTypeButton {
-    background: whitesmoke;
+    background: var(--purple);
     border-radius: 10px;
 }
 

@@ -1,9 +1,40 @@
 
 /* Derived from https://codepen.io/ezenith/pen/pJLypJ */
 
-.container {
-    width: 90%;
+body {
+    background: url(../images/mobilebackground-01.png) no-repeat center center fixed;
+}
+
+.message-header {
+    background-color: var(--secondaryPrime);
+}
+
+.dot {
+    height: 15px;
+    width: 15px;
+    background-color: rgb(56, 139, 17);
+    border-radius: 50%;
+    display: inline-block;
+    margin: auto 0;
+}
+
+.username-message {
+    display: inline-block;
+    margin-left: 8px;
+}
+
+.message-container {
+    width: 100%;
+    height: 67vh;
     margin: auto;
+    overflow: scroll;
+    overflow-anchor: none;
+    
+}
+
+.anchor {
+    overflow-anchor: auto;
+    height: 1px;
 }
 
 .message-blue {
@@ -87,5 +118,42 @@
     right: -17px;
 }
 
+/* .form-container {
+    background-color: var(--secondaryPrime);
+
+} */
+
+.form-input {
+    position: relative;
+    width: 95%;
+    height: auto;
+    margin: 0 auto;
+    align-items: center;
+    text-align: center;
+}
+
+.form-area textarea {
+    overflow: scroll;
+    width: 100%;
+    margin: 0 auto;
+    padding-left: 2px;
+    font-size: 14px;
+    background-color: var(--secondaryPrime);
+    color: black;
+}
+
+.form-area {
+    position: relative;
+}
+
+.form-submit {
+    position: absolute;
+    right: 2%;
+    top: 20%;
+}
+
+.form-submit input {
+    
+}
 
 

@@ -37,7 +37,7 @@ class RegistrationForm(FlaskForm):
 class ResetPassword(FlaskForm):
     password = PasswordField('Password', validators=[DataRequired()], render_kw={"placeholder": "Password"})
     password2 = PasswordField('Repeat Password', validators=[DataRequired()], render_kw={"placeholder": "Repeat Password"})
-    submit = SubmitField("submit")
+    submit = SubmitField("Submit")
 
     def validate_password2(self, password2):
         print(password2.data)

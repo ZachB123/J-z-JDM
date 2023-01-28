@@ -1,4 +1,10 @@
+body {
+    background-color: var(--secondaryPrime);
+}
 
+.car-name {
+    text-align: center;
+}
 .current-car-image {
     text-align: center;
 }

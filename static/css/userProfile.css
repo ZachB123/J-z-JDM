@@ -1,0 +1,91 @@
+body {
+    background: url(../images/mobilebackground-01.png) no-repeat center center fixed;
+}
+
+.profile-container {
+    text-align: center;
+    background-color: var(--secondaryPrime);
+    margin: 7px;
+    border-radius: 3px;
+    font-family: 'Kanit';
+}
+
+
+.message-container {
+    border: black solid 2px;
+    margin: 3px auto;
+    width: fit-content;
+    height: auto;
+    padding: 0 30px;
+
+}
+
+.view-messages a {
+    color: var(--teal);
+    font-weight: 650;
+    margin-bottom: 4px;
+}
+
+.view-messages {
+    margin-bottom: 4px;
+}
+
+.view-messages a:hover {
+    color: #c73636;
+    text-decoration: underline;
+}
+
+.reset-password-container {
+    background-color: #ffe2b7;
+    padding-bottom: 10px;
+    margin: 10px 0;
+}
+
+
+
+.discover-button-container {
+    margin: 100px auto;
+}
+
+.discover-more-button {
+    background-color: var(--purple);
+    width: fit-content;
+    height: auto;
+    margin: 0 auto;
+    padding: 8px;
+    border: var(--grey) solid 1px;
+}
+
+@media screen and (min-width: 370px) {
+    .reset-password-container {
+        width: 370px;
+        height: auto;
+        margin: 8px auto;
+        border-radius: 6px;
+    }
+}
+
+@media screen and (min-width: 700px) {
+    .large-screen-view {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        width: 60%;
+        margin: 10px auto;
+    }
+    .profile-container {
+        width: 80%;
+        margin: 20px auto;
+    }
+    .car-grid {
+        width: 95%;
+        height: auto;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    .car-preview-container {
+        width: 33%;
+        height: auto;
+    }
+}

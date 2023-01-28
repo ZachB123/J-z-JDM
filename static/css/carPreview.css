@@ -8,7 +8,7 @@
 .car-preview-top-banner {
     position: absolute;
     width: 100%;
-    background-color: rgba(247, 255, 134, 0.7);
+    background-color: rgba(245, 194, 238, .7);
     display: flex;
     justify-content: space-between;
 }
