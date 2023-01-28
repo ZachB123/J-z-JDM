@@ -5,13 +5,10 @@
 {% endblock %}
 
 {% block body %} 
-
-<a href="{{ url_for('individual_sales_representative', sales_rep_id=user.id) }}">Go Back</a>
-
-<h1>Messaging, {{ user.username }}</h1>
-
-<h2>Messages aqua colors they sent</h2>
-
+<div class="message-header">
+    <h1 class="username-message">{{ user.username }}</h1>
+    <span class="dot"></span>
+</div>
 <div class="message-container">
     {% for message in messages %} 
     {% if message.sender_id == current_user.get_id() %} 
@@ -24,12 +21,13 @@
             </div>
         {% endif %}
     {% endfor %}
+    <div class="anchor"></div>
 </div>
 
-<form action="" method="post">
+<form action="" method="post" class="form-container">
     {{ form.hidden_tag() }} 
     <div class="form-input">
-        <p>
+        <div class="form-area">
             <div class="form-input-area">
                 {{ form.content() }}<br>
             </div>
@@ -38,7 +36,7 @@
                     <span>[{{ error }}]</span>
                 {% endfor %}
             </div>
-        </p>
+        </div>
         <div class="form-submit">
             <p>{{ form.submit() }}</p>
         </div>
