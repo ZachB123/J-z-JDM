@@ -73,11 +73,11 @@
             <div class="footer-section">
                 <div class="footer-text">
                     <ul id="slogan">
-                        Importing quality cars since 2007!
+                        Importing quality cars since 2005!
                     </ul>
-                    <ul id="location">
+                    <!-- <ul id="location">
                         1945 42nd St NE, Cedar Rapids, IA
-                    </ul>
+                    </ul> -->
                 </div>
             </div>
             <div class="footer-section">
@@ -95,15 +95,15 @@
                         <a href="{{ url_for('company') }}">Company</a>
                     </li>
                     <li class="fmenu-item">
-                        <a href="#">Contact Us</a>
+                        <a href="{{ url_for('contact') }}">Contact Us</a>
                     </li>
                     <li class="fmenu-item">
-                        <a href="{{ url_for('login') }}">Login / Sign Up</a>
+                        <a href="{{ url_for('login') }}">Login</a>
                     </li>
                 </ul>
             </div>
             <div class="footer-section additional-info">
-                <div id="newsletter">
+                <!-- <div id="newsletter">
                     <div class="setup-container">
                         <div class="subscribe-email-container">
                             <form id="singularForm">
@@ -116,7 +116,7 @@
                             </form>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <ul id="socialMediaLinks">
                     <li class="socialMedia">
                         <a href="#"><img src="{{ url_for('static', filename='images/instagramLogo.png') }}" alt="Instagram" style="height: auto; width: 60px;"></a>
@@ -125,7 +125,7 @@
                         <a href="#"><img src="{{ url_for('static', filename='images/twitterLogo.png') }}" alt="Twitter" style="height: auto; width: 70px;"></a>
                     </li>
                     <li class="socialMedia">
-                        <a href="#"><img src="{{ url_for('static', filename='images/facebookLogo.png') }}" alt="Facebook" style="height: auto; width: 60px;"></a>
+                        <a href="https://github.com/ZachB123/J-z-JDM"><img src="{{ url_for('static', filename='images/github-mark.svg') }}" alt="Facebook" style="height: auto; width: 60px;"></a>
                     </li>
                 </ul>
             </div>
@@ -133,19 +133,19 @@
         <div id="footer-bottom">
             <ul id="legalLinks">
                 <li class="footer-bottom-links">
-                    <a href="#">Privacy Policy</a>
+                    Privacy Policy
                 </li>
                 <li class="footer-bottom-links">
                     <span class="bottom-link-divider">|</span>
                 </li>
                 <li class="footer-bottom-links">
-                    <a href="#">Accessibility Statement</a>
+                    Accessibility Statement
                 </li>
                 <li class="footer-bottom-links">
                     <span class="bottom-link-divider">|</span>
                 </li>
                 <li class="footer-bottom-links">
-                    <a href="#">Copyright©</a>
+                    Copyright©
                 </li>
             </ul>
         </div>

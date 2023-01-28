@@ -87,6 +87,7 @@ a {
 /* Submenu up from mobile screens */
 .submenu {
     display: none;
+    z-index: 1;
 }
 .submenu-active .submenu {
    display: block;
@@ -231,7 +232,7 @@ a {
 }
 
 .fmenu-item:hover {
-    background-color: black;
+    background-color: rgb(201, 201, 201);
     padding: 7px;
     border-radius: 10px;
 }
@@ -380,4 +381,8 @@ a {
 
 .footer-bottom-links {
     margin-left: 4px;
+}
+
+.footer-bottom-links {
+    cursor: none;
 }
