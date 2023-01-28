@@ -13,3 +13,4 @@ boto3
 diskcache
 jellyfish
 flask-talisman
+Flask-SSLify

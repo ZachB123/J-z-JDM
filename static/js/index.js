@@ -32,45 +32,45 @@
 // carouselInfo = dq("#carouselInfo")
 // carouselLink = dq("#carouselLink")
 
-let carousel = dqa(".carousel .car-preview-container")
+// let carousel = dqa(".carousel .car-preview-container")
 
-for (car of carousel) {
-    car.style.display = "none"
-}
+// for (car of carousel) {
+//     car.style.display = "none"
+// }
 
-function setCarousel(index) {
-    carousel[index].style.display = "block"
-}
+// function setCarousel(index) {
+//     carousel[index].style.display = "block"
+// }
 
-function clearCarousel(index) {
-    carousel[index].style.display = "none"
-}
+// function clearCarousel(index) {
+//     carousel[index].style.display = "none"
+// }
 
-carouselIndex = 0
-setCarousel(carouselIndex)
+// carouselIndex = 0
+// setCarousel(carouselIndex)
 
-let carouselLeft = dq("#carouselLeft")
-let carouselRight = dq("#carouselRight")
+// let carouselLeft = dq("#carouselLeft")
+// let carouselRight = dq("#carouselRight")
 
-carouselLeft.addEventListener("click", () => {
-    clearCarousel(carouselIndex)
-    if (carouselIndex === 0) {
-        carouselIndex = carousel.length - 1
-    } else {
-        carouselIndex = carouselIndex - 1
-    }
-    setCarousel(carouselIndex)
-})
+// carouselLeft.addEventListener("click", () => {
+//     clearCarousel(carouselIndex)
+//     if (carouselIndex === 0) {
+//         carouselIndex = carousel.length - 1
+//     } else {
+//         carouselIndex = carouselIndex - 1
+//     }
+//     setCarousel(carouselIndex)
+// })
 
-carouselRight.addEventListener("click", () => {
-    clearCarousel(carouselIndex)
-    if (carouselIndex === carousel.length - 1) {
-        carouselIndex = 0
-    } else {
-        carouselIndex = carouselIndex + 1
-    }
-    setCarousel(carouselIndex)
-})
+// carouselRight.addEventListener("click", () => {
+//     clearCarousel(carouselIndex)
+//     if (carouselIndex === carousel.length - 1) {
+//         carouselIndex = 0
+//     } else {
+//         carouselIndex = carouselIndex + 1
+//     }
+//     setCarousel(carouselIndex)
+// })
 
 
 function isOpen() {
@@ -95,3 +95,41 @@ if (isOpen()) {
 }
 
 dqa(".hours > div")[new Date().getDay()].classList.add("current-day")
+
+
+var carousel = document.querySelector('.carousel');
+var container = document.querySelector('.carousel-container');
+var prevBtn = document.querySelector('.carousel-prev');
+var nextBtn = document.querySelector('.carousel-next');
+var pagination = document.querySelector('.carousel-pagination');
+var bullets = [].slice.call(document.querySelectorAll('.carousel-bullet'));
+var totalItems = document.querySelectorAll('.carousel-item').length;
+var percent = (100 / totalItems);
+var currentIndex = 0;
+
+function next() {
+    slideTo(currentIndex + 1);
+}
+
+function prev() {
+    slideTo(currentIndex - 1);
+}
+
+function slideTo(index) {
+    index = index < 0 ? totalItems - 1 : index >= totalItems ? 0 : index;
+    container.style.WebkitTransform = container.style.transform = 'translate(-' + (index * percent) + '%, 0)';
+    bullets[currentIndex].classList.remove('active-bullet');
+    bullets[index].classList.add('active-bullet');
+    currentIndex = index;
+}
+
+bullets[currentIndex].classList.add('active-bullet');
+prevBtn.addEventListener('click', prev, false);
+nextBtn.addEventListener('click', next, false);
+
+pagination.addEventListener('click', function(e) {
+    var index = bullets.indexOf(e.target);
+    if (index !== -1 && index !== currentIndex) {
+        slideTo(index);
+    }
+}, false);

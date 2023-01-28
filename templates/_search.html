@@ -1,22 +1,20 @@
 <div id="topSearchArea">
     <div id="searchBarContainer">
-        <!-- <div id="topMessage">
-            <Span>Find your Perfect Car Today!</Span>
-        </div> -->
+        <div id="topMessage">
+            <h2>Find your Perfect Car Today!</h2>
+        </div>
         <div class="carSearchContainer">
             <div id="carSearchBar">
-                <form id="searchForm" action="" method="post">
-                    {{ form.hidden_tag() }}
-                    <p>
-                        {{ form.search_field() }}
+                <div class="search-box">
+                    <form id="searchForm" action="" method="post">
+                        {{ form.hidden_tag() }}
+                        {{ form.search_field(class="search-input") }}
                         {% for error in form.search_field.errors %}
                             <span>[{{ error }}]</span>
                         {% endfor %}
-                    </p>
-                    <p>
-                        <i class="material-icons search-button">search</i>
-                    </p>
-                </form>
+                    </form>
+                    <button class="search-btn search-button"><i class="fas fa-search"></i></button>
+                </div>
             </div>
         </div>
         <div id="carTypeButtonContainer">

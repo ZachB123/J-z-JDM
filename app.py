@@ -8,32 +8,22 @@ from flask_login import LoginManager, current_user, login_user, logout_user, log
 from models import User, Car, Image, SalesRep, Message, DirectMessage
 from werkzeug.urls import url_parse
 import json
-import flask
-from functools import wraps
+from flask_sslify import SSLify
 
 app = Flask(__name__)
+app.debug = True
 app.config.from_object(Config)
 
 login = LoginManager(app)
 login.login_view = "login"
 
+# uncomment for production
+# sslify = SSLify(app)
+
 
 @login.user_loader
 def load_user(id):
     return User.get_user_by_id(id)
-
-
-# def secure(func):
-#     @wraps(func)
-#     def wrapper(*args, **kwargs):
-#         if not str(flask.request.url).find("http://jzjdm") == -1:
-#             # return redirect(str(flask.request.url).replace("http", "https"))
-#             return redirect("https://jzjdm.co/")
-#         # if not str(flask.request.url).find("http://127.0.0.1:5000/listings") == -1:
-#         #     print(flask.request.url)
-#         #     return redirect(str(flask.request.url).replace("listings", "loan"))
-#         return func(*args, **kwargs)
-#     return wrapper
 
 
 @app.route("/", methods=["GET", "POST"])
@@ -42,8 +32,8 @@ def index():
     form = Search()
     if form.validate_on_submit():
         return redirect(url_for("listings", q=form.search_field.data))
-    CAROUSEL_CARS = 6
-    carousel_cars = Car.search_cars()[0:CAROUSEL_CARS]
+    CAROUSEL_CARS = 5
+    carousel_cars = Car.search_cars()[::-1][0:5]
     return render_template("index.html", carousel_cars=carousel_cars, form=form, title="Home")
 
 @app.route("/login", methods=["GET", "POST"])
@@ -101,8 +91,6 @@ def company():
 
 @app.route("/listings", methods=["GET", "POST"])
 def listings():
-    if not flask.request.url.find("http://jzjdm.co") == -1:
-        return redirect(flask.request.url.replace("http", "https"))
     form = Search()
     if form.validate_on_submit():
         return redirect(url_for("listings", q=form.search_field.data))
@@ -196,24 +184,10 @@ def add_image_to_car(car_id):
     if form.validate_on_submit():
         if form.image1.data:
             Image.add_image(Image(form.image1.data, car_id, int(form.cover_image.data)))
-        if form.image2.data:
-            Image.add_image(Image(form.image2.data, car_id))
-        if form.image3.data:
-            Image.add_image(Image(form.image3.data, car_id))
-        if form.image4.data:
-            Image.add_image(Image(form.image4.data, car_id))
-        if form.image5.data:
-            Image.add_image(Image(form.image5.data, car_id))
-        if form.image6.data:
-            Image.add_image(Image(form.image6.data, car_id))
-        if form.image7.data:
-            Image.add_image(Image(form.image7.data, car_id))
-        if form.image8.data:
-            Image.add_image(Image(form.image8.data, car_id))
-        if form.image9.data:
-            Image.add_image(Image(form.image9.data, car_id))
-        if form.image10.data:
-            Image.add_image(Image(form.image10.data, car_id))
+        image_data = [form.image2.data, form.image3.data, form.image4.data, form.image5.data, form.image6.data, form.image7.data, form.image8.data, form.image9.data, form.image10.data]
+        for image in image_data:
+            if image:
+                Image.add_image(Image(image, car_id))
         flash("Images successfully added")
         return redirect(url_for("add_image_to_car", car_id=car_id))
     car = Car.get_car_by_id(car_id)

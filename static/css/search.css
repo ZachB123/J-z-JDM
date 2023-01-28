@@ -1,7 +1,4 @@
 #topSearchArea {
-    /* background-color: white;
-    background-repeat: no-repeat;
-    background-size: cover; */
     width: 100%;
     height: auto;
 }
@@ -26,9 +23,11 @@
     margin-top: 5px;
     margin-bottom: 5px;
 } */
+
 .carSearchContainer {
     width: 100%;
 }
+
 #carSearchBar {
     background-color: transparent;
     margin-bottom: 5px;
@@ -49,16 +48,9 @@
     height: auto;
 }
 
-#searchIcon {
-    position: absolute;
-    top: 0;
-    left: 0;
-}
 
 #search_field {
     background-color: var(--purple);
-    width: 300px;
-    height: 400px;
     padding-left: 3px;
     border: var(--yellow) solid 1px;
 }
@@ -67,27 +59,25 @@
     outline: none;
 }
 
-#searchForm {
+/* #searchForm {
     display: flex;
     justify-content: center;
-}
+    margin: auto;
+} */
 
-#searchForm input[type="text"] {
-    width: 120%;
-    height: 110%;
-}
 
-.search-button {
+/* .search-button {
     cursor: pointer;
     position: relative;
     top: 5px;
-}
+    font-size: 18px;
+} */
 
-#clearSearchButton {
+/* #clearSearchButton {
     position: absolute;
     top: 0;
     right: 0;
-}
+} */
 
 #carTypeButtons {
     display: inline-grid;
@@ -95,6 +85,7 @@
     grid-template-rows: repeat(2, 1fr[lineRow]);
     align-items: center;
     justify-content: center;
+    padding: 2px 4px;
     margin-bottom: 10px;
     margin-top: 5px;
     row-gap: 10px;
@@ -123,4 +114,59 @@
     padding: 3px;
     padding-left: 5px;
     padding-right: 5px;
+}
+
+/* Source: https://codepen.io/bugraskl/pen/LYbbqxv */
+
+.search-box {
+    width: fit-content;
+    margin: auto;
+    position: relative;
+    display: flex;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+  
+.search-input {
+    width: 100%;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    padding: 15px 45px 15px 15px;
+    background-color: #eaeaeb;
+    color: #6c6c6c;
+    border-radius: 6px;
+    border:none;
+    transition: all .4s;
+}
+  
+.search-input:focus {
+    border:none;
+    outline:none;
+    box-shadow: 0 1px 12px #b8c6db;
+    -moz-box-shadow: 0 1px 12px #b8c6db;
+    -webkit-box-shadow: 0 1px 12px #b8c6db;
+}
+  
+.search-btn {
+    background-color: transparent;
+    font-size: 18px;
+    padding: 6px 9px;
+    margin-left:-45px;
+    border:none;
+    color: #6c6c6c;
+    transition: all .4s;
+    z-index: 10;
+}
+  
+.search-btn:hover {
+    transform: scale(1.2);
+    cursor: pointer;
+    color: black;
+}
+  
+.search-btn:focus {
+    outline:none;
+    color:black;
 }
