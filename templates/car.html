@@ -16,6 +16,9 @@
         <div class="current-car-image">
             <img class="current-image" src="{{ cover_image.link }}" alt="ERROR: {{cover_image}}">
         </div>
+        <div class="description">
+            <p>&emsp; {{car.description}}</p>
+        </div>
         <div class="more-images-carousel">
             <h3>More Images</h3>
             <div class="more-images-container">
@@ -92,15 +95,16 @@
                 </div>
             {% endif %}
         </div>
-        <p>&emsp; {{car.description}}</p>
     </div>
 
+    <div class="extra">
+        <a href="{{ url_for('loan', price=car.price) }}">Get a loan estimate for this car</a>
+        {% if car.sales_rep_id != -1 %} 
+            <a href="{{ url_for('individual_sales_representative', sales_rep_id=car.sales_rep_id) }}">View Sales Representative for this Car</a>
+        {% endif %}
+    </div>
 
-    <a href="{{ url_for('loan', price=car.price) }}">Get a loan estimate for this car</a>
-    {% if car.sales_rep_id != -1 %} 
-        <a href="{{ url_for('individual_sales_representative', sales_rep_id=car.sales_rep_id) }}">View Sales Representative for this Car</a>
-    {% endif %}
-    <div class="similar_cars">
+    <div class="similar-cars">
         <h1>Similar Cars</h1>
         {% for car in similar %} 
             {% include "_carPreview.html" %} 
