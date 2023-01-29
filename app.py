@@ -215,7 +215,7 @@ def message_sales_rep(sales_rep_id):
         DirectMessage.send_direct_message(int(current_user.get_id()), int(user.id), form.content.data)
         return redirect(url_for("message_sales_rep", sales_rep_id=sales_rep_id))
     messages = DirectMessage.get_messages(current_user.get_id(), sales_rep_id) + DirectMessage.get_messages(sales_rep_id, current_user.get_id())
-    messages.sort(key=(lambda x: x.timestamp))
+    messages.sort(key=(lambda x: int(x.id)))
     return render_template("messages.html", form=form, user=user, messages=messages, title=f"Messaging: {user.username}")
 
 @app.route("/contact", methods=["GET", "POST"])

@@ -9,37 +9,34 @@
     <h1 class="username-message">{{ user.username }}</h1>
     <span class="dot"></span>
 </div>
-<div class="message-container">
-    {% for message in messages %} 
-    {% if message.sender_id == current_user.get_id() %} 
-            <div class="message-orange">
-                <p class="message-content">{{ message.message }}</p>
-            </div>
-        {% else %} 
-            <div class="message-blue">
-                <p class="message-content">{{ message.message }}</p>
-            </div>
-        {% endif %}
-    {% endfor %}
-    <div class="anchor"></div>
+<div class="content-container">
+    <div class="message-container">
+        <!-- {{messages}} -->
+        {% for message in messages %} 
+            <!-- {{message.message}} -->
+            {% if message.sender_id == current_user.get_id() %} 
+                <div class="message-orange">
+                    <p class="message-content">{{ message.message }}</p>
+                </div>
+            {% else %} 
+                <div class="message-blue">
+                    <p class="message-content">{{ message.message }}</p>
+                </div>
+            {% endif %}
+        {% endfor %}
+        <div class="anchor"></div>
+    </div>
+
+    <form action="" method="post" class="form-container">
+        {{ form.hidden_tag() }} 
+        {{ form.content() }}
+        <div class="form-input-error">
+            {% for error in form.content.errors %}
+                <span>[{{ error }}]</span>
+            {% endfor %}
+        </div>
+        <button onclick="document.querySelector('form').submit()" class="send"><i class="material-icons">send</i></button>
+    </form>
 </div>
 
-<form action="" method="post" class="form-container">
-    {{ form.hidden_tag() }} 
-    <div class="form-input">
-        <div class="form-area">
-            <div class="form-input-area">
-                {{ form.content() }}<br>
-            </div>
-            <div class="form-input-error">
-                {% for error in form.content.errors %}
-                    <span>[{{ error }}]</span>
-                {% endfor %}
-            </div>
-        </div>
-        <div class="form-submit">
-            <p>{{ form.submit() }}</p>
-        </div>
-    </div>
-</form>
 {% endblock %}

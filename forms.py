@@ -100,6 +100,3 @@ class Search(FlaskForm):
 
 class EmptyForm(FlaskForm):
     submit = SubmitField("")
-
-
-
