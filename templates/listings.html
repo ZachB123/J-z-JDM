@@ -17,12 +17,15 @@
             {% include "_carPreview.html" %}
         {% endfor %}
     </div>
-    {% if prev_url %}
-        <a href="{{ prev_url }}">Previous</a>
-    {% endif %} 
-    {% if next_url %}
-        <a href="{{ next_url }}">Next</a>
-    {% endif %}
+    <div class="back-forth">
+        {% if prev_url %}
+            <a href="{{ prev_url }}">Previous</a>
+        {% endif %} 
+        {% if next_url %}
+            <a href="{{ next_url }}">Next</a>
+        {% endif %}
+    </div>
+
     <br>
     <br>
     <br>

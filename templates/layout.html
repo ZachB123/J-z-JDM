@@ -35,7 +35,7 @@
             <li class="item with-submenu">
                 <a tabindex="0">Company</a>
                 <ul class="submenu">
-                    <li class="subitem"><a href="{{ url_for('company') }}">About Us</a></li>
+                    <li class="subitem"><a href="{{ url_for('about') }}">About Us</a></li>
                     <li class="subitem"><a href="{{ url_for('sales_representatives') }}">Sales Representatives</a></li>
                     <li class="subitem"><a href="{{ url_for('owners') }}">Owners</a></li>
                 </ul>
@@ -92,14 +92,24 @@
                         <a href="{{ url_for('loan') }}">Loan Calculator</a>
                     </li>
                     <li class="fmenu-item">
-                        <a href="{{ url_for('company') }}">Company</a>
+                        <a href="{{ url_for('about') }}">About Us</a>
                     </li>
                     <li class="fmenu-item">
                         <a href="{{ url_for('contact') }}">Contact Us</a>
                     </li>
                     <li class="fmenu-item">
+                        <a href="{{ url_for('sales_representatives') }}">Sales Representatives</a>
+                    </li>
+                    <li class="fmenu-item">
+                        <a href="{{ url_for('owners') }}">Owners</a>
+                    </li>
+                    <li class="fmenu-item">
                         <a href="{{ url_for('login') }}">Login</a>
                     </li>
+                    <li class="fmenu-item">
+                        <a href="{{ url_for('register') }}">Register</a>
+                    </li>
+                    
                 </ul>
             </div>
             <div class="footer-section additional-info">
@@ -119,13 +129,13 @@
                 </div> -->
                 <ul id="socialMediaLinks">
                     <li class="socialMedia">
-                        <a href="#"><img src="{{ url_for('static', filename='images/instagramLogo.png') }}" alt="Instagram" style="height: auto; width: 60px;"></a>
+                        <a href="https://www.instagram.com/jzimportsco/" target="_blank"><img src="{{ url_for('static', filename='images/instagramLogo.png') }}" alt="Instagram" style="height: auto; width: 60px;"></a>
                     </li>
                     <li class="socialMedia">
-                        <a href="#"><img src="{{ url_for('static', filename='images/twitterLogo.png') }}" alt="Twitter" style="height: auto; width: 70px;"></a>
+                        <a href="https://twitter.com/jzimportsco" target="_blank"><img src="{{ url_for('static', filename='images/twitterLogo.png') }}" alt="Twitter" style="height: auto; width: 70px;"></a>
                     </li>
                     <li class="socialMedia">
-                        <a href="https://github.com/ZachB123/J-z-JDM"><img src="{{ url_for('static', filename='images/github-mark.svg') }}" alt="Facebook" style="height: auto; width: 60px;"></a>
+                        <a href="https://github.com/ZachB123/J-z-JDM" target="_blank"><img src="{{ url_for('static', filename='images/github-mark.svg') }}" alt="Facebook" style="height: auto; width: 60px;"></a>
                     </li>
                 </ul>
             </div>

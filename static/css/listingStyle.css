@@ -25,8 +25,24 @@ body {
     }
 }
 
-@media screen and (min-width: 992px) {
+@media screen and (min-width: 1200px) {
     .car-listings-container > * {
         width: 30%;
     }
+}
+
+.back-forth {
+    display: flex;
+    justify-content: center;
+}
+
+.back-forth a {
+    margin: 0 48px;
+    width: 80px;
+    background-color: var(--highlights);
+    color: var(--white);
+    height: auto;
+    padding: 8px;
+    border: var(--grey) solid 1px;
+    text-align: center;
 }
