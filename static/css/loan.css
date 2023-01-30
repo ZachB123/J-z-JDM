@@ -17,7 +17,7 @@ select::-ms-expand {
 }
 
 body {
-    background: url(../images/mobilebackground-01.png) no-repeat center center fixed !important;
+    background: url(../images/mobilebackground-01.png) no-repeat center center fixed;
 }
 
 .loan-container {
@@ -214,10 +214,12 @@ select:focus + .focus {
     }
 }
 
-@media screen and (min-width:750px) {
+@media screen and (min-width:600px) {
     body {
-        background: url(../images/background-jz.png) no-repeat center center fixed;
+        background: url(../images/backgroundtablet-01.jpg) no-repeat center center fixed;
     }
+}
+@media screen and (min-width:750px) {
 
     .loan-container {
         display:grid;
@@ -234,6 +236,12 @@ select:focus + .focus {
 
     .ready-to-buy {
         grid-column: 2 / 3;
+    }
+}
+
+@media screen and (min-width:960px) {
+    body {
+        background: url(../images/desktopbackground.jpg) no-repeat center center fixed;
     }
 }
 

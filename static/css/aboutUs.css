@@ -1,0 +1,34 @@
+.about-container {
+    width: 90%;
+    height: auto;
+    margin: 20px auto 15px auto;
+    background-color: var(--filler);
+    border-radius: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border: var(--black) solid 1px;
+}
+
+.about-header {
+    text-align: center;
+}
+
+.big-para {
+    margin-bottom: 2px;
+}
+
+body {
+    background: url(../images/mobilebackground-01.png);
+}
+
+@media screen and (min-width:600px) {
+    body {
+        background: url(../images/backgroundtablet-01.jpg) no-repeat center center fixed;
+    }
+}
+
+@media screen and (min-width:960px) {
+    body {
+        background: url(../images/desktopbackground.jpg) no-repeat center center fixed;
+    }
+}

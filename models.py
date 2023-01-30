@@ -140,7 +140,7 @@ class Car():
         self.oem = oem #text
         self.model = model #text
         self.year = year #number
-        self.mileage = mileage #number
+        self.mileage = mileage #num ber
         self.color = color #text
         self.price = price #number
         self.drivetrain = drivetrain #text

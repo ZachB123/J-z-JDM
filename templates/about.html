@@ -1,5 +1,32 @@
 {% extends "layout.html" %} 
 
+{% block css %} 
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/aboutUs.css') }}">
+{% endblock %}
+
 {% block body %} 
-<h1>About Us</h1>
+<div class="about-container">
+    <div class="about-header">
+        <h1 class="header-text">Our Mission</h1>
+    </div>
+    <div class="about-info">
+        <p class="info-text">&emsp;To provide JDM enthusiasts with the car of their dreams. It’s as simple as that. We were founded on dreams, we run on dreams, and those dreams will outlive us. We’re here for the teenage first-time car buyer, for the classic car collector and for the amateur rally driver. We’re here for the kids who played with the cars of their dreams with models and in video games, promising that they’ll one day sit behind the actual steering wheel. We’re here for the hobbyist engine tuner, for the Craiglist re-seller, and for the guy who just thought kei vans looked funny. We’re here for the decades-long tradition of a community built around JDM cars and the people that drive them, bringing out the best in both. We’re here for dreams.
+        </p>
+    </div>
+    <div class="about-header">
+        <h1 class="header-text">But what is JDM, exactly?</h1>
+    </div>
+    <div class="about-info">
+        <p class="info-text big-para">&emsp;J.D.M. means Japanese Domestic Market. That’s any vehicle made in Japan and sold in Japan for Japanese people. With a crippled economy following WWII, and a massive debt to pay to western countries, Japan experienced a staggeringly quick and total economic recovery, known as the Japanese Economic Miracle. Both internal government regulations and a cash injection from U.S. military customers during the Korean War contributed to this economic recovery. What this recovery also meant was that the crippled car industry could start to grow. At first, Japanese manufacturers saved on limited resources by taking designs from other manufacturers and simplifying them. The key principle was to keep costs low. Japanese cars were made with mass weight reduction, had limited factory options and were as small as possible. In other words, completely against the grain of common automotive practices at the time. Despite this, these small, reliable and well engineered vehicles began to trickle into global markets. A trickle turned into a flow, then a river, and by the late 1970s, Japanese manufacturers had taken up a serious share of global auto sales. This is where things get interesting.</p>
+        <p class="info-text big-para">&emsp;By the mid-70s, with an abundance of cheap and reliable cars and motorcycles in Japan, street gangs started to band. These groups, broadly known as bōsōzoku, had garnered the attention of the government from their acts of chaotic traffic violations and havoc on the streets. By 1988, road fatalities had reached a critical state. Believing that excessively high-powered cars were to blame, the Japan Automobile Manufacturers Association (JAMA) stepped in and asked all Japanese auto-makers to limit all new vehicles to 276 hp. This pact, known as the Gentleman’s Agreement, stopped neither manufacturers nor Japanese buyers from chasing speed. Manufacturers started to make their cars extremely lightweight yet very sturdy, to maximize speed with limited power. They also made their engines extremely easy to tune, and capable of making far more horsepower than 276.</p>
+        <p class="info-text">&emsp;Between 1989 and 2004, a generation of cheap, reliable, and fast cars spread globally, and sparked an international obsession with these one-of-a-kind machines. They started to make appearances in movies, video games, popular culture, you name it. Soon, every young motorhead knew the names of cars that at that point were illegal to import into the United States. That’s right. In 1988, the U.S. government decided that these Japanese cars were too cheap, too reliable, and too fun to be sold on U.S. soil, passing the 25-year-requirement. This piece of legislation, among other things, made it illegal to import any foreign car that was not made specifically for the U.S. market, until the car reached 25 years old. Coupled with extremely strict Japanese registration laws that encourage citizens to get rid of old cars frequently, there is an untapped stockpile of used Japanese cars waiting to be enjoyed here in the states. Until now.</p>
+    </div>
+    <div class="about-header">
+        <h1 class="header-text">JDM Today</h1>
+    </div>
+    <div class="about-info">
+        <p class="info-text">&emsp;2023 marks eligibility for the 1998 class of JDM cars to be imported. This includes legends like the Mitsubishi EVO V and the 6th-gen Subaru WRX STI. For a prospective buyer, it’s never been more important to partner with a company you can trust. Not just fiscal trust, either. At JZ JDM, we understand that these cars mean more to our buyers than just an appliance. We won't sweet talk you into the fanciest trim level or the most attractive APR. What we will do, however, is share our genuine passion for these cars, and hopefully grow the community around them. We serve JDM enthusiasts, and we serve them with the cars of their dreams. Come be a part of J’Z JDM, and be a part of the collective dreams of the generations of drivers whose toys never changed (they just got a whole lot bigger, and a whole lot more expensive).</p>
+    </div>
+    <br>
+</div>
 {% endblock %}

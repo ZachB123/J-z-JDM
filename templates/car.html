@@ -103,7 +103,7 @@
     </div>
 
     <div class="extra">
-        <a href="{{ url_for('loan', price=car.price) }}">loan Estimate</a>
+        <a href="{{ url_for('loan', price=car.price) }}">Loan Estimate</a>
         {% if car.sales_rep_id != -1 %} 
             <a href="{{ url_for('individual_sales_representative', sales_rep_id=car.sales_rep_id) }}">View Sales Rep</a>
         {% endif %}
