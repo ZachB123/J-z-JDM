@@ -21,7 +21,7 @@
                 <div class="sales-about">
                     {{ sales_rep.about }}
                 </div>
-                <div class="sales-rep-contact-button">
+                <div style="cursor: pointer;" class="sales-rep-contact-button" onclick="location.href = {{ url_for('message_sales_rep', sales_rep_id=sales_rep.user.id) }}">
                     <a href="{{ url_for('message_sales_rep', sales_rep_id=sales_rep.user.id) }}">Message</a>
                 </div>
             </div>

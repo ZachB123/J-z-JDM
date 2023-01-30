@@ -41,20 +41,22 @@ body {
     margin: 10px 0;
 }
 
-
-
 .discover-button-container {
     margin: 100px auto;
 }
 
 .discover-more-button {
     background-color: var(--highlights);
-    color: black;
+    color: var(--white);
     width: fit-content;
     height: auto;
     margin: 0 auto;
     padding: 8px;
     border: var(--grey) solid 1px;
+}
+
+.discover-more-button:hover {
+    background-color: var(--highlights-hover);
 }
 
 @media screen and (min-width: 370px) {

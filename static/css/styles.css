@@ -11,7 +11,7 @@ body {
 }
 
 nav {
-    background: var(--purple);
+    background: var(--primary);
     padding: 0 15px;
     z-index: 1;
 }
@@ -36,7 +36,7 @@ a {
 }
 .item:not(.button) a:hover,
 .item a:hover::after {
-    color: white;
+    color: var(--white);
     cursor: pointer;
 }
 
@@ -87,7 +87,7 @@ a {
 /* Submenu up from mobile screens */
 .submenu {
     display: none;
-    z-index: 1;
+    z-index: 999;
 }
 .submenu-active .submenu {
    display: block;
@@ -136,7 +136,7 @@ a {
         margin: 5px 0;
     }
     .button a {
-        background: var(--teal);
+        background: var(--highlights);
         border: 1px rgb(21, 22, 26) solid;
     }
     .button.sign-up {
@@ -144,14 +144,13 @@ a {
     }
     .button.sign-up a {
         background: transparent;
-        border: 1px var(--teal) solid;  
+        border: 1px var(--highlights) solid;  
     }
     .button a:hover {
         text-decoration: none;
     }
     .button:not(.sign-up) a:hover {
-        background: royalblue;
-        border-color: darkblue;
+        background: var(--highlights-hover);
     }
 }
 
@@ -181,7 +180,7 @@ a {
         position: absolute;
         left: 0;
         top: 68px;
-        background: #694991;
+        background: var(--highlights);
     }
     .hamburger-button {
         display: none;
@@ -194,7 +193,7 @@ a {
 /* Footer */
 
 .footer-container {
-    background-color: rgba(245, 194, 238, .9);
+    background-color: var(--primary);
     height: auto;
     width: 100%;
     text-align: center;
@@ -209,7 +208,7 @@ a {
 
 .footer-text {
     font-size: x-large;
-    color: black;
+    color: var(--black);
     font-weight: bold;
 }
 #slogan, #location {
@@ -232,7 +231,7 @@ a {
 }
 
 .fmenu-item:hover {
-    background-color: rgb(201, 201, 201);
+    background-color: var(--highlights-hover);
     padding: 7px;
     border-radius: 10px;
 }

@@ -50,7 +50,7 @@
 
 
 #search_field {
-    background-color: var(--primary);
+    background-color: var(--white);
     padding-left: 3px;
     border: var(--yellow) solid 1px;
 }
@@ -105,7 +105,7 @@
 }
 
 .carTypeButton {
-    background: var(--primary);
+    background: var(--white);
     border-radius: 10px;
 }
 

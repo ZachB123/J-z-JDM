@@ -76,20 +76,25 @@ body {
     color: var(--red);
 }
 
-.form-submit input{
+.form-submit input {
     font-size: 16px;
     font-family: 'Kanit';
-    background-color: var(--purple);
-    color: var(--yellow);
+    background-color: var(--highlights);
+    color: var(--white);
     padding: 3px;
     border-radius: 4px;
     border-color: grey;
     width: 30%;
     height: auto;
+    cursor: pointer;
 }
 
 .form-submit input:hover {
-    background-color: rgb(101, 65, 145);
+    background-color: var(--highlights-hover) !important;
+}
+
+.form-submit input:hover {
+    background-color: var(--highlights);
 }
 
 @media screen and (min-width:370px){

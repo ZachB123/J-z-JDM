@@ -5,6 +5,23 @@ body {
     background: url(../images/mobilebackground-01.png) no-repeat center center fixed;
 }
 
+@media screen and (min-width: 588px) {
+    body {
+        background: url(../images/backgroundtablet-01.jpg) no-repeat center center fixed;
+    }
+}
+
+@media screen and (min-width: 930px) {
+    body {
+        background: url(../images/background-jz.png) no-repeat center center fixed;
+    }
+}
+
+.content-container {
+    max-width: 450px;
+    margin: auto;
+}
+
 .message-header {
     background-color: var(--primary);
 }
@@ -32,10 +49,95 @@ body {
     
 }
 
-.anchor {
+form {
+    height: 60px;
+    margin: 12px auto;
+    width: 70%;
+    position: relative
+}
+
+form textarea {
+    width: 100%;
+    height: 60px;
+    padding: 2px 40px 2px 4px;
+    resize: none;
+    border-radius: 6px;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    -ms-border-radius: 6px;
+    -o-border-radius: 6px;
+}
+
+form .send {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 60px;
+    border: none;
+    background-color: var(--highlights);
+    padding: 0 4px;
+    border-radius: 0 6px 6px 0;
+    -webkit-border-radius: 0 6px 6px 0;
+    -moz-border-radius: 0 6px 6px 0;
+    -ms-border-radius: 0 6px 6px 0;
+    -o-border-radius: 0 6px 6px 0;
+}
+
+form .send:hover {
+    cursor: pointer;
+    background-color: var(--highlights-hover);
+}
+
+form .send i {
+    color: var(--white);
+}
+
+/* .anchor {
     overflow-anchor: auto;
     height: 1px;
+} */
+
+
+
+
+/* .form-container {
+    background-color: var(--secondaryPrime);
+
+} */
+
+/* entire form but form tag */
+/* .form-input {
+    position: relative;
+    width: 80%;
+    height: auto;
+    margin: 0 auto;
+    align-items: center;
+    text-align: center;
 }
+
+.form-input textarea {
+    overflow: scroll;
+    width: 100%;
+    margin: 0 auto;
+    padding-left: 2px;
+    font-size: 14px;
+    background-color: var(--secondaryPrime);
+    color: black;
+    height: 0%;
+}
+
+.form-submit {
+    position: absolute;
+    height: 100%;
+    top: 0;
+    right: 0;
+}
+
+.form-submit input {
+    height: 100%;
+} */
+
+/* https://codepen.io/ezenith/pen/pJLypJ */
 
 .message-blue {
     position: relative;
@@ -116,40 +218,6 @@ body {
     border-right: 16px solid transparent;
     bottom: -1px;
     right: -17px;
-}
-
-/* .form-container {
-    background-color: var(--secondaryPrime);
-
-} */
-
-.form-input {
-    position: relative;
-    width: 95%;
-    height: auto;
-    margin: 0 auto;
-    align-items: center;
-    text-align: center;
-}
-
-.form-area textarea {
-    overflow: scroll;
-    width: 100%;
-    margin: 0 auto;
-    padding-left: 2px;
-    font-size: 14px;
-    background-color: var(--secondaryPrime);
-    color: black;
-}
-
-.form-area {
-    position: relative;
-}
-
-.form-submit {
-    position: absolute;
-    right: 2%;
-    top: 20%;
 }
 
 

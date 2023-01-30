@@ -193,6 +193,11 @@ class DatabaseDriver():
             SET password_hash=%s 
             WHERE id=%s
         """, values)
+
+    def delete_all_messages(self):
+        self.db_op("""
+            DELETE FROM direct_messages
+        """)
         
         
 db = DatabaseDriver()

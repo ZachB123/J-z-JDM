@@ -33,7 +33,7 @@ def index():
     if form.validate_on_submit():
         return redirect(url_for("listings", q=form.search_field.data))
     CAROUSEL_CARS = 5
-    carousel_cars = Car.search_cars()[::-1][0:5]
+    carousel_cars = Car.search_cars()[0:5]
     return render_template("index.html", carousel_cars=carousel_cars, form=form, title="Home")
 
 @app.route("/login", methods=["GET", "POST"])
@@ -85,9 +85,9 @@ def profile():
     senders = [u for u in users if u.id in sender_ids]
     return render_template("profile.html", user=user, cars=cars, senders=senders, form=form, title="Profile")
 
-@app.route("/company")
-def company():
-    return render_template("company.html", title="Company")
+@app.route("/about")
+def about():
+    return render_template("about.html", title="About Us")
 
 @app.route("/listings", methods=["GET", "POST"])
 def listings():
@@ -215,7 +215,7 @@ def message_sales_rep(sales_rep_id):
         DirectMessage.send_direct_message(int(current_user.get_id()), int(user.id), form.content.data)
         return redirect(url_for("message_sales_rep", sales_rep_id=sales_rep_id))
     messages = DirectMessage.get_messages(current_user.get_id(), sales_rep_id) + DirectMessage.get_messages(sales_rep_id, current_user.get_id())
-    messages.sort(key=(lambda x: x.timestamp))
+    messages.sort(key=(lambda x: int(x.id)))
     return render_template("messages.html", form=form, user=user, messages=messages, title=f"Messaging: {user.username}")
 
 @app.route("/contact", methods=["GET", "POST"])

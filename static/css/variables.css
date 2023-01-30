@@ -11,9 +11,9 @@
     --yellow: #0c1e2c;
     --secondaryPrime: #fdf2e2;
 
-    --primary: pink;
-    --filler: wheat;
-    --highlights: purple;
+    --primary: #f5c2ee;
+    --filler: rgb(236, 212, 169);
+    --highlights: rgb(158, 18, 158);
     --highlights-hover: rgb(204, 53, 204);
     --black: black;
     --white: white;
