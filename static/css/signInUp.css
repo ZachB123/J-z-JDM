@@ -16,6 +16,10 @@ body {
     position: relative;
 }
 
+a {
+    text-decoration: none;
+}
+
 .sign-UI-container {
     display: block;
     text-align: center;
@@ -37,6 +41,10 @@ body {
     border: rgb(158, 157, 157);
     border-width: 2px;
     border-style: solid;
+}
+
+.form-input-container input[type="submit"] {
+    margin: 8px 0;
 }
 
 .logoForm {

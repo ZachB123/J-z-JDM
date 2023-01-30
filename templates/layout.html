@@ -83,34 +83,37 @@
             </div>
             <div class="footer-section">
                 <ul id="footerMenu">
-                    <li class="fmenu-item">
-                        <a href="{{ url_for('index') }}">Home</a>
-                    </li>
-                    <li class="fmenu-item">
-                        <a href="{{ url_for('listings') }}">Car Listings</a>
-                    </li>
-                    <li class="fmenu-item">
-                        <a href="{{ url_for('loan') }}">Loan Calculator</a>
-                    </li>
-                    <li class="fmenu-item">
-                        <a href="{{ url_for('about') }}">About Us</a>
-                    </li>
-                    <li class="fmenu-item">
-                        <a href="{{ url_for('contact') }}">Contact Us</a>
-                    </li>
-                    <li class="fmenu-item">
-                        <a href="{{ url_for('sales_representatives') }}">Sales Representatives</a>
-                    </li>
-                    <li class="fmenu-item">
-                        <a href="{{ url_for('owners') }}">Owners</a>
-                    </li>
-                    <li class="fmenu-item">
-                        <a href="{{ url_for('login') }}">Login</a>
-                    </li>
-                    <li class="fmenu-item">
-                        <a href="{{ url_for('register') }}">Register</a>
-                    </li>
-                    
+                    <div class="col">
+                        <li class="fmenu-item">
+                            <a href="{{ url_for('index') }}">Home</a>
+                        </li>
+                        <li class="fmenu-item">
+                            <a href="{{ url_for('listings') }}">Car Listings</a>
+                        </li>
+                        <li class="fmenu-item">
+                            <a href="{{ url_for('loan') }}">Loan Calculator</a>
+                        </li>
+                        <li class="fmenu-item">
+                            <a href="{{ url_for('about') }}">About Us</a>
+                        </li>
+                        <li class="fmenu-item">
+                            <a href="{{ url_for('contact') }}">Contact Us</a>
+                        </li>
+                    </div>
+                    <div class="col">
+                        <li class="fmenu-item">
+                            <a href="{{ url_for('sales_representatives') }}">Sales Reps</a>
+                        </li>
+                        <li class="fmenu-item">
+                            <a href="{{ url_for('owners') }}">Owners</a>
+                        </li>
+                        <li class="fmenu-item">
+                            <a href="{{ url_for('login') }}">Login</a>
+                        </li>
+                        <li class="fmenu-item">
+                            <a href="{{ url_for('register') }}">Register</a>
+                        </li>
+                    </div>  
                 </ul>
             </div>
             <div class="footer-section additional-info">

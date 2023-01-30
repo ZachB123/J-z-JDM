@@ -4,18 +4,14 @@
             <h2>Find your Perfect Car Today!</h2>
         </div>
         <div class="carSearchContainer">
-            <div id="carSearchBar">
-                <div class="search-box">
-                    <form id="searchForm" action="" method="post">
-                        {{ form.hidden_tag() }}
-                        {{ form.search_field(class="search-input") }}
-                        {% for error in form.search_field.errors %}
-                            <span>[{{ error }}]</span>
-                        {% endfor %}
-                    </form>
-                    <button class="search-btn search-button"><i class="fas fa-search"></i></button>
-                </div>
-            </div>
+            <form id="searchForm" action="" method="post">
+                {{ form.hidden_tag() }}
+                {{ form.search_field(class="search-input") }}
+                {% for error in form.search_field.errors %}
+                    <span>[{{ error }}]</span>
+                {% endfor %}
+            </form>
+            <button class="search-btn search-button"><i class="fas fa-search"></i></button>
         </div>
         <div id="carTypeButtonContainer">
             <li id="carTypeButtons">
@@ -36,7 +32,7 @@
                     </a>
                 </ul>
                 <ul class="carTypeButton">
-                    <a href="{{ url_for('listings', q='honda') }}" class="car-button-container">
+                    <a href="{{ url_for('listings', q='nissan') }}" class="car-button-container">
                         <img src="{{ url_for('static', filename='images/nissanLogo.svg') }}" alt="$" class="brandLogo" style="height: auto; width: 20px; position: relative; top: 2px; right: 3px;">
                         <span class="brandName">
                             Nissan

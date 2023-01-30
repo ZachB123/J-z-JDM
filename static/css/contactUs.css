@@ -1,6 +1,6 @@
 .contact-us-container {
     display: flex;
-    width: 60%;
+    width: 90%;
     margin: 100px auto;
     text-align: left;
     justify-items: center;
@@ -10,6 +10,20 @@
     border-width: 10px;
     z-index: 0;
 }
+
+@media all and (min-width: 776px) {
+    .contact-us-container {
+        width: 75%;
+    }
+}
+
+@media all and (min-width: 1200px) {
+    .contact-us-container {
+        width: 50%;
+    }
+}
+
+
 
 .form-input-header {
     font-weight: 500;

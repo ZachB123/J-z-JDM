@@ -8,9 +8,11 @@ body {
 
 .car-name {
     text-align: center;
+    margin: 16px 0;
 }
 .current-car-image {
     text-align: center;
+    margin-bottom: 14px;
 }
 
 .current-car-image img {
@@ -20,8 +22,16 @@ body {
     -moz-border-radius: 8px;
     -ms-border-radius: 8px;
     -o-border-radius: 8px;
+    box-shadow: 14px 14px var(--primary), -14px -14px var(--highlights);
+
 }
 
+.more-images-container {
+    padding: 4px;
+    border: solid 4px var(--highlights);
+    background-color: var(--primary);
+    
+}
 
 .more-images {
     margin-top: 12px;
@@ -59,6 +69,7 @@ body {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    background-color: var(--white);
 }
 
 .similar-cars h1 {
@@ -97,8 +108,28 @@ body {
     .description p {
         width: 60%;
         margin: auto;
+        font-size: 24px;
     }
     .info-container {
         width: 20vw;
     }
+}
+
+.extra {
+    margin: 12px 0;
+    display: flex;
+    justify-content: space-around;
+    padding-bottom: 12px;
+}
+
+.extra a {
+    display: inline-block;
+    width: fit-content;
+    background-color: var(--highlights);
+    color: var(--white);
+    height: auto;
+    padding: 8px;
+    border: var(--grey) solid 1px;
+    text-align: center;
+    font-size: 1.4em;
 }

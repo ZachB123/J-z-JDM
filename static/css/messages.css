@@ -92,50 +92,9 @@ form .send i {
     color: var(--white);
 }
 
-/* .anchor {
-    overflow-anchor: auto;
-    height: 1px;
-} */
-
-
-
-
-/* .form-container {
-    background-color: var(--secondaryPrime);
-
-} */
-
-/* entire form but form tag */
-/* .form-input {
-    position: relative;
-    width: 80%;
-    height: auto;
-    margin: 0 auto;
-    align-items: center;
-    text-align: center;
+.message-container {
+    margin-bottom: 32px;
 }
-
-.form-input textarea {
-    overflow: scroll;
-    width: 100%;
-    margin: 0 auto;
-    padding-left: 2px;
-    font-size: 14px;
-    background-color: var(--secondaryPrime);
-    color: black;
-    height: 0%;
-}
-
-.form-submit {
-    position: absolute;
-    height: 100%;
-    top: 0;
-    right: 0;
-}
-
-.form-submit input {
-    height: 100%;
-} */
 
 /* https://codepen.io/ezenith/pen/pJLypJ */
 

@@ -46,3 +46,9 @@
 .car-preview-bottom-banner > * {
     margin: 0 8px;
 }
+
+@media all and (min-width: 992px) {
+    .car-preview-bottom-banner {
+        font-size: 20px;
+    }
+}

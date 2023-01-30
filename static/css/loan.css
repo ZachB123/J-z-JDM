@@ -75,7 +75,7 @@ body {
     width: 140px;
     height: auto;
     padding: 10px 7px;
-    border-color: var(--highlights);
+    /* border-color: var(--highlights); */
     border-radius: 10px;
     font-family: 'Kanit';
     min-width: 0;

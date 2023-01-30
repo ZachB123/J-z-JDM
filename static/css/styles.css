@@ -4,6 +4,7 @@
     margin: 0;
     box-sizing: border-box;
     font-family: 'Kanit';
+    scroll-behavior: smooth;
 }
 
 body {
@@ -39,6 +40,13 @@ a {
     color: var(--white);
     cursor: pointer;
 }
+.sign-up a {
+    background-color: var(--highlights) !important;
+    color: var(--white);
+}
+.log-in a {
+    border: none !important;
+}
 
 /* Mobile menu */
 .list-container {
@@ -60,6 +68,12 @@ a {
 .list-container li.subitem a {
     padding: 15px;
 }
+@media all and (min-width: 700px) {
+    .log-in a {
+        color: var(--white);
+    }
+}
+
 .hamburger-button {
     order: 1;
     font-size: 20px;
@@ -106,6 +120,7 @@ a {
 }
 .subitem a {
     padding: 10px 15px;
+    color: var(--white);
 }
 .submenu-active {
     background-color: var(--highlights);
@@ -275,6 +290,16 @@ a {
     margin-left: 4px;
 }
 
+@media all and (min-width: 992px) {
+    #footerMenu {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+    .col {
+        margin: 0 30px;
+    }
+}
 
 
 /* https://getwaves.io/ */

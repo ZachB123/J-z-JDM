@@ -44,7 +44,9 @@ body {
 .profile-container {
     width: 300px;
     height: auto;
-    margin: 5px auto;
+    margin: 32px auto;
+    border: solid 8px var(--black);
+
 }
 
 .sales-rep-message {
@@ -69,6 +71,10 @@ body {
     border-width: 1px;
 }
 
+.sales-rep-contact-button a {
+    color: var(--white);
+}
+
 .sales-rep-contact-button:hover {
     background-color: var(--highlights-hover);
 }
@@ -76,11 +82,10 @@ body {
 .selling-car-header {
     margin: 0 auto;
     margin-top: 8px;
-    background: var(--filler);
+    background: var(--primary);
     width: fit-content;
     padding: 5px;
     border: black solid 1px;
-    border-radius: 5px;
 }
 @media screen and (min-width: 700px) {
     body {
@@ -93,7 +98,6 @@ body {
         display: flex;
         flex-direction: row;
         width: 80%;
-        margin: 0 auto;
     }
     .sales-rep-message {
         padding: 0;

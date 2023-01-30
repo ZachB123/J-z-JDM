@@ -1,15 +1,30 @@
 body {
-    background: url(../images/mobilebackground-01.png) no-repeat center center fixed;
+    background: url(../images/backgroung-jz.jpg) no-repeat center center fixed !important;
+    background-size: cover !important;
 }
 
 .profile-container {
     text-align: center;
-    background-color: var(--filler);
     margin: 7px;
     border-radius: 3px;
     font-family: 'Kanit';
 }
 
+.hello-message {
+    background-color: var(--highlights);
+    width: fit-content;
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+    margin: auto;
+    padding: 4px 8px;
+}
+
+.hello-message h1 {
+    color: var(--white);
+}
 
 .message-container {
     border: black solid 2px;
@@ -17,7 +32,7 @@ body {
     width: fit-content;
     height: auto;
     padding: 0 30px;
-
+    background-color: var(--filler);
 }
 
 .view-messages a {
@@ -41,8 +56,13 @@ body {
     margin: 10px 0;
 }
 
-.discover-button-container {
-    margin: 100px auto;
+.favorites-container {
+    background-color: rgba(0,0,0,0);
+    width: fit-content;
+}
+
+.car-grid {
+    margin: auto;
 }
 
 .discover-more-button {
@@ -73,7 +93,7 @@ body {
         display: flex;
         flex-wrap: wrap;
         flex-direction: row;
-        width: 60%;
+        width: 80%;
         margin: 10px auto;
     }
     .profile-container {
@@ -84,11 +104,12 @@ body {
         width: 95%;
         height: auto;
         display: flex;
+        justify-content: center;
         flex-direction: row;
         flex-wrap: wrap;
     }
     .car-preview-container {
-        width: 33%;
+        width: 29%;
         height: auto;
     }
 }

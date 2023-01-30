@@ -4,6 +4,23 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/messages.css') }}">
 {% endblock %}
 
+{% block js %} 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script type="text/javascript" defer>
+        $(function() {
+            $('form').each(function() {
+                $(this).find('textarea').keypress(function(e) {
+                    if(e.which == 10 || e.which == 13) {
+                        this.form.submit();
+                    }
+                });
+        
+                $(this).find('input[type=submit]').hide();
+            });
+        });
+    </script>
+{% endblock %}
+
 {% block body %} 
 <div class="message-header">
     <h1 class="username-message">{{ user.username }}</h1>
@@ -36,7 +53,10 @@
             {% endfor %}
         </div>
         <button onclick="document.querySelector('form').submit()" class="send"><i class="material-icons">send</i></button>
+        <input type="submit" hidden />
     </form>
 </div>
 
+
+    
 {% endblock %}

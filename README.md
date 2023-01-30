@@ -5,3 +5,4 @@
 * pip install -r requirements.txt
 * get database credentials from zach and put in .env
 * flask run
+* website is jzjdm.co

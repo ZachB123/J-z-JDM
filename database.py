@@ -48,7 +48,8 @@ class DatabaseDriver():
 
     def get_all_cars(self):
         return self.db_op("""
-            SELECT * FROM cars;
+            SELECT * FROM cars
+            WHERE id > 12;
         """)
 
     def get_car_by_id(self, values):

@@ -7,6 +7,8 @@
         {% if current_user.is_anonymous %} 
             {% if sales_rep %}
                 <button class="favorite-button" onclick="location.href = `{{ url_for('login', next=url_for(request.endpoint, sales_rep_id=sales_rep.user.id)) }}`"><i class="material-icons favorite">bookmark_add</i></button> 
+            {% elif request.endpoint == 'car' %} 
+                <button class="favorite-button" onclick="location.href = `{{ url_for('login', next=url_for(request.endpoint, id=car.id)) }}`"><i class="material-icons favorite">bookmark_add</i></button>
             {% else %}
                 <button class="favorite-button" onclick="location.href = `{{ url_for('login', next=url_for(request.endpoint)) }}`"><i class="material-icons favorite">bookmark_add</i></button>
             {% endif %}
@@ -22,7 +24,7 @@
     <!-- image THIS IS THE PROBLEM-->
     {% set cover = car.get_cover_image() %}
     {% if cover %}
-        <img class="car-preview-cover-img" src="{{ cover.link }}" alt="ERROR: {{ cover }}">
+        <img style="cursor: pointer;" onclick="location.href=`{{ url_for('car', id=car.id) }}`" class="car-preview-cover-img" src="{{ cover.link }}" alt="ERROR: {{ cover }}">
     {% else %} 
         <p>ERROR: No Images</p>
     {% endif %}
