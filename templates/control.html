@@ -137,7 +137,9 @@
 
     <h1>Cars</h1>
     {% for car in cars %} 
-        {% include "_carPreview.html" %}
+        <div class="car-size" style="height: auto; width: 33%;">
+            {% include "_carPreview.html" %}
+        </div>
         <p>ID: {{ car.id }}</p>
         <a href="{{ url_for('add_image_to_car', car_id=car.id) }}">ADD IMAGES TO THIS CAR</a>
     {% endfor %}
