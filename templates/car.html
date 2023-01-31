@@ -10,6 +10,7 @@
 {% endblock %}
 
 {% block body %} 
+    <div class="top-gradient"></div>
     <div class="car">
         <div class="car-name">
             <h1>{{ car.year }} {{ car.oem }}, {{ car.model }}</h1>
@@ -130,4 +131,5 @@
             {% include "_carPreview.html" %}            
         {% endfor %}
     </div>
+    <div class="bottom-car-gradient"></div>
 {% endblock %}
