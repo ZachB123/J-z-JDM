@@ -79,12 +79,22 @@ body {
     background-color: var(--highlights-hover);
 }
 
+.discover-button-container {
+    margin: 24px auto;
+}
+
 @media screen and (min-width: 370px) {
     .reset-password-container {
         width: 370px;
         height: auto;
         margin: 8px auto;
         border-radius: 6px;
+    }
+}
+
+@media all and (min-width: 412px) {
+    .message-container {
+        width: 370px;
     }
 }
 

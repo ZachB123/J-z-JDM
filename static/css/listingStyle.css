@@ -46,3 +46,7 @@ body {
     border: var(--grey) solid 1px;
     text-align: center;
 }
+
+.back-forth a:hover {
+    background-color: var(--highlights-hover);
+}

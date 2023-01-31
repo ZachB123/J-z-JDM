@@ -9,12 +9,25 @@
     border: var(--black) solid 1px;
 }
 
+h1 {
+    font-size: 36px;
+}
+
+p {
+    font-size: 20px;
+    line-height: 32px;
+}
+
 .about-header {
     text-align: center;
 }
 
 .big-para {
     margin-bottom: 2px;
+}
+
+.about-container > div {
+    margin: 16px auto;
 }
 
 body {
@@ -24,6 +37,10 @@ body {
 @media screen and (min-width:600px) {
     body {
         background: url(../images/backgroundtablet-01.jpg) no-repeat center center fixed;
+    }
+    .about-container {
+        padding: 12px 48px;
+        max-width: 900px;
     }
 }
 

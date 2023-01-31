@@ -13,7 +13,71 @@
             </form>
             <button class="search-btn search-button"><i class="fas fa-search"></i></button>
         </div>
-        <div id="carTypeButtonContainer">
+        <div class="button-container">
+            <div class="car-button" onclick="location.href=`{{ url_for('listings', q='honda') }}`">
+                <a href="{{ url_for('listings', q='honda') }}" class="car-button-link">
+                    <img src="{{ url_for('static', filename='images/hondaemblembackgroundfix1-01.png') }}" alt="$" class="brandLogo" style="height: 18px; width: 20px; position: relative; top: 2px; right: 3px;">
+                    <span class="brandName">Honda</span>
+                </a>
+            </div>
+            <div class="car-button" onclick="location.href=`{{ url_for('listings', q='mazda') }}`">
+                <a href="{{ url_for('listings', q='mazda') }}" class="car-button-link">
+                    <img src="{{ url_for('static', filename='images/mazdaemblem.png') }}" alt="$" class="brandLogo" style="height: auto; width: 20px; position: relative; top: 2px; right: 3px;">
+                    <span class="brandName">
+                        Mazda
+                    </span>
+                </a>
+            </div>
+            <div class="car-button" onclick="location.href=`{{ url_for('listings', q='nissan') }}`">
+                <a href="{{ url_for('listings', q='nissan') }}" class="car-button-link">
+                    <img src="{{ url_for('static', filename='images/nissanLogo.svg') }}" alt="$" class="brandLogo" style="height: auto; width: 20px; position: relative; top: 2px; right: 3px;">
+                    <span class="brandName">
+                        Nissan
+                    </span>
+                </a>
+            </div>
+            <div class="car-button" onclick="location.href=`{{ url_for('listings', q='toyota') }}`">
+                <a href="{{ url_for('listings', q='toyota') }}" class="car-button-link">
+                    <img src="{{ url_for('static', filename='images/toyotaemblem-01.png') }}" alt="$" class="brandLogo" style="height: auto; width: 20px; position: relative; top: 0px; right: 3px;">
+                    <span class="brandName">
+                        Toyota
+                    </span>
+                </a>
+            </div>
+            <div class="car-button" onclick="location.href=`{{ url_for('listings', q='subaru') }}`">
+                <a href="{{ url_for('listings', q='subaru') }}" class="car-button-link">
+                    <img src="{{ url_for('static', filename='images/subaruemblemtransp.fix-01.png') }}" alt="$" class="brandLogo" style="height: auto; width: 20px; position: relative; top: 0px; right: 3px;">
+                    <span class="brandName">
+                        Subaru
+                    </span>
+                </a>
+            </div>
+            <div class="car-button" onclick="location.href=`{{ url_for('listings', q='daihatsu') }}`">
+                <a href="{{ url_for('listings', q='daihatsu') }}" class="car-button-link">
+                    <img src="{{ url_for('static', filename='images/daihatsuemblem-01.png') }}" alt="$" class="brandLogo" style="height: auto; width: 20px; position: relative; top: -1px; right: 1px;">
+                    <span class="brandName">
+                        Daihatsu
+                    </span>
+                </a>
+            </div>
+            <div class="car-button" onclick="location.href=`{{ url_for('listings', q='suzuki') }}`">
+                <a href="{{ url_for('listings', q='suzuki') }}" class="car-button-link">
+                    <img src="{{ url_for('static', filename='images/suzukiemblem-01.png') }}" alt="$" class="brandLogo" style="height: 18px; width: 20px; position: relative; top: 2px; right: 3px;">
+                    <span class="brandName">
+                        Suzuki
+                    </span>
+                </a>
+            </div>
+            <div class="car-button" onclick="location.href=`{{ url_for('listings', q='mitsubishi') }}`">
+                <a href="{{ url_for('listings', q='mitsubishi') }}" class="car-button-link">
+                    <img src="{{ url_for('static', filename='images/mitsubishiemblem-01.png') }}" alt="$" class="brandLogo" style="height: auto; width: 20px; position: relative; top: 1px; right: -2px;">
+                    <span class="brandName">
+                        Mitsubishi
+                    </span>
+                </a>   
+            </div>
+        </div>
+        <!-- <div id="carTypeButtonContainer">
             <li id="carTypeButtons">
                 <ul class="carTypeButton">
                     <a href="{{ url_for('listings', q='honda') }}" class="car-button-container">
@@ -80,6 +144,6 @@
                     </a>
                 </ul>
             </li>
-        </div>
+        </div> -->
     </div>
 </div>

@@ -301,5 +301,13 @@ a {
     }
 }
 
+.subitem:hover {
+    background-color: var(--highlights-hover);
+}
+
+.submenu-active a {
+    color: var(--white);
+}
+
 
 /* https://getwaves.io/ */
