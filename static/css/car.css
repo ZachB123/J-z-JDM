@@ -40,10 +40,18 @@ body {
     text-align: center;
     margin: 10px 0 16px 0;
 }
+
+.car-name > * {
+    display: inline-block;
+}
+
 .current-car-image {
     text-align: center;
+    margin: auto;
     margin-bottom: 14px;
+    position: relative;
 }
+
 
 .current-car-image img {
     width: 80%;
@@ -53,7 +61,12 @@ body {
     -ms-border-radius: 8px;
     -o-border-radius: 8px;
     box-shadow: 14px 14px var(--primary), -14px -14px var(--highlights);
+}
 
+.current-car-image button {
+    position: absolute;
+    top: 0;
+    right: 0;
 }
 
 .more-images-container {
@@ -93,6 +106,10 @@ body {
 
 .extra a {
     display: block;
+}
+
+.extra a:hover {
+    background-color: var(--highlights-hover);
 }
 
 .similar-cars {

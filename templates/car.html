@@ -14,9 +14,25 @@
     <div class="car">
         <div class="car-name">
             <h1>{{ car.year }} {{ car.oem }}, {{ car.model }}</h1>
+            {% if current_user.is_anonymous %} 
+                {% if sales_rep %}
+                    <button class="favorite-button" onclick="location.href = `{{ url_for('login', next=url_for(request.endpoint, sales_rep_id=sales_rep.user.id)) }}`"><i class="material-icons favorite">bookmark_add</i></button> 
+                {% elif request.endpoint == 'car' %} 
+                    <button class="favorite-button" onclick="location.href = `{{ url_for('login', next=url_for(request.endpoint, id=car.id)) }}`"><i class="material-icons favorite">bookmark_add</i></button>
+                {% else %}
+                    <button class="favorite-button" onclick="location.href = `{{ url_for('login', next=url_for(request.endpoint)) }}`"><i class="material-icons favorite">bookmark_add</i></button>
+                {% endif %}
+            {% else %}
+                {% if car.is_favorited_by_user(current_user.get_id()) %} 
+                    <button class="favorite-button" onclick="previewUnfavoriteCar(this)" carid={{car.id}} id="carUnfavorite{{car.id}}"><i class="material-icons unfavorite">bookmark_remove</i></button>
+                {% else %} 
+                    <button class="favorite-button" onclick="previewFavoriteCar(this)" carid={{car.id}} id="carFavorite{{car.id}}"><i class="material-icons favorite">bookmark_add</i></button>
+                {% endif %}
+            {% endif %}
         </div>
         <div class="current-car-image">
             <img class="current-image" src="{{ cover_image.link }}" alt="ERROR: {{cover_image}}">
+            
         </div>
         <div class="description">
             <p>&emsp; {{car.description}}</p>
@@ -109,9 +125,6 @@
             <a href="{{ url_for('individual_sales_representative', sales_rep_id=car.sales_rep_id) }}">View Sales Rep</a>
         {% endif %}
     </div>
-    {{ url_for('login') }}
-    {{ request.endpoint }}
-    <div class="middle-gradient"></div>
     <div class="similar-cars">
         <h1>Similar Cars</h1>
         {% for car in similar %} 

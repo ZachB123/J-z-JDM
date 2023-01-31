@@ -194,3 +194,33 @@
     outline:none;
     color:var(--black);
 }
+
+.button-container {
+    display: grid;
+    max-width: 460px;
+    margin: 4px auto;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    column-gap: 6px;
+    row-gap: 6px;
+}
+
+.car-button {
+    background-color: var(--white);
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+    text-align: center;
+    cursor: pointer;
+
+}
+
+.car-button-link {
+    display: inline-grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+    column-gap: 2px;
+    place-items: center;
+}
