@@ -10,6 +10,7 @@
 {% endblock %}
 
 {% block body %} 
+    <div class="top-gradient"></div>
     <div class="car">
         <div class="car-name">
             <h1>{{ car.year }} {{ car.oem }}, {{ car.model }}</h1>
@@ -110,10 +111,12 @@
     </div>
     {{ url_for('login') }}
     {{ request.endpoint }}
+    <div class="middle-gradient"></div>
     <div class="similar-cars">
         <h1>Similar Cars</h1>
         {% for car in similar %} 
             {% include "_carPreview.html" %}            
         {% endfor %}
     </div>
+    <div class="bottom-car-gradient"></div>
 {% endblock %}

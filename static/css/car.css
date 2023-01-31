@@ -2,13 +2,43 @@ body {
     background-color: var(--filler);
 }
 
+.top-gradient {
+    width: 100%;
+    height: 40px;
+    background: rgb(236,212,169);
+    background: -moz-linear-gradient(0deg, rgba(236,212,169,1) 0%, rgba(245,194,238,1) 100%);
+    background: -webkit-linear-gradient(0deg, rgba(236,212,169,1) 0%, rgba(245,194,238,1) 100%);
+    background: linear-gradient(0deg, rgba(236,212,169,1) 0%, rgba(245,194,238,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ecd4a9",endColorstr="#f5c2ee",GradientType=1);
+}
+
+.middle-gradient {
+    width: 100%;
+    height: 20px;
+    background: rgb(255,255,255);
+    background: -moz-linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(236,212,169,1) 100%);
+    background: -webkit-linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(236,212,169,1) 100%);
+    background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(236,212,169,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ffffff",endColorstr="#ecd4a9",GradientType=1);
+}
+
+.bottom-car-gradient {
+    width: 100%;
+    height: 40px;
+    background: rgb(245,194,238);
+    background: -moz-linear-gradient(0deg, rgba(245,194,238,1) 0%, rgba(255,255,255,1) 100%);
+    background: -webkit-linear-gradient(0deg, rgba(245,194,238,1) 0%, rgba(255,255,255,1) 100%);
+    background: linear-gradient(0deg, rgba(245,194,238,1) 0%, rgba(255,255,255,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#f5c2ee",endColorstr="#ffffff",GradientType=1);
+}
+
 .car {
     margin: 2px 6px;
 }
 
 .car-name {
     text-align: center;
-    margin: 16px 0;
+    margin: 10px 0 16px 0;
 }
 .current-car-image {
     text-align: center;
