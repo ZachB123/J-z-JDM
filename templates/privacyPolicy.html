@@ -1,5 +1,79 @@
 {% extends "layout.html" %} 
 
+{% block css %} 
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/aboutUs.css') }}">
+{% endblock %}
+
 {% block body %} 
-    <h1>Privacy</h1>
+<div class="about-container">
+    <div class="about-header">
+        <h1 class="header-text">Privacy Policy</h1>
+    </div>
+    <div class="about-info">
+        <p class="info-text">
+            &emsp;At JZ JDM Used Car Lot, we are committed to protecting the privacy and security of your personal information. This privacy policy outlines how we collect, use, and protect your information through our website, including our AI chatbot and profile creation features.
+        </p>
+    </div>
+    <div class="about-header">
+        <h1 class="header-text">Information Collection and Use</h1>
+    </div>
+    <div class="about-info">
+        <p class="info-text">
+            <ul>
+                <li>When you create a profile on our website, we may collect personal information such as your name, email address, and preferences for receiving marketing communications.</li>
+                <li>We may also collect information through the use of cookies, web beacons, and other tracking technologies to provide you with a personalized and seamless experience on our website.</li>
+                <li>Our AI chatbot collects information you provide through your conversations to provide you with personalized recommendations and answers to your questions.</li>
+            </ul>
+        </p>
+    </div>
+    <div class="about-header">
+        <h1 class="header-text">Information Sharing and Disclosure</h1>
+    </div>
+    <div class="about-info">
+        <p class="info-text">
+            <ul>
+                <li>We will not share, sell, or rent your personal information to any third-party organizations, except as required by law.</li>
+                <li>Your personal information may be shared with service providers who assist us with marketing and customer service operations. These service providers are bound by confidentiality agreements and are only authorized to use your information in accordance with our instructions.</li>
+            </ul>
+        </p>
+    </div>
+    <div class="about-header">
+        <h1 class="header-text">Security Measures</h1>
+    </div>
+    <div class="about-info">
+        <p class="info-text">
+            <ul>
+                <li>We implement security measures to protect against unauthorized access, alteration, or destruction of your personal information.</li>
+                <li>Your profile information is stored on secure servers and protected by secure firewalls and access controls.</li>
+            </ul>
+        </p>
+    </div>
+    <div class="about-header">
+        <h1 class="header-text">Data Retention</h1>
+    </div>
+    <div class="about-info">
+        <p class="info-text">
+            <ul>
+                <li>We will retain your personal information for as long as necessary to provide you with the services you requested, or as required by law.</li>
+                <li>When you request that we delete your profile information, we will take reasonable steps to delete your information from our systems in a timely manner.</li>
+            </ul>
+        </p>
+    </div>
+    <div class="about-header">
+        <h1 class="header-text">Updates to Our Privacy Policy</h1>
+    </div>
+    <div class="about-info">
+        <p class="info-text">
+            <ul>
+                <li>This privacy policy may be updated from time to time to reflect changes to our practices or legal requirements.</li>
+                <li>We will provide notice of material changes to this policy through a prominent notice on our website.</li>
+            </ul>
+        </p>
+    </div>
+    <div class="about-info">
+        <p class="info-text">
+            &emsp;If you have any questions or concerns about our privacy policy, please contact us <a style="color: var(--highlights);" href="{{ url_for('contact') }}">here</a>. We are committed to protecting your privacy and will respond to your inquiries in a timely manner.
+        </p>
+    </div>
+</div>
 {% endblock %}
