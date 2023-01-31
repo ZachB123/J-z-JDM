@@ -289,6 +289,18 @@ class Car():
         return " ".join(keywords) + " ".join(description)
 
     @staticmethod
+    def get_seo_string():
+        cars = Car.get_all_cars()
+        string = ""
+        for car in cars:
+            string = string + car.seo_from_car()
+        return string
+
+    def seo_from_car(self):
+        keywords, description = self.list_for_search()
+        return ", ".join(keywords) + ", ".join(description)
+
+    @staticmethod
     def search_cars(query=None):
         """
         Orders the car by how much they match the search query

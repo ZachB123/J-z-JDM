@@ -11,7 +11,7 @@ import json
 from flask_sslify import SSLify
 
 app = Flask(__name__)
-app.debug = True
+app.debug = False
 app.config.from_object(Config)
 
 login = LoginManager(app)
