@@ -86,7 +86,7 @@ class ConfigureSalesRep(FlaskForm):
     submit = SubmitField("submit")
 
 class Contact(FlaskForm):
-    name = StringField("Name")
+    email = StringField("Email", validators=[DataRequired(), Email()])
     message = TextAreaField("Message", validators=[DataRequired()])
     submit = SubmitField("Submit")
 

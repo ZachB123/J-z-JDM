@@ -16,13 +16,13 @@
                 <div class="form-input">
                     <p>
                         <div class="form-input-label">
-                            {{ form.name.label }}<br>
+                            {{ form.email.label }}<br>
                         </div>
                         <div class="form-input-area" id="contactUsInput">
-                            {{ form.name() }}<br>
+                            {{ form.email() }}<br>
                         </div>
                         <div class="form-input-error">
-                            {% for error in form.name.errors %}
+                            {% for error in form.email.errors %}
                                 <span>[{{ error }}]</span>
                             {% endfor %}
                         </div>

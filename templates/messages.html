@@ -7,10 +7,12 @@
 {% block js %} 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script type="text/javascript" defer>
+        let submitted = false
         $(function() {
             $('form').each(function() {
                 $(this).find('textarea').keypress(function(e) {
-                    if(e.which == 10 || e.which == 13) {
+                    if((e.which == 10 || e.which == 13) && !submitted) {
+                        submitted = true
                         this.form.submit();
                     }
                 });

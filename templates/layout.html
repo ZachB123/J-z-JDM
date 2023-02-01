@@ -62,7 +62,7 @@
         {% if messages %}
         <ul>
             {% for message in messages %}
-            <li>{{ message }}</li>
+            <li style="list-style-type:none;" >{{ message }}</li>
             {% endfor %}
         </ul>
         {% endif %}
@@ -80,7 +80,7 @@
             <div class="footer-section">
                 <div class="footer-text">
                     <ul id="slogan">
-                        Importing quality cars since 2005!
+                        Importing quality cars since 2023!
                     </ul>
                     <!-- <ul id="location">
                         1945 42nd St NE, Cedar Rapids, IA
@@ -89,37 +89,33 @@
             </div>
             <div class="footer-section">
                 <ul id="footerMenu">
-                    <div class="col">
-                        <li class="fmenu-item">
-                            <a href="{{ url_for('index') }}">Home</a>
-                        </li>
-                        <li class="fmenu-item">
-                            <a href="{{ url_for('listings') }}">Car Listings</a>
-                        </li>
-                        <li class="fmenu-item">
-                            <a href="{{ url_for('loan') }}">Loan Calculator</a>
-                        </li>
-                        <li class="fmenu-item">
-                            <a href="{{ url_for('about') }}">About Us</a>
-                        </li>
-                        <li class="fmenu-item">
-                            <a href="{{ url_for('contact') }}">Contact Us</a>
-                        </li>
-                    </div>
-                    <div class="col">
-                        <li class="fmenu-item">
-                            <a href="{{ url_for('sales_representatives') }}">Sales Reps</a>
-                        </li>
-                        <li class="fmenu-item">
-                            <a href="{{ url_for('owners') }}">Owners</a>
-                        </li>
-                        <li class="fmenu-item">
-                            <a href="{{ url_for('login') }}">Login</a>
-                        </li>
-                        <li class="fmenu-item">
-                            <a href="{{ url_for('register') }}">Register</a>
-                        </li>
-                    </div>  
+                    <li class="fmenu-item">
+                        <a href="{{ url_for('index') }}">Home</a>
+                    </li>
+                    <li class="fmenu-item">
+                        <a href="{{ url_for('listings') }}">Car Listings</a>
+                    </li>
+                    <li class="fmenu-item">
+                        <a href="{{ url_for('loan') }}">Loan Calculator</a>
+                    </li>
+                    <li class="fmenu-item">
+                        <a href="{{ url_for('about') }}">About Us</a>
+                    </li>
+                    <li class="fmenu-item">
+                        <a href="{{ url_for('contact') }}">Contact Us</a>
+                    </li>
+                    <li class="fmenu-item">
+                        <a href="{{ url_for('sales_representatives') }}">Sales Reps</a>
+                    </li>
+                    <li class="fmenu-item">
+                        <a href="{{ url_for('owners') }}">Owners</a>
+                    </li>
+                    <li class="fmenu-item">
+                        <a href="{{ url_for('login') }}">Login</a>
+                    </li>
+                    <li class="fmenu-item">
+                        <a href="{{ url_for('register') }}">Register</a>
+                    </li>
                 </ul>
             </div>
             <div class="footer-section additional-info">
