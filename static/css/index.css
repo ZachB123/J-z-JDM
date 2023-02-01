@@ -383,6 +383,19 @@ svg {
     box-shadow: 14px 14px var(--primary), -14px -14px var(--highlights);
 }
 
+/* .carousel::before {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: var(--highlights);
+    position: relative;
+    bottom: 10px;
+    left: 10px;
+} */
+
+
 .carousel-container {
     list-style: none;
     overflow: hidden;
