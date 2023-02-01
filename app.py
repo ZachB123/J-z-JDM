@@ -33,7 +33,7 @@ def index():
     if form.validate_on_submit():
         return redirect(url_for("listings", q=form.search_field.data))
     CAROUSEL_CARS = 5
-    carousel_cars = Car.search_cars()[0:5]
+    carousel_cars = Car.search_cars()[0:CAROUSEL_CARS]
     return render_template("index.html", carousel_cars=carousel_cars, form=form, title="Home")
 
 @app.route("/login", methods=["GET", "POST"])

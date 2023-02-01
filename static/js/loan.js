@@ -1,6 +1,11 @@
+
+
+
 // the following blocks of code makes it so that the user is not able to type anything other than numbers into the input fields
 let digitPeriodRegExp = new RegExp('\\d|\\.');
 let input1 = document.querySelector('#priceInput');
+
+const TAX = 0.06;
 
 input1.addEventListener('input', function(event) {
     let splitValue = input1.value.split('');
@@ -102,13 +107,25 @@ input3.addEventListener('input', function(event) {
 
 // the code below creates the functionality for the loan calculator
 // define the variables with preset amounts
-let loanAmount = 20000;
-let sliderValue = 20000;
-let downPayment = 2000;
-let tradeIn = 0;
-let creditScore = .045;
-let loanTerm = 72;
-let cost = (((Number(loanAmount) - (Number(downPayment) + Number(tradeIn)))/Number(loanTerm))*(1+(Number(creditScore)/12)));
+let loanAmount = 0
+let sliderValue = 0
+let downPayment = 0
+let tradeIn = 0
+let creditScore = 0
+let loanTerm = 0
+
+// change slider to have values to 160,000
+
+
+
+loanSliderMatch()
+loanInputMatch()
+downPaymentMatch()
+tradeInMatch()
+creditScoreMatch()
+loanTermMatch()
+
+let cost = getPaymentPerMonth(loanAmount, downPayment, tradeIn, creditScore, loanTerm, 500);
 
 loanCalculator();
 
@@ -122,36 +139,51 @@ document.querySelector("#termDropdownSelector").addEventListener("change", () =>
 
 // each of these functions run when their input field triggers the event listener then they update the values
 function loanSliderMatch() {
-    sliderValue = document.querySelector("#priceSlider").value;
+    sliderValue = Number(document.querySelector("#priceSlider").value);
     loanAmount = Number(sliderValue);
     document.querySelector("#priceInput").value = Number(sliderValue);
 }
 function loanInputMatch() {
-    loanAmount = document.querySelector("#priceInput").value;
+    loanAmount = Number(document.querySelector("#priceInput").value);
     sliderValue = Number(loanAmount);
     document.querySelector("#priceSlider").value = Number(loanAmount);
 }
 function downPaymentMatch() {
-    downPayment = document.querySelector("#downPaymentSelector").value;
+    downPayment = Number(document.querySelector("#downPaymentSelector").value);
 }
 function tradeInMatch() {
-    tradeIn = document.querySelector("#tradeInSelector").value;
+    tradeIn = Number(document.querySelector("#tradeInSelector").value);
 }
 function creditScoreMatch() {
-    creditScore = document.querySelector("#creditScoreSelector").value;
+    creditScore = Number(document.querySelector("#creditScoreSelector").value);
 }
 function loanTermMatch() {
-    loanTerm = document.querySelector("#termDropdownSelector").value;
+    loanTerm = Number(document.querySelector("#termDropdownSelector").value);
 }
 
-
-
 function loanCalculator() {
-    cost = (((Number(loanAmount) - (Number(downPayment) + Number(tradeIn)))/Number(loanTerm))*(1+(Number(creditScore)/12)));
-    document.querySelector("#monthPriceSelector").textContent = '$'+String(Math.trunc(cost));
-    document.querySelector("#budgetAmountSelector").textContent = '$'+String(Math.trunc(loanAmount));
-    document.querySelector("#downPaymentInfoSelector").textContent = '-$'+String(Math.trunc(downPayment));
-    document.querySelector("#tradeValueSelector").textContent = '$'+String(Math.trunc(tradeIn));
+    cost = getPaymentPerMonth(loanAmount, downPayment, tradeIn, creditScore, loanTerm, 500);
+    document.querySelector("#monthPriceSelector").textContent = moneyFormatter.format(+String(Math.trunc(cost)));
+    document.querySelector("#budgetAmountSelector").textContent = moneyFormatter.format(String(Math.trunc(loanAmount)));
+    document.querySelector("#downPaymentInfoSelector").textContent = moneyFormatter.format(String(Math.trunc(downPayment)));
+    document.querySelector("#tradeValueSelector").textContent = moneyFormatter.format(String(Math.trunc(tradeIn)));
+    taxRegistration = document.querySelector("#taxRegistrationSelector").textContent = moneyFormatter.format(loanAmount * TAX + 500)
     document.querySelector("#estimateAprSelector").textContent = String(Math.trunc(creditScore*100))+'%';
-    document.querySelector("#totalAmountSelector").textContent = '$'+String(Math.trunc(Number(cost)*Number(loanTerm)));
+    document.querySelector("#totalAmountSelector").textContent = moneyFormatter.format(String(loanAmount - downPayment - tradeIn + (loanAmount * TAX + 500)));
+}
+
+function getPaymentPerMonth(carPrice, downPayment, tradeIn, rate, months, registration) {
+    let totalPayment = carPrice + (carPrice * TAX) + registration - downPayment - tradeIn;
+    rate = rate / 12;
+    let pricePerMonth = totalPayment / ((((1 + rate) ** months) - 1) / (rate * ((1+rate) ** months)));
+    return pricePerMonth;
+}
+
+function printStuff() {
+    console.log(`loanAmount: ${typeof loanAmount}, ${loanAmount}`)
+    console.log(`sliderValue: ${typeof sliderValue}, ${sliderValue}`)
+    console.log(`downPayment: ${typeof downPayment}, ${downPayment}`)
+    console.log(`tradeIn: ${typeof tradeIn}, ${tradeIn}`)
+    console.log(`creditScore: ${typeof creditScore}, ${creditScore}`)
+    console.log(`loanTerm: ${typeof loanTerm}, ${loanTerm}`)
 }
