@@ -87,6 +87,19 @@ body {
     padding: 5px;
     border: black solid 1px;
 }
+
+@media screen and (min-height: 600px) {
+    body {
+        background: url(../images/backgroundtablet-01.jpg) no-repeat center center fixed;
+    }
+}
+
+@media screen and (min-width:700px) and (max-width:705px) {
+    .sales-about {
+        font-size: 12px;
+    }
+}
+
 @media screen and (min-width: 700px) {
     body {
         background: url(../images/backgroundtablet-01.jpg) no-repeat center center fixed;
@@ -109,10 +122,11 @@ body {
     }
     .sales-about {
         padding: 3px;
-        margin-top: 40px;
+        margin-top: 20px;
+        font-size: 15px;
     }
     .sales-rep-contact-button {
-        margin-top: 70px;
+        margin-top: 30px;
         
     }
     .car-container-salesman {
@@ -135,6 +149,9 @@ body {
     }
     .sales-about {
         font-size: 17px;
+    }
+    .sales-rep-contact-button {
+        margin-top: 70px;
     }
 }
 

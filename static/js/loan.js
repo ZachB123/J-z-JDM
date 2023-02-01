@@ -155,3 +155,16 @@ function loanCalculator() {
     document.querySelector("#estimateAprSelector").textContent = String(Math.trunc(creditScore*100))+'%';
     document.querySelector("#totalAmountSelector").textContent = '$'+String(Math.trunc(Number(cost)*Number(loanTerm)));
 }
+function loanCalculator(price, creditScore, loanTerm) {
+    const interestRate = 0.08 + (0.02 * (850 - creditScore) / 100);
+    const monthlyRate = interestRate / 12;
+    const numberOfPayments = loanTerm * 12;
+    const monthlyPayment = price * monthlyRate / (1 - Math.pow(1 + monthlyRate, -numberOfPayments));
+    const totalTax = price * 0.08;
+  
+    return {
+      monthlyPayment: monthlyPayment,
+      totalTax: totalTax
+    };
+}
+loanCalculator();
