@@ -268,10 +268,15 @@ a {
     /* set to flex box then make it two rows and three columns */
 }
 
-.fmenu-item:hover {
-    background-color: var(--highlights-hover);
+.fmenu-item a {
+    color: var(--black);
+}
+
+.fmenu-item:hover a {
+    /* background-color: var(--highlights-hover);
     padding: 7px;
-    border-radius: 10px;
+    border-radius: 10px; */
+    color: var(--highlights);
 }
 
 .additional-info {
