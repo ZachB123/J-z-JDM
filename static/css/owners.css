@@ -61,6 +61,11 @@ img {
     margin-top: -10px;
 }
 
+.person-info {
+    text-align: left;
+    padding: 2px 8px;
+}
+
 .info-spacer {
     margin: 5px auto;
 }

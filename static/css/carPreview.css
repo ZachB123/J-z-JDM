@@ -3,6 +3,13 @@
     margin: 20px 12px;
     border: solid #000;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.car-preview-container img {
+    height: 100%;
 }
 
 .car-preview-top-banner {
@@ -12,6 +19,7 @@
     display: flex;
     justify-content: space-between;
     font-size: 15px;
+    padding: 0 8px;
 }
 
 .favorite-button {
@@ -40,7 +48,6 @@
     display: flex;
     justify-content: space-between;
     align-items: start;
-    margin-top: -7px;
 }
 
 .car-preview-bottom-banner > * {

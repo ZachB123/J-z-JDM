@@ -222,7 +222,7 @@ def message_sales_rep(sales_rep_id):
 def contact():
     form = Contact()
     if form.validate_on_submit():
-        Message.add_message(Message(form.message.data, form.name.data))
+        Message.add_message(Message(form.message.data, form.email.data))
         flash("Message Successfully Sent")
         return redirect(url_for("contact"))
     return render_template("contactUs.html", form=form, title="Contact Us")

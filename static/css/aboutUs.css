@@ -49,3 +49,8 @@ body {
         background: url(../images/desktopbackground.jpg) no-repeat center center fixed;
     }
 }
+
+ul {
+    margin-left: 24px;
+    margin-right: 24px;
+}

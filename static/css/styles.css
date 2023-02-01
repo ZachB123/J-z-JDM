@@ -7,6 +7,28 @@
     scroll-behavior: smooth;
 }
 
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--primary);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--highlights);
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+}
+  
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: var(--highlights-hover);
+}
+
 body {
     background-color: rgb(100, 100, 100);
 }
@@ -105,6 +127,7 @@ a {
 }
 .submenu-active .submenu {
    display: block;
+   margin: 0;
 }
 .with-submenu i {
     font-size: 12px;
@@ -245,10 +268,15 @@ a {
     /* set to flex box then make it two rows and three columns */
 }
 
-.fmenu-item:hover {
-    background-color: var(--highlights-hover);
+.fmenu-item a {
+    color: var(--black);
+}
+
+.fmenu-item:hover a {
+    /* background-color: var(--highlights-hover);
     padding: 7px;
-    border-radius: 10px;
+    border-radius: 10px; */
+    color: var(--highlights);
 }
 
 .additional-info {
@@ -290,14 +318,23 @@ a {
     margin-left: 4px;
 }
 
-@media all and (min-width: 992px) {
+#footerMenu {
+    display: grid;
+}
+
+@media all and (min-width: 776px) {
     #footerMenu {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
     }
-    .col {
-        margin: 0 30px;
+}
+
+@media all and (min-width: 1200px) {
+    #footerMenu {
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+        max-width: 1200px;
+        margin: auto;
     }
 }
 

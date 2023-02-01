@@ -1,5 +1,5 @@
 body {
-    background: url(../images/backgroung-jz.jpg) no-repeat center center fixed !important;
+    background: url(../images/backgroung-jz.png) no-repeat center center fixed !important;
     background-size: cover !important;
 }
 
@@ -58,7 +58,7 @@ body {
 
 .favorites-container {
     background-color: rgba(0,0,0,0);
-    width: fit-content;
+    width: 100%;
 }
 
 .car-grid {

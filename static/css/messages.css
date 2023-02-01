@@ -18,8 +18,21 @@ body {
 }
 
 .content-container {
-    max-width: 450px;
+    max-width: 500px;
+    background-color: var(--filler);
     margin: auto;
+    padding: 20px 4px;
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+}
+
+@media all and (min-width: 492px) {
+    .content-container {
+        margin: 24px auto;
+    }
 }
 
 .message-header {
@@ -44,16 +57,23 @@ body {
     width: 100%;
     height: 67vh;
     margin: auto;
-    /* overflow: scroll; */
-    overflow-anchor: none;
-    overflow-x: scroll;
+    /* overflow-anchor: none; */
+    overflow-y: scroll;
+    overflow-x: hidden;
+    background-color: var(--filler);
+    padding: 8px;
+    border-radius: 12px;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    -ms-border-radius: 12px;
+    -o-border-radius: 12px;
 }
 
 form {
     height: 60px;
     margin: 12px auto;
     width: 70%;
-    position: relative
+    position: relative;
 }
 
 form textarea {

@@ -200,7 +200,7 @@ svg {
 
 .link-container a {
     display: inline-block;
-    width: 60px;
+    width: 100px;
     background-color: var(--highlights);
     color: var(--white);
     height: auto;
@@ -260,7 +260,7 @@ svg {
     border: var(--black) solid 1px;
 }
 
-.hours-container h1, .hours-container .open-status {
+.hours-container h1, .hours-container h2 {
     text-align: center;
 }
 
@@ -281,6 +281,10 @@ svg {
     -o-border-radius: 20px;
     width: 70%;
     margin: 6px auto;
+}
+
+.date-container h3 {
+    margin: auto;
 }
 
 .current-day {

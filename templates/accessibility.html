@@ -1,5 +1,26 @@
 {% extends "layout.html" %} 
 
+{% block css %} 
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/aboutUs.css') }}">
+{% endblock %}
+
 {% block body %} 
-    <h1>Accessibility</h1>
+<div class="about-container">
+    <div class="about-header">
+        <h1 class="header-text">Accessibility Statement</h1>
+    </div>
+    <div class="about-info">
+        <p class="info-text">&emsp;JZ JDM Used Car Lot is committed to making its website accessible to everyone, including those with disabilities. We have taken steps to ensure that our website is accessible and usable for all visitors, including those who use assistive technologies.
+        </p>
+        <p class="info-text">&emsp;Our website has been designed to meet the Web Content Accessibility Guidelines (WCAG) 2.1 Level AA and conforms to the guidelines set forth by the World Wide Web Consortium (W3C). We strive to make our website accessible to users with visual, auditory, motor, and cognitive disabilities.</p>
+        <p class="info-text">&emsp;If you experience any difficulty accessing information or functionality on our website, please contact us <a style="color: var(--highlights);" href="{{ url_for('contact') }}">here</a>. We will make every effort to assist you and provide the information or services you require through an alternative means.</p>
+        <p class="info-text">&emsp;We are continuously working to improve the accessibility of our website and welcome your feedback.</p>
+        <p class="info-text">&emsp;All content on the JDM Used Car Lot website, including text, images, graphics, logos, and other materials, is the exclusive property of JDM Used Car Lot and is protected by copyright and other intellectual property laws.</p>
+        <p class="info-text">&emsp;You may not reproduce, distribute, modify, or otherwise use any of the content on our website without our express written consent. This includes copying, republishing, or using any content for commercial purposes.</p>
+        <p class="info-text">&emsp;JZ JDM Used Car Lot respects the intellectual property rights of others and asks that users of our website do the same. If you believe that your work has been used on our website in a way that constitutes copyright infringement, please provide written notice to our copyright agent <a style="color: var(--highlights);" href="{{ url_for('contact') }}">here</a>.</p>
+        <p class="info-text">&emsp;We will take appropriate action to remove infringing material from our website and to resolve any claims of copyright infringement in accordance with the law.</p>
+        <p class="info-text">&emsp;This copyright statement applies to the content on our website only. Other websites that may be linked to or from our website are governed by their own terms and conditions and privacy policies, and JDM Used Car Lot is not responsible for the content or practices of these websites.</p>
+
+    </div>
+</div>
 {% endblock %}
