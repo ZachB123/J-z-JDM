@@ -187,3 +187,4 @@ function printStuff() {
     console.log(`creditScore: ${typeof creditScore}, ${creditScore}`)
     console.log(`loanTerm: ${typeof loanTerm}, ${loanTerm}`)
 }
+
