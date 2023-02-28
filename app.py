@@ -10,7 +10,6 @@ from werkzeug.urls import url_parse
 import json
 from flask_sslify import SSLify
 
-
 app = Flask(__name__)
 app.debug = True
 app.config.from_object(Config)
