@@ -1,0 +1,22 @@
+{
+  "name": "jdm",
+  "version": "1.0.0",
+  "description": "* create .env and .flaskenv\r * create virtual environement\r * pip install -r requirements.txt\r * get database credentials from zach and put in .env\r * flask run\r * website is jzjdm.co",
+  "main": "index.js",
+  "scripts": {
+    "tw-build": "npx tailwindcss -i ./static/css/src/input.css -o ./static/css/dist/output.css --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ZachB123/J-z-JDM.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ZachB123/J-z-JDM/issues"
+  },
+  "homepage": "https://github.com/ZachB123/J-z-JDM#readme",
+  "devDependencies": {
+    "tailwindcss": "^3.2.7"
+  }
+}
