@@ -348,13 +348,18 @@ class Image():
         return self.__str__()
 
 class Message():
-    def __init__(self, message, name=None):
+    def __init__(self, message, name=None, id=-1):
         self.name = name
         self.message = message 
+        self.id = id
 
     @staticmethod
     def add_message(message):
         db.create_message((message.name, message.message))
+
+    @staticmethod
+    def message_from_tuple(t):
+        return Message(t[2], t[1], t[0])
 
 class DirectMessage():
     def __init__(self, sender_id, recipient_id, message, timestamp=datetime.utcnow().timestamp(), is_read=0, id=-1):
@@ -389,3 +394,17 @@ class DirectMessage():
 
     def __repr__(self):
         return self.__str__()
+
+class Favorite():
+    def __init__(self, id, user_id, car_id):
+        self.id = id
+        self.user_id = user_id
+        self.car_id = car_id
+
+    @staticmethod
+    def create_favorite_from_tuple(t):
+        return Favorite(t[0], t[1], t[2])
+
+    @staticmethod
+    def create_favorite_list_from_list(l):
+        return [Favorite.create_favorite_from_tuple(t) for t in l]
