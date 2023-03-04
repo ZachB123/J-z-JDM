@@ -14,5 +14,4 @@ diskcache
 jellyfish
 flask-talisman
 Flask-SSLify
-sqlite3
-
+pytest

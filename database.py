@@ -205,7 +205,7 @@ class DatabaseDriver():
         self.db_op("""
             UPDATE users 
             SET password_hash=%s 
-            WHERE id=%s
+            WHERE id=%s;
         """, values)
 
     def delete_all_messages(self):

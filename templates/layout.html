@@ -70,7 +70,9 @@
     {% endwith %}
     <!-- <i></i> -->
     
-
+    {% if user %} 
+        {{ user }}
+    {% endif %}
     {% block body %} {% endblock %}
     <!-- Footer for each page is here underneath the block body so that this is put at the bottom of each page-->
     <div class="footer-container">

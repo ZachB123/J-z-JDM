@@ -10,6 +10,9 @@ from werkzeug.urls import url_parse
 import json
 from flask_sslify import SSLify
 
+# REMOVE
+from cache import cache_db
+
 app = Flask(__name__)
 app.debug = True
 app.config.from_object(Config)
@@ -36,7 +39,8 @@ def index():
         return redirect(url_for("listings", q=form.search_field.data))
     CAROUSEL_CARS = 5
     carousel_cars = Car.search_cars()[0:CAROUSEL_CARS]
-    return render_template("index.html", carousel_cars=carousel_cars, form=form, title="Home")
+    user = cache_db.get_user_by_id((1,))
+    return render_template("index.html", carousel_cars=carousel_cars, form=form, title="Home", user=user)
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -125,7 +129,8 @@ def car(id):
 @app.route("/loan")
 def loan():
     price = request.args.get("price", None)
-    return render_template("loan.html", price=price, title="Loan Calculator")
+    user = cache_db.get_user_by_id((1,))
+    return render_template("loan.html", price=price, title="Loan Calculator", user=user)
 
 @app.route("/control", methods=["GET", "POST"])
 @login_required

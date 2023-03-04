@@ -2,6 +2,9 @@ import os
 import sqlite3
 from database import DatabaseDriver
 from models import User, SalesRep, Favorite, Car, Image, Message, DirectMessage
+import threading
+import time
+from database import db as raw_db
 
 # From: https://goo.gl/YzypOI
 def singleton(cls):
@@ -193,7 +196,7 @@ class Cache():
                 color TEXT,
                 price INTEGER,
                 drivetrain TEXT,
-                engine_cylinder INTEGER,
+                engine_cylinder TEXT,
                 engine_size INTEGER,
                 four_wheel_steering INTEGER,
                 abs INTEGER,
@@ -283,6 +286,18 @@ class Cache():
         except Exception as e:
             print(e)
 
+    # usage create_user(user)
+    def create_user(self, user):
+        self.conn.execute("""
+            INSERT INTO users (username, email, timestamp_date_joined, password_hash, super_user)
+            VALUES (?,?,?,?,?);
+        """,
+            (user.username, user.email, user.date_joined, user.password_hash, user.super_user)
+        )
+        self.conn.commit()
+        threading.Thread(target=raw_db.create_user, args=([user])).start()
+
+    # usage get_all_users()
     def get_all_users(self):
         cursor = self.conn.execute(
             """
@@ -292,13 +307,331 @@ class Cache():
         users = [row for row in cursor]
         return users
     
+    # TODO IF DOESNT EXIST THEN REFRESH THE DATABASE AND THEN IF STILL DOESNT EXIST RETURN NULL
+    # FOR Messages just have it be a post request and not even be apart of app.py
+    # usage get_user_by_id((id,))
+    # returns [] if no user with id exists
     def get_user_by_id(self, values):
-        sql = f"SELECT * FROM users WHERE id={values[0]};"
-        cursor = self.conn.execute(sql)
+        cursor = self.conn.execute(
+        """
+            SELECT * FROM users WHERE id=?;
+        """,
+            (str(int(values[0])),)
+        )
+        return [row for row in cursor]
+    
+    # usage get_user_by_username((username,))
+    def get_user_by_username(self, values):
+        cursor = self.conn.execute(
+            """
+                SELECT * FROM users
+                WHERE username=?;
+            """,
+            values
+        )
+        return [row for row in cursor]
+    
+    # usage create_car(car)
+    def create_car(self, car):
+        self.conn.execute(
+            """
+                INSERT INTO cars (sales_rep_id, description, oem, model, year, mileage, color, 
+                            price, drivetrain, engine_cylinder, engine_size, four_wheel_steering, 
+                            abs, tcs, doors, seats, horsepower, torque, misc, date_added)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+            """, (car.sales_rep_id, car.description, car.oem, car.model, car.year, car.mileage, 
+              car.color, car.price, car.drivetrain, car.engine_cylinder, car.engine_size, 
+              car.four_wheel_steering, car.abs, car.tcs, car.doors, car.seats, car.horsepower, 
+              car.torque, car.misc, car.date_added)
+        )
+        self.conn.commit()
+        threading.Thread(target=raw_db.create_car, args=((car,))).start()
+
+    # usage get_all_cars()
+    def get_all_cars(self):
+        cursor = self.conn.execute(
+            """
+                SELECT * FROM cars
+                WHERE id > 12;
+            """
+        )
+        return [row for row in cursor]
+
+    # not used in production
+    def testing_get_all_cars(self):
+        cursor = self.conn.execute(
+            """
+                SELECT * FROM cars;
+            """
+        )
+        return [row for row in cursor]
+
+    # usage get_car_by_id(id)
+    def get_car_by_id(self, values):
+        cursor = self.conn.execute(
+            """
+                SELECT * FROM cars
+                WHERE id=?;
+            """,
+            (values,)
+        )
+        out = [row for row in cursor]    
+        return out
+    
+    # usage create_image((image.link, image.car_id, image.cover_img))
+    def create_image(self, values):
+        self.conn.execute(
+            """
+                INSERT INTO images (link, car_id, cover_img)
+                VALUES (?,?,?);
+            """,
+            values
+        )
+        self.conn.commit()
+        threading.Thread(target=raw_db.create_image, args=((values,))).start()
+
+    # usage get_images_from_car_id(id)
+    def get_images_from_car_id(self, values):
+        cursor = self.conn.execute(
+            """
+                SELECT * FROM images
+                WHERE car_id=?;
+            """,
+            (values,)
+        )
+        return [row for row in cursor]
+    
+    # usage paginate_cars((cars_per_page, index))
+    def paginate_cars(self, values):
+        cursor = self.conn.execute(
+            """
+                SELECT * FROM cars
+                LIMIT ?
+                OFFSET ?;
+            """,
+            values
+        )
         return [row for row in cursor]
         
+    # usage create_sales_rep((id,about,image_link))
+    def create_sales_rep(self, values):
+        self.conn.execute(
+            """
+                INSERT INTO sales_reps (user_id, about, image_link)
+                VALUES (?, ?, ?);
+            """,
+            values
+        )
+        self.conn.commit()
+        threading.Thread(target=raw_db.create_sales_rep, args=((values,))).start()
 
+    # usage update_sales_rep_about((about, user_id))
+    def update_sales_rep_about(self, values):
+        self.conn.execute(
+            """
+                UPDATE sales_reps
+                SET about=? 
+                WHERE user_id=?;
+            """,
+            values
+        )
+        self.conn.commit()
+        threading.Thread(target=raw_db.update_sales_rep_about, args=((values,))).start()
 
+    # usage update_sales_rep_image_link((link, user_id))
+    def update_sales_rep_image_link(self, values):
+        self.conn.execute(
+            """
+                UPDATE sales_reps
+                SET image_link=?
+                WHERE user_id=?;
+            """,
+            values
+        )
+        self.conn.commit()
+        threading.Thread(target=raw_db.update_sales_rep_image_link, args=((values,))).start()
 
+    # usage get_sales_rep_by_user_id((id))
+    def get_sales_rep_by_user_id(self, values):
+        cursor = self.conn.execute(
+            """
+                SELECT * FROM sales_reps 
+                WHERE user_id=? 
+                LIMIT 1; 
+            """,
+            (values,)
+        )
+        return [row for row in cursor]
+
+    # usage get_all_sales_reps()
+    def get_all_sales_reps(self):
+        cursor = self.conn.execute(
+            """
+                SELECT * FROM sales_reps;
+            """
+        )
+        return [row for row in cursor]
+    
+    # usage create_message((name, message))
+    def create_message(self, values):
+        self.conn.execute(
+            """
+                INSERT INTO messages (name, message)
+                VALUES (?,?);
+            """,
+            values
+        )
+        self.conn.commit()
+        threading.Thread(target=raw_db.create_message, args=((values,))).start()
+
+    # usage get_cars_by_sales_rep_id((id))
+    def get_cars_by_sales_rep_id(self, values):
+        cursor = self.conn.execute(
+            """
+                SELECT * FROM cars
+                WHERE sales_rep_id=?;
+            """,
+            (values,)
+        )
+        return [row for row in cursor]
+    
+    # usage get_sales_rep_by_user_id((id))
+    def get_sales_rep_by_user_id(self, values):
+        cursor = self.conn.execute(
+            """
+                SELECT * FROM sales_reps
+                WHERE user_id=?;
+            """,
+            (values,)
+        )
+        return [row for row in cursor]
+    
+    # usage assign_sales_rep((user_id, car_id))
+    def assign_sales_rep(self, values):
+        self.conn.execute(
+            """
+                UPDATE cars
+                SET sales_rep_id=?
+                WHERE id=?;
+            """,
+            values
+        )
+        self.conn.commit()
+        threading.Thread(target=raw_db.assign_sales_rep, args=((values,))).start()
+
+    # usage add_favorite((user_id, car_id))
+    def add_favorite(self, values):
+        self.conn.execute(
+            """
+                INSERT INTO favorites (user_id, car_id)
+                VALUES (?,?);
+            """,
+            values
+        )
+        self.conn.commit()
+        threading.Thread(target=raw_db.add_favorite, args=((values,))).start()
+
+    # usage remove_favorite((user_id, car_id))
+    def remove_favorite(self, values):
+        self.conn.execute(
+            """
+                DELETE FROM favorites
+                WHERE user_id=? AND car_id=?;
+            """,
+            values
+        )
+        self.conn.commit()
+        threading.Thread(target=raw_db.remove_favorite, args=((values,))).start()
+
+    # usage is_car_favorited((user_id, car_id))
+    def is_car_favorited(self, values):
+        cursor = self.conn.execute(
+            """
+                SELECT * FROM favorites
+                WHERE user_id=? AND car_id=?;
+            """,
+            values
+        )
+        return [row for row in cursor]
+    
+    # usage get_all_favorited((user_id))
+    def get_all_favorited(self, values):
+        cursor = self.conn.execute(
+            """
+                SELECT * FROM cars
+                JOIN favorites
+                ON cars.id=favorites.car_id
+                WHERE user_id=?;
+            """,
+            (values,)
+        )
+        output = [row for row in cursor]
+        if not len(output) > 0:
+            return []
+        return [v[0:21] for v in output]
+    
+    # usage send_direct_message((sender_id, recipient_id, content, datetime.utcnow().timestamp()))
+    def send_direct_message(self, values):
+        self.conn.execute(
+            """
+                INSERT INTO direct_messages (sender_id, recipient_id, content, time_sent)
+                VALUES (?,?,?,?);          
+            """,
+            values
+        )
+        self.conn.commit()
+        threading.Thread(target=raw_db.send_direct_message, args=((values,))).start()
+
+    # usage get_messages((sender_id, recipient_id))
+    def get_messages(self, values):
+        cursor = self.conn.execute(
+            """
+                SELECT * FROM direct_messages
+                WHERE sender_id=? AND recipient_id=?;
+            """,
+            values
+        )
+        return [row for row in cursor]
+    
+    # usage NOT USED BY MODELS
+    def get_all_cars_with_images(self):
+        pass
+
+    # usage direct_message_senders((user_id))
+    def direct_message_senders(self, values):
+        cursor = self.conn.execute(
+            """
+                SELECT sender_id FROM direct_messages 
+                WHERE recipient_id=?
+                GROUP BY sender_id;
+            """,
+            (values,)
+        )
+        return [row for row in cursor]
+    
+    # usage change_password((password_hash, id))
+    def change_password(self, values):
+        self.conn.execute(
+            """
+                UPDATE users 
+                SET password_hash=? 
+                WHERE id=?;
+            """,
+            values
+        )
+        self.conn.commit()
+        threading.Thread(target=raw_db.change_password, args=((values,))).start()
+
+    def add_favorite_thread_test(self):
+        threading.Thread(target=raw_db.add_favorite, args=((69,69),)).start()
+        
+    def thread(self):
+        def threaded_function():
+            print("thread starting")
+            time.sleep(10)
+            print("thread finished")
+        print("before thread activate")
+        threading.Thread(target=threaded_function).start()
+        print("after thread activate")
 
 cache_db = Cache()
