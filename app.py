@@ -1,17 +1,15 @@
 import os
+from models import User, Car, Image, SalesRep, Message, DirectMessage
 from config import Config
 from flask import Flask, render_template, redirect, url_for, flash, request, abort
 from dotenv import load_dotenv
 load_dotenv()
 from forms import LoginForm, RegistrationForm, CarCreationForm, AddImages, ConfigureSalesRep, Contact, DirectMessageForm, Search, ResetPassword
 from flask_login import LoginManager, current_user, login_user, logout_user, login_required
-from models import User, Car, Image, SalesRep, Message, DirectMessage
 from werkzeug.urls import url_parse
 import json
 from flask_sslify import SSLify
 
-# REMOVE
-from cache import cache_db
 
 app = Flask(__name__)
 app.debug = True
@@ -39,8 +37,7 @@ def index():
         return redirect(url_for("listings", q=form.search_field.data))
     CAROUSEL_CARS = 5
     carousel_cars = Car.search_cars()[0:CAROUSEL_CARS]
-    user = cache_db.get_user_by_id((1,))
-    return render_template("index.html", carousel_cars=carousel_cars, form=form, title="Home", user=user)
+    return render_template("index.html", carousel_cars=carousel_cars, form=form, title="Home")
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -129,8 +126,7 @@ def car(id):
 @app.route("/loan")
 def loan():
     price = request.args.get("price", None)
-    user = cache_db.get_user_by_id((1,))
-    return render_template("loan.html", price=price, title="Loan Calculator", user=user)
+    return render_template("loan.html", price=price, title="Loan Calculator")
 
 @app.route("/control", methods=["GET", "POST"])
 @login_required

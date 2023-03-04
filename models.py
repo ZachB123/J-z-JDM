@@ -1,9 +1,11 @@
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
-from database import db
+from database import db as raw_db
 from flask_login import UserMixin
 from config import Config
 import jellyfish
+from cache import cache_db as db
+
 
 class User(UserMixin):
     def __init__(self, username, email, password, super_user=0, time=None, hash=False, id=-1):
@@ -408,3 +410,4 @@ class Favorite():
     @staticmethod
     def create_favorite_list_from_list(l):
         return [Favorite.create_favorite_from_tuple(t) for t in l]
+  
