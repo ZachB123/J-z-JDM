@@ -1,5 +1,5 @@
 import os
-from models import User, Car, Image, SalesRep, Message, DirectMessage
+from models import User, Car, Image, SalesRep, Message, DirectMessage, DirectDatabaseDirectMessage, refresh_database, close_database
 from config import Config
 from flask import Flask, render_template, redirect, url_for, flash, request, abort
 from dotenv import load_dotenv
@@ -44,7 +44,7 @@ def login():
     if current_user.is_authenticated:
         return redirect(url_for("index"))
     form = LoginForm()
-    if form.validate_on_submit():
+    if form.is_submitted() and form.validate(): #form.validate_on_submit():
         user = User.get_user_by_username(form.username.data)
         if user is None or not user.check_password(form.password.data):
             flash("Invalid username or password")
@@ -70,6 +70,7 @@ def register():
     if form.validate_on_submit():
         User.add_user(User(form.username.data, form.email.data, form.password.data))
         flash("Congratulations, you are now a registered user!")
+        refresh_database()
         return redirect(url_for("login"))
     return render_template("register.html", form=form, title="Register")
 
@@ -313,8 +314,23 @@ def unfavorite_car():
     car_id = int(body.get("car_id", -1))
     User.remove_favorite(user_id, car_id)
     return success_response({})
-    
 
+@app.route("/api/messages", methods=["POST"])
+def get_messages():
+    if current_user.is_anonymous:
+        return failure_response("User is not logged in", 401)
+    body = json.loads(request.data)
+    user_id = int(current_user.get_id())
+    recipient_id = int(body.get("recipient_id", -1))
+    messages = DirectDatabaseDirectMessage.get_messages(user_id, recipient_id) + DirectDatabaseDirectMessage.get_messages(recipient_id, user_id)
+    messages.sort(key=(lambda x: int(x.id)))
+    return success_response({"messages": [message.__dict__ for message in messages]})
+
+@app.route("/api/id", methods=["POST"])
+def get_user_id():
+    if current_user.is_anonymous:
+        return failure_response("User is not logged in", 401)
+    return success_response({"user_id": int(current_user.get_id())})
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))

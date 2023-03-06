@@ -418,7 +418,7 @@ class Cache():
             (user.username, user.email, user.date_joined, user.password_hash, user.super_user)
         )
         self.conn.commit()
-        threading.Thread(target=raw_db.create_user, args=([user])).start()
+        threading.Thread(target=raw_db.create_user, args=((user,))).start()
 
     # usage get_all_users()
     def get_all_users(self):
@@ -744,6 +744,19 @@ class Cache():
         )
         self.conn.commit()
         threading.Thread(target=raw_db.change_password, args=((values,))).start()
+
+    def refresh(self):
+        self.conn.commit()
+        self.conn.close()
+        self.conn = None
+        self.remove_cache_db()
+        self.conn = sqlite3.connect("cache.db", check_same_thread=False)
+        self.data = self.get_data()
+        self.create_tables()
+        self.add_data()
+
+    def close(self):
+        self.conn.close()
 
     def add_favorite_thread_test(self):
         threading.Thread(target=raw_db.add_favorite, args=((69,69),)).start()

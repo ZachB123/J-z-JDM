@@ -5,7 +5,14 @@ from flask_login import UserMixin
 from config import Config
 import jellyfish
 from cache import cache_db as db
+# from cache import Cache
+# db = Cache()
 
+def refresh_database():
+    db.refresh()
+
+def close_database():
+    db.close()
 
 class User(UserMixin):
     def __init__(self, username, email, password, super_user=0, time=None, hash=False, id=-1):
@@ -368,9 +375,9 @@ class DirectMessage():
         self.sender_id = int(sender_id)
         self.recipient_id = int(recipient_id)
         self.message = message
-        self.timestamp = int(timestamp)
-        self.is_read = int(is_read)
-        self.id = int(id)
+        self.timestamp = int(timestamp or 0)
+        self.is_read = int(is_read or 0)
+        self.id = int(id or 0)
 
     @staticmethod
     def direct_message_from_tuple(t):
@@ -396,6 +403,11 @@ class DirectMessage():
 
     def __repr__(self):
         return self.__str__()
+    
+class DirectDatabaseDirectMessage():
+    @staticmethod
+    def get_messages(sender_id, recipient_id):
+        return [DirectMessage.direct_message_from_tuple(m) for m in raw_db.get_messages((int(sender_id), int(recipient_id)))]
 
 class Favorite():
     def __init__(self, id, user_id, car_id):
