@@ -15,7 +15,9 @@ pip-log.txt
 
 # Unit test / coverage reports
 
-
+*.db
+cache.db
+cahce.db-journal
 
 
 # Mr Developer

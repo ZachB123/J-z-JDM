@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% block js %} 
+    <script src="{{ url_for('static', filename='js/messages.js')}}" defer></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script type="text/javascript" defer>
         let submitted = false
@@ -34,16 +35,16 @@
         {% for message in messages %} 
             <!-- {{message.message}} -->
             {% if message.sender_id == current_user.get_id() %} 
-                <div class="message-orange">
+                <!-- <div class="message-orange">
                     <p class="message-content">{{ message.message }}</p>
-                </div>
+                </div> -->
             {% else %} 
-                <div class="message-blue">
+                <!-- <div class="message-blue">
                     <p class="message-content">{{ message.message }}</p>
-                </div>
+                </div> -->
             {% endif %}
         {% endfor %}
-        <div class="anchor"></div>
+        <!-- <div class="anchor"></div> -->
     </div>
 
     <form action="" method="post" class="form-container">

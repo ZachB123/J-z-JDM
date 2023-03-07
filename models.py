@@ -1,9 +1,18 @@
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
-from database import db
+from database import db as raw_db
 from flask_login import UserMixin
 from config import Config
 import jellyfish
+from cache import cache_db as db
+# from cache import Cache
+# db = Cache()
+
+def refresh_database():
+    db.refresh()
+
+def close_database():
+    db.close()
 
 class User(UserMixin):
     def __init__(self, username, email, password, super_user=0, time=None, hash=False, id=-1):
@@ -348,22 +357,27 @@ class Image():
         return self.__str__()
 
 class Message():
-    def __init__(self, message, name=None):
+    def __init__(self, message, name=None, id=-1):
         self.name = name
         self.message = message 
+        self.id = id
 
     @staticmethod
     def add_message(message):
         db.create_message((message.name, message.message))
+
+    @staticmethod
+    def message_from_tuple(t):
+        return Message(t[2], t[1], t[0])
 
 class DirectMessage():
     def __init__(self, sender_id, recipient_id, message, timestamp=datetime.utcnow().timestamp(), is_read=0, id=-1):
         self.sender_id = int(sender_id)
         self.recipient_id = int(recipient_id)
         self.message = message
-        self.timestamp = int(timestamp)
-        self.is_read = int(is_read)
-        self.id = int(id)
+        self.timestamp = int(timestamp or 0)
+        self.is_read = int(is_read or 0)
+        self.id = int(id or 0)
 
     @staticmethod
     def direct_message_from_tuple(t):
@@ -389,3 +403,23 @@ class DirectMessage():
 
     def __repr__(self):
         return self.__str__()
+    
+class DirectDatabaseDirectMessage():
+    @staticmethod
+    def get_messages(sender_id, recipient_id):
+        return [DirectMessage.direct_message_from_tuple(m) for m in raw_db.get_messages((int(sender_id), int(recipient_id)))]
+
+class Favorite():
+    def __init__(self, id, user_id, car_id):
+        self.id = id
+        self.user_id = user_id
+        self.car_id = car_id
+
+    @staticmethod
+    def create_favorite_from_tuple(t):
+        return Favorite(t[0], t[1], t[2])
+
+    @staticmethod
+    def create_favorite_list_from_list(l):
+        return [Favorite.create_favorite_from_tuple(t) for t in l]
+  

@@ -13,6 +13,19 @@ class DatabaseDriver():
                 output = cursor.fetchall()
             connection.commit()
         return list(output)
+    
+    def get_all(self, tables):
+        output = {}
+        connection = pymysql.connect(host=Config.DATABASE_HOST, user=Config.DATABASE_USER, password=Config.DATABASE_PASSWORD, port=int(Config.DATABASE_PORT), db=Config.DATABASE)
+        with connection:
+            for name in tables:
+                with connection.cursor() as cursor:
+                    sql = f"SELECT * FROM {name};"
+                    # print(name)
+                    cursor.execute(sql, ())
+                    output[name] = cursor.fetchall()
+                connection.commit()
+        return output
 
     # user is created from the user object passed to it
     def create_user(self, user):
@@ -192,7 +205,7 @@ class DatabaseDriver():
         self.db_op("""
             UPDATE users 
             SET password_hash=%s 
-            WHERE id=%s
+            WHERE id=%s;
         """, values)
 
     def delete_all_messages(self):
