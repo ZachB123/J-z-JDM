@@ -18,5 +18,8 @@
   "homepage": "https://github.com/ZachB123/J-z-JDM#readme",
   "devDependencies": {
     "tailwindcss": "^3.2.7"
+  },
+  "dependencies": {
+    "tailwindcss-3d": "0.0.8"
   }
 }

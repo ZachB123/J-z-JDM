@@ -1,13 +1,17 @@
 {% extends "layout.html" %} 
 
 {% block css %} 
-<link rel="stylesheet" href="{{ url_for('static', filename='css/signInUp.css') }}">
-<link rel="stylesheet" href="{{ url_for('static', filename='css/contactUs.css') }}">
+<!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/signInUp.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/contactUs.css') }}"> -->
+{% endblock %}
+
+{% block js %}
+    <script src="{{ url_for('static', filename='js/contactUs.js')}}" defer></script>
 {% endblock %}
 
 {% block body %} 
 <!-- using the same classes for this form as used for the log in and sign up forms -->
-<div class="contact-us-container">
+<!-- <div class="contact-us-container">
     <div class="form-area">
         <div class="form-input-container">
             <span class="form-input-header">Get in Touch with Us!</span>
@@ -51,7 +55,81 @@
             </form>
         </div>
     </div>
+</div> -->
+
+<div>
+    <!-- contact us flip card form group-hover:rotate-y-180-->
+    <div>
+        <div class="bg-transparent w-[300px] h-[275px] mx-auto perspective-1000 mt-2.5 mb-2.5">
+            <div id="contactUsFormFront" class="relative w-full h-full text-center transition transform duration-600 transform-style-3d shadow-md">
+                <div class="front backface-hidden absolute w-full h-full bg-pink rounded-md">
+                    <h1 class="m-1 text-3xl" >Need Help?</h1>
+                    <p>Our team is dedicated to making your experience here at Jz'z JDM as smooth and enjoyable as possible. If you need help with a specific problem or would like to leave a suggestion feel free to fill out our contact us form below. Our dedicated sales team will diligently to get back to you as soon as possible.</p>
+                    <button type="button" id="contactUsButtonFlip">Contact Us Form</button> 
+                </div>
+                <div id="contactUsFormBack" class="back1 backface-hidden absolute w-full h-full rotate-y-180 bg-white">
+                    <form action="" method="post">
+                        {{ form.hidden_tag() }}
+                        <div class="form-input">
+                            <p>
+                                <span>Name</span>
+                                <input required="yes" placeholder="Name" type="text">
+                            </p>
+                        </div>
+                        <div>
+                            <p>
+                                <div class="form-input-label">
+                                    {{ form.email.label }}<br>
+                                </div>
+                                <div class="form-input-area" id="contactUsInput">
+                                    {{ form.email() }}<br>
+                                </div>
+                                <div class="form-input-error">
+                                    {% for error in form.email.errors %}
+                                        <span>[{{ error }}]</span>
+                                    {% endfor %}
+                                </div>
+                            </p>
+                        </div>
+                        <div>
+                            <label for="issue-type">Type of Issue</label>
+                            <select name="issue-type" id="issueType">
+                                <option value="1">Website</option>
+                                <option value="2">Customer Relations</option>
+                                <option value="3">Suggestions</option>
+                                <option value="4">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-input">
+                            <p>
+                                <div class="form-input-label">
+                                    {{ form.message.label }}<br>
+                                </div>
+                                <div class="form-input-area" id="formInputContact">
+                                    {{ form.message() }}<br>
+                                </div>
+                                <div class="form-input-error">
+                                    {% for error in form.message.errors %}
+                                        <span>[{{ error }}]</span>
+                                    {% endfor %}
+                                </div>
+                            </p>
+                        </div>
+                        <div class="form-submit">
+                            <p>
+                                {{ form.submit() }}
+                            </p>
+                        </div>
+                    </form>
+                </div>
+                <div class="back2 hidden absolute w-full h-full rotate-y-180">
+                    <h1>Your form has been successfully submitted!</h1>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
 <script type='text/javascript'>
     (function(I, L, T, i, c, k, s) {if(I.iticks) return;I.iticks = {host:c, settings:s, clientId:k, cdn:L, queue:[]};var h = T.head || T.documentElement;var e = T.createElement(i);var l = I.location;e.async = true;e.src = (L||c)+'/client/inject-v2.min.js';h.insertBefore(e, h.firstChild);I.iticks.call = function(a, b) {I.iticks.queue.push([a, b]);};})(window, 'https://cdn-v1.intelliticks.com/prod/common', document, 'script', 'https://app.intelliticks.com', 'q4egmrY3hCRu8qXBi_c', {});
 </script>
