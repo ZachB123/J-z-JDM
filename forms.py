@@ -24,8 +24,6 @@ class RegistrationForm(FlaskForm):
     submit = SubmitField('Register')
 
     def validate_password2(self, password2):
-        print(password2.data)
-        print(self.password.data)
         if not password2.data == self.password.data:
             raise ValidationError("Passwords Do Not Match")
 
