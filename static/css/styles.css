@@ -34,7 +34,7 @@ body {
 }
 
 nav {
-    background: var(--primary);
+    background: transparent;
     padding: 0 15px;
     z-index: 1;
 }

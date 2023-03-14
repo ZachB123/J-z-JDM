@@ -3,7 +3,8 @@ const plugin = require('tailwindcss/plugin')
 module.exports = {
   mode: "jit",
   content: [
-    "./templates/**/*.{html,js}"
+    "./templates/**/*.{html,js}",
+    "./static/js/**/*.{html,js}"
   ],
   theme: {
     colors: {
@@ -13,6 +14,7 @@ module.exports = {
       'white': '#ffffff',
       'button': '#9E129E',
       'button-hover': '#CC35CC',
+      'blue': '#1F4EFE',
     },
     extend: {},
   },

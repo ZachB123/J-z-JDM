@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/ZachB123/J-z-JDM#readme",
   "devDependencies": {
+    "postcss-nesting": "^11.2.1",
     "tailwindcss": "^3.2.7"
   },
   "dependencies": {

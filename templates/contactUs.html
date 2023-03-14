@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block js %}
-    <script src="{{ url_for('static', filename='js/contactUs.js')}}" defer></script>
+    <script src="{{ url_for('static', filename='js/contactUs.js')}}"></script>
 {% endblock %}
 
 {% block body %} 
@@ -56,76 +56,143 @@
         </div>
     </div>
 </div> -->
-
+<body class="bg-white">
+    
+</body>
 <div>
-    <!-- contact us flip card form group-hover:rotate-y-180-->
-    <div>
-        <div class="bg-transparent w-[300px] h-[275px] mx-auto perspective-1000 mt-2.5 mb-2.5">
-            <div id="contactUsFormFront" class="relative w-full h-full text-center transition transform duration-600 transform-style-3d shadow-md">
-                <div class="front backface-hidden absolute w-full h-full bg-pink rounded-md">
-                    <h1 class="m-1 text-3xl" >Need Help?</h1>
-                    <p>Our team is dedicated to making your experience here at Jz'z JDM as smooth and enjoyable as possible. If you need help with a specific problem or would like to leave a suggestion feel free to fill out our contact us form below. Our dedicated sales team will diligently to get back to you as soon as possible.</p>
-                    <button type="button" id="contactUsButtonFlip">Contact Us Form</button> 
-                </div>
-                <div id="contactUsFormBack" class="back1 backface-hidden absolute w-full h-full rotate-y-180 bg-white">
-                    <form action="" method="post">
-                        {{ form.hidden_tag() }}
-                        <div class="form-input">
-                            <p>
-                                <span>Name</span>
-                                <input required="yes" placeholder="Name" type="text">
-                            </p>
-                        </div>
-                        <div>
-                            <p>
-                                <div class="form-input-label">
-                                    {{ form.email.label }}<br>
-                                </div>
-                                <div class="form-input-area" id="contactUsInput">
-                                    {{ form.email() }}<br>
-                                </div>
-                                <div class="form-input-error">
-                                    {% for error in form.email.errors %}
-                                        <span>[{{ error }}]</span>
-                                    {% endfor %}
-                                </div>
-                            </p>
-                        </div>
-                        <div>
-                            <label for="issue-type">Type of Issue</label>
-                            <select name="issue-type" id="issueType">
-                                <option value="1">Website</option>
-                                <option value="2">Customer Relations</option>
-                                <option value="3">Suggestions</option>
-                                <option value="4">Other</option>
-                            </select>
-                        </div>
-                        <div class="form-input">
-                            <p>
-                                <div class="form-input-label">
-                                    {{ form.message.label }}<br>
-                                </div>
-                                <div class="form-input-area" id="formInputContact">
-                                    {{ form.message() }}<br>
-                                </div>
-                                <div class="form-input-error">
-                                    {% for error in form.message.errors %}
-                                        <span>[{{ error }}]</span>
-                                    {% endfor %}
-                                </div>
-                            </p>
-                        </div>
-                        <div class="form-submit">
-                            <p>
-                                {{ form.submit() }}
-                            </p>
-                        </div>
-                    </form>
-                </div>
-                <div class="back2 hidden absolute w-full h-full rotate-y-180">
-                    <h1>Your form has been successfully submitted!</h1>
+    <div class="sm:w-fit lg:w-[90%] lg:flex lg:justify-around sm:mx-auto sm:mt-10 ">
+        <!-- contact us flip card form group-hover:rotate-y-180-->
+        <div class="w-full sm:w-fit lg:max-w-[50%] sm:inline-block sm:mr-8 sm:align-top">
+            <div class="bg-transparent w-[300px] h-[275px] mx-auto perspective-1000 mt-2.5 mb-2.5 group px-1">
+                <div id="contactUsFormFront" class="relative w-full h-full text-center transition transform duration-600 transform-style-3d shadow-md">
+                    <div class="front backface-hidden absolute w-full h-full bg-gradient-to-b from-pink to-button rounded-md">
+                        <h1 class="m-1 text-3xl" >Need Help?</h1>
+                        <p>Our team is dedicated to making your experience here at Jz'z JDM as smooth and enjoyable as possible. If you need help with a specific problem or would like to leave a suggestion feel free to fill out our contact us form below. Our dedicated sales team will diligently to get back to you as soon as possible.</p>
+                        <button type="button" id="contactUsButtonFlip">Contact Us Form</button> 
+                    </div>
+                    <div id="contactUsFormBack" class="back1 backface-hidden absolute w-full h-full rotate-y-180 bg-white">
+                        <form action="" method="post">
+                            {{ form.hidden_tag() }}
+                            <div class="form-input">
+                                <p>
+                                    <span>Name</span>
+                                    <input required="yes" placeholder="Name" type="text">
+                                </p>
+                            </div>
+                            <div>
+                                <p>
+                                    <div class="form-input-label">
+                                        {{ form.email.label }}<br>
+                                    </div>
+                                    <div class="form-input-area" id="contactUsInput">
+                                        {{ form.email() }}<br>
+                                    </div>
+                                    <div class="form-input-error">
+                                        {% for error in form.email.errors %}
+                                            <span>[{{ error }}]</span>
+                                        {% endfor %}
+                                    </div>
+                                </p>
+                            </div>
+                            <div>
+                                <label for="issue-type">Type of Issue</label>
+                                <select name="issue-type" id="issueType">
+                                    <option value="1">Website</option>
+                                    <option value="2">Customer Relations</option>
+                                    <option value="3">Suggestions</option>
+                                    <option value="4">Other</option>
+                                </select>
+                            </div>
+                            <div class="form-input">
+                                <p>
+                                    <div class="form-input-label">
+                                        {{ form.message.label }}<br>
+                                    </div>
+                                    <div class="form-input-area" id="formInputContact">
+                                        {{ form.message() }}<br>
+                                    </div>
+                                    <div class="form-input-error">
+                                        {% for error in form.message.errors %}
+                                            <span>[{{ error }}]</span>
+                                        {% endfor %}
+                                    </div>
+                                </p>
+                            </div>
+                            <div class="form-submit">
+                                <p>
+                                    {{ form.submit() }}
+                                </p>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="back2 hidden absolute w-full h-full rotate-y-180">
+                        <h1>Your form has been successfully submitted!</h1>
+                    </div>
                 </div>
             </div>
+        </div>
+        <!-- FAQ section -->
+        <div class="faq-container sm:max-w-[50%] sm:inline-block">
+            <p class="w-full text-3xl text-center mb-2">Frequently Asked Questions</p>
+            <div class="faq-box w-[95%] h-[60px] mx-auto bg-pink border border-black border-solid">
+                <button type="button" class="w-full p-[18px]" id="collapsibleFAQ"><div class="relative min-h-fit w-auto"><p class="absolute inline-block left-0">Blah Blah</p><span class="material-symbols-outlined absolute inline-block right-0">expand_more</span> <span class="material-symbols-outlined absolute inline-block right-0 hidden">expand_less</span></div></button>
+                <div class="FAQ-content hidden overflow-hidden">
+                    <p>Blah Blah</p>
+                </div>
+            </div>
+            <div class="faq-box w-[95%] h-[60px] mx-auto bg-pink border border-black border-solid">
+                <button type="button" class="w-full p-[18px]" id="collapsibleFAQ"><div class="relative min-h-fit w-auto"><p class="absolute inline-block left-0">Blah Blah</p><span class="material-symbols-outlined absolute inline-block right-0">expand_more</span> <span class="material-symbols-outlined absolute inline-block right-0 hidden">expand_less</span></div></button>
+                <div class="FAQ-content hidden overflow-hidden">
+                    <p>Blah Blah</p>
+                </div>
+            </div>
+            <div class="faq-box w-[95%] h-[60px] mx-auto bg-pink border border-black border-solid">
+                <button type="button" class="w-full p-[18px]" id="collapsibleFAQ"><div class="relative min-h-fit w-auto"><p class="absolute inline-block left-0">Blah Blah</p><span class="material-symbols-outlined absolute inline-block right-0">expand_more</span> <span class="material-symbols-outlined absolute inline-block right-0 hidden">expand_less</span></div></button>
+                <div class="FAQ-content hidden overflow-hidden">
+                    <p>Blah Blah</p>
+                </div>
+            </div>
+            <div class="faq-box w-[95%] h-[60px] mx-auto bg-pink border border-black border-solid">
+                <button type="button" class="w-full p-[18px]" id="collapsibleFAQ"><div class="relative min-h-fit w-auto"><p class="absolute inline-block left-0">Blah Blah</p><span class="material-symbols-outlined absolute inline-block right-0">expand_more</span> <span class="material-symbols-outlined absolute inline-block right-0 hidden">expand_less</span></div></button>
+                <div class="FAQ-content hidden overflow-hidden">
+                    <p>Blah Blah</p>
+                </div>
+            </div>
+            <div class="faq-box w-[95%] h-[60px] mx-auto bg-pink border border-black border-solid">
+                <button type="button" class="w-full p-[18px]" id="collapsibleFAQ"><div class="relative min-h-fit w-auto"><p class="absolute inline-block left-0">Blah Blah</p><span class="material-symbols-outlined absolute inline-block right-0">expand_more</span> <span class="material-symbols-outlined absolute inline-block right-0 hidden">expand_less</span></div></button>
+                <div class="FAQ-content hidden overflow-hidden">
+                    <p>Blah Blah</p>
+                </div>
+            </div>
+            <div class="faq-box w-[95%] h-[60px] mx-auto bg-pink border border-black border-solid">
+                <button type="button" class="w-full p-[18px]" id="collapsibleFAQ"><div class="relative min-h-fit w-auto"><p class="absolute inline-block left-0">Blah Blah</p><span class="material-symbols-outlined absolute inline-block right-0">expand_more</span> <span class="material-symbols-outlined absolute inline-block right-0 hidden">expand_less</span></div></button>
+                <div class="FAQ-content hidden overflow-hidden">
+                    <p>Blah Blah</p>
+                </div>
+            </div>
+            <div class="faq-box w-[95%] h-[60px] mx-auto bg-pink border border-black border-solid">
+                <button type="button" class="w-full p-[18px]" id="collapsibleFAQ"><div class="relative min-h-fit w-auto"><p class="absolute inline-block left-0">Blah Blah</p><span class="material-symbols-outlined absolute inline-block right-0">expand_more</span> <span class="material-symbols-outlined absolute inline-block right-0 hidden">expand_less</span></div></button>
+                <div class="FAQ-content hidden overflow-hidden">
+                    <p>Blah Blah</p>
+                </div>
+            </div> 
+        </div>
+    </div>
+    <!-- Contact us information -->
+    <div class="mt-8">
+        <div class="w-[95%] text-center mx-auto">
+            <p class="text-3xl">Want to Talk?</p>
+        </div>
+        <div class="mx-auto w-fit">
+            <div class="w-auto text-center inline block mr-2">
+                <span class="material-symbols-outlined align-middle">call</span><p class="inline-block align-middle text-lg">319-453-2394</p>
+            </div>
+            <div class="w-auto text-center inline-block">
+                <span class="material-symbols-outlined align-middle">mail</span><p class="inline-block align-middle text-lg pb-1">support@jzjdm.co</p>
+            </div>
+        </div>
+        <div class="text-center mb-4">
+            <iframe class="block mx-auto" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6455366.060019486!2d-91.64454115465672!3d37.812667698656256!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880619982446d5dd%3A0xe1f4f567fcf597d0!2sJDM%20Auto%20Imports%20LLC!5e0!3m2!1sen!2sus!4v1678729232932!5m2!1sen!2sus" width="600" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
     </div>
 </div>

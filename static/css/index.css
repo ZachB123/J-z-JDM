@@ -39,11 +39,10 @@ section {
 }
 
 .col1 {
-    background-color: var(--filler);
+    background-color: transparent
 }
-
 .col2 {
-    background-color: var(--filler);
+    background-color: transparent;
 }
 
 .content-section {
