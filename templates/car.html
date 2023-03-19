@@ -31,7 +31,7 @@
             {% endif %}
         </div>
         <div class="current-car-image">
-            <img class="current-image" src="{{ cover_image.link }}" alt="ERROR: {{cover_image}}">
+            <img class="mx-auto" class="current-image" src="{{ cover_image.link }}" alt="ERROR: {{cover_image}}">
             
         </div>
         <div class="description">
@@ -39,7 +39,7 @@
         </div>
         <div class="more-images-carousel">
             <h3>More Images</h3>
-            <div class="more-images-container">
+            <div class="more-images-container flex flex-auto flex-row">
                 {% for image in images %}
                     <img class="more-images" src="{{ image.link }}" alt="ERROR: {{ image }}">
                 {% endfor %}

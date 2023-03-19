@@ -76,8 +76,8 @@
     {% block body %} {% endblock %}
     <!-- Footer for each page is here underneath the block body so that this is put at the bottom of each page-->
     <div class="footer-container">
-        <div id="footerLogo">
-            <img src="{{ url_for('static', filename='images/logoPlaceholder.png') }}" alt="Logo" style="height: auto; width: 200px;">
+        <div id="footerLogo" class="">
+            <img src="{{ url_for('static', filename='images/logoPlaceholder.png') }}" alt="Logo" class="mx-auto" style="height: auto; width: 200px;">
         </div>
         <div id="footerSections">
             <div class="footer-section">
