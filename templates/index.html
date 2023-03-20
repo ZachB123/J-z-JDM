@@ -18,32 +18,33 @@
     </section>
 </div>
 <section class="empty-section"></section>
-
-<section class="content-section col1">
-    <div class="container">
-        <h1>View Our Newest Cars</h1>
-        <div class="carousel">
-            <div class="carousel-prev"><i class="material-icons" style="position:relative;top:5px;">chevron_left</i></div>
-            <div class="carousel-next"><i class="material-icons" style="position:relative;top:5px;">chevron_right</i></div>
-            <ul class="carousel-pagination">
-                <li class="carousel-bullet"></li>
-                <li class="carousel-bullet"></li>
-                <li class="carousel-bullet"></li>
-                <li class="carousel-bullet"></li>
-                <li class="carousel-bullet"></li>
-            </ul>
-            <ul class="carousel-container">
-                {% for car in carousel_cars %} 
-                    <div class="carousel-item">
-                        <h2 class="car-title">{{car.year}} {{ car.oem }}, {{ car.model }}</h2>
-                        <img onclick="location.href = `{{ url_for('car', id=car.id) }}`" src="{{ car.get_cover_image().link }}" alt="ERROR">
-                    </div>
-                {% endfor %}
-            </ul>
+<div class="h-screen w-full">
+    <section class="content-section col1">
+        <div class="container">
+            <h1>View Our Newest Cars</h1>
+            <div class="carousel">
+                <div class="carousel-prev"><i class="material-icons" style="position:relative;top:5px;">chevron_left</i></div>
+                <div class="carousel-next"><i class="material-icons" style="position:relative;top:5px;">chevron_right</i></div>
+                <ul class="carousel-pagination">
+                    <li class="carousel-bullet"></li>
+                    <li class="carousel-bullet"></li>
+                    <li class="carousel-bullet"></li>
+                    <li class="carousel-bullet"></li>
+                    <li class="carousel-bullet"></li>
+                </ul>
+                <ul class="carousel-container">
+                    {% for car in carousel_cars %} 
+                        <div class="carousel-item">
+                            <h2 class="car-title">{{car.year}} {{ car.oem }}, {{ car.model }}</h2>
+                            <img onclick="location.href = `{{ url_for('car', id=car.id) }}`" src="{{ car.get_cover_image().link }}" alt="ERROR">
+                        </div>
+                    {% endfor %}
+                </ul>
+            </div>
         </div>
-    </div>
-    <!-- <div class="curve"></div> -->
-</section>
+        <!-- <div class="curve"></div> -->
+    </section>
+</div>
 
 
 <section class="empty-section"></section>
