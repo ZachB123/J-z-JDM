@@ -18,7 +18,7 @@ class LoginForm(FlaskForm):
 
 class RegistrationForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()], render_kw={"placeholder": "Username"})
-    email = StringField('Email (optional)', render_kw={"placeholder": "Email (optional)"})
+    email = StringField('Email (optional)', render_kw={"placeholder": "Email (used to reset password)"})
     password = PasswordField('Password', validators=[DataRequired()], render_kw={"placeholder": "Password"})
     password2 = PasswordField('Repeat Password', validators=[DataRequired()], render_kw={"placeholder": "Repeat Password"})
     submit = SubmitField('Register')
@@ -38,10 +38,17 @@ class ResetPassword(FlaskForm):
     submit = SubmitField("Submit")
 
     def validate_password2(self, password2):
-        print(password2.data)
-        print(self.password.data)
         if not password2.data == self.password.data:
             raise ValidationError("Passwords Do Not Match")
+        
+class ResetPasswordEmail(FlaskForm):
+    email = StringField('Email', validators=[DataRequired(), Email()])
+    submit = SubmitField('Request Password Reset')
+
+    def validate_email(self, email):
+        if not User.email_exists(email.data):
+            raise ValidationError("Email is not in database, try a different email or contact us through the contact us page.")
+
 
 class CarCreationForm(FlaskForm):
     description = TextAreaField("Description")

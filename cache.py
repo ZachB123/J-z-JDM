@@ -745,6 +745,20 @@ class Cache():
         self.conn.commit()
         threading.Thread(target=raw_db.change_password, args=((values,))).start()
 
+    def email_exists(self, values):
+        # if not values[0]:
+        #     return False
+        # values = tuple(str(element) for element in values)
+        cursor = self.conn.execute(
+            """
+                SELECT  *
+                FROM users
+                WHERE email=?;
+            """,
+            values
+        )
+        return ([row for row in cursor])
+
     def refresh(self):
         self.conn.commit()
         self.conn.close()

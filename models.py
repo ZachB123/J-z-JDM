@@ -90,6 +90,18 @@ class User(UserMixin):
             return
         db.remove_favorite((user_id, car_id))
 
+    @staticmethod
+    def email_exists(email):
+        return db.email_exists((str(email),))
+    
+    @staticmethod
+    def get_user_by_email(email):
+        users = User.get_all_users()
+        for user in users:
+            if user.email == email:
+                return user
+        return None
+
     def __str__(self) -> str:
         return f"<Id: {self.id}, Username: {self.username}, Email: {self.email}, Date Joined: {datetime.fromtimestamp(self.date_joined)}, Super User: {self.super_user}>"
 

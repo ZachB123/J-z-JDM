@@ -4,30 +4,48 @@ from config import Config
 from flask import Flask, render_template, redirect, url_for, flash, request, abort
 from dotenv import load_dotenv
 load_dotenv()
-from forms import LoginForm, RegistrationForm, CarCreationForm, AddImages, ConfigureSalesRep, Contact, DirectMessageForm, Search, ResetPassword
+from forms import LoginForm, RegistrationForm, CarCreationForm, AddImages, ConfigureSalesRep, Contact, DirectMessageForm, Search, ResetPassword, ResetPasswordEmail
 from flask_login import LoginManager, current_user, login_user, logout_user, login_required
 from werkzeug.urls import url_parse
 import json
 from flask_sslify import SSLify
-
+from jwttoken import get_reset_password_token, verify_reset_password_token
+from flask_mail import Message
+from flask_mail_sendgrid import MailSendGrid
 
 app = Flask(__name__)
 app.debug = True
 app.config.from_object(Config)
 
-a = 1
-
 login = LoginManager(app)
 login.login_view = "login"
+
+# https://pypi.org/project/Flask-Mail-SendGrid/
+mail = MailSendGrid(app)
 
 # uncomment for production
 # sslify = SSLify(app)
 
+def send_email(subject="subject", sender="support@jzjdm.co", recipients=[""], text_body="body", html_body="html body"):
+    msg = Message(subject, sender=sender, recipients=recipients)
+    msg.body = text_body
+    msg.html = html_body
+    mail.send(msg)
+
+def send_password_reset_email(id):
+    user = User.get_user_by_id(id)
+    token = get_reset_password_token(int(id))
+    send_email('[JZ JDM] Reset Your Password',
+            sender="support@jzjdm.co",
+            recipients=[str(user.email)],
+            text_body=render_template('email/reset_password.txt',
+                                        user=user, token=token),
+            html_body=render_template('email/reset_password.html',
+                                        user=user, token=token))
 
 @login.user_loader
 def load_user(id):
     return User.get_user_by_id(id)
-
 
 @app.route("/", methods=["GET", "POST"])
 @app.route("/index", methods=["GET", "POST"])
@@ -238,6 +256,35 @@ def owners():
 @app.route("/accessibility")
 def accessibility():
     return render_template("accessibility.html", title="Accessibility")
+
+@app.route("/reset", methods=["GET", "POST"])
+def reset_password():
+    if current_user.is_authenticated:
+        return redirect(url_for("login"))
+    form = ResetPasswordEmail()
+    if form.validate_on_submit():
+        user = User.get_user_by_email(form.email.data)
+        if not user:
+            raise abort(500)
+        send_password_reset_email(int(user.id))
+        flash("Check you email!")
+        return redirect(url_for("reset_password"))
+    return render_template("resetPassword.html", form=form)
+
+@app.route("/reset/password/<token>", methods=["GET", "POST"])
+def change_from_token(token):
+    if current_user.is_authenticated:
+        return redirect(url_for("index"))
+    user = verify_reset_password_token(token)
+    if not user:
+        flash("Invalid Token")
+        return redirect(url_for("reset_password"))
+    form = ResetPassword()
+    if form.validate_on_submit():
+        user.change_password(form.password.data)
+        flash("Your password has been reset")
+        return redirect(url_for("login"))
+    return render_template("resetPasswordToken.html", form=form, user=user)
 
 @app.route("/Privacy-Policy")
 def privacyPolicy():

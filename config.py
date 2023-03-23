@@ -14,3 +14,6 @@ class Config(object):
     CARS_PER_PAGE = 15
     CACHE_TYPE = "FileSystemCache"
     CACHE_DIR = "/cache"
+    SENDGRID_API_KEY = os.environ.get("SENDGRID_API_KEY")
+    MAIL_SENDGRID_API_KEY = os.environ.get("MAIL_SENDGRID_API_KEY")
+    MAIL_DEFAULT_SENDER = os.environ.get("MAIL_DEFAULT_SENDER")

@@ -131,6 +131,14 @@ def test_direct_message_senders_stress():
     for id in range(1,50):
         assert sort_tuples(cache_db.direct_message_senders((id))) == sort_tuples(db.direct_message_senders((id)))
 
+@pytest.mark.fast
+def test_email_exists():
+    assert cache_db.email_exists(("a",)) == db.email_exists(("a",))
+    assert cache_db.email_exists(("1",)) == db.email_exists(("1",))
+    assert cache_db.email_exists(("1a",)) == db.email_exists(("1a",))
+    assert cache_db.email_exists(("zach.buchholz7@gmail.com",)) == db.email_exists(("zach.buchholz7@gmail.com",))
+
+
 
 def sort_tuples(lst):
     sorted_lst = sorted(lst, key=lambda x: x[0])

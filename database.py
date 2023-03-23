@@ -210,8 +210,15 @@ class DatabaseDriver():
 
     def delete_all_messages(self):
         self.db_op("""
-            DELETE FROM direct_messages
+            DELETE FROM direct_messages;
         """)
+
+    def email_exists(self, values):
+        return bool(self.db_op("""
+            SELECT DISTINCT *
+            FROM users
+            WHERE email=%s;
+        """, values))
         
         
 db = DatabaseDriver()

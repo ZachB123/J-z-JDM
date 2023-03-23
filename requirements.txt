@@ -15,3 +15,7 @@ jellyfish
 flask-talisman
 Flask-SSLify
 pytest
+sendgrid
+flask-mail
+pyjwt
+Flask-Mail-SendGrid
