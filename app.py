@@ -12,6 +12,7 @@ from flask_sslify import SSLify
 from jwttoken import get_reset_password_token, verify_reset_password_token
 from flask_mail import Message
 from flask_mail_sendgrid import MailSendGrid
+import threading
 
 app = Flask(__name__)
 app.debug = True
@@ -159,6 +160,7 @@ def control():
         car = Car(form.description.data, form.oem.data, form.model.data, form.year.data, form.mileage.data, form.color.data, form.price.data, form.drivetrain.data, form.engine_cylinder.data, form.engine_size.data, int(form.four_wheel_steering.data), int(form.abs.data), int(form.tcs.data), form.doors.data, form.seats.data, form.horsepower.data, form.torque.data, form.misc.data)
         Car.add_car(car)
         flash("Car added")
+        refresh_database()
         return redirect(url_for("control"))
     cars = Car.get_all_cars()
     return render_template("control.html", form=form, cars=cars, users=users, title="Control Center")
@@ -267,7 +269,7 @@ def reset_password():
         if not user:
             raise abort(500)
         send_password_reset_email(int(user.id))
-        flash("Check you email!")
+        flash("Check your email!")
         return redirect(url_for("reset_password"))
     return render_template("resetPassword.html", form=form)
 

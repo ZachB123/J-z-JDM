@@ -2,6 +2,7 @@ test.py
 
 *.cache
 .cache
+.pytest_cache
 
 # C extensions
 *.so
