@@ -131,7 +131,7 @@ def listings():
     prev_url = None
     next_url = None
     if page > 1:
-        prev_url = url_for("listings", page=(page-1))
+        prev_url = url_for("listings", page=(page-1), q=q)
     if len(cars) >= Config.CARS_PER_PAGE:
         next_url = url_for("listings", page=(page+1), q=q)
     return render_template("listings.html", form=form, cars=cars, prev_url=prev_url, next_url=next_url, q=q, title="View Cars")

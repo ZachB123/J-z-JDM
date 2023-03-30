@@ -19,3 +19,4 @@ sendgrid
 flask-mail
 pyjwt
 Flask-Mail-SendGrid
+nltk

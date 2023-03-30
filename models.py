@@ -4,7 +4,10 @@ from database import db as raw_db
 from flask_login import UserMixin
 from config import Config
 import jellyfish
+import nltk
+import string
 from cache import cache_db as db
+nltk.download("stopwords")
 # from cache import Cache
 # db = Cache()
 
@@ -13,6 +16,12 @@ def refresh_database():
 
 def close_database():
     db.close()
+
+def remove_common_words_and_numbers(words_list):
+    stopwords = nltk.corpus.stopwords.words('english')
+    # Add more stopwords if needed: stopwords += ['word1', 'word2', ...]
+
+    return [word for word in words_list if word.lower() not in stopwords and not word.isdigit()]
 
 class User(UserMixin):
     def __init__(self, username, email, password, super_user=0, time=None, hash=False, id=-1):
@@ -271,6 +280,7 @@ class Car():
         torque = str(self.torque).split()
         misc = str(self.misc).split()
         description = [x.lower() for x in self.description.split()]
+        description = remove_common_words_and_numbers(description)
         combined = oem + model + year + mileage + color + drivetrain + four_wheel_steering + abs + tcs + doors + seats + horsepower + torque + misc
         return combined, description
 
@@ -316,10 +326,15 @@ class Car():
     @staticmethod
     def get_seo_string():
         cars = Car.get_all_cars()
-        string = ""
+        pre_result = ""
         for car in cars:
-            string = string + car.seo_from_car()
-        return string
+            pre_result = pre_result + car.seo_from_car()
+        items_list = pre_result.split(',')
+        # Remove punctuation from items
+        translator = str.maketrans('', '', string.punctuation)
+        items_list = [x.translate(translator).strip() for x in items_list]
+
+        return ", ".join(list(set(items_list)))
 
     def seo_from_car(self):
         keywords, description = self.list_for_search()
@@ -334,6 +349,12 @@ class Car():
         cars = Car.get_all_cars()
         if not query:
             cars.sort(key=(lambda x: x.date_added), reverse=True)
+            return cars
+        if str(query) == "low-to-high":
+            cars.sort(key=lambda x: x.price)
+            return cars
+        if str(query) == "high-to-low":
+            cars.sort(key=lambda x: x.price, revers=True)
             return cars
         cars.sort(key=lambda x: x.get_query_score(str(query)), reverse=True)
         return cars
