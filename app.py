@@ -4,7 +4,7 @@ from config import Config
 from flask import Flask, render_template, redirect, url_for, flash, request, abort
 from dotenv import load_dotenv
 load_dotenv()
-from forms import LoginForm, RegistrationForm, CarCreationForm, AddImages, ConfigureSalesRep, Contact, DirectMessageForm, Search, ResetPassword, ResetPasswordEmail
+from forms import LoginForm, UpdateEmail, RegistrationForm, CarCreationForm, AddImages, ConfigureSalesRep, Contact, DirectMessageForm, Search, ResetPassword, ResetPasswordEmail
 from flask_login import LoginManager, current_user, login_user, logout_user, login_required
 from werkzeug.urls import url_parse
 import json
@@ -102,11 +102,16 @@ def profile():
         user.change_password(form.password.data)
         flash("Password Successfully Changed")
         return redirect(url_for("profile"))
+    update_email = UpdateEmail()
+    if update_email.validate_on_submit():
+        User.update_email(update_email.email.data, int(current_user.get_id()))
+        flash("Email successfully updated")
+        return redirect(url_for("profile"))
     cars = Car.get_favorited_cars_by_user_id(user.id)
     sender_ids = DirectMessage.get_sender_ids_of_user(int(current_user.get_id()))
     users = User.get_all_users()
     senders = [u for u in users if u.id in sender_ids]
-    return render_template("profile.html", user=user, cars=cars, senders=senders, form=form, title="Profile")
+    return render_template("profile.html", user=user, cars=cars, senders=senders, form=form, update_email=update_email, title="Profile")
 
 @app.route("/about")
 def about():

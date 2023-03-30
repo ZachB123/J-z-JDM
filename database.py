@@ -219,6 +219,14 @@ class DatabaseDriver():
             FROM users
             WHERE email=%s;
         """, values))
+    
+    # update_email((email,id))
+    def update_email(self, values):
+        self.db_op("""
+            UPDATE users
+            SET email=%s 
+            WHERE id=%s;
+        """, values)
         
         
 db = DatabaseDriver()

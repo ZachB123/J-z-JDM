@@ -49,6 +49,9 @@ class ResetPasswordEmail(FlaskForm):
         if not User.email_exists(email.data):
             raise ValidationError("Email is not in database, try a different email or contact us through the contact us page.")
 
+class UpdateEmail(FlaskForm):
+    email = StringField('Email', validators=[DataRequired(), Email()])
+    submit = SubmitField('Update Email')
 
 class CarCreationForm(FlaskForm):
     description = TextAreaField("Description")

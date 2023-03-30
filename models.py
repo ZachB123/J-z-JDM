@@ -41,6 +41,10 @@ class User(UserMixin):
 
     def get_id(self):
         return int(self.id)
+    
+    @staticmethod
+    def update_email(email, id):
+        db.update_email((email,id))
 
     @staticmethod
     def get_user_by_id(id):

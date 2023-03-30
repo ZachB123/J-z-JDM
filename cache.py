@@ -758,6 +758,18 @@ class Cache():
             values
         )
         return ([row for row in cursor])
+    
+    def update_email(self, values):
+        self.conn.execute(
+            """
+                UPDATE users
+                SET email=?
+                WHERE id=?;
+            """,
+            values
+        )
+        self.conn.commit()
+        threading.Thread(target=raw_db.update_email, args=((values,))).start()
 
     def refresh(self):
         self.conn.commit()

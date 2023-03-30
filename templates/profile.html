@@ -61,6 +61,29 @@
                         </div>
                     </form>
                 </div> 
+                <div class="reset-header">
+                    <h1>Update/Add Email</h1>
+                </div>
+                <div class="reset-form">
+                    <form action="" method="post">
+                        {{ update_email.hidden_tag() }}
+                        <div class="form-input">
+                            <p>
+                                <div class="form-input-area">
+                                    {{ update_email.email() }}<br>
+                                </div>
+                                <div class="input-area-error">
+                                    {% for error in update_email.email.errors %}
+                                        <span>[{{ error }}]</span>
+                                    {% endfor %}
+                                </div>
+                            </p>
+                        </div>
+                        <div class="form-submit">
+                            <p>{{ update_email.submit() }}</p>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
