@@ -1,15 +1,15 @@
 {% extends "layout.html" %} 
 
 {% block css %} 
-<!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/signInUp.css') }}">
-<link rel="stylesheet" href="{{ url_for('static', filename='css/contactUs.css') }}"> -->
+<link rel="stylesheet" href="{{ url_for('static', filename='css/contactUs.css') }}">
 {% endblock %}
 
 {% block js %}
     <script src="{{ url_for('static', filename='js/contactUs.js')}}" defer></script>
 {% endblock %}
 
-{% block body %} 
+{% block body %}
+
 <!-- using the same classes for this form as used for the log in and sign up forms -->
 <!-- <div class="contact-us-container">
     <div class="form-area">

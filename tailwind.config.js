@@ -15,6 +15,7 @@ module.exports = {
       'button': '#9E129E',
       'button-hover': '#CC35CC',
       'blue': '#1F4EFE',
+      'grey': '#708090',
     },
     extend: {},
   },

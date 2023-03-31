@@ -5,7 +5,7 @@
 }
 
 body {
-    background: url(../images/mobilebackground-01.png) no-repeat center center fixed;
+    background: url(../images/background-jz.png) no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -28,6 +28,13 @@ body {
 @media screen and (min-width: 1200px) {
     .car-listings-container > * {
         width: 30%;
+    }
+    body {
+        background: url(../images/background-jz.png) no-repeat center center fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
     }
 }
 

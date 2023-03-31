@@ -49,9 +49,9 @@
 
 <section class="empty-section"></section>
 
-
-<section class="content-section col1">
-    <div class="quick-links">
+<div class="h-auto w-full mb-20">
+    
+    <!-- <div class="quick-links">
         <div class="link-container">
             <div class="another-container">
                 <h2>View Cars</h2>
@@ -83,8 +83,22 @@
                 <a href="{{ url_for('about') }}">Go!</a>
             </div>
         </div>
+    </div> -->
+    <div class="w-fit h-auto mx-auto flex flex-col lg:flex-row">
+        <div class="cars relative h-[250px] w-[300px] mb-4 hover:scale-105 shadow-md sm:ml-4">
+            <img class="absolute w-full h-full rounded-md" src="{{ url_for('static', filename='images/placeholdimage.jpg') }}" alt="Buy a Car">
+            <div class="absolute bottom-0 inset-x-0 ml-2 mb-1 text-grey flex items-center"><span class="text-lg">Click here to browse cars!</span><span class="material-symbols-outlined">open_in_new</span></div>
+        </div>
+        <div class="aboutUs relative h-[250px] w-[300px] mb-4 hover:scale-105 shadow-md sm:ml-4">
+            <img class="absolute w-full h-full rounded-md" src="{{ url_for('static', filename='images/placeholdimage.jpg') }}" alt="Buy a Car">
+            <div class="absolute bottom-0 inset-x-0 ml-2 mb-1 text-grey flex items-center"><span class="text-lg">Click here to learn about Jz JDM!</span><span class="material-symbols-outlined">open_in_new</span></div>
+        </div>
+        <div class="contactUs relative h-[250px] w-[300px] mb-4 hover:scale-105 shadow-md sm:ml-4 ">
+            <img class="absolute w-full h-full rounded-md" src="{{ url_for('static', filename='images/placeholdimage.jpg') }}" alt="Buy a Car">
+            <div class="absolute bottom-0 inset-x-0 ml-2 mb-1 text-grey flex items-center"><span class="text-lg">Click here to view Sales Reps!</span><span class="material-symbols-outlined">open_in_new</span></div>
+        </div>
     </div>
-    <div class="hours-container">
+    <div class="hours-container max-w-[345px] w-[95%] sm:max-w-[100%] ">
         <h1>Hours of Operation</h1>
         <h2 class="open-status"></h2>
         <div class="hours">
@@ -118,9 +132,8 @@
             </div>
         </div>
     </div>
-</section>
-<div class="bottom-gradient"></div>
-
+    
+</div>
 <!-- <svg width="500" height="80" viewBox="0 0 500 80" preserveAspectRatio="none">
     <path d="M0,0 L0,40 Q250,80 500,40 L500,0 Z" fill="black" />
 </svg> -->

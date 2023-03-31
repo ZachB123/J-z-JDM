@@ -31,7 +31,6 @@
 // } 
 
 let buttons = dqa(".faq-box button")
-console.log(buttons)
 
 function getRevealFunction(elem) {
   return () => {

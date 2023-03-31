@@ -569,6 +569,15 @@ video {
   position: relative;
 }
 
+.inset-x-0 {
+  left: 0px;
+  right: 0px;
+}
+
+.bottom-0 {
+  bottom: 0px;
+}
+
 .left-0 {
   left: 0px;
 }
@@ -586,6 +595,10 @@ video {
   margin-right: auto;
 }
 
+.mb-1 {
+  margin-bottom: 0.25rem;
+}
+
 .mb-2 {
   margin-bottom: 0.5rem;
 }
@@ -594,8 +607,16 @@ video {
   margin-bottom: 0.625rem;
 }
 
+.mb-20 {
+  margin-bottom: 5rem;
+}
+
 .mb-4 {
   margin-bottom: 1rem;
+}
+
+.ml-2 {
+  margin-left: 0.5rem;
 }
 
 .mr-2 {
@@ -634,12 +655,20 @@ video {
   display: none;
 }
 
+.h-\[250px\] {
+  height: 250px;
+}
+
 .h-\[275px\] {
   height: 275px;
 }
 
 .h-\[60px\] {
   height: 60px;
+}
+
+.h-auto {
+  height: auto;
 }
 
 .h-full {
@@ -676,6 +705,10 @@ video {
   width: 100%;
 }
 
+.max-w-\[345px\] {
+  max-width: 345px;
+}
+
 .flex-auto {
   flex: 1 1 auto;
 }
@@ -690,6 +723,14 @@ video {
 
 .flex-row {
   flex-direction: row;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.items-center {
+  align-items: center;
 }
 
 .overflow-hidden {
@@ -805,6 +846,11 @@ video {
   color: rgb(0 0 0 / 0);
 }
 
+.text-grey {
+  --tw-text-opacity: 1;
+  color: rgb(112 128 144 / var(--tw-text-opacity));
+}
+
 .shadow-md {
   --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
   --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);
@@ -846,10 +892,20 @@ video {
   transform:  skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y));
 }
 
+.hover\:scale-105:hover {
+  --tw-scale-x: 1.05;
+  --tw-scale-y: 1.05;
+  scale: var(--tw-scale-x) var(--tw-scale-y) var(--tw-scale-z);
+}
+
 @media (min-width: 640px) {
   .sm\:mx-auto {
     margin-left: auto;
     margin-right: auto;
+  }
+
+  .sm\:ml-4 {
+    margin-left: 1rem;
   }
 
   .sm\:mr-8 {
@@ -867,6 +923,10 @@ video {
   .sm\:w-fit {
     width: -moz-fit-content;
     width: fit-content;
+  }
+
+  .sm\:max-w-\[100\%\] {
+    max-width: 100%;
   }
 
   .sm\:max-w-\[50\%\] {
@@ -894,6 +954,10 @@ video {
 
   .lg\:max-w-\[50\%\] {
     max-width: 50%;
+  }
+
+  .lg\:flex-row {
+    flex-direction: row;
   }
 
   .lg\:justify-around {

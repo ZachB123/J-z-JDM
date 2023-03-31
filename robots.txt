@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /profile/
+Disallow: /control/
+Disallow: /login/
+Disallow: /register/
+Disallow: /message/

@@ -243,9 +243,14 @@ select:focus + .focus {
 
 @media screen and (min-width:960px) {
     body {
-        background: url(../images/desktopbackground.jpg) no-repeat center center fixed;
+        background: url(../images/background-jz.png) no-repeat center center fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
     }
 }
+
 
 .monthly-pay-container span, .contact-salesmen-container a {
     color: var(--white)
