@@ -10,6 +10,7 @@ function getNumberFromUrl(url) {
 
 let data;
 let messageContainer = dq(".message-container")
+scrollFlag = true
 // needed to check who the message is from
 let current_user_id
 let recipient_id = parseInt(getNumberFromUrl(window.location.href))
@@ -19,19 +20,29 @@ getUserId()
 .then(data => current_user_id = parseInt(data.data.user_id))
 .then(() => cycle())
 
+previousMessages = None
+
 function cycle() {
+    previousMessages = data
     getMessages(recipient_id)
     .then(response => response.json())
     .then(d => data = d)
     .then(() => {
-        console.log(data.data.messages)
+        // console.log(data.data.messages)
         messageContainer.innerHTML = ""
         insertMessages(data.data.messages)
+        if (JSON.stringify(data) !== JSON.stringify(previousMessages)) {
+            console.log(data)
+            console.log(previousMessages)
+            scrollFlag = true
+        }
     })
     .then(() => {
+        scrollFlag && (messageContainer.scrollTop = messageContainer.scrollHeight);
+        scrollFlag = false
         setTimeout(() => {
           cycle();
-        }, 1000);
+        }, 5000);
     })
 }
 
