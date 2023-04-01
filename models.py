@@ -399,7 +399,7 @@ class Image():
     def __repr__(self):
         return self.__str__()
 
-class Message():
+class ContactMessage():
     def __init__(self, message, name=None, id=-1):
         self.name = name
         self.message = message 
@@ -411,7 +411,7 @@ class Message():
 
     @staticmethod
     def message_from_tuple(t):
-        return Message(t[2], t[1], t[0])
+        return ContactMessage(t[2], t[1], t[0])
 
 class DirectMessage():
     def __init__(self, sender_id, recipient_id, message, timestamp=datetime.utcnow().timestamp(), is_read=0, id=-1):

@@ -1,5 +1,5 @@
 import os
-from models import User, Car, Image, SalesRep, Message, DirectMessage, DirectDatabaseDirectMessage, refresh_database, close_database
+from models import User, Car, Image, SalesRep, ContactMessage, DirectMessage, DirectDatabaseDirectMessage, refresh_database, close_database
 from config import Config
 from flask import Flask, render_template, redirect, url_for, flash, request, abort
 from dotenv import load_dotenv
@@ -251,7 +251,7 @@ def message_sales_rep(sales_rep_id):
 def contact():
     form = Contact()
     if form.validate_on_submit():
-        Message.add_message(Message(form.message.data, form.email.data))
+        ContactMessage.add_message(ContactMessage(form.message.data, form.email.data))
         flash("Message Successfully Sent")
         return redirect(url_for("contact"))
     return render_template("contactUs.html", form=form, title="Contact Us")
