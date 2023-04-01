@@ -8,169 +8,36 @@
 {% block css %} 
     <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/search.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/homepage.css')}}">
 {% endblock %}
 
 
 {% block body %}
-<div class=" w-full">
-    <section class="content-section col1">
+
+<section class="hero">
+    <div class="hero-container">
+        <div class="welcome text-2xl sm:text-5xl mb-2 font-extrabold">
+            <p class="bg-clip-text text-black/0 bg-gradient-to-br from-blue via-button to-black">Welcome to JZ JDM!</p>
+        </div>
         {% include "_search.html" %}
-    </section>
-</div>
-<section class="empty-section"></section>
-<div class="h-screen w-full">
-    <section class="content-section col1">
-        <div class="container">
-            <h1>View Our Newest Cars</h1>
-            <div class="carousel">
-                <div class="carousel-prev"><i class="material-icons" style="position:relative;top:5px;">chevron_left</i></div>
-                <div class="carousel-next"><i class="material-icons" style="position:relative;top:5px;">chevron_right</i></div>
-                <ul class="carousel-pagination">
-                    <li class="carousel-bullet"></li>
-                    <li class="carousel-bullet"></li>
-                    <li class="carousel-bullet"></li>
-                    <li class="carousel-bullet"></li>
-                    <li class="carousel-bullet"></li>
-                </ul>
-                <ul class="carousel-container">
-                    {% for car in carousel_cars %} 
-                        <div class="carousel-item">
-                            <h2 class="car-title">{{car.year}} {{ car.oem }}, {{ car.model }}</h2>
-                            <img onclick="location.href = `{{ url_for('car', id=car.id) }}`" src="{{ car.get_cover_image().link }}" alt="ERROR">
-                        </div>
-                    {% endfor %}
-                </ul>
-            </div>
-        </div>
-        <!-- <div class="curve"></div> -->
-    </section>
-</div>
+    </div>
+</section>
+<section class="carousel">
+    <h1 class="carousel-header">View Our Newest Cars</h1>
+    {% include "_carousel.html" %}
+</section>
+<section class="links">
+    <h1 class="links-header">Important Links</h1>
+    {% include "_homepagelinks.html" %}
+</section>
+<section class="testimonials">
+    {% include "_testimonials.html" %}
+</section>
+<section class="section-hours">
+    {% include "_hours.html" %}
+</section>
 
 
-<section class="empty-section"></section>
-
-<div class="h-auto w-full mb-20">
-    
-    <!-- <div class="quick-links">
-        <div class="link-container">
-            <div class="another-container">
-                <h2>View Cars</h2>
-                <div class="non-heading-box">
-                    <div class="mini-image">
-                        <img class="mx-auto" src="{{ url_for('static', filename='images/view-cars-button-01.png') }}" alt="Car">
-                    </div>
-                    <a href="{{ url_for('listings') }}">Go!</a>
-                </div>
-            </div>
-        </div>
-        <div class="link-container">
-            <div class="another-container">
-                <h2>Meet a Sales Representative</h2>
-                <div class="non-heading-box">
-                    <div class="mini-image">
-                        <img class="mx-auto" src="{{ url_for('static', filename='images/salesrepbutton-01.png') }}" alt="Car">
-                    </div>
-                    <a href="{{ url_for('sales_representatives') }}">Go!</a>
-                </div>
-            </div>
-        </div>
-        <div class="link-container">
-            <div class="another-container">
-                <h2>Learn More about Us</h2>
-                <div class="mini-image">
-                    <img class="mx-auto" src="{{ url_for('static', filename='images/aboutuscompany-01.png') }}" alt="Car">
-                </div>
-                <a href="{{ url_for('about') }}">Go!</a>
-            </div>
-        </div>
-    </div> -->
-    <div class="w-fit h-auto mx-auto flex flex-col lg:flex-row">
-        <div onclick="location.href=`{{ url_for('listings') }}`" class="cars bg-pink rounded-lg relative h-[250px] w-[300px] mb-4 hover:scale-105 shadow-md sm:ml-4">
-            <img class="absolute w-full h-full rounded-md" src="{{ url_for('static', filename='images/view-cars-button-01.png') }}" alt="Buy a Car">
-            <div class="absolute bottom-0 inset-x-0 ml-2 mb-1 text-white flex items-center"><span class="text-lg">Click here to browse cars!</span><span class="material-symbols-outlined">open_in_new</span></div>
-        </div>
-        <div onclick="location.href=`{{ url_for('about') }}`" class="aboutUs bg-pink rounded-lg relative h-[250px] w-[300px] mb-4 hover:scale-105 shadow-md sm:ml-4">
-            <img class="absolute w-full h-full rounded-md" src="{{ url_for('static', filename='images/aboutuscompany-01.png') }}" alt="Buy a Car">
-            <div class="absolute bottom-0 inset-x-0 ml-2 mb-1 text-white flex items-center"><span class="text-lg">Click here to learn about Jz JDM!</span><span class="material-symbols-outlined">open_in_new</span></div>
-        </div>
-        <div onclick="location.href=`{{ url_for('sales_representatives') }}`" class="contactUs bg-pink rounded-lg relative h-[250px] w-[300px] mb-4 hover:scale-105 shadow-md sm:ml-4 ">
-            <img class="absolute w-full h-full rounded-md" src="{{ url_for('static', filename='images/salesrepbutton-01.png') }}" alt="Buy a Car">
-            <div class="absolute bottom-0 inset-x-0 ml-2 mb-1 text-white flex items-center"><span class="text-lg">Click here to view Sales Reps!</span><span class="material-symbols-outlined">open_in_new</span></div>
-        </div>
-    </div>
-    <div style="background-image: url('static/images/listingbanner-01.png'); background-position: center; background-size: cover;" class="testimonials-section">
-        <input type="radio" name="slider" title="slide1" checked="checked" class="slider__nav"/>
-        <input type="radio" name="slider" title="slide2" class="slider__nav"/>
-        <input type="radio" name="slider" title="slide3" class="slider__nav"/>
-        <input type="radio" name="slider" title="slide4" class="slider__nav"/>
-        <input type="radio" name="slider" title="slide5" class="slider__nav"/>
-      <div class="slider__inner">
-        <div class="slider__contents">
-          <quote>&rdquo;</quote>
-          <p class="slider__txt">We love you guys. It's easy to order, we get shipments quick and my rep solves tough problems the right way. We get answers that work.</p>
-          <h2 class="slider__caption">Rhonda | NylonCraft</h2>
-        </div>
-        <div class="slider__contents">
-          <quote>&rdquo;</quote>
-          <p class="slider__txt">You all bend over backwards to get it done. Inside sales and the Account Managers are great! It's your service...you all know that it's not just about taking orders it's about service. Why do we choose you guys - your people, your prices, you're quick and you have a ton of technical knowledge.</p>
-          <h2 class="slider__caption">Jared | Rexam</h2>
-        </div>
-        <div class="slider__contents">
-          <quote>&rdquo;</quote>
-          <p class="slider__txt">It's the long-term relationship we have with Proheat that keeps me calling you guys. I trust you, you're quick, and everybody I've ever spoken to there are all great people. Our CEO, Bill, talks about building relationships. That's exactly what Proheat does, and I couldn't be happier.</p>
-          <h2 class="slider__caption">Chris | C&M Fine Pack</h2>
-        </div>
-        <div class="slider__contents">
-          <quote>&rdquo;</quote>
-          <p class="slider__txt">You answer my questions, always takes care of problems, and I never have a hassle.</p>
-          <h2 class="slider__caption">Rex | LNP Engineering Plastics</h2>
-        </div>
-        <div class="slider__contents">
-          <quote>&rdquo;</quote>
-          <p class="slider__txt">Proheat's staff are all so friendly and everybody goes above and beyond. Everyone is courteous, everything is quick and you get us what we need. I have to shop around for everything and we ALWAYS come back to Proheat.</p>
-          <h2 class="slider__caption">Darlene | Russel Stover</h2>
-        </div>
-      </div>
-    </div>
-    <div class="hours-container max-w-[345px] w-[95%] sm:max-w-[100%] bg-cover bg-center" style="background-image: url('static/images/listingbanner-01.png');">
-        <h1>Hours of Operation</h1>
-        <h2 class="open-status"></h2>
-        <div class="hours">
-            <div class="date-container sunday">
-                <h3>Sunday</h3>
-                <p>Closed</p>
-            </div>
-            <div class="date-container monday">
-                <h3>Monday</h3>
-                <p>9am - 6pm</p>
-            </div>
-            <div class="date-container tuesday">
-                <h3>Tuesday</h3>
-                <p>9am - 6pm</p>
-            </div>
-            <div class="date-container wednesday">
-                <h3>Wednesday</h3>
-                <p>9am - 6pm</p>
-            </div>
-            <div class="date-container thursday">
-                <h3>Thursday</h3>
-                <p>9am - 6pm</p>
-            </div>
-            <div class="date-container friday">
-                <h3>Friday</h3>
-                <p>9am - 6pm</p>
-            </div>
-            <div class="date-container saturday">
-                <h3>Saturday</h3>
-                <p>Closed</p>
-            </div>
-        </div>
-    </div>
-    <div class="testimonials">
-        testimonials
-    </div>
-    
-</div>
 <!-- <svg width="500" height="80" viewBox="0 0 500 80" preserveAspectRatio="none">
     <path d="M0,0 L0,40 Q250,80 500,40 L500,0 Z" fill="black" />
 </svg> -->
