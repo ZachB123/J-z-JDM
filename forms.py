@@ -94,9 +94,9 @@ class ConfigureSalesRep(FlaskForm):
     submit = SubmitField("submit")
 
 class Contact(FlaskForm):
-    email = StringField("Email", validators=[DataRequired(), Email()])
-    message = TextAreaField("Message", validators=[DataRequired()])
-    submit = SubmitField("Submit")
+    email = StringField("Email", validators=[DataRequired(), Email()], render_kw={"class": "form__field", "placeholder": "Example@gmail.com", "id": "email"})
+    message = TextAreaField("Message", validators=[DataRequired()], render_kw={"class": "message-box", "placeholder": "Your Message Here...", "id": "message"})
+    submit = SubmitField("Submit", render_kw={"class": "stupid-button"})
 
 class DirectMessageForm(FlaskForm):
     content = TextAreaField("Message", validators=[DataRequired()], render_kw={"placeholder": "Message"})

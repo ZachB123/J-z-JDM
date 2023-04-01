@@ -10,89 +10,35 @@
 
 {% block body %}
 
-<!-- using the same classes for this form as used for the log in and sign up forms -->
-<!-- <div class="contact-us-container">
-    <div class="form-area">
-        <div class="form-input-container">
-            <span class="form-input-header">Get in Touch with Us!</span>
-            <form action="" method="post">
-                {{ form.hidden_tag() }}
-                <div class="form-input">
-                    <p>
-                        <div class="form-input-label">
-                            {{ form.email.label }}<br>
-                        </div>
-                        <div class="form-input-area" id="contactUsInput">
-                            {{ form.email() }}<br>
-                        </div>
-                        <div class="form-input-error">
-                            {% for error in form.email.errors %}
-                                <span>[{{ error }}]</span>
-                            {% endfor %}
-                        </div>
-                    </p>
-                </div>
-                <div class="form-input">
-                    <p>
-                        <div class="form-input-label">
-                            {{ form.message.label }}<br>
-                        </div>
-                        <div class="form-input-area" id="formInputContact">
-                            {{ form.message() }}<br>
-                        </div>
-                        <div class="form-input-error">
-                            {% for error in form.message.errors %}
-                                <span>[{{ error }}]</span>
-                            {% endfor %}
-                        </div>
-                    </p>
-                </div>
-                <div class="form-submit">
-                    <p>
-                        {{ form.submit() }}
-                    </p>
-                </div>
-            </form>
-        </div>
-    </div>
-</div> -->
+
 <body class="bg-white">
-    
+    <!-- w-full sm:mr-8 sm:align-top     -->
 </body>
 <div>
-    <div class="sm:w-fit lg:w-[90%] lg:flex lg:justify-around sm:mx-auto sm:mt-10 ">
-        <!-- contact us flip card form group-hover:rotate-y-180-->
-        <div class="w-full sm:w-fit lg:max-w-[50%] sm:inline-block sm:mr-8 sm:align-top">
-            <div class="bg-transparent w-[300px] h-[275px] mx-auto perspective-1000 mt-2.5 mb-2.5 group px-1">
-                <div id="contactUsFormFront" class="relative w-full h-full text-center transition transform duration-600 transform-style-3d shadow-md">
-                    <div class="front backface-hidden absolute w-full h-full bg-gradient-to-b from-pink to-button rounded-md">
-                        <h1 class="m-1 text-3xl" >Need Help?</h1>
-                        <p>Our team is dedicated to making your experience here at Jz'z JDM as smooth and enjoyable as possible. If you need help with a specific problem or would like to leave a suggestion feel free to fill out our contact us form below. Our dedicated sales team will diligently to get back to you as soon as possible.</p>
-                        <button type="button" id="contactUsButtonFlip">Contact Us Form</button> 
-                    </div>
-                    <div id="contactUsFormBack" class="back1 backface-hidden absolute w-full h-full rotate-y-180 bg-white">
-                        <form action="" method="post">
+    <div class="flex flex-col sm:flex-row sm:w-full sm:justify-around sm:mx-auto mt-10 ">
+        <div class="h-[470px] w-[300px] mx-auto md:mx-0 md:w-[400px] lg:w-[500px] sm:max-w-[50%] sm:inline-block">
+            <div class="flip-card-3D-wrapper">
+                <div id="flip-card">
+                    <div class="flip-card-front"><p>Our team is dedicated to making your experience here at Jz'z JDM as smooth and enjoyable as possible. If you need help with a specific problem or would like to leave a suggestion feel free to fill out our contact us form below. Our dedicated sales team will diligently to get back to you as soon as possible.</p><button id="flip-card-btn-turn-to-back">Fill out a Contact Us Form!</button></div>
+                    <div class="flip-card-back">
+                        <form action="" method="post" class="grid grid-flow-row gap-y-6 auto-rows-auto items-center mt-[38px]">
                             {{ form.hidden_tag() }}
-                            <div class="form-input">
-                                <p>
-                                    <span>Name</span>
-                                    <input required="yes" placeholder="Name" type="text">
-                                </p>
+                            
+                            <div class="form__group field">
+                                <input type="input" class="form__field" placeholder="Name" name="name" id='name' required />
+                                <label for="name" class="form__label">Name</label>
                             </div>
-                            <div>
-                                <p>
-                                    <div class="form-input-label">
-                                        {{ form.email.label }}<br>
-                                    </div>
-                                    <div class="form-input-area" id="contactUsInput">
-                                        {{ form.email() }}<br>
-                                    </div>
-                                    <div class="form-input-error">
-                                        {% for error in form.email.errors %}
-                                            <span>[{{ error }}]</span>
-                                        {% endfor %}
-                                    </div>
-                                </p>
+                           
+                            <div class="form__group field">
+                                
+                                {{ form.email() }}
+                                <label for="email" class="form__label">Email</label>
+                                <div class="form-input-error">
+                                    {% for error in form.email.errors %}
+                                        <span>[{{ error }}]</span>
+                                    {% endfor %}
+                                </div>
+                                
                             </div>
                             <div>
                                 <label for="issue-type">Type of Issue</label>
@@ -104,30 +50,24 @@
                                 </select>
                             </div>
                             <div class="form-input">
-                                <p>
-                                    <div class="form-input-label">
-                                        {{ form.message.label }}<br>
-                                    </div>
-                                    <div class="form-input-area" id="formInputContact">
-                                        {{ form.message() }}<br>
-                                    </div>
-                                    <div class="form-input-error">
-                                        {% for error in form.message.errors %}
-                                            <span>[{{ error }}]</span>
-                                        {% endfor %}
-                                    </div>
-                                </p>
+                            
+                                <div class="input-container" id="formInputContact">
+                                    {{ form.message() }}<br>
+                                </div>
+                                <div class="form-input-error">
+                                    {% for error in form.message.errors %}
+                                        <span>[{{ error }}]</span>
+                                    {% endfor %}
+                                </div>
+                                
                             </div>
-                            <div class="form-submit">
-                                <p>
-                                    {{ form.submit() }}
-                                </p>
+                            <div class="form-submit bg-white rounded w-fit mx-auto p-1 cursor-pointer">
+                                
+                                {{ form.submit() }}
+                                
                             </div>
                         </form>
-                    </div>
-                    <div class="back2 hidden absolute w-full h-full rotate-y-180">
-                        <h1>Your form has been successfully submitted!</h1>
-                    </div>
+                    <button id="flip-card-btn-turn-to-front"></button></div>
                 </div>
             </div>
         </div>
@@ -148,7 +88,7 @@
             </div>
             <div class="faq-box w-[95%] h-[60px] mx-auto bg-pink border border-black border-solid">
                 <button type="button" class="w-full p-[18px]" ><div class="relative min-h-fit w-auto"><p class="absolute inline-block left-0">Blah Blah</p><span class="material-symbols-outlined absolute inline-block right-0">expand_more</span> <span class="material-symbols-outlined absolute inline-block right-0 hidden">expand_less</span></div></button>
-                <div class="FAQ-content hidden overflow-hidden">
+                <div class="FAQ-content hidden overflow-hidden w-full border border-black border-solid mt-2">
                     <p>Blah Blah</p>
                 </div>
             </div>
@@ -180,19 +120,21 @@
     </div>
     <!-- Contact us information -->
     <div class="mt-8">
-        <div class="w-[95%] text-center mx-auto">
-            <p class="text-3xl">Want to Talk?</p>
-        </div>
-        <div class="mx-auto w-fit">
-            <div class="w-auto text-center inline block mr-2">
-                <span class="material-symbols-outlined align-middle">call</span><p class="inline-block align-middle text-lg">319-453-2394</p>
+        <div class="w-fit bg-pink/75 rounded mx-auto mb-3 px-1">
+            <div class="w-[95%] text-center mx-auto">
+                <p class="text-3xl">Want to Talk?</p>
             </div>
-            <div class="w-auto text-center inline-block">
-                <span class="material-symbols-outlined align-middle">mail</span><p class="inline-block align-middle text-lg pb-1">support@jzjdm.co</p>
+            <div class="mx-auto w-fit">
+                <div class="w-auto text-center inline block mr-2">
+                    <span class="material-symbols-outlined align-middle">call</span><p class="inline-block align-middle text-lg">319-453-2394</p>
+                </div>
+                <div class="w-auto text-center inline-block">
+                    <span class="material-symbols-outlined align-middle">mail</span><p class="inline-block align-middle text-lg pb-1">support@jzjdm.co</p>
+                </div>
             </div>
         </div>
         <div class="text-center mb-4">
-            <iframe class="block mx-auto" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6455366.060019486!2d-91.64454115465672!3d37.812667698656256!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880619982446d5dd%3A0xe1f4f567fcf597d0!2sJDM%20Auto%20Imports%20LLC!5e0!3m2!1sen!2sus!4v1678729232932!5m2!1sen!2sus" width="600" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <iframe class="block mx-auto w-[300px] h-[200px] sm:w-[600px] sm:h-[400px]" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6455366.060019486!2d-91.64454115465672!3d37.812667698656256!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880619982446d5dd%3A0xe1f4f567fcf597d0!2sJDM%20Auto%20Imports%20LLC!5e0!3m2!1sen!2sus!4v1678729232932!5m2!1sen!2sus" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
     </div>
 </div>
