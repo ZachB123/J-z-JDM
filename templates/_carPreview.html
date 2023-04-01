@@ -2,7 +2,7 @@
 
 <div class="car-preview-container">
     <div class="car-preview-top-banner">
-        <h2 class="car-preview-title">{{car.year}} {{ car.oem }}, {{ car.model }}</h2>
+        <h2 class="car-preview-title text-lg">{{car.year}} {{ car.oem }}, {{ car.model }}</h2>
         <!-- favorite -->
         {% if current_user.is_anonymous %} 
             {% if sales_rep %}

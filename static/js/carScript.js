@@ -2,8 +2,20 @@
 currentImage = dq(".current-image")
 images = dqa(".more-images")
 
-for (image of images) {
-    image.addEventListener("click", (event) => {
-        currentImage.src = event.currentTarget.src
-    })
+function getImageFunction(image) {
+    return () => {
+        console.log(image.src)
+        currentImage.src = image.src
+    }
 }
+
+for (image of images) {
+    func = getImageFunction(image)
+    image.addEventListener("click", func)
+    // image.addEventListener("click", (event) => {
+    //     console.log("hello")
+    //     currentImage.src = event.currentTarget.src
+    // })
+}
+
+specifactionBOx
