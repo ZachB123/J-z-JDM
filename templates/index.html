@@ -12,7 +12,7 @@
 
 
 {% block body %}
-<div class="h-screen w-full">
+<div class=" w-full">
     <section class="content-section col1">
         {% include "_search.html" %}
     </section>
@@ -85,20 +85,54 @@
         </div>
     </div> -->
     <div class="w-fit h-auto mx-auto flex flex-col lg:flex-row">
-        <div class="cars relative h-[250px] w-[300px] mb-4 hover:scale-105 shadow-md sm:ml-4">
-            <img class="absolute w-full h-full rounded-md" src="{{ url_for('static', filename='images/placeholdimage.jpg') }}" alt="Buy a Car">
-            <div class="absolute bottom-0 inset-x-0 ml-2 mb-1 text-grey flex items-center"><span class="text-lg">Click here to browse cars!</span><span class="material-symbols-outlined">open_in_new</span></div>
+        <div onclick="location.href=`{{ url_for('listings') }}`" class="cars bg-pink rounded-lg relative h-[250px] w-[300px] mb-4 hover:scale-105 shadow-md sm:ml-4">
+            <img class="absolute w-full h-full rounded-md" src="{{ url_for('static', filename='images/view-cars-button-01.png') }}" alt="Buy a Car">
+            <div class="absolute bottom-0 inset-x-0 ml-2 mb-1 text-white flex items-center"><span class="text-lg">Click here to browse cars!</span><span class="material-symbols-outlined">open_in_new</span></div>
         </div>
-        <div class="aboutUs relative h-[250px] w-[300px] mb-4 hover:scale-105 shadow-md sm:ml-4">
-            <img class="absolute w-full h-full rounded-md" src="{{ url_for('static', filename='images/placeholdimage.jpg') }}" alt="Buy a Car">
-            <div class="absolute bottom-0 inset-x-0 ml-2 mb-1 text-grey flex items-center"><span class="text-lg">Click here to learn about Jz JDM!</span><span class="material-symbols-outlined">open_in_new</span></div>
+        <div onclick="location.href=`{{ url_for('about') }}`" class="aboutUs bg-pink rounded-lg relative h-[250px] w-[300px] mb-4 hover:scale-105 shadow-md sm:ml-4">
+            <img class="absolute w-full h-full rounded-md" src="{{ url_for('static', filename='images/aboutuscompany-01.png') }}" alt="Buy a Car">
+            <div class="absolute bottom-0 inset-x-0 ml-2 mb-1 text-white flex items-center"><span class="text-lg">Click here to learn about Jz JDM!</span><span class="material-symbols-outlined">open_in_new</span></div>
         </div>
-        <div class="contactUs relative h-[250px] w-[300px] mb-4 hover:scale-105 shadow-md sm:ml-4 ">
-            <img class="absolute w-full h-full rounded-md" src="{{ url_for('static', filename='images/placeholdimage.jpg') }}" alt="Buy a Car">
-            <div class="absolute bottom-0 inset-x-0 ml-2 mb-1 text-grey flex items-center"><span class="text-lg">Click here to view Sales Reps!</span><span class="material-symbols-outlined">open_in_new</span></div>
+        <div onclick="location.href=`{{ url_for('sales_representatives') }}`" class="contactUs bg-pink rounded-lg relative h-[250px] w-[300px] mb-4 hover:scale-105 shadow-md sm:ml-4 ">
+            <img class="absolute w-full h-full rounded-md" src="{{ url_for('static', filename='images/salesrepbutton-01.png') }}" alt="Buy a Car">
+            <div class="absolute bottom-0 inset-x-0 ml-2 mb-1 text-white flex items-center"><span class="text-lg">Click here to view Sales Reps!</span><span class="material-symbols-outlined">open_in_new</span></div>
         </div>
     </div>
-    <div class="hours-container max-w-[345px] w-[95%] sm:max-w-[100%] ">
+    <div style="background-image: url('static/images/listingbanner-01.png'); background-position: center; background-size: cover;" class="testimonials-section">
+        <input type="radio" name="slider" title="slide1" checked="checked" class="slider__nav"/>
+        <input type="radio" name="slider" title="slide2" class="slider__nav"/>
+        <input type="radio" name="slider" title="slide3" class="slider__nav"/>
+        <input type="radio" name="slider" title="slide4" class="slider__nav"/>
+        <input type="radio" name="slider" title="slide5" class="slider__nav"/>
+      <div class="slider__inner">
+        <div class="slider__contents">
+          <quote>&rdquo;</quote>
+          <p class="slider__txt">We love you guys. It's easy to order, we get shipments quick and my rep solves tough problems the right way. We get answers that work.</p>
+          <h2 class="slider__caption">Rhonda | NylonCraft</h2>
+        </div>
+        <div class="slider__contents">
+          <quote>&rdquo;</quote>
+          <p class="slider__txt">You all bend over backwards to get it done. Inside sales and the Account Managers are great! It's your service...you all know that it's not just about taking orders it's about service. Why do we choose you guys - your people, your prices, you're quick and you have a ton of technical knowledge.</p>
+          <h2 class="slider__caption">Jared | Rexam</h2>
+        </div>
+        <div class="slider__contents">
+          <quote>&rdquo;</quote>
+          <p class="slider__txt">It's the long-term relationship we have with Proheat that keeps me calling you guys. I trust you, you're quick, and everybody I've ever spoken to there are all great people. Our CEO, Bill, talks about building relationships. That's exactly what Proheat does, and I couldn't be happier.</p>
+          <h2 class="slider__caption">Chris | C&M Fine Pack</h2>
+        </div>
+        <div class="slider__contents">
+          <quote>&rdquo;</quote>
+          <p class="slider__txt">You answer my questions, always takes care of problems, and I never have a hassle.</p>
+          <h2 class="slider__caption">Rex | LNP Engineering Plastics</h2>
+        </div>
+        <div class="slider__contents">
+          <quote>&rdquo;</quote>
+          <p class="slider__txt">Proheat's staff are all so friendly and everybody goes above and beyond. Everyone is courteous, everything is quick and you get us what we need. I have to shop around for everything and we ALWAYS come back to Proheat.</p>
+          <h2 class="slider__caption">Darlene | Russel Stover</h2>
+        </div>
+      </div>
+    </div>
+    <div class="hours-container max-w-[345px] w-[95%] sm:max-w-[100%] bg-cover bg-center" style="background-image: url('static/images/listingbanner-01.png');">
         <h1>Hours of Operation</h1>
         <h2 class="open-status"></h2>
         <div class="hours">
@@ -131,6 +165,9 @@
                 <p>Closed</p>
             </div>
         </div>
+    </div>
+    <div class="testimonials">
+        testimonials
     </div>
     
 </div>
