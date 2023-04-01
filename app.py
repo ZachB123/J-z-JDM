@@ -144,7 +144,7 @@ def car(id):
     images = car.get_images()
     images.sort(key=(lambda x: x.cover_img), reverse=True)
     cover_image = images[0]
-    NUMBER_OF_SIMILAR_CARS = 4
+    NUMBER_OF_SIMILAR_CARS = 6
     similar = Car.search_cars(car.query_from_car())[1:NUMBER_OF_SIMILAR_CARS+1]
     return render_template("car.html", car=car, similar=similar, images=images, cover_image=cover_image, title=f"{car.oem.title()}, {car.model.title()}")
 

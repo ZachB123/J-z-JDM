@@ -77,10 +77,7 @@ function isOpen() {
     let date = new Date()
     let day = date.getDay()
     let hours = date.getHours()
-    if ( day >= 1 && (hours >= 9 && hours < 18)) {
-        if (day === 6 && hours === 18) {
-            return false
-        }
+    if ( (day >= 1 && day < 6) && (hours >= 9 && hours < 18)) {
         return true
     } 
     return false

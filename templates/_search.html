@@ -77,5 +77,42 @@
                 </a>   
             </div>
         </div>
+        {% if not request.path.endswith("/index") %}
+            <hr>
+            <div class="sorts-container">
+                <div class="car-button" onclick="location.href=`{{ url_for('listings', q='price-low-to-high') }}`">
+                    <a href="{{ url_for('listings', q='price-low-to-high') }}" class="car-button-link">
+                        <!-- <img src="{{ url_for('static', filename='images/mitsubishiemblem-01.png') }}" alt="$" class="brandLogo" style="height: auto; width: 20px; position: relative; top: 1px; right: -2px;"> -->
+                        <span class="brandName">
+                            Price Low to High
+                        </span>
+                    </a>   
+                </div>
+                <div class="car-button" onclick="location.href=`{{ url_for('listings', q='price-high-to-low') }}`">
+                    <a href="{{ url_for('listings', q='price-high-to-low') }}" class="car-button-link">
+                        <!-- <img src="{{ url_for('static', filename='images/mitsubishiemblem-01.png') }}" alt="$" class="brandLogo" style="height: auto; width: 20px; position: relative; top: 1px; right: -2px;"> -->
+                        <span class="brandName">
+                            Price High to Low
+                        </span>
+                    </a>   
+                </div>
+                <div class="car-button" onclick="location.href=`{{ url_for('listings', q='year-low-to-high') }}`">
+                    <a href="{{ url_for('listings', q='year-low-to-high') }}" class="car-button-link">
+                        <!-- <img src="{{ url_for('static', filename='images/mitsubishiemblem-01.png') }}" alt="$" class="brandLogo" style="height: auto; width: 20px; position: relative; top: 1px; right: -2px;"> -->
+                        <span class="brandName">
+                            Year Low to High
+                        </span>
+                    </a>   
+                </div>
+                <div class="car-button" onclick="location.href=`{{ url_for('listings', q='year-high-to-low') }}`">
+                    <a href="{{ url_for('listings', q='year-high-to-low') }}" class="car-button-link">
+                        <!-- <img src="{{ url_for('static', filename='images/mitsubishiemblem-01.png') }}" alt="$" class="brandLogo" style="height: auto; width: 20px; position: relative; top: 1px; right: -2px;"> -->
+                        <span class="brandName">
+                            Year High to Low
+                        </span>
+                    </a>   
+                </div>
+            </div>
+        {% endif %}
     </div>
 </div>

@@ -8,132 +8,36 @@
 {% block css %} 
     <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/search.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/homepage.css')}}">
 {% endblock %}
 
 
 {% block body %}
-<div class="h-screen w-full">
-    <section class="content-section col1">
+
+<section class="hero">
+    <div class="hero-container">
+        <div class="welcome text-2xl sm:text-5xl mb-2 font-extrabold">
+            <p class="bg-clip-text text-black/0 bg-gradient-to-br from-blue via-button to-black">Welcome to JZ JDM!</p>
+        </div>
         {% include "_search.html" %}
-    </section>
-</div>
-<section class="empty-section"></section>
-<div class="h-screen w-full">
-    <section class="content-section col1">
-        <div class="container">
-            <h1>View Our Newest Cars</h1>
-            <div class="carousel">
-                <div class="carousel-prev"><i class="material-icons" style="position:relative;top:5px;">chevron_left</i></div>
-                <div class="carousel-next"><i class="material-icons" style="position:relative;top:5px;">chevron_right</i></div>
-                <ul class="carousel-pagination">
-                    <li class="carousel-bullet"></li>
-                    <li class="carousel-bullet"></li>
-                    <li class="carousel-bullet"></li>
-                    <li class="carousel-bullet"></li>
-                    <li class="carousel-bullet"></li>
-                </ul>
-                <ul class="carousel-container">
-                    {% for car in carousel_cars %} 
-                        <div class="carousel-item">
-                            <h2 class="car-title">{{car.year}} {{ car.oem }}, {{ car.model }}</h2>
-                            <img onclick="location.href = `{{ url_for('car', id=car.id) }}`" src="{{ car.get_cover_image().link }}" alt="ERROR">
-                        </div>
-                    {% endfor %}
-                </ul>
-            </div>
-        </div>
-        <!-- <div class="curve"></div> -->
-    </section>
-</div>
-
-
-<section class="empty-section"></section>
-
-<div class="h-auto w-full mb-20">
-    
-    <!-- <div class="quick-links">
-        <div class="link-container">
-            <div class="another-container">
-                <h2>View Cars</h2>
-                <div class="non-heading-box">
-                    <div class="mini-image">
-                        <img class="mx-auto" src="{{ url_for('static', filename='images/view-cars-button-01.png') }}" alt="Car">
-                    </div>
-                    <a href="{{ url_for('listings') }}">Go!</a>
-                </div>
-            </div>
-        </div>
-        <div class="link-container">
-            <div class="another-container">
-                <h2>Meet a Sales Representative</h2>
-                <div class="non-heading-box">
-                    <div class="mini-image">
-                        <img class="mx-auto" src="{{ url_for('static', filename='images/salesrepbutton-01.png') }}" alt="Car">
-                    </div>
-                    <a href="{{ url_for('sales_representatives') }}">Go!</a>
-                </div>
-            </div>
-        </div>
-        <div class="link-container">
-            <div class="another-container">
-                <h2>Learn More about Us</h2>
-                <div class="mini-image">
-                    <img class="mx-auto" src="{{ url_for('static', filename='images/aboutuscompany-01.png') }}" alt="Car">
-                </div>
-                <a href="{{ url_for('about') }}">Go!</a>
-            </div>
-        </div>
-    </div> -->
-    <div class="w-fit h-auto mx-auto flex flex-col lg:flex-row">
-        <div class="cars relative h-[250px] w-[300px] mb-4 hover:scale-105 shadow-md sm:ml-4">
-            <img class="absolute w-full h-full rounded-md" src="{{ url_for('static', filename='images/placeholdimage.jpg') }}" alt="Buy a Car">
-            <div class="absolute bottom-0 inset-x-0 ml-2 mb-1 text-grey flex items-center"><span class="text-lg">Click here to browse cars!</span><span class="material-symbols-outlined">open_in_new</span></div>
-        </div>
-        <div class="aboutUs relative h-[250px] w-[300px] mb-4 hover:scale-105 shadow-md sm:ml-4">
-            <img class="absolute w-full h-full rounded-md" src="{{ url_for('static', filename='images/placeholdimage.jpg') }}" alt="Buy a Car">
-            <div class="absolute bottom-0 inset-x-0 ml-2 mb-1 text-grey flex items-center"><span class="text-lg">Click here to learn about Jz JDM!</span><span class="material-symbols-outlined">open_in_new</span></div>
-        </div>
-        <div class="contactUs relative h-[250px] w-[300px] mb-4 hover:scale-105 shadow-md sm:ml-4 ">
-            <img class="absolute w-full h-full rounded-md" src="{{ url_for('static', filename='images/placeholdimage.jpg') }}" alt="Buy a Car">
-            <div class="absolute bottom-0 inset-x-0 ml-2 mb-1 text-grey flex items-center"><span class="text-lg">Click here to view Sales Reps!</span><span class="material-symbols-outlined">open_in_new</span></div>
-        </div>
     </div>
-    <div class="hours-container max-w-[345px] w-[95%] sm:max-w-[100%] ">
-        <h1>Hours of Operation</h1>
-        <h2 class="open-status"></h2>
-        <div class="hours">
-            <div class="date-container sunday">
-                <h3>Sunday</h3>
-                <p>Closed</p>
-            </div>
-            <div class="date-container monday">
-                <h3>Monday</h3>
-                <p>9am - 6pm</p>
-            </div>
-            <div class="date-container tuesday">
-                <h3>Tuesday</h3>
-                <p>9am - 6pm</p>
-            </div>
-            <div class="date-container wednesday">
-                <h3>Wednesday</h3>
-                <p>9am - 6pm</p>
-            </div>
-            <div class="date-container thursday">
-                <h3>Thursday</h3>
-                <p>9am - 6pm</p>
-            </div>
-            <div class="date-container friday">
-                <h3>Friday</h3>
-                <p>9am - 6pm</p>
-            </div>
-            <div class="date-container saturday">
-                <h3>Saturday</h3>
-                <p>Closed</p>
-            </div>
-        </div>
-    </div>
-    
-</div>
+</section>
+<section class="carousel">
+    <h1 class="carousel-header">View Our Newest Cars</h1>
+    {% include "_carousel.html" %}
+</section>
+<section class="links">
+    <h1 class="links-header">Important Links</h1>
+    {% include "_homepagelinks.html" %}
+</section>
+<section class="testimonials">
+    {% include "_testimonials.html" %}
+</section>
+<section class="section-hours">
+    {% include "_hours.html" %}
+</section>
+
+
 <!-- <svg width="500" height="80" viewBox="0 0 500 80" preserveAspectRatio="none">
     <path d="M0,0 L0,40 Q250,80 500,40 L500,0 Z" fill="black" />
 </svg> -->

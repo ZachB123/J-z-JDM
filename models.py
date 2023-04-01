@@ -350,11 +350,17 @@ class Car():
         if not query:
             cars.sort(key=(lambda x: x.date_added), reverse=True)
             return cars
-        if str(query) == "low-to-high":
+        if str(query) == "price-low-to-high":
             cars.sort(key=lambda x: x.price)
             return cars
-        if str(query) == "high-to-low":
-            cars.sort(key=lambda x: x.price, revers=True)
+        if str(query) == "price-high-to-low":
+            cars.sort(key=lambda x: x.price, reverse=True)
+            return cars
+        if str(query) == "year-low-to-high":
+            cars.sort(key=lambda x: x.year)
+            return cars
+        if str(query) == "year-high-to-low":
+            cars.sort(key=lambda x: x.year, reverse=True)
             return cars
         cars.sort(key=lambda x: x.get_query_score(str(query)), reverse=True)
         return cars

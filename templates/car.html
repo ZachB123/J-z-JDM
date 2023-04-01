@@ -12,7 +12,7 @@
 {% block body %} 
     <div class="car">
         <div class="car-name">
-            <h1>{{ car.year }} {{ car.oem }}, {{ car.model }}</h1>
+            <h1 class="text-2xl">{{ car.year }} {{ car.oem }}, {{ car.model }}</h1>
             {% if current_user.is_anonymous %} 
                 {% if sales_rep %}
                     <button class="favorite-button" onclick="location.href = `{{ url_for('login', next=url_for(request.endpoint, sales_rep_id=sales_rep.user.id)) }}`"><i class="material-icons favorite">bookmark_add</i></button> 
@@ -30,15 +30,14 @@
             {% endif %}
         </div>
         <div class="current-car-image">
-            <img class="mx-auto" class="current-image" src="{{ cover_image.link }}" alt="ERROR: {{cover_image}}">
+            <img class="mx-auto current-image" src="{{ cover_image.link }}" alt="ERROR: {{cover_image}}">
             
         </div>
         <div class="description">
             <p>&emsp; {{car.description}}</p>
         </div>
         <div class="more-images-carousel">
-            <h3>More Images</h3>
-            <div class="more-images-container flex flex-auto flex-row">
+            <div class="more-images-container flex flex-auto flex-row justify-center">
                 {% for image in images %}
                     <img class="more-images" src="{{ image.link }}" alt="ERROR: {{ image }}">
                 {% endfor %}
@@ -46,7 +45,7 @@
         </div>
     </div>
     <div class="additional-information">
-        <h1>Specification</h1>
+        <h1 class="text-3xl">Specification</h1>
         <div class="information-container">
             <div class="info-container">
                 <h3>Manufacturer</h3>
@@ -125,7 +124,7 @@
         {% endif %}
     </div>
     <div class="similar-cars">
-        <h1>Similar Cars</h1>
+        <h1 class="text-3xl">Similar Cars</h1>
         {% for car in similar %} 
             {% include "_carPreview.html" %}            
         {% endfor %}

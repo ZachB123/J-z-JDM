@@ -185,7 +185,6 @@
 }
   
 .search-btn:hover {
-    transform: scale(1.2);
     cursor: pointer;
     color: var(--black);
 }
@@ -205,6 +204,28 @@
     row-gap: 6px;
 }
 
+hr {
+     max-width: 460px;
+     margin: 6px auto;
+     color: white;
+     border-width: 3px;
+     border-radius: 4px;
+     -webkit-border-radius: 4px;
+     -moz-border-radius: 4px;
+     -ms-border-radius: 4px;
+     -o-border-radius: 4px;
+}
+
+.sorts-container {
+    display: grid;
+    max-width: 460px;
+    margin: 4px auto;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    column-gap: 6px;
+    row-gap: 6px;
+}
+
 .car-button {
     background-color: var(--white);
     border-radius: 8px;
@@ -214,7 +235,7 @@
     -o-border-radius: 8px;
     text-align: center;
     cursor: pointer;
-
+    max-height: 50px;
 }
 
 .car-button-link {

@@ -30,11 +30,12 @@
 }
 
 body {
-    background-color: rgb(100, 100, 100);
+    background-color: var(--filler);
 }
 
 nav {
-    background: transparent;
+    /* background: transparent; */
+    background-color: var(--primary);
     padding: 0 15px;
     z-index: 1;
 }
@@ -82,10 +83,11 @@ a {
     padding: 15px 5px;
 }
 #logoContainer {
-    padding-top: 10px;
+    padding-top: 4px;
     padding-left: 5px;
     padding-right: 5px;
     padding-bottom: 0;
+    margin: auto;
 }
 .list-container li.subitem a {
     padding: 15px;
