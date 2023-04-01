@@ -11,6 +11,7 @@ section {
     background-repeat: no-repeat;
     background-position: center center;
     min-height: 500px;
+    height: 95vh;
     display: grid;
     place-items: center;
 }
