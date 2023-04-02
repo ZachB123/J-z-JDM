@@ -64,6 +64,9 @@ a {
 .item.button {
     padding: 9px 5px;
 }
+.item a {
+    font-size: 1.18rem;
+}
 .item:not(.button) a:hover,
 .item a:hover::after {
     color: var(--white);
