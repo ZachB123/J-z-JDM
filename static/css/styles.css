@@ -354,5 +354,9 @@ a {
     color: var(--white);
 }
 
+.pointer {
+    cursor: pointer;
+    margin: auto;
+}
 
 /* https://getwaves.io/ */
