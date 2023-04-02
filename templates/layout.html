@@ -35,7 +35,8 @@
     {% block seo %}{% endblock %}
 </head>
 <body>
-    <nav class="nav-bar-container" {% if (request.path.endswith('/index') or request.path.endswith('/') or request.path|regex_match('^/sales/message/\\d+$')) %}style="background: var(--primary)"{% endif %}>
+    <!-- <nav class="nav-bar-container" {% if (request.path.endswith('/index') or request.path.endswith('/') or request.path|regex_match('^/sales/message/\\d+$')) %}style="background: var(--primary)"{% endif %}> -->
+    <nav class="nav-bar-container" style="position: relative; z-index: 10000">
         <ul class="list-container">
             <li class="logo"><a href="{{ url_for('index') }}" id="logoContainer"><img src="{{ url_for('static', filename='images/logoPlaceholder.png') }}" alt="JZ JDM" style="height: auto; max-width: 150px;"></a></li>
             <li class="item"><a href="{{ url_for('index') }}">Home</a></li>
