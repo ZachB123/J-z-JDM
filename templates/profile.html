@@ -1,7 +1,7 @@
 {% extends "layout.html" %} 
 {% block css %} 
     <link rel="stylesheet" href="{{ url_for('static', filename='css/userProfile.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/signInUp.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/passwordReset.css') }}">
 {% endblock %} 
 
 {% block body %}
@@ -24,7 +24,7 @@
                 </div>
             {% endfor %} 
         </div>  
-        <div class="reset-password-container">
+        <div class="reset-password-container mt-4">
             <div class="form-size">
                 <div class="reset-header">
                     <h1>Reset Password</h1>
@@ -61,10 +61,11 @@
                         </div>
                     </form>
                 </div> 
+                <br>
                 <div class="reset-header">
                     <h1>Update/Add Email</h1>
                 </div>
-                <div class="reset-form">
+                <div class="reset-form mb-4">
                     <form action="" method="post">
                         {{ update_email.hidden_tag() }}
                         <div class="form-input">
@@ -83,13 +84,14 @@
                             <p>{{ update_email.submit() }}</p>
                         </div>
                     </form>
+                    
                 </div>
             </div>
         </div>
     </div>
     
     <div class="favorites-container">
-        <h2>Favorited Cars</h2>
+        <h2 class="bg-white rounded p-2 w-fit text-4xl mx-auto">Favorited Cars</h2>
         <div class="car-grid">
             {% for car in cars %} 
                 {% include "_carPreview.html" %} 
