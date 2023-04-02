@@ -37,7 +37,7 @@ body {
 }
 
 .view-messages a {
-    color: var(--teal);
+    color: var(--highlights);
     font-weight: 650;
     margin-bottom: 4px;
 }
@@ -47,7 +47,7 @@ body {
 }
 
 .view-messages a:hover {
-    color: #c73636;
+    color: var(--highlights-hover);
     text-decoration: underline;
 }
 

@@ -1,5 +1,5 @@
 import os
-from models import User, Car, Image, SalesRep, ContactMessage, DirectMessage, DirectDatabaseDirectMessage, refresh_database, close_database
+from models import User, Car, Image, SalesRep, ContactMessage, DirectMessage, DirectDatabaseDirectMessage, refresh_database, close_database, refresh_direct_messages
 from config import Config
 from flask import Flask, render_template, redirect, url_for, flash, request, abort
 from dotenv import load_dotenv
@@ -103,6 +103,7 @@ def register():
 @app.route("/profile", methods=["GET", "POST"])
 @login_required
 def profile():
+    refresh_direct_messages()
     user = User.get_user_by_id(current_user.get_id())
     form = ResetPassword()
     if form.validate_on_submit():

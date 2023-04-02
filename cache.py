@@ -151,6 +151,20 @@ class Cache():
         self.create_tables()
         self.add_data()
 
+    def refresh_direct_messages(self):
+        database = DatabaseDriver()
+        direct_messages = database.get_all(["direct_messages"])
+        cursor = self.conn.cursor()
+        cursor.execute(
+            """
+            DROP TABLE direct_messages;
+            """
+        )
+        self.conn.commit()
+        self.create_direct_messages_table()
+        self.data["direct_messages"] = direct_messages['direct_messages']
+        self.add_direct_messages()
+
     def does_cache_exist(self):
         current_directory = os.getcwd()
         cache_db_path = os.path.join(current_directory, "cache.db")
