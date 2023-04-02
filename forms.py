@@ -50,7 +50,7 @@ class ResetPasswordEmail(FlaskForm):
             raise ValidationError("Email is not in database, try a different email or contact us through the contact us page.")
 
 class UpdateEmail(FlaskForm):
-    email = StringField('Email', validators=[DataRequired(), Email()])
+    email = StringField('Email', validators=[DataRequired(), Email()], render_kw={"placeholder": "Example@gmail.com"})
     submit = SubmitField('Update Email')
 
 class CarCreationForm(FlaskForm):
