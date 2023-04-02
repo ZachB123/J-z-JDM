@@ -757,7 +757,7 @@ class Cache():
             """,
             values
         )
-        return ([row for row in cursor])
+        return bool(([row for row in cursor]))
     
     def update_email(self, values):
         self.conn.execute(

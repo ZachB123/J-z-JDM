@@ -1,6 +1,6 @@
 /* css for the sales rep page */
 body {
-    background-color: var(--white);
+    background-color: var(--primary);
 }
 .sales-rep-top {
     text-align: center;

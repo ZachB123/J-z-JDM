@@ -12,6 +12,8 @@ from flask_sslify import SSLify
 from jwttoken import get_reset_password_token, verify_reset_password_token
 from flask_mail import Message
 from flask_mail_sendgrid import MailSendGrid
+from jinja2 import Environment
+import re
 import threading
 
 app = Flask(__name__)
@@ -26,6 +28,11 @@ mail = MailSendGrid(app)
 
 # uncomment for production
 # sslify = SSLify(app)
+
+def regex_match(value, pattern):
+    return bool(re.match(pattern, value))
+
+app.jinja_env.filters['regex_match'] = regex_match
 
 def send_email(subject="subject", sender="support@jzjdm.co", recipients=[""], text_body="body", html_body="html body"):
     msg = Message(subject, sender=sender, recipients=recipients)
