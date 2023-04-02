@@ -77,7 +77,7 @@
                 </a>   
             </div>
         </div>
-        {% if not request.path.endswith("/index") %}
+        {% if not (request.path.endswith("/index") or request.path.endswith("/")) %}
             <hr>
             <div class="sorts-container">
                 <div class="car-button" onclick="location.href=`{{ url_for('listings', q='price-low-to-high') }}`">
