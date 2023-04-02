@@ -42,7 +42,7 @@ function cycle() {
         scrollFlag = false
         setTimeout(() => {
           cycle();
-        }, 5000);
+        }, 2000);
     })
 }
 

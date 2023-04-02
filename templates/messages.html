@@ -25,10 +25,10 @@
 {% endblock %}
 
 {% block body %} 
-<div class="message-header">
+<!-- <div class="message-header">
     <h1 class="username-message text-lg">{{ user.username }}</h1>
     <span class="dot"></span>
-</div>
+</div> -->
 <div class="content-container">
     <div class="message-container">
         <!-- {{messages}} -->
@@ -60,6 +60,9 @@
     </form>
 </div>
 
-
+<script>
+    const textarea = document.querySelector('textarea');
+    textarea.placeholder = `Message {{ user.username }}`;
+</script>
     
 {% endblock %}
