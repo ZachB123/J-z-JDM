@@ -149,6 +149,8 @@ form .send i {
 .message-content {
     padding: 0;
     margin: 0;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 .message-blue:after {

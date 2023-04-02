@@ -39,6 +39,12 @@ nav {
     padding: 0 15px;
     z-index: 1;
 }
+
+@media screen and (min-width: 960px) {
+    nav {
+        background-color: transparent;
+    }
+}
 a {
     color: var(--black);
     text-decoration: none;

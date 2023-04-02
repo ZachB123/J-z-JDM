@@ -17,6 +17,9 @@ def refresh_database():
 def close_database():
     db.close()
 
+def refresh_direct_messages():
+    db.refresh_direct_messages()
+
 def remove_common_words_and_numbers(words_list):
     stopwords = nltk.corpus.stopwords.words('english')
     # Add more stopwords if needed: stopwords += ['word1', 'word2', ...]

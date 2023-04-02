@@ -227,6 +227,9 @@ class DatabaseDriver():
             SET email=%s 
             WHERE id=%s;
         """, values)
+
+    def refresh_direct_messages():
+        pass
         
         
 db = DatabaseDriver()
